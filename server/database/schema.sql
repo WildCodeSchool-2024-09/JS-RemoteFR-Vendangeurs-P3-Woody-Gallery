@@ -119,6 +119,12 @@ VALUES
   (31, "Col de la Vanoise", "LIEN IMAGE", "Le col de la Vanoise est un col des Alpes françaises situé à 2 517 mètres d'altitude dans le parc national de la Vanoise. Il permet l'accès entre les localités de Pralognan-la-Vanoise et Termignon, appartenant respectivement aux vallées de la Tarentaise et de la Maurienne, dans le département de la Savoie.", "42x20cm", 5, 34.99, 4),
   (32, "Lac des Vaches", "LIEN IMAGE", "Le lac des Vaches est un lac situé en France sur la commune de Pralognan-la-Vanoise, dans le département de la Savoie en région Auvergne-Rhône-Alpes. Il s'agit d'un lac de montagne du massif de la Vanoise et du parc national de la Vanoise, culminant à 2 318 mètres d'altitude.", "20x42cm", 8, 39.99, 4);
 
-INSERT INTO users ( firstname, lastname, email, password)
+INSERT INTO ratings (id, rating, comment)
 VALUES 
-("Woody", "Gallery", "woody@gmail.com", 1234);
+(1, 5, "wow");
+
+INSERT INTO users ( firstname, lastname, email, password, rating_id)
+VALUES 
+("Woody", "Gallery", "woody@gmail.com", 1234, 1);
+
+

@@ -33,7 +33,6 @@ class UsersRepository {
   }
 
   async create(
-    id: number,
     firstname: string,
     lastname: string,
     email: string,
@@ -41,7 +40,7 @@ class UsersRepository {
   ) {
     const [result] = await databaseClient.query<Result>(
       "INSERT INTO users (firstname, lastname, email, password) values (?, ?, ?, ?)",
-      [id, firstname, lastname, email, password],
+      [firstname, lastname, email, password],
     );
 
     return result.insertId;

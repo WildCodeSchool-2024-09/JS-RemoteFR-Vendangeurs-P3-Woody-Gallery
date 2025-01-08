@@ -38,7 +38,6 @@ const add: RequestHandler = async (req, res, next) => {
     };
 
     const insertId = await usersRepository.create(
-      newUsers.id,
       newUsers.firstname,
       newUsers.lastname,
       newUsers.email,
