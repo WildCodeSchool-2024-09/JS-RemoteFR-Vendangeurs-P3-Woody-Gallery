@@ -6,12 +6,17 @@ const router = express.Router();
 // Define Your API Routes Here
 /* ************************************************************************* */
 
-// Define item-related routes
-import itemActions from "./modules/item/itemActions";
+import usersActions from "./modules/users/usersActions";
 
-router.get("/api/items", itemActions.browse);
-router.get("/api/items/:id", itemActions.read);
-router.post("/api/items", itemActions.add);
+router.get("/api/users", usersActions.browse);
+router.get("/api/users/:id", usersActions.read);
+router.post("/api/users", usersActions.add);
+router.put("/api/users/:id", usersActions.editFirstname);
+router.put("/api/users/:id", usersActions.editLastname);
+router.put("/api/users/:id", usersActions.editEmail);
+router.put("/api/users/:id", usersActions.editPhoneNumber);
+router.put("/api/users/:id", usersActions.editPassword);
+router.delete("/api/users/:id", usersActions.destroy);
 
 /* ************************************************************************* */
 
