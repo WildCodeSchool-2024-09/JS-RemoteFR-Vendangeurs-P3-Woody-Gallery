@@ -11,9 +11,9 @@ import ordersAction from "./modules/orders/ordersActions";
 
 router.get("/api/orders", ordersAction.browse);
 router.get("/api/orders/:id", ordersAction.read);
-router.put("/api/orders", ordersAction.edit);
+router.put("/api/orders/:id", ordersAction.edit);
 router.post("/api/orders", ordersAction.add);
-router.delete("/api/orders", ordersAction.destroy);
+router.delete("/api/orders/:id", ordersAction.destroy);
 
 // Define users-related routes
 import usersActions from "./modules/users/usersActions";
@@ -27,6 +27,14 @@ router.put("/api/users/:id", usersActions.editEmail);
 router.put("/api/users/:id", usersActions.editPhoneNumber);
 router.put("/api/users/:id", usersActions.editPassword);
 router.delete("/api/users/:id", usersActions.destroy);
+
+// Define ratings-related routes
+import ratingsActions from "./modules/ratings/ratingsActions";
+
+router.get("/api/ratings", ratingsActions.browse);
+router.get("/api/ratings/:id", ratingsActions.read);
+router.post("/api/ratings", ratingsActions.add);
+router.delete("/api/ratings/:id", ratingsActions.destroy);
 
 /* ************************************************************************* */
 
