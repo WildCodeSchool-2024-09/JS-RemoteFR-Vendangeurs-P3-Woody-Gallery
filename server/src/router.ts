@@ -28,6 +28,14 @@ router.put("/api/users/:id", usersActions.editPhoneNumber);
 router.put("/api/users/:id", usersActions.editPassword);
 router.delete("/api/users/:id", usersActions.destroy);
 
+import collectionsActions from "./modules/collections/collectionsActions";
+
+router.get("/api/collections", collectionsActions.browse);
+router.get("/api/collections/:id", collectionsActions.read);
+router.post("/api/collections", collectionsActions.add);
+router.put("/api/collections/:id", collectionsActions.edit);
+router.put("/api/collections/:id", collectionsActions.destroy);
+
 /* ************************************************************************* */
 
 export default router;

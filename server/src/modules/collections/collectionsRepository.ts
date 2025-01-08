@@ -31,7 +31,8 @@ class CollectionRepository {
             FROM collections c
             LEFT JOIN photos p 
             ON c.id = p.collection_id
-            WHERE id = ?`,
+            WHERE c.id = ?`,
+      [id],
     );
 
     return rows[0] as Collection[];
@@ -44,6 +45,24 @@ class CollectionRepository {
     );
 
     return result.insertId;
+  }
+
+  async update(name: string) {
+    const [result] = await databaseClient.query<Result>(
+      "UPDATE collections SET name = ? WHERE id = ?",
+      [name],
+    );
+
+    return result.affectedRows;
+  }
+
+  async delete(id: number) {
+    const [result] = await databaseClient.query<Result>(
+      "DELETE FROM collections WHERE id = ?",
+      [id],
+    );
+
+    return result.affectedRows;
   }
 }
 
