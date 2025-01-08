@@ -7,7 +7,6 @@ CREATE TABLE addresses (
     country VARCHAR(50) NOT NULL
 );
 
-
 CREATE TABLE ratings (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     rating INT NOT NULL,
@@ -15,12 +14,10 @@ CREATE TABLE ratings (
     date TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
-
 CREATE TABLE collections (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL
 );
-
 
 CREATE TABLE users (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -36,7 +33,6 @@ CREATE TABLE users (
     FOREIGN KEY (rating_id) REFERENCES ratings(id)
 );
 
-
 CREATE TABLE collections_users (
     user_id INT NOT NULL,
     collection_id INT NOT NULL,
@@ -44,7 +40,6 @@ CREATE TABLE collections_users (
     FOREIGN KEY (collection_id) REFERENCES collections(id),
     PRIMARY KEY (user_id, collection_id)
 );
-
 
 CREATE TABLE photos (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -59,14 +54,12 @@ CREATE TABLE photos (
     FOREIGN KEY (collection_id) REFERENCES collections(id)
 );
 
-
 CREATE TABLE orders (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     order_nb INT NOT NULL,
     date TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     is_done BOOLEAN DEFAULT FALSE NOT NULL
 );
-
 
 CREATE TABLE photos_orders (
     order_id INT NOT NULL,
@@ -76,7 +69,6 @@ CREATE TABLE photos_orders (
     FOREIGN KEY (photo_id) REFERENCES photos(id)
 );
 
-
 CREATE TABLE orders_users (
     user_id INT NOT NULL,
     order_id INT NOT NULL,
@@ -85,14 +77,12 @@ CREATE TABLE orders_users (
     FOREIGN KEY (order_id) REFERENCES orders(id)
 );
 
-
 INSERT INTO collections(id, name)
 VALUES
   (1, 'Tokyo Modern'),
   (2, 'Tokyo Traditionnel'),
   (3, 'Munich'),
   (4, 'Alpes Françaises');
-
 
 INSERT INTO photos(id, name, image, description, format, stock, price, collection_id)
 VALUES
@@ -129,3 +119,6 @@ VALUES
   (31, "Col de la Vanoise", "LIEN IMAGE", "Le col de la Vanoise est un col des Alpes françaises situé à 2 517 mètres d'altitude dans le parc national de la Vanoise. Il permet l'accès entre les localités de Pralognan-la-Vanoise et Termignon, appartenant respectivement aux vallées de la Tarentaise et de la Maurienne, dans le département de la Savoie.", "42x20cm", 5, 34.99, 4),
   (32, "Lac des Vaches", "LIEN IMAGE", "Le lac des Vaches est un lac situé en France sur la commune de Pralognan-la-Vanoise, dans le département de la Savoie en région Auvergne-Rhône-Alpes. Il s'agit d'un lac de montagne du massif de la Vanoise et du parc national de la Vanoise, culminant à 2 318 mètres d'altitude.", "20x42cm", 8, 39.99, 4);
 
+INSERT INTO users ( firstname, lastname, email, password)
+VALUES 
+("Woody", "Gallery", "woody@gmail.com", 1234);
