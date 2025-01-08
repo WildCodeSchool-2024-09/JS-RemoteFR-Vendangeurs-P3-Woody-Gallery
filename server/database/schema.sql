@@ -85,6 +85,10 @@ CREATE TABLE orders_users (
     FOREIGN KEY (order_id) REFERENCES orders(id)
 );
 
+INSERT INTO orders (order_nb, is_done)
+VALUES
+(1, false),
+(2, true);
 
 INSERT INTO collections(id, name)
 VALUES
