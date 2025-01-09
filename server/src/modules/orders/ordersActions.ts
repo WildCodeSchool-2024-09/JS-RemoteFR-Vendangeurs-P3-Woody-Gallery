@@ -28,7 +28,6 @@ const edit: RequestHandler = async (req, res, next) => {
   try {
     const orders = {
       id: Number(req.params.id),
-      order_nb: Number(req.body.order_nb),
       date: req.body.date,
       is_done: req.body.is_done,
     };
@@ -47,7 +46,6 @@ const edit: RequestHandler = async (req, res, next) => {
 const add: RequestHandler = async (req, res, next) => {
   try {
     const neworders = {
-      order_nb: Number(req.body.order_nb),
       date: req.body.date,
       is_done: req.body.is_done,
     };
