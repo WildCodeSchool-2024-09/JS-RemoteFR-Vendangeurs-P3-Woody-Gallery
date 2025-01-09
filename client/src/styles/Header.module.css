@@ -28,7 +28,7 @@
 
   .galleryTitle {
     background: linear-gradient(
-      var(--fontcolor-gold) 3%,
+      var(--fontcolor-gold) 40%,
       var(--fontcolor-gold-dark) 100%
     );
     -webkit-background-clip: text;
