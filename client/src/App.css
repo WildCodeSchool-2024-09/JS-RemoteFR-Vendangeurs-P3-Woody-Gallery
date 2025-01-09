@@ -33,6 +33,29 @@
   --font-kapakana: "Kapakana Regular", serif;
 }
 
+@font-face {
+  font-family: "Kapakana Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Kapakana Regular"), url("./assets/fonts/Kapakana[wght].woff")
+    format("woff");
+}
+
+:root {
+  --background-primary-color: #000000;
+  --background-secondary-color: #363636;
+  --background-tertiary-color: #383838;
+
+  --fontcolor-white: #ffffff;
+  --fontcolor-grey: #444444;
+  --fontcolor-gold: #ccb014;
+  --fontcolor-gold-dark: #66580a;
+
+  --font-aboreto: "Aboreto", serif;
+  --font-grotesk: "Familjen Grotesk", serif;
+  --font-kapakana: "Kapakana Regular", serif;
+}
+
 body {
   height: 100vh;
   width: 100%;
