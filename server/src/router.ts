@@ -21,11 +21,11 @@ import usersActions from "./modules/users/usersActions";
 router.get("/api/users", usersActions.browse);
 router.get("/api/users/:id", usersActions.read);
 router.post("/api/users", usersActions.add);
-router.put("/api/users/:id", usersActions.editFirstname);
-router.put("/api/users/:id", usersActions.editLastname);
-router.put("/api/users/:id", usersActions.editEmail);
-router.put("/api/users/:id", usersActions.editPhoneNumber);
-router.put("/api/users/:id", usersActions.editPassword);
+router.put("/api/users/:id/firstname", usersActions.editFirstname);
+router.put("/api/users/:id/lastname", usersActions.editLastname);
+router.put("/api/users/:id/email", usersActions.editEmail);
+router.put("/api/users/:id/phonenumber", usersActions.editPhoneNumber);
+router.put("/api/users/:id/password", usersActions.editPassword);
 router.delete("/api/users/:id", usersActions.destroy);
 
 // Define photos-related routes
