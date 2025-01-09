@@ -15,4 +15,16 @@ router.post("/api/items", itemActions.add);
 
 /* ************************************************************************* */
 
+// Define address-related routes
+import * as addressActions from "./modules/address/addressActions";
+
+// Récupérer toutes les adresses
+router.get("/api/addresses", addressActions.getAllAddresses);
+router.get("/api/addresses/:id", addressActions.getAddressById);
+router.post("/api/addresses", addressActions.addAddress);
+router.put("/api/addresses/:id", addressActions.updateAddress);
+router.delete("/api/addresses/:id", addressActions.deleteAddress);
+
+/* ************************************************************************* */
+
 export default router;
