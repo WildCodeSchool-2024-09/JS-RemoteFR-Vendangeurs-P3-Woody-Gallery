@@ -38,6 +38,23 @@ router.put("/api/photos/:id/is_favorite", photosAction.editIsFavorite);
 router.post("/api/photos", photosAction.add);
 router.delete("/api/photos/:id", photosAction.destroy);
 
+// Define collections-related routes
+import collectionsActions from "./modules/collections/collectionsActions";
+
+router.get("/api/collections", collectionsActions.browse);
+router.get("/api/collections/:id", collectionsActions.read);
+router.post("/api/collections", collectionsActions.add);
+router.put("/api/collections/:id", collectionsActions.edit);
+router.put("/api/collections/:id", collectionsActions.destroy);
+
+// Define ratings-related routes
+import ratingsActions from "./modules/ratings/ratingsActions";
+
+router.get("/api/ratings", ratingsActions.browse);
+router.get("/api/ratings/:id", ratingsActions.read);
+router.post("/api/ratings", ratingsActions.add);
+router.delete("/api/ratings/:id", ratingsActions.destroy);
+
 /* ************************************************************************* */
 
 export default router;
