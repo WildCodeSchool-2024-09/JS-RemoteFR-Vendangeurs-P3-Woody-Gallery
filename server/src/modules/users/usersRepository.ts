@@ -48,7 +48,7 @@ class UsersRepository {
 
   async updateFirstname(id: number, firstname: string) {
     const [result] = await databaseClient.query<Result>(
-      "UPTADE users SET firstname = ? WHERE id = ?",
+      "UPDATE users SET firstname = ? WHERE id = ?",
       [firstname, id],
     );
 
@@ -57,7 +57,7 @@ class UsersRepository {
 
   async updateLastname(id: number, lastname: string) {
     const [result] = await databaseClient.query<Result>(
-      "UPTADE users SET lastname = ? WHERE id = ?",
+      "UPDATE users SET lastname = ? WHERE id = ?",
       [lastname, id],
     );
 
@@ -66,7 +66,7 @@ class UsersRepository {
 
   async updateEmail(id: number, email: string) {
     const [result] = await databaseClient.query<Result>(
-      "UPTADE users SET email = ? WHERE id = ?",
+      "UPDATE users SET email = ? WHERE id = ?",
       [email, id],
     );
 
@@ -75,7 +75,7 @@ class UsersRepository {
 
   async updatePhoneNumber(id: number, phone_number: string) {
     const [result] = await databaseClient.query<Result>(
-      "UPTADE users SET phone_number = ? WHERE id = ?",
+      "UPDATE users SET phone_number = ? WHERE id = ?",
       [phone_number, id],
     );
 
@@ -84,7 +84,7 @@ class UsersRepository {
 
   async updatePassword(id: number, password: string) {
     const [result] = await databaseClient.query<Result>(
-      "UPTADE users SET password = ? WHERE id = ?",
+      "UPDATE users SET password = ? WHERE id = ?",
       [password, id],
     );
 
