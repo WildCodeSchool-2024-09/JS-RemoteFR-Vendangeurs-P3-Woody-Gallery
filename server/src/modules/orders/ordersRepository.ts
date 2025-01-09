@@ -3,7 +3,6 @@ import type { Result, Rows } from "../../../database/client";
 
 type Orders = {
   id: number;
-  order_nb: number;
   date: string;
   is_done: boolean;
 };
@@ -12,8 +11,8 @@ class OrdersRepository {
   // C - CREATE
   async create(orders: Omit<Orders, "id">) {
     const [result] = await databaseClient.query<Result>(
-      "insert into orders (order_nb, date, is_done) values (?, ?, ?)",
-      [orders.order_nb, orders.date, orders.is_done],
+      "insert into orders (is_done) values (?)",
+      [orders.is_done],
     );
     return result.insertId;
   }
@@ -33,8 +32,8 @@ class OrdersRepository {
 
   async update(orders: Orders) {
     const [result] = await databaseClient.query<Result>(
-      "update program set order_nb = ?, date = ?, is_done = ?",
-      [orders.order_nb, orders.date, orders.is_done],
+      "update orders set is_done = ? where id = ?",
+      [orders.is_done, orders.id],
     );
     return result.affectedRows;
   }
