@@ -2,6 +2,35 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  line-height: 1.5;
+}
+
+@font-face {
+  font-family: "Kapakana Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Kapakana Regular"), url("./assets/fonts/Kapakana[wght].woff")
+    format("woff");
+}
+
+:root {
+  --background-primary-color: #000000;
+  --background-secondary-color: #363636;
+  --background-tertiary-color: #383838;
+
+  --footerbg-primary-color: #ffffff;
+  --footerbg-secondary-color: #e7e7e7;
+  --footerbg-tertiary-color: #e0e0e0;
+
+  --fontcolor-white: #ffffff;
+  --fontcolor-grey: #444444;
+  --fontcolor-gold: #ccb014;
+  --fontcolor-gold-dark: #66580a;
+  --fontcolor-black: #000000;
+
+  --font-aboreto: "Aboreto", serif;
+  --font-grotesk: "Familjen Grotesk", serif;
+  --font-kapakana: "Kapakana Regular", serif;
 }
 
 @font-face {

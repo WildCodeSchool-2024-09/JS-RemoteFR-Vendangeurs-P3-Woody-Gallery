@@ -12,7 +12,7 @@ export default function Header() {
         account_circle
       </span>
       <ul>
-        <li>Acceuil</li>
+        <li>Accueil</li>
         <li>Nouveautés</li>
         <li>Shop</li>
       </ul>

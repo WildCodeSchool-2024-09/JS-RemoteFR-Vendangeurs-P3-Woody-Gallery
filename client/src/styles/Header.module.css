@@ -4,7 +4,7 @@
   display: grid;
   grid-template-columns: 20% 20% 12% 10% 15% 15% 8%;
   grid-template-rows: 33% 33% 33%;
-  margin-top: 1rem;
+  margin: 1rem 0;
 
   h1 {
     font-family: var(--font-kapakana);
@@ -28,7 +28,7 @@
 
   .galleryTitle {
     background: linear-gradient(
-      var(--fontcolor-gold) 3%,
+      var(--fontcolor-gold) 40%,
       var(--fontcolor-gold-dark) 100%
     );
     -webkit-background-clip: text;
@@ -72,7 +72,9 @@
     gap: 1.5rem;
     list-style-type: none;
     grid-area: 3 / 1 / 4 / 8;
-    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
 
     li {
       cursor: pointer;
