@@ -1,7 +1,7 @@
-import Hasedera from "../assets/images/photos/Hasedera.jpg";
-import Kotoku from "../assets/images/photos/Kotoku-in.jpg";
-import Meiji from "../assets/images/photos/Meiji-jingu.jpg";
-import Fuji from "../assets/images/photos/mont_fuji.jpg";
+import Hasedera from "/photos/traditionalTokyo/Hasedera.jpg";
+import Kotoku from "/photos/traditionalTokyo/Kotoku-in.jpg";
+import Meiji from "/photos/traditionalTokyo/Meiji-jingu.jpg";
+import Fuji from "/photos/traditionalTokyo/mont_fuji.jpg";
 import styles from "../styles/ShopPhotos.module.css";
 
 export default function ShopPhotos() {

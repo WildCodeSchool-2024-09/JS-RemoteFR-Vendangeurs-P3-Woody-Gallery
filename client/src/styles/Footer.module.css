@@ -9,7 +9,6 @@
     var(--footerbg-secondary-color) 60%,
     var(--footerbg-primary-color) 100%
   );
-  bottom: 0;
   display: grid;
   grid-template-columns: 50% 50%;
 
