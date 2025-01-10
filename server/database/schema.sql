@@ -122,4 +122,4 @@ VALUES
 
 INSERT INTO addresses(street_number, street_name, postal_code, city, country)
 VALUES
-("2b", "street_name", "postal_code", "city", "country");
+("2b", "Rue de la Paix", "75002", "Paris", "France");
