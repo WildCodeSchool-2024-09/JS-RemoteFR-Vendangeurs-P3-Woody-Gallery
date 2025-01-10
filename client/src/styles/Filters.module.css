@@ -1,0 +1,10 @@
+.filtersButton {
+  font-size: 18px;
+  width: 100%;
+  background-color: #363636;
+  color: white;
+  border: none;
+  box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.72) inset;
+  -webkit-box-shadow: 2px 2px 20px -3px rgba(0, 0, 0, 0.72) inset;
+  -moz-box-shadow: 2px 2px 2px -3px rgba(0, 0, 0, 0.72) inset;
+}
