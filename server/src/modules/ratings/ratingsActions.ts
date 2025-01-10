@@ -39,7 +39,6 @@ const add: RequestHandler = async (req, res, next) => {
     const insertId = await ratingsRepository.create(
       newRating.rating,
       newRating.comment,
-      newRating.date,
     );
 
     res.status(204).json({ insertId });

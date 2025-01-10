@@ -15,7 +15,7 @@ type RatingsUsers = {
 class RatingsRepository {
   async readAll() {
     const [rows] = await databaseClient.query<Rows>(
-      `SELECT u.firstname, u.lastname, r.rating, r.comment, r.date
+      `SELECT r.id, u.firstname, u.lastname, r.rating, r.comment, r.date
         FROM ratings r 
         LEFT JOIN users u 
         ON r.id = u.rating_id`,
@@ -26,7 +26,7 @@ class RatingsRepository {
 
   async read(id: number) {
     const [rows] = await databaseClient.query<Rows>(
-      `SELECT u.firstname, u.lastname, r.rating, r.comment, r.date 
+      `SELECT r.id, u.firstname, u.lastname, r.rating, r.comment, r.date 
       FROM ratings r 
       LEFT JOIN users u 
       ON r.id = u.rating_id
@@ -37,10 +37,10 @@ class RatingsRepository {
     return rows[0] as RatingsUsers;
   }
 
-  async create(rating: number, comment: string, date: number) {
+  async create(rating: number, comment: string) {
     const [result] = await databaseClient.query<Result>(
-      "INSERT INTO ratings (rating, comment, date) VALUES (?,?,?)",
-      [rating, comment, date],
+      "INSERT INTO ratings (rating, comment) VALUES (?,?)",
+      [rating, comment],
     );
 
     return result.insertId;
