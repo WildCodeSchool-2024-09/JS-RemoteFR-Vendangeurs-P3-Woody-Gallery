@@ -1,14 +1,11 @@
+import star from "/star.png";
 import styles from "../styles/HomeReviews.module.css";
 
 export default function HomeReviews() {
   const stars = [];
 
   for (let i = 1; i <= 5; i++) {
-    stars.push(
-      <span key={i} className="material-symbols-outlined">
-        star
-      </span>,
-    );
+    stars.push(<img key={i} src={star} alt={`${stars}${i}`} />);
   }
 
   return (
