@@ -66,10 +66,10 @@ class CollectionRepository {
     return result.insertId;
   }
 
-  async update(name: string) {
+  async update(id: number, name: string) {
     const [result] = await databaseClient.query<Result>(
       "UPDATE collections SET name = ? WHERE id = ?",
-      [name],
+      [name, id],
     );
 
     return result.affectedRows;

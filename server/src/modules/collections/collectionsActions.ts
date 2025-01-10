@@ -56,13 +56,14 @@ const add: RequestHandler = async (req, res, next) => {
 
 const edit: RequestHandler = async (req, res, next) => {
   try {
-    const newCollections = {
+    const newCollection = {
       id: Number(req.params.id),
       name: req.body.name,
     };
 
-    const affectedRows = await collectionsRepository.create(
-      newCollections.name,
+    const affectedRows = await collectionsRepository.update(
+      newCollection.id,
+      newCollection.name,
     );
 
     if (affectedRows === 0) {
