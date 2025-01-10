@@ -82,5 +82,9 @@
     li {
       cursor: pointer;
     }
+    a:visited {
+      text-decoration: none;
+      color: white;
+    }
   }
 }

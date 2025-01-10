@@ -1,0 +1,39 @@
+.photos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .box {
+    width: 90%;
+    height: 25vh;
+    margin: .5rem;
+    position: relative;
+  }
+
+  img {
+    margin: auto;
+    margin: 0.5rem 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  }
+  .name {
+    position: absolute;
+    bottom: 0;
+    left: 5%;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 0.25rem 0.5rem;
+  }
+  .price {
+    position: absolute;
+    bottom: 0;
+    right: 5%;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: .25rem 0.5rem;
+  }
+}

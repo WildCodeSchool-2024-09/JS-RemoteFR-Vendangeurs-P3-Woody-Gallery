@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import styles from "../styles/Header.module.css";
 
 export default function Header() {
@@ -14,9 +15,13 @@ export default function Header() {
         account_circle
       </span>
       <ul>
-        <li>Accueil</li>
+        <li>
+          <NavLink to="/">Accueil</NavLink>
+        </li>
         <li>Nouveautés</li>
-        <li>Shop</li>
+        <li>
+          <NavLink to="/shop">Shop</NavLink>
+        </li>
       </ul>
     </header>
   );
