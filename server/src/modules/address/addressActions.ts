@@ -42,7 +42,7 @@ export const getAllAddresses: RequestHandler = async (req, res, next) => {
 export const getAddressById: RequestHandler = async (req, res, next) => {
   try {
     const id = Number.parseInt(req.params.id || "0", 10);
-   
+
     if (!id) {
       res.status(400).json({ error: "ID invalide" });
       return;
@@ -66,7 +66,7 @@ export const getAddressById: RequestHandler = async (req, res, next) => {
 export const updateAddress: RequestHandler = async (req, res, next) => {
   try {
     const addressId = Number.parseInt(req.params.id || "0", 10);
-  
+
     // Vérification si l'ID est valide
     if (!addressId) {
       res.status(400).json({ error: "ID invalide" });
@@ -98,12 +98,12 @@ export const updateAddress: RequestHandler = async (req, res, next) => {
 export const deleteAddress: RequestHandler = async (req, res, next) => {
   try {
     const addressId = Number.parseInt(req.params.id || "0", 10);
-   
+
     if (!addressId) {
       res.status(400).json({ error: "ID invalide" });
       return;
     }
-   
+
     await addressRepository.deleteAddress(addressId);
     res.status(200).json({ message: "Adresse supprimée avec succès." });
   } catch (error) {
