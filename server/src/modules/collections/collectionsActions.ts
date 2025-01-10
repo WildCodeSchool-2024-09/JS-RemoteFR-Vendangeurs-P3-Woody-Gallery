@@ -12,6 +12,18 @@ const browse: RequestHandler = async (req, res, next) => {
   }
 };
 
+const readCollection: RequestHandler = async (req, res, next) => {
+  try {
+    const collectionsId = Number(req.params.id);
+    const collections =
+      await collectionsRepository.readCollection(collectionsId);
+
+    res.json(collections);
+  } catch (err) {
+    next(err);
+  }
+};
+
 const read: RequestHandler = async (req, res, next) => {
   try {
     const collectionsId = Number(req.params.id);
@@ -73,4 +85,4 @@ const destroy: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, add, edit, destroy };
+export default { browse, readCollection, read, add, edit, destroy };
