@@ -45,6 +45,23 @@ app.use(express.json());
 
 /* ************************************************************************* */
 
+// Request Parsing: Understanding the purpose of this part
+
+// Request parsing is necessary to extract data sent by the client in an HTTP request.
+// For example to access the body of a POST request.
+// The current code contains different parsing options as comments to demonstrate different ways of extracting data.
+
+// 1. `express.json()`: Parses requests with JSON data.
+app.use(express.json()); // Ajouté ici pour analyser les requêtes JSON
+// 2. `express.urlencoded()`: Parses requests with URL-encoded data.
+// app.use(express.urlencoded());
+// 3. `express.text()`: Parses requests with raw text data.
+// app.use(express.text());
+// 4. `express.raw()`: Parses requests with raw binary data.
+// app.use(express.raw());
+
+/* ************************************************************************* */
+
 // Import the API router
 import router from "./router";
 
