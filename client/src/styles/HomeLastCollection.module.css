@@ -1,0 +1,77 @@
+.lastCollection {
+  width: 100%;
+  height: 60vh;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 1);
+  -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 1);
+  margin-bottom: 1rem;
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+  figure {
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 5px 0px 0px rgb(255, 255, 255);
+    -webkit-box-shadow: 0px 5px 0px 0px rgb(255, 255, 255);
+    -moz-box-shadow: 0px 5px 0px 0px rgb(255, 255, 255);
+    overflow: hidden;
+
+    img {
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  article {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    color: var(--fontcolor-white);
+    background-color: rgba(245, 245, 245, 0.103);
+    backdrop-filter: blur(4px);
+    cursor: default;
+
+    h3 {
+      font-family: var(--font-aboreto);
+      font-weight: 500;
+      font-style: normal;
+      text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.54);
+      margin: 1.5rem 0 0.5rem 1.5rem;
+    }
+
+    h2 {
+      font-family: var(--font-aboreto);
+      font-weight: 400;
+      font-style: normal;
+      font-size: 50px;
+      line-height: 1.1;
+      text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.54);
+      margin: 0 0 1.5rem 1.5rem;
+    }
+  }
+
+  div {
+    position: absolute;
+    bottom: 0;
+    z-index: 10;
+    height: 1.5rem;
+    width: 12rem;
+    background-color: rgba(255, 255, 255, 0.582);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    hr {
+      border: none;
+      border-radius: 10px;
+      height: 10px;
+      width: 3rem;
+      background-color: white;
+    }
+  }
+}

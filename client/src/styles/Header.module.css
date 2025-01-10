@@ -1,0 +1,83 @@
+.header {
+  height: 10rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 20% 20% 12% 10% 15% 15% 8%;
+  grid-template-rows: 33% 33% 33%;
+  margin: 1rem 0;
+
+  h1 {
+    font-family: var(--font-kapakana);
+    font-size: 55px;
+    font-weight: 500;
+    cursor: default;
+  }
+
+  .woodyTitle {
+    background: linear-gradient(
+      var(--fontcolor-white) 43%,
+      var(--fontcolor-grey) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.82);
+    grid-area: 1 / 1 / 2 / 3;
+    margin: auto;
+  }
+
+  .galleryTitle {
+    background: linear-gradient(
+      var(--fontcolor-gold) 40%,
+      var(--fontcolor-gold-dark) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.82);
+    grid-area: 2 / 2 / 3 / 4;
+    margin: auto;
+  }
+
+  .shopIcon {
+    height: 45px;
+    width: 45px;
+    margin: 5px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 35px;
+    background-color: var(--fontcolor-white);
+    grid-area: 1 / 5 / 3 / 6;
+    margin: auto;
+    cursor: pointer;
+  }
+
+  .accountIcon {
+    font-size: 55px;
+    color: var(--fontcolor-white);
+    grid-area: 1 / 6 / 3 / 7;
+    margin: auto;
+    padding-right: 1rem;
+    cursor: pointer;
+  }
+
+  ul {
+    font-family: var(--font-aboreto);
+    color: var(--fontcolor-white);
+    text-shadow: 3px 2px 4px rgba(0, 0, 0, 0.83);
+    font-size: 16px;
+    display: flex;
+    gap: 1.5rem;
+    list-style-type: none;
+    grid-area: 3 / 1 / 4 / 8;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    li {
+      cursor: pointer;
+    }
+  }
+}
