@@ -16,22 +16,41 @@ type Collection = {
 class CollectionRepository {
   async readAll() {
     const [rows] = await databaseClient.query<Rows>(
-      `SELECT c.name nameCollection, p.name namePhoto, p.image, p.price
-            FROM collections c
-            LEFT JOIN photos p 
-            ON c.id = p.collection_id`,
+      "SELECT c.id collectionId, c.name collectionName FROM collections c",
     );
 
     return rows as Collection[];
   }
 
+  async readCollection(id: number) {
+    const [rows] = await databaseClient.query<Rows>(
+      `SELECT c.id collectionId, c.name collectionName, p.id photoId, p.name, p.image, p.price
+      FROM collections c
+      LEFT JOIN photos p
+      ON c.id = p.collection_id
+      WHERE c.id = ?`,
+      [id],
+    );
+
+    const collection = rows.map((row) => ({
+      collectionId: row.collectionId,
+      collectionName: row.collectionName,
+      photos: {
+        photoId: row.photoId,
+        name: row.name,
+        image: row.image,
+        price: row.price,
+      },
+    }));
+
+    return collection;
+  }
+
   async read(id: number) {
     const [rows] = await databaseClient.query<Rows>(
-      `SELECT c.name nameCollection, p.name namePhoto, p.image, p.price
-            FROM collections c
-            LEFT JOIN photos p 
-            ON c.id = p.collection_id
-            WHERE c.id = ?`,
+      `SELECT id collectionId, name collectionName
+            FROM collections 
+            WHERE id = ?`,
       [id],
     );
 
