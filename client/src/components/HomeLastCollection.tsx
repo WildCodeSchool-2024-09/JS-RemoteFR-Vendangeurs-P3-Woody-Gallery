@@ -1,15 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "../styles/HomeLastCollection.module.css";
 
-// core version + navigation, pagination modules:
-import Swiper from "swiper/bundle";
-import { Navigation, Pagination } from "swiper/modules";
-// import Swiper and modules styles
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/element/css/autoplay";
-
 type Collection = {
   collectionId: number;
   collectionName: string;
@@ -23,6 +14,7 @@ type Collection = {
 
 export default function HomeLastCollection() {
   const [collections, setCollections] = useState<Collection[]>([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/collections/2/photos`)
@@ -32,27 +24,32 @@ export default function HomeLastCollection() {
       });
   }, []);
 
-  new Swiper(".swiperLastCollection", {
-    modules: [Navigation, Pagination],
-    loop: true,
-    autoplay: {
-      delay: 10000,
-    },
-    pagination: {
-      el: ".swiper-pagination",
-      type: "bullets",
-      clickable: true,
-    },
-  });
+  const filteredCollections = collections.filter((maxItem) =>
+    [10, 12, 13].includes(maxItem.photos.photoId),
+  );
+
+  useEffect(() => {
+    if (filteredCollections.length > 0) {
+      const interval = setInterval(() => {
+        setCurrentIndex(
+          (prevIndex) => (prevIndex + 1) % filteredCollections.length,
+        );
+      }, 10000);
+
+      return () => clearInterval(interval);
+    }
+  }, [filteredCollections.length]);
 
   return (
     <section className={styles.lastCollection}>
-      <div className={`${styles.container} swiperLastCollection`}>
-        <div className="swiper-wrapper" data-swiper-autoplay="10000">
-          {collections
-            .filter((maxItem) => [10, 12, 13].includes(maxItem.photos.photoId))
-            .map((collection) => (
-              <figure key={collection.collectionId} className="swiper-slide">
+      <div className={styles.container}>
+        <div className={styles.carouselLC}>
+          {filteredCollections.length > 0 &&
+            filteredCollections.map((collection, index) => (
+              <figure
+                key={collection.collectionId}
+                className={index === currentIndex ? styles.active : styles.off}
+              >
                 <img
                   src={collection.photos.image}
                   alt={collection.photos.name}
