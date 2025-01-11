@@ -10,7 +10,7 @@ CREATE TABLE addresses (
 CREATE TABLE ratings (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     rating INT NOT NULL,
-    comment VARCHAR(255) NOT NULL,
+    comment VARCHAR(110) NOT NULL,
     date TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
@@ -120,10 +120,18 @@ VALUES
 
 INSERT INTO ratings (id, rating, comment)
 VALUES 
-(1, 5, "wow");
+(1, 5, "Les tableaux sont vraiment cool ! Je peux enfin habiller mes murs avec de magnifique photos"),
+(2, 4, "Je trouve que c'est cool. Take my money !!!"),
+(3, 3, "C'est acceptable ! Un peu cher mais si non de bonne qualité ces photos"),
+(4, 2, "Mouais, de mon temps nous proposions quelque chose de meilleur"),
+(5, 1, "Bof joré fé ceu sitte otremant moa !!!!!");
 
 INSERT INTO users ( firstname, lastname, email, password, rating_id)
 VALUES 
-("Woody", "Gallery", "woody@gmail.com", 1234, 1);
+("Woody", "Gallery", "woody@gmail.com", 1234, 1),
+("Jean", "no", "woody@gmail.com", 1234, 2),
+("Machin", "yes", "woody@gmail.com", 1230, 3),
+("Bernadette", "Machin", "woody@gmail.com", 1234, 4),
+("Timoté", "Angoulem", "woody@gmail.com", 1234, 5);
 
 

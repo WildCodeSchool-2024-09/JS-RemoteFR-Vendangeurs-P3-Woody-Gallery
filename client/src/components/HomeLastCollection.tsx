@@ -32,7 +32,7 @@ export default function HomeLastCollection() {
       });
   }, []);
 
-  new Swiper(".swiper", {
+  new Swiper(".swiperLastCollection", {
     modules: [Navigation, Pagination],
     loop: true,
     autoplay: {
@@ -47,7 +47,7 @@ export default function HomeLastCollection() {
 
   return (
     <section className={styles.lastCollection}>
-      <div className={`${styles.container} swiper`}>
+      <div className={`${styles.container} swiperLastCollection`}>
         <div className="swiper-wrapper" data-swiper-autoplay="10000">
           {collections
             .filter((maxItem) => [10, 12, 13].includes(maxItem.photos.photoId))
