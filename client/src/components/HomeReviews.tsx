@@ -59,7 +59,7 @@ export default function HomeReviews() {
         >
           arrow_forward_ios
         </span>
-        <div>
+        <div className={styles.carouselContain}>
           {reviews.length > 0 &&
             reviews
               .filter((select) => select.id === reviewSelect)

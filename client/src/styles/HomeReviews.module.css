@@ -24,7 +24,7 @@
     max-height: 10rem;
     cursor: default;
 
-    div {
+    .carouselContain {
       overflow: hidden;
       grid-column: 2 / 3;
       grid-row: 1 / 2;
