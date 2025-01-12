@@ -1,4 +1,4 @@
-import magnifiyingGlass from "/public/MagnifyingGlass.svg";
+import magnifiyingGlass from "/MagnifyingGlass.svg";
 import styles from "../styles/SearchBar.module.css";
 
 export default function SearchBar() {

@@ -22,6 +22,28 @@ class CollectionRepository {
     return rows as Collection[];
   }
 
+  async readAllCollection() {
+    const [rows] = await databaseClient.query<Rows>(
+      `SELECT c.id collectionId, c.name collectionName, p.id photoId, p.name, p.image, p.price
+      FROM collections c
+      LEFT JOIN photos p
+      ON c.id = p.collection_id`,
+    );
+
+    const collection = rows.map((row) => ({
+      collectionId: row.collectionId,
+      collectionName: row.collectionName,
+      photos: {
+        photoId: row.photoId,
+        name: row.name,
+        image: row.image,
+        price: row.price,
+      },
+    }));
+
+    return collection;
+  }
+
   async readCollection(id: number) {
     const [rows] = await databaseClient.query<Rows>(
       `SELECT c.id collectionId, c.name collectionName, p.id photoId, p.name, p.image, p.price
@@ -66,10 +88,10 @@ class CollectionRepository {
     return result.insertId;
   }
 
-  async update(name: string) {
+  async update(id: number, name: string) {
     const [result] = await databaseClient.query<Result>(
       "UPDATE collections SET name = ? WHERE id = ?",
-      [name],
+      [name, id],
     );
 
     return result.affectedRows;
