@@ -64,13 +64,26 @@ export default function HomeReviews() {
             reviews
               .filter((select) => select.id === reviewSelect)
               .map((review) => {
-                const stars = Array(review.rating).fill(
-                  <img src={star} alt="etoiles" />,
+                const stars = Array.from(
+                  { length: review.rating },
+                  (_, index) => (
+                    <img
+                      key={`star-${review.id}-${index}`}
+                      src={star}
+                      alt="etoiles"
+                    />
+                  ),
                 );
-                const starsEmpty = Array(5 - review.rating).fill(
-                  <span className="material-symbols-outlined">
-                    star_outline
-                  </span>,
+                const starsEmpty = Array.from(
+                  { length: 5 - review.rating },
+                  (_, index) => (
+                    <span
+                      key={`star-empty-${review.id}-${index}`}
+                      className="material-symbols-outlined"
+                    >
+                      star_outline
+                    </span>
+                  ),
                 );
                 const firstLetter = review.lastname.charAt(0).toUpperCase();
                 return (
