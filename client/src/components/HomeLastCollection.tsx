@@ -40,6 +40,10 @@ export default function HomeLastCollection() {
     }
   }, [filteredCollections.length]);
 
+  const HandleHrClick = (index: number) => {
+    setCurrentIndex(index);
+  };
+
   return (
     <section className={styles.lastCollection}>
       <div className={styles.container}>
@@ -62,7 +66,16 @@ export default function HomeLastCollection() {
           <h2>Collection {collections[0]?.collectionName}</h2>
         </article>
       </div>
-      <div className={styles.timer} />
+      <div className={styles.timer}>
+        {filteredCollections.map((collection, index) => (
+          <hr
+            key={collection.collectionId}
+            className={index === currentIndex ? styles.active : styles.disable}
+            onClick={() => HandleHrClick(index)}
+            onKeyDown={() => HandleHrClick(index)}
+          />
+        ))}
+      </div>
     </section>
   );
 }

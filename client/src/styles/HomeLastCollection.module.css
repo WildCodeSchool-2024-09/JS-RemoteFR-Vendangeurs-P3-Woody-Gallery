@@ -91,8 +91,48 @@
     height: 1.5rem;
     width: 12rem;
     background-color: rgba(255, 255, 255, 0.582);
-    span {
-      margin-bottom: -0.5rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    hr {
+      border: none;
+      height: 0.6rem;
+      width: 3rem;
+      border-radius: 10px;
+      background-color: var(--fontcolor-white);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
     }
+
+    hr::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 0;
+      background-color: #1e1e1e;
+      border-radius: 10px;
+      will-change: width;
+    }
+
+    hr.active::before {
+      animation: fill 10s linear forwards;
+    }
+
+    hr.disable::before {
+      background-color: var(--fontcolor-white);
+    }
+  }
+}
+
+@keyframes fill {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
   }
 }
