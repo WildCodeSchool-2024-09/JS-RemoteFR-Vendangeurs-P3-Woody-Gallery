@@ -14,7 +14,7 @@ export default function Header() {
       <span className={`${styles.accountIcon} material-symbols-outlined`}>
         account_circle
       </span>
-      <ul>
+      <ul className={styles.ulNavigation}>
         <li>
           <NavLink to="/">Accueil</NavLink>
         </li>
@@ -22,6 +22,17 @@ export default function Header() {
         <li>
           <NavLink to="/shop">Shop</NavLink>
         </li>
+      </ul>
+      <ul className={styles.ulUser}>
+        <li>
+          <span className="material-symbols-outlined">favorite</span>
+          Favoris
+        </li>
+        <li>
+          <span className="material-symbols-outlined">shopping_cart</span>
+          Panier
+        </li>
+        <li>Connexion</li>
       </ul>
     </header>
   );
