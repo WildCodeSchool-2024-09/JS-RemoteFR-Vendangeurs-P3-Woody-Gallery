@@ -9,6 +9,7 @@ type Collection = {
 
 export default function HomeOurSelection() {
   const [collections, setCollections] = useState<Collection[]>([]);
+  const [visibleId, setVisibleId] = useState<number | null>(null);
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/photos`)
@@ -24,6 +25,14 @@ export default function HomeOurSelection() {
     { id: 7, className: styles.photo3 },
   ];
 
+  const handleMouseOver = (id: number) => {
+    setVisibleId(id);
+  };
+
+  const handleMouseOut = () => {
+    setVisibleId(null);
+  };
+
   return (
     <section className={styles.ourSelection}>
       <h2>Notre sélection</h2>
@@ -31,9 +40,33 @@ export default function HomeOurSelection() {
         {selectedCollections.map((item) => {
           const collection = collections.find((col) => col.id === item.id);
           return collection ? (
-            <figure key={collection.id} className={item.className}>
-              <img src={collection.image} alt={collection.name} />
-            </figure>
+            <>
+              <figure
+                key={collection.id}
+                className={item.className}
+                onMouseOver={() => handleMouseOver(collection.id)}
+                onMouseOut={handleMouseOut}
+                onFocus={() => handleMouseOver(collection.id)}
+                onBlur={handleMouseOut}
+              >
+                <img src={collection.image} alt={collection.name} />
+              </figure>
+              <div
+                key={collection.id}
+                className={`${styles.modalPhoto} ${item.className} ${collection.id === visibleId ? styles.modalVisible : styles.modalOff}`}
+                onMouseOver={() => handleMouseOver(collection.id)}
+                onMouseOut={handleMouseOut}
+                onFocus={() => handleMouseOver(collection.id)}
+                onBlur={handleMouseOut}
+              >
+                <a className={styles.aArticle} href="/article">
+                  VOIR L'ARTICLE
+                </a>
+                <a className={styles.aSimilaire} href="/collection">
+                  VOIR SIMILAIRE
+                </a>
+              </div>
+            </>
           ) : null;
         })}
       </div>
