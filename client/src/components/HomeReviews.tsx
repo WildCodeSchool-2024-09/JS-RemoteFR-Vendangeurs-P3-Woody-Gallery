@@ -9,7 +9,7 @@ type Review = {
   firstname: string;
   lastname: string;
   comment: string;
-  date: string;
+  formattedDate: string;
   rating: number;
   starsEmpty: JSX.Element[];
   star: JSX.Element[];
@@ -80,7 +80,7 @@ export default function HomeReviews() {
                     firstname={review.firstname}
                     firstLetter={firstLetter}
                     comment={review.comment}
-                    date={review.date}
+                    formattedDate={review.formattedDate}
                     starsEmpty={starsEmpty}
                     star={stars}
                   />

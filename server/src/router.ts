@@ -43,8 +43,8 @@ import collectionsActions from "./modules/collections/collectionsActions";
 
 router.get("/api/collections", collectionsActions.browse);
 router.get("/api/collectionsPhotos", collectionsActions.browseCollection);
-router.get("/api/collections/:id/photos", collectionsActions.readCollection);
 router.get("/api/collections/:id", collectionsActions.read);
+router.get("/api/collections/:id/photos", collectionsActions.readCollection);
 router.post("/api/collections", collectionsActions.add);
 router.put("/api/collections/:id", collectionsActions.edit);
 router.delete("/api/collections/:id", collectionsActions.destroy);

@@ -5,7 +5,7 @@ type Review = {
   firstname: string;
   firstLetter: string;
   comment: string;
-  date: string;
+  formattedDate: string;
   starsEmpty: JSX.Element[];
   star: JSX.Element[];
 };
@@ -15,7 +15,7 @@ export default function ReviewCard({
   firstname,
   firstLetter,
   comment,
-  date,
+  formattedDate,
   starsEmpty,
   star,
 }: Review) {
@@ -30,7 +30,7 @@ export default function ReviewCard({
           {starsEmpty}
         </div>
         <p className={styles.comment}>{comment}</p>
-        <p className={styles.date}>{date}</p>
+        <p className={styles.date}>{formattedDate}</p>
       </article>
     </>
   );
