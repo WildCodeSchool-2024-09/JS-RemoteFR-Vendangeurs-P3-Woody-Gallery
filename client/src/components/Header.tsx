@@ -16,23 +16,39 @@ export default function Header() {
       </span>
       <ul className={styles.ulNavigation}>
         <li>
-          <NavLink to="/">Accueil</NavLink>
+          <NavLink className={styles.navLink} to="/">
+            Accueil
+          </NavLink>
         </li>
-        <li>Nouveautés</li>
         <li>
-          <NavLink to="/shop">Shop</NavLink>
+          <NavLink className={styles.navLink} to="/">
+            Nouveauté
+          </NavLink>
+        </li>
+        <li>
+          <NavLink className={styles.navLink} to="/shop">
+            Shop
+          </NavLink>
         </li>
       </ul>
       <ul className={styles.ulUser}>
         <li>
           <span className="material-symbols-outlined">favorite</span>
-          Favoris
+          <NavLink className={styles.navLink} to="/">
+            Favoris
+          </NavLink>
         </li>
         <li>
           <span className="material-symbols-outlined">shopping_cart</span>
-          Panier
+          <NavLink className={styles.navLink} to="/">
+            Panier
+          </NavLink>
         </li>
-        <li>Connexion</li>
+        <li>
+          <NavLink className={styles.navLink} to="/">
+            Connexion
+          </NavLink>
+        </li>
       </ul>
     </header>
   );
