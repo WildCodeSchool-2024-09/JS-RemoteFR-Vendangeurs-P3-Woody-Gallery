@@ -14,13 +14,40 @@ export default function Header() {
       <span className={`${styles.accountIcon} material-symbols-outlined`}>
         account_circle
       </span>
-      <ul>
+      <ul className={styles.ulNavigation}>
         <li>
-          <NavLink to="/">Accueil</NavLink>
+          <NavLink className={styles.navLink} to="/">
+            Accueil
+          </NavLink>
         </li>
-        <li>Nouveautés</li>
         <li>
-          <NavLink to="/shop">Shop</NavLink>
+          <NavLink className={styles.navLink} to="/">
+            Nouveauté
+          </NavLink>
+        </li>
+        <li>
+          <NavLink className={styles.navLink} to="/shop">
+            Shop
+          </NavLink>
+        </li>
+      </ul>
+      <ul className={styles.ulUser}>
+        <li>
+          <span className="material-symbols-outlined">favorite</span>
+          <NavLink className={styles.navLink} to="/">
+            Favoris
+          </NavLink>
+        </li>
+        <li>
+          <span className="material-symbols-outlined">shopping_cart</span>
+          <NavLink className={styles.navLink} to="/">
+            Panier
+          </NavLink>
+        </li>
+        <li>
+          <NavLink className={styles.navLink} to="/">
+            Connexion
+          </NavLink>
         </li>
       </ul>
     </header>

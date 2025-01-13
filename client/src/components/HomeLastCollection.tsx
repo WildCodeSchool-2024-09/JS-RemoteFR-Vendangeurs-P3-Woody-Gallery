@@ -51,7 +51,7 @@ export default function HomeLastCollection() {
           {filteredCollections.length > 0 &&
             filteredCollections.map((collection, index) => (
               <figure
-                key={collection.collectionId}
+                key={`carouselLC${collection.collectionId}-${index}`}
                 className={index === currentIndex ? styles.active : styles.off}
               >
                 <img
@@ -69,7 +69,7 @@ export default function HomeLastCollection() {
       <div className={styles.timer}>
         {filteredCollections.map((collection, index) => (
           <hr
-            key={collection.collectionId}
+            key={`timer${collection.collectionId}-${index}`}
             className={index === currentIndex ? styles.active : styles.disable}
             onClick={() => HandleHrClick(index)}
             onKeyDown={() => HandleHrClick(index)}

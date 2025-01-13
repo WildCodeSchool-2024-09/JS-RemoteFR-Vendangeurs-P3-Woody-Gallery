@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../styles/HomeOurSelection.module.css";
 
 type Collection = {
@@ -40,9 +40,9 @@ export default function HomeOurSelection() {
         {selectedCollections.map((item) => {
           const collection = collections.find((col) => col.id === item.id);
           return collection ? (
-            <>
+            <React.Fragment key={`fragmentOurCollection${collection.id}`}>
               <figure
-                key={collection.id}
+                key={`photoOurCollection${collection.id}`}
                 className={item.className}
                 onMouseOver={() => handleMouseOver(collection.id)}
                 onMouseOut={handleMouseOut}
@@ -52,7 +52,7 @@ export default function HomeOurSelection() {
                 <img src={collection.image} alt={collection.name} />
               </figure>
               <div
-                key={collection.id}
+                key={`modalOurCollection${collection.id}`}
                 className={`${styles.modalPhoto} ${item.className} ${collection.id === visibleId ? styles.modalVisible : styles.modalOff}`}
                 onMouseOver={() => handleMouseOver(collection.id)}
                 onMouseOut={handleMouseOut}
@@ -66,7 +66,7 @@ export default function HomeOurSelection() {
                   VOIR SIMILAIRE
                 </a>
               </div>
-            </>
+            </React.Fragment>
           ) : null;
         })}
       </div>
