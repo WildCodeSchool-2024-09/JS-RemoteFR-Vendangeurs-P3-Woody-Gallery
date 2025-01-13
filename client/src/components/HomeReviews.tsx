@@ -11,8 +11,6 @@ type Review = {
   comment: string;
   formattedDate: string;
   rating: number;
-  starsEmpty: JSX.Element[];
-  star: JSX.Element[];
 };
 
 export default function HomeReviews() {
@@ -76,39 +74,44 @@ export default function HomeReviews() {
           arrow_forward_ios
         </span>
         <div className={styles.carouselContain}>
-          {visibleReviews.map((review) => {
-            const stars = Array.from({ length: review.rating }, (_, index) => (
-              <img
-                key={`star-${review.id}-${index}`}
-                src={star}
-                alt="etoiles"
-              />
-            ));
-            const starsEmpty = Array.from(
-              { length: 5 - review.rating },
-              (_, index) => (
-                <span
-                  key={`star-empty-${review.id}-${index}`}
-                  className="material-symbols-outlined"
-                >
-                  star_outline
-                </span>
-              ),
-            );
-            const firstLetter = review.lastname.charAt(0).toUpperCase();
-            return (
-              <ReviewCard
-                key={review.id}
-                id={review.id}
-                firstname={review.firstname}
-                firstLetter={firstLetter}
-                comment={review.comment}
-                formattedDate={review.formattedDate}
-                starsEmpty={starsEmpty}
-                star={stars}
-              />
-            );
-          })}
+          {visibleReviews.length > 0 &&
+            visibleReviews.map((review) => {
+              if (!review) return null;
+              const stars = Array.from(
+                { length: review.rating },
+                (_, index) => (
+                  <img
+                    key={`star-${review.id}-${index}`}
+                    src={star}
+                    alt="etoiles"
+                  />
+                ),
+              );
+              const starsEmpty = Array.from(
+                { length: 5 - review.rating },
+                (_, index) => (
+                  <span
+                    key={`star-empty-${review.id}-${index}`}
+                    className="material-symbols-outlined"
+                  >
+                    star_outline
+                  </span>
+                ),
+              );
+              const firstLetter = review.lastname.charAt(0).toUpperCase();
+              return (
+                <ReviewCard
+                  key={review.id}
+                  id={review.id}
+                  firstname={review.firstname}
+                  firstLetter={firstLetter}
+                  comment={review.comment}
+                  formattedDate={review.formattedDate}
+                  starsEmpty={starsEmpty}
+                  star={stars}
+                />
+              );
+            })}
         </div>
       </div>
     </section>
