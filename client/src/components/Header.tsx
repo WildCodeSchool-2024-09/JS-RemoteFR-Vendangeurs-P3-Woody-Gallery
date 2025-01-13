@@ -22,7 +22,7 @@ export default function Header() {
         </li>
         <li>
           <NavLink className={styles.navLink} to="/">
-            Nouveauté
+            Nouveautés
           </NavLink>
         </li>
         <li>
