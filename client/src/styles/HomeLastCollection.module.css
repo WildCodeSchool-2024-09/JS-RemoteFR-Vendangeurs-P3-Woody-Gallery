@@ -65,12 +65,21 @@
       padding: 1.6rem 1.5rem;
       gap: 0.5rem;
 
+      @media screen and (min-width: 768px) {
+        width: 30%;
+        top: 0px;
+        left: 11%;
+      }
+
       h3 {
         font-family: var(--font-aboreto);
         font-weight: 100;
         font-size: 21px;
         font-style: normal;
         text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.54);
+        @media screen and (min-width: 768px) {
+          margin-bottom: 0.75rem;
+        }
       }
 
       h2 {
@@ -80,6 +89,7 @@
         font-size: 45px;
         line-height: 1.1;
         text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.54);
+        margin-top: -0.25rem;
       }
     }
   }
