@@ -12,6 +12,10 @@
   display: grid;
   grid-template-columns: 50% 50%;
 
+  @media screen and (min-width: 768px) {
+    grid-template-columns: 25% 25% 25% 25%;
+  }
+
   article {
     display: flex;
     flex-direction: column;
@@ -28,6 +32,11 @@
       text-decoration-thickness: 1px;
       font-weight: 500;
       cursor: default;
+
+      @media screen and (min-width: 768px) {
+        font-size: 25px;
+        margin-top: 2rem;
+      }
     }
 
     ul {
@@ -46,6 +55,10 @@
           text-decoration: none;
         }
       }
+
+      @media screen and (min-width: 768px) {
+        font-size: 19px;
+      }
     }
 
     p {
@@ -54,6 +67,11 @@
       font-size: 14px;
       cursor: default;
       line-height: 1.8;
+
+      @media screen and (min-width: 768px) {
+        max-width: 15rem;
+        font-size: 19px;
+      }
     }
   }
 
@@ -65,5 +83,9 @@
     margin-bottom: 1rem;
     font-family: var(--font-grotesk);
     cursor: default;
+    @media screen and (min-width: 768px) {
+      grid-column: 1 / 5;
+      margin: 2rem 0;
+    }
   }
 }
