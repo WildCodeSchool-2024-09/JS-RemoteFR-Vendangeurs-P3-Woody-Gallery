@@ -26,7 +26,7 @@
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.82);
+    text-shadow: 5px 6px 5px #000000;
     grid-area: 1 / 1 / 3 / 3;
   }
 
@@ -38,7 +38,7 @@
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.82);
+    text-shadow: 5px 6px 5px #000000;
     grid-area: 2 / 2 / 4 / 4;
   }
 
