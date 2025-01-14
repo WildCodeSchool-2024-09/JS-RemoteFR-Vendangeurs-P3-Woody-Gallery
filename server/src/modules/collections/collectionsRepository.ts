@@ -24,7 +24,7 @@ class CollectionRepository {
 
   async readAllCollection() {
     const [rows] = await databaseClient.query<Rows>(
-      `SELECT c.id collectionId, c.name, p.id photoId, p.name, p.image, p.price
+      `SELECT c.id collectionId, c.name collectionName, p.id photoId, p.name, p.image, p.price
       FROM collections c
       LEFT JOIN photos p
       ON c.id = p.collection_id`,
@@ -32,7 +32,7 @@ class CollectionRepository {
 
     const collection = rows.map((row) => ({
       id: row.collectionId,
-      name: row.name,
+      name: row.collectionName,
       photos: {
         id: row.photoId,
         name: row.name,
@@ -46,7 +46,7 @@ class CollectionRepository {
 
   async readSelectCollection() {
     const [rows] = await databaseClient.query<Rows>(
-      `SELECT c.id collectionId, c.name, p.id photoId, p.name, p.image, p.price
+      `SELECT c.id collectionId, c.name collectionName, p.id photoId, p.name, p.image, p.price
       FROM collections c
       LEFT JOIN photos p
       ON c.id = p.collection_id
@@ -55,7 +55,7 @@ class CollectionRepository {
 
     const collection = rows.map((row) => ({
       id: row.collectionId,
-      name: row.name,
+      name: row.collectionName,
       photos: {
         id: row.photoId,
         name: row.name,
@@ -69,7 +69,7 @@ class CollectionRepository {
 
   async readCollection(id: number) {
     const [rows] = await databaseClient.query<Rows>(
-      `SELECT c.id collectionId, c.name, p.id photoId, p.name, p.image, p.price
+      `SELECT c.id collectionId, c.name collectionName, p.id photoId, p.name, p.image, p.price
       FROM collections c
       LEFT JOIN photos p
       ON c.id = p.collection_id
@@ -79,7 +79,7 @@ class CollectionRepository {
 
     const collection = rows.map((row) => ({
       id: row.collectionId,
-      name: row.name,
+      name: row.collectionName,
       photos: {
         id: row.photoId,
         name: row.name,
