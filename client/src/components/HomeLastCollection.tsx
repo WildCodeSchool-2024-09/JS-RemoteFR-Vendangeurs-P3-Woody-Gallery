@@ -64,7 +64,7 @@ export default function HomeLastCollection() {
         <article>
           <h3>Dernière collection</h3>
           <h2>Collection </h2>
-          <h2>{collections?.[0].name}</h2>
+          {collections[2] && <h2>{collections[2].name}</h2>}
         </article>
       </div>
       <div className={styles.timer}>
