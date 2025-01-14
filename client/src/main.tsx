@@ -6,6 +6,8 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 /* ************************************************************************* */
 
 import App from "./App";
+import ConnectionPage from "./pages/ConnectionPage";
+import CreateAccountPage from "./pages/CreateAccountPage";
 import Homepage from "./pages/Homepage";
 import ShopPage from "./pages/ShopPage";
 
@@ -20,6 +22,14 @@ const router = createBrowserRouter([
       {
         path: "/shop",
         element: <ShopPage />,
+      },
+      {
+        path: "/connexion",
+        element: <ConnectionPage />,
+      },
+      {
+        path: "/create-account",
+        element: <CreateAccountPage />,
       },
     ],
   },

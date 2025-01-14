@@ -8,12 +8,12 @@ export default function Header() {
         <span className={styles.woodyTitle}>Woody</span>
         <span className={styles.galleryTitle}>Gallery</span>
       </h1>
-      <span className={`${styles.shopIcon} material-symbols-outlined`}>
-        shopping_cart
-      </span>
-      <span className={`${styles.accountIcon} material-symbols-outlined`}>
-        account_circle
-      </span>
+      <NavLink className={styles.shopIcon} to="/">
+        <span className="material-symbols-outlined">shopping_cart</span>
+      </NavLink>
+      <NavLink className={styles.accountIcon} to="/create-account">
+        <span className="material-symbols-outlined">account_circle</span>
+      </NavLink>
       <ul className={styles.ulNavigation}>
         <li>
           <NavLink className={styles.navLink} to="/">
@@ -45,7 +45,7 @@ export default function Header() {
           </NavLink>
         </li>
         <li>
-          <NavLink className={styles.navLink} to="/">
+          <NavLink className={styles.navLink} to="/connexion">
             Connexion
           </NavLink>
         </li>
