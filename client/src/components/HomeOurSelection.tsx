@@ -3,10 +3,10 @@ import { NavLink } from "react-router-dom";
 import styles from "../styles/HomeOurSelection.module.css";
 
 type Collection = {
-  collectionId: number;
+  id: number;
   collectionName: string;
   photos: {
-    photoId: number;
+    id: number;
     name: string;
     image: string;
   };
@@ -46,18 +46,18 @@ export default function HomeOurSelection() {
       <div>
         {selectedCollections.map((item) => {
           const collection = collections.find(
-            (col) => col.photos.photoId === item.id,
+            (col) => col.photos.id === item.id,
           );
           return collection ? (
             <React.Fragment
-              key={`fragmentOurCollection${collection.photos.photoId}`}
+              key={`fragmentOurCollection${collection.photos.id}`}
             >
               <figure
-                key={`photoOurCollection${collection.photos.photoId}`}
+                key={`photoOurCollection${collection.photos.id}`}
                 className={item.className}
-                onMouseOver={() => handleMouseOver(collection.photos.photoId)}
+                onMouseOver={() => handleMouseOver(collection.photos.id)}
                 onMouseOut={handleMouseOut}
-                onFocus={() => handleMouseOver(collection.photos.photoId)}
+                onFocus={() => handleMouseOver(collection.photos.id)}
                 onBlur={handleMouseOut}
               >
                 <img
@@ -66,22 +66,22 @@ export default function HomeOurSelection() {
                 />
               </figure>
               <div
-                key={`modalOurCollection${collection.photos.photoId}`}
-                className={`${styles.modalPhoto} ${item.className} ${collection.photos.photoId === visibleId ? styles.modalVisible : styles.modalOff}`}
-                onMouseOver={() => handleMouseOver(collection.photos.photoId)}
+                key={`modalOurCollection${collection.photos.id}`}
+                className={`${styles.modalPhoto} ${item.className} ${collection.photos.id === visibleId ? styles.modalVisible : styles.modalOff}`}
+                onMouseOver={() => handleMouseOver(collection.photos.id)}
                 onMouseOut={handleMouseOut}
-                onFocus={() => handleMouseOver(collection.photos.photoId)}
+                onFocus={() => handleMouseOver(collection.photos.id)}
                 onBlur={handleMouseOut}
               >
                 <NavLink
                   className={styles.aArticle}
-                  to={`/shop/article/${collection.photos.photoId}`}
+                  to={`/shop/article/${collection.photos.id}`}
                 >
                   VOIR L'ARTICLE
                 </NavLink>
                 <NavLink
                   className={styles.aSimilaire}
-                  to={`/shop/collection/${collection.collectionId}`}
+                  to={`/shop/collection/${collection.id}`}
                 >
                   VOIR SIMILAIRE
                 </NavLink>

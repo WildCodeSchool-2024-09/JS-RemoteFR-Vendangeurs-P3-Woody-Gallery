@@ -3,10 +3,10 @@ import styles from "../styles/HomeCollections.module.css";
 import CollectionCard from "./CollectionCard";
 
 type Collections = {
-  collectionId: number;
+  id: number;
   collectionName: string;
   photos: {
-    photoId: number;
+    id: number;
     name: string;
     image: string;
   };
@@ -15,67 +15,75 @@ type Collections = {
 export default function HomeCollections() {
   const [collections, setCollections] = useState<Collections[]>([]);
   const [collectionIndex, setCollectionIndex] = useState(0);
+  const [collectionShow, setCollectionShow] = useState(1);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/collectionsPhotos`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/collectionsPhotosSelect`)
       .then((response) => response.json())
       .then((data: Collections[]) => {
         setCollections(data);
       });
+
+    handleMediaQ();
+    window.addEventListener("resize", handleMediaQ);
+    return () => window.removeEventListener("resize", handleMediaQ);
   }, []);
 
-  const uniqueCollectionIds = [
-    ...new Set(collections.map((col) => col.collectionId)),
-  ];
+  const handleMediaQ = () => {
+    if (window.innerWidth >= 1280) {
+      setCollectionShow(3);
+    } else {
+      setCollectionShow(1);
+    }
+  };
 
   const HandlePrev = () => {
     setCollectionIndex((prevIndex) =>
-      prevIndex > 0 ? prevIndex - 1 : uniqueCollectionIds.length - 1,
+      prevIndex > 0 ? prevIndex - 1 : collections.length - 1,
     );
   };
 
   const HandleNext = () => {
     setCollectionIndex((prevIndex) =>
-      prevIndex < uniqueCollectionIds.length - 1 ? prevIndex + 1 : 0,
+      prevIndex < collections.length - 1 ? prevIndex + 1 : 0,
     );
   };
 
-  const collectionSelect =
-    uniqueCollectionIds.length > 0
-      ? uniqueCollectionIds[collectionIndex]
-      : null;
+  const visibleCollections = [];
+  for (let i = 0; i < collectionShow; i++) {
+    const collection = collections[(collectionIndex + i) % collections.length];
+    if (collection) {
+      visibleCollections.push(collection);
+    }
+  }
 
   return (
     <section className={styles.collections}>
       <h2>Toutes les collections</h2>
       <div className={styles.carousel}>
         <span
+          className={`${styles.prev} material-symbols-outlined`}
           onClick={HandlePrev}
           onKeyDown={HandlePrev}
-          className={`${styles.prev} material-symbols-outlined`}
         >
           arrow_forward_ios
         </span>
         <span
+          className={`${styles.next} material-symbols-outlined`}
           onClick={HandleNext}
           onKeyDown={HandleNext}
-          className={`${styles.next} material-symbols-outlined`}
         >
           arrow_forward_ios
         </span>
         <div className={styles.carouselContainCol}>
-          {collections.length > 0 &&
-            collections
-              .filter((col) => [4, 13, 18, 30].includes(col.photos.photoId))
-              .filter((select) => select.collectionId === collectionSelect)
-              .map((collection) => (
-                <CollectionCard
-                  key={collection.collectionId}
-                  collectionId={collection.collectionId}
-                  collectionName={collection.collectionName}
-                  photos={collection.photos}
-                />
-              ))}
+          {visibleCollections.map((collection) => (
+            <CollectionCard
+              key={collection.id}
+              id={collection.id}
+              collectionName={collection.collectionName}
+              photos={collection.photos}
+            />
+          ))}
         </div>
       </div>
     </section>
