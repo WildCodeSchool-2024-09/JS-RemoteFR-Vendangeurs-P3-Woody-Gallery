@@ -132,13 +132,13 @@
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.1s ease-in-out;
     position: relative;
 
     .navLink {
       text-decoration: none;
       color: var(--fontcolor-white);
-      transition: all 0.3s ease-in-out;
+      transition: all 0.1s ease-in-out;
       color: inherit;
       z-index: 20;
     }
