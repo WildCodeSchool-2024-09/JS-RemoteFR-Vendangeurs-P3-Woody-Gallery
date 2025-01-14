@@ -3,7 +3,7 @@ import styles from "../styles/HomeLastCollection.module.css";
 
 type Collection = {
   id: number;
-  collectionName: string;
+  name: string;
   photos: {
     id: number;
     name: string;
@@ -64,7 +64,7 @@ export default function HomeLastCollection() {
         <article>
           <h3>Dernière collection</h3>
           <h2>Collection </h2>
-          <h2>{collections[0]?.collectionName}</h2>
+          <h2>{collections?.[0].name}</h2>
         </article>
       </div>
       <div className={styles.timer}>

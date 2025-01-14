@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import styles from "../styles/HomeCollections.module.css";
+import styles from "../styles/HomeAllCollections.module.css";
 import CollectionCard from "./CollectionCard";
 
 type Collections = {
   id: number;
-  collectionName: string;
+  name: string;
   photos: {
     id: number;
     name: string;
@@ -12,7 +12,7 @@ type Collections = {
   };
 };
 
-export default function HomeCollections() {
+export default function HomeAllCollections() {
   const [collections, setCollections] = useState<Collections[]>([]);
   const [collectionIndex, setCollectionIndex] = useState(0);
   const [collectionShow, setCollectionShow] = useState(1);
@@ -80,7 +80,7 @@ export default function HomeCollections() {
             <CollectionCard
               key={collection.id}
               id={collection.id}
-              collectionName={collection.collectionName}
+              collectionName={collection.name}
               photos={collection.photos}
             />
           ))}

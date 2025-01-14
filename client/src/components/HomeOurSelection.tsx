@@ -4,7 +4,7 @@ import styles from "../styles/HomeOurSelection.module.css";
 
 type Collection = {
   id: number;
-  collectionName: string;
+  name: string;
   photos: {
     id: number;
     name: string;
