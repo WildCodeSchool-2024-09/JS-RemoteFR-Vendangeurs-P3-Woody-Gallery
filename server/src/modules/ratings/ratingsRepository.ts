@@ -61,7 +61,7 @@ class RatingsRepository {
       LEFT JOIN users u 
       ON r.id = u.rating_id
       WHERE r.id = ?
-      ORDER BY r.date DESC LIMIT 5`,
+      ORDER BY r.date DESC LIMIT 10`,
       [id],
     );
 

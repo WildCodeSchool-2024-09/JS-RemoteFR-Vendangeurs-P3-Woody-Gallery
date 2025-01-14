@@ -11,13 +11,12 @@ type Review = {
   comment: string;
   formattedDate: string;
   rating: number;
-  starsEmpty: JSX.Element[];
-  star: JSX.Element[];
 };
 
 export default function HomeReviews() {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [reviewIndex, setReviewIndex] = useState(0);
+  const [reviewShow, setReviewsShow] = useState(1);
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/ratings`)
@@ -25,7 +24,19 @@ export default function HomeReviews() {
       .then((data: Review[]) => {
         setReviews(data);
       });
+
+    handleMediaQ();
+    window.addEventListener("resize", handleMediaQ);
+    return () => window.removeEventListener("resize", handleMediaQ);
   }, []);
+
+  const handleMediaQ = () => {
+    if (window.innerWidth >= 1280) {
+      setReviewsShow(3);
+    } else {
+      setReviewsShow(1);
+    }
+  };
 
   const HandlePrev = () => {
     setReviewIndex((prevIndex) =>
@@ -39,7 +50,10 @@ export default function HomeReviews() {
     );
   };
 
-  const reviewSelect = reviews.length > 0 ? reviews[reviewIndex].id : null;
+  const visibleReviews = [];
+  for (let i = 0; i < reviewShow; i++) {
+    visibleReviews.push(reviews[(reviewIndex + i) % reviews.length]);
+  }
 
   return (
     <section className={styles.reviews}>
@@ -60,45 +74,44 @@ export default function HomeReviews() {
           arrow_forward_ios
         </span>
         <div className={styles.carouselContain}>
-          {reviews.length > 0 &&
-            reviews
-              .filter((select) => select.id === reviewSelect)
-              .map((review) => {
-                const stars = Array.from(
-                  { length: review.rating },
-                  (_, index) => (
-                    <img
-                      key={`star-${review.id}-${index}`}
-                      src={star}
-                      alt="etoiles"
-                    />
-                  ),
-                );
-                const starsEmpty = Array.from(
-                  { length: 5 - review.rating },
-                  (_, index) => (
-                    <span
-                      key={`star-empty-${review.id}-${index}`}
-                      className="material-symbols-outlined"
-                    >
-                      star_outline
-                    </span>
-                  ),
-                );
-                const firstLetter = review.lastname.charAt(0).toUpperCase();
-                return (
-                  <ReviewCard
-                    key={review.id}
-                    id={review.id}
-                    firstname={review.firstname}
-                    firstLetter={firstLetter}
-                    comment={review.comment}
-                    formattedDate={review.formattedDate}
-                    starsEmpty={starsEmpty}
-                    star={stars}
+          {visibleReviews.length > 0 &&
+            visibleReviews.map((review) => {
+              if (!review) return null;
+              const stars = Array.from(
+                { length: review.rating },
+                (_, index) => (
+                  <img
+                    key={`star-${review.id}-${index}`}
+                    src={star}
+                    alt="etoiles"
                   />
-                );
-              })}
+                ),
+              );
+              const starsEmpty = Array.from(
+                { length: 5 - review.rating },
+                (_, index) => (
+                  <span
+                    key={`star-empty-${review.id}-${index}`}
+                    className="material-symbols-outlined"
+                  >
+                    star_outline
+                  </span>
+                ),
+              );
+              const firstLetter = review.lastname.charAt(0).toUpperCase();
+              return (
+                <ReviewCard
+                  key={review.id}
+                  id={review.id}
+                  firstname={review.firstname}
+                  firstLetter={firstLetter}
+                  comment={review.comment}
+                  formattedDate={review.formattedDate}
+                  starsEmpty={starsEmpty}
+                  star={stars}
+                />
+              );
+            })}
         </div>
       </div>
     </section>

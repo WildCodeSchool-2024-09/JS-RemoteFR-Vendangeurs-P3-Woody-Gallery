@@ -1,18 +1,19 @@
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import styles from "../styles/CollectionCard.module.css";
 
 type CollectionCardProps = {
-  collectionId: number;
+  id: number;
   collectionName: string;
   photos: {
-    photoId: number;
+    id: number;
     name: string;
     image: string;
   };
 };
 
 export default function CollectionCard({
-  collectionId,
+  id,
   collectionName,
   photos,
 }: CollectionCardProps) {
@@ -28,7 +29,7 @@ export default function CollectionCard({
 
   return (
     <div
-      key={collectionId}
+      key={id}
       className={styles.collectionCard}
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
@@ -46,7 +47,7 @@ export default function CollectionCard({
         onFocus={handleMouseOver}
         onBlur={handleMouseOut}
       >
-        <a href="/collection">VOIR LA COLLECTION</a>
+        <NavLink to={`/shop/collection/${id}`}>VOIR LA COLLECTION</NavLink>
       </div>
     </div>
   );
