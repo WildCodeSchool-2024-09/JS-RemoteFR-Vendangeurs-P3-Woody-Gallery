@@ -15,8 +15,9 @@
     padding-left: 5%;
   }
 
-  img {
+  .search {
     width: 1.5rem;
     margin-left: -2rem;
+    color: white;
   }
 }
