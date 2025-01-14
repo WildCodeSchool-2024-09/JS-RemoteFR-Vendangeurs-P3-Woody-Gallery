@@ -44,7 +44,7 @@ import collectionsActions from "./modules/collections/collectionsActions";
 router.get("/api/collections", collectionsActions.browse);
 router.get("/api/collectionsPhotos", collectionsActions.browseCollection);
 router.get(
-  "/api/collectionPhotosSelect",
+  "/api/collectionsPhotosSelect",
   collectionsActions.browseSelectCollection,
 );
 router.get("/api/collections/:id", collectionsActions.read);
