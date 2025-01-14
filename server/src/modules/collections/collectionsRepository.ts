@@ -44,6 +44,29 @@ class CollectionRepository {
     return collection;
   }
 
+  async readSelectCollection() {
+    const [rows] = await databaseClient.query<Rows>(
+      `SELECT c.id collectionId, c.name collectionName, p.id photoId, p.name, p.image, p.price
+      FROM collections c
+      LEFT JOIN photos p
+      ON c.id = p.collection_id
+      WHERE p.id IN (4, 13, 18, 30)`,
+    );
+
+    const collection = rows.map((row) => ({
+      collectionId: row.collectionId,
+      collectionName: row.collectionName,
+      photos: {
+        photoId: row.photoId,
+        name: row.name,
+        image: row.image,
+        price: row.price,
+      },
+    }));
+
+    return collection;
+  }
+
   async readCollection(id: number) {
     const [rows] = await databaseClient.query<Rows>(
       `SELECT c.id collectionId, c.name collectionName, p.id photoId, p.name, p.image, p.price

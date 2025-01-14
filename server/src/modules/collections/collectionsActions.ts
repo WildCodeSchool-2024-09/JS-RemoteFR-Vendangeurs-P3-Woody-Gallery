@@ -22,6 +22,16 @@ const browseCollection: RequestHandler = async (req, res, next) => {
   }
 };
 
+const browseSelectCollection: RequestHandler = async (req, res, next) => {
+  try {
+    const collections = await collectionsRepository.readSelectCollection();
+
+    res.json(collections);
+  } catch (err) {
+    next(err);
+  }
+};
+
 const readCollection: RequestHandler = async (req, res, next) => {
   try {
     const collectionsId = Number(req.params.id);
@@ -99,6 +109,7 @@ const destroy: RequestHandler = async (req, res, next) => {
 export default {
   browse,
   browseCollection,
+  browseSelectCollection,
   readCollection,
   read,
   add,
