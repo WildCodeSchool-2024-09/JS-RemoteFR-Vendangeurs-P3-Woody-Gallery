@@ -45,7 +45,7 @@ export default function Header() {
           </NavLink>
         </li>
         <li>
-          <NavLink className={styles.navLink} to="/connexion">
+          <NavLink className={styles.navLink} to="/create-account">
             Connexion
           </NavLink>
         </li>
