@@ -62,6 +62,20 @@
       box-shadow: inset 0px 0px 38px 3px #000000;
       font-size: 22px;
       cursor: pointer;
+      position: relative;
+      transition: all 0.2s ease-in-out;
+      text-shadow: 3px 2px 4px rgba(0, 0, 0, 0.83);
+      background-color: var(--background-secondary-color);
+    }
+
+    button:hover {
+      text-decoration: underline;
+      color: var(--fontcolor-gold);
+    }
+
+    button:active {
+      -webkit-box-shadow: inset 0px 0px 38px 10px #000000;
+      box-shadow: inset 0px 0px 38px 10px #000000;
     }
 
     .forgotPassword {
