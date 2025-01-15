@@ -1,7 +1,14 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import styles from "../styles/LogInCreate.module.css";
 
 export default function LogInConnect() {
+  const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible((prev) => !prev);
+  };
+
   return (
     <>
       <div className={styles.logInCreate}>
@@ -12,9 +19,24 @@ export default function LogInConnect() {
           Connexion
         </NavLink>
         <form>
-          <input type="text" placeholder="Email" />
-          <input type="text" placeholder="Mot de passe" />
-          <button type="button">Connexion</button>
+          <input type="email" placeholder="Email" />
+          <div>
+            <input
+              type={passwordVisible ? "text" : "password"}
+              placeholder="Mot de passe"
+            />
+            <button
+              onClick={togglePasswordVisibility}
+              onKeyDown={togglePasswordVisibility}
+              type="button"
+              className={`${styles.eyes} material-symbols-outlined`}
+            >
+              {passwordVisible ? "visibility" : "visibility_off"}
+            </button>
+          </div>
+          <button className={styles.confirm} type="button">
+            Connexion
+          </button>
           <a className={styles.forgotPassword} href="/ok">
             Mot de passe oublié ?
           </a>
