@@ -126,12 +126,10 @@ VALUES
 (4, 2, "Mouais, de mon temps nous proposions quelque chose de meilleur", '2025-01-11 15:17:07'),
 (5, 1, "Bof joré fé ceu sitte otremant moa !!!!!", '2025-01-11 15:17:07');
 
-INSERT INTO users ( firstname, lastname, email, password, rating_id)
+INSERT INTO users ( firstname, lastname, email, password, rating_id, is_admin)
 VALUES 
-("Woody", "Gallery", "woody@gmail.com", 1234, 1),
-("Jean", "no", "woody@gmail.com", 1234, 2),
-("Machin", "yes", "woody@gmail.com", 1230, 3),
-("Bernadette", "Machin", "woody@gmail.com", 1234, 4),
-("Timoté", "Angoulem", "woody@gmail.com", 1234, 5);
-
-
+("Woody", "Gallery", "woody@gmail.com", "woody2025", 1, 1),
+("Jean", "no", "jean@gmail.com", "1234", 2, 0),
+("Machin", "yes", "machin@gmail.com", "1230", 3, 0),
+("Bernadette", "Machin", "bern@gmail.com", "1234", 4, 0),
+("Timoté", "Angoulem", "tim@gmail.com", "1234", 5, 0);

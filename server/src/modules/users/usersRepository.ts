@@ -14,11 +14,17 @@ type Users = {
   rating_id: number;
 };
 
+// type User = {
+//   id: number;
+//   name: string;
+//   email: string;
+//   password: string;
+//   isAdmin: boolean;
+// };
+
 class UsersRepository {
   async readAll() {
-    const [rows] = await databaseClient.query<Rows>(
-      "SELECT firstname, lastname, email, phone_number FROM users",
-    );
+    const [rows] = await databaseClient.query<Rows>("SELECT * FROM users");
 
     return rows as Users[];
   }
@@ -44,6 +50,19 @@ class UsersRepository {
     );
 
     return result.insertId;
+  }
+
+  async readByEmail(email: string) {
+    const [rows] = await databaseClient.query<Rows>(
+      `
+       SELECT id, CONCAT(firstname,"-", lastname) name, email, password, is_admin isAdmin
+       FROM users
+       WHERE email = ?
+       `,
+      [email],
+    );
+
+    return rows[0];
   }
 
   async updateFirstname(id: number, firstname: string) {

@@ -50,6 +50,35 @@ const add: RequestHandler = async (req, res, next) => {
   }
 };
 
+const login: RequestHandler = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+
+    const user = await usersRepository.readByEmail(email);
+
+    if (!user) {
+      res.status(404).json({ message: "ce compte n'existe pas" });
+      return;
+    }
+
+    if (user.password !== password) {
+      res.status(401).json({ message: "identifants incorrect" });
+      return;
+    }
+
+    // delete user.password;
+    user.password = undefined;
+
+    res.json({
+      user,
+    });
+  } catch (err) {
+    console.error("Erreur lors de la connexion :", err);
+    res.status(500).json({ message: "Erreur interne du serveur" });
+    next(err);
+  }
+};
+
 const editFirstname: RequestHandler = async (req, res, next) => {
   try {
     const users = {
@@ -180,4 +209,5 @@ export default {
   editPhoneNumber,
   editPassword,
   destroy,
+  login,
 };

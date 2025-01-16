@@ -21,45 +21,47 @@ export default function LogInCreate() {
         <NavLink className={styles.createAccount} to="/create-account">
           Créer un compte
         </NavLink>
-        <NavLink className={styles.connexionCreate} to="/connexion">
+        <NavLink className={styles.connexionCreate} to="/login">
           Connexion
         </NavLink>
-        <form>
-          <input type="text" placeholder="Prénom" />
-          <input type="text" placeholder="Nom" />
-          <input type="email" placeholder="Email" />
-          <div>
-            <input
-              type={passwordVisible ? "text" : "password"}
-              placeholder="Mot de passe"
-            />
-            <button
-              onClick={togglePasswordVisibility}
-              onKeyDown={togglePasswordVisibility}
-              type="button"
-              className={`${styles.eyes} material-symbols-outlined`}
-            >
-              {passwordVisible ? "visibility" : "visibility_off"}
+        <div className={styles.formulaire}>
+          <form>
+            <input type="text" placeholder="Prénom" />
+            <input type="text" placeholder="Nom" />
+            <input type="email" placeholder="Email" />
+            <div>
+              <input
+                type={passwordVisible ? "text" : "password"}
+                placeholder="Mot de passe"
+              />
+              <button
+                onClick={togglePasswordVisibility}
+                onKeyDown={togglePasswordVisibility}
+                type="button"
+                className={`${styles.eyes} material-symbols-outlined`}
+              >
+                {passwordVisible ? "visibility" : "visibility_off"}
+              </button>
+            </div>
+            <div>
+              <input
+                type={confirmPasswordVisible ? "text" : "password"}
+                placeholder="Confirmer le mot de passe"
+              />
+              <button
+                onClick={toggleConfirmPasswordVisibility}
+                onKeyDown={toggleConfirmPasswordVisibility}
+                type="button"
+                className={`${styles.eyes} material-symbols-outlined`}
+              >
+                {confirmPasswordVisible ? "visibility" : "visibility_off"}
+              </button>
+            </div>
+            <button className={styles.confirm} type="submit">
+              Créer mon compte
             </button>
-          </div>
-          <div>
-            <input
-              type={confirmPasswordVisible ? "text" : "password"}
-              placeholder="Confirmer le mot de passe"
-            />
-            <button
-              onClick={toggleConfirmPasswordVisibility}
-              onKeyDown={toggleConfirmPasswordVisibility}
-              type="button"
-              className={`${styles.eyes} material-symbols-outlined`}
-            >
-              {confirmPasswordVisible ? "visibility" : "visibility_off"}
-            </button>
-          </div>
-          <button className={styles.confirm} type="button">
-            Créer mon compte
-          </button>
-        </form>
+          </form>
+        </div>
       </div>
     </>
   );
