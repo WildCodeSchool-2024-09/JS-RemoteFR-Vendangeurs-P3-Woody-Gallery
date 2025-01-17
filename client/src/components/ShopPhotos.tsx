@@ -1,31 +1,46 @@
-import Hasedera from "/photos/traditionalTokyo/Hasedera.jpg";
-import Kotoku from "/photos/traditionalTokyo/Kotoku-in.jpg";
-import Meiji from "/photos/traditionalTokyo/Meiji-jingu.jpg";
-import Fuji from "/photos/traditionalTokyo/mont_fuji.jpg";
+import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import styles from "../styles/ShopPhotos.module.css";
 
-export default function ShopPhotos() {
+interface PhotoProps {
+  photo: {
+    id: number;
+    name: string;
+    image: string;
+    description: string;
+    format: string;
+    stock: number;
+    price: number;
+    is_favorite: boolean;
+    collection_id: number;
+  };
+}
+
+export default function ShopPhotos({ photo }: PhotoProps) {
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+
+  const handleMouseOver = () => {
+    setIsVisible(true);
+  };
+
+  const handleMouseOut = () => {
+    setIsVisible(false);
+  };
   return (
     <section className={styles.photos}>
-      <div className={styles.box}>
-        <img src={Hasedera} alt="Hasedera" />
-        <div className={styles.name}>Hasedera</div>
-        <div className={styles.price}>29,99€</div>
-      </div>
-      <div className={styles.box}>
-        <img src={Kotoku} alt="Kotoku-in" />
-        <div className={styles.name}>Kotoku-in</div>
-        <div className={styles.price}>29,99€</div>
-      </div>
-      <div className={styles.box}>
-        <img src={Meiji} alt="Meiji-jingu" />
-        <div className={styles.name}>Meiji-jingu</div>
-        <div className={styles.price}>29,99€</div>
-      </div>
-      <div className={styles.box}>
-        <img src={Fuji} alt="Mont Fuji" />
-        <div className={styles.name}>Mont Fuji</div>
-        <div className={styles.price}>29,99€</div>
+      <figure className={styles.box}>
+        <img src={photo.image} alt={photo.name} />
+        <p className={styles.name}>{photo.name}</p>
+        <p className={styles.price}>{photo.price} €</p>
+      </figure>
+      <div
+        className={isVisible ? styles.modalVisible : styles.modalOff}
+        onMouseOver={handleMouseOver}
+        onMouseOut={handleMouseOut}
+        onFocus={handleMouseOver}
+        onBlur={handleMouseOut}
+      >
+        <NavLink to={`/shop/photos/${photo.id}`}>VOIR L'ARTICLE</NavLink>
       </div>
     </section>
   );

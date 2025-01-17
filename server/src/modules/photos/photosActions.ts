@@ -97,4 +97,11 @@ const destroy: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, edit, editIsFavorite, add, destroy };
+export default {
+  browse,
+  read,
+  edit,
+  editIsFavorite,
+  add,
+  destroy,
+};

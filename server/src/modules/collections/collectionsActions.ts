@@ -12,6 +12,38 @@ const browse: RequestHandler = async (req, res, next) => {
   }
 };
 
+const browseCollection: RequestHandler = async (req, res, next) => {
+  try {
+    const collections = await collectionsRepository.readAllCollection();
+
+    res.json(collections);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const browseSelectCollection: RequestHandler = async (req, res, next) => {
+  try {
+    const collections = await collectionsRepository.readSelectCollection();
+
+    res.json(collections);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const readCollection: RequestHandler = async (req, res, next) => {
+  try {
+    const collectionsId = Number(req.params.id);
+    const collections =
+      await collectionsRepository.readCollection(collectionsId);
+
+    res.json(collections);
+  } catch (err) {
+    next(err);
+  }
+};
+
 const read: RequestHandler = async (req, res, next) => {
   try {
     const collectionsId = Number(req.params.id);
@@ -44,13 +76,14 @@ const add: RequestHandler = async (req, res, next) => {
 
 const edit: RequestHandler = async (req, res, next) => {
   try {
-    const newCollections = {
+    const newCollection = {
       id: Number(req.params.id),
       name: req.body.name,
     };
 
-    const affectedRows = await collectionsRepository.create(
-      newCollections.name,
+    const affectedRows = await collectionsRepository.update(
+      newCollection.id,
+      newCollection.name,
     );
 
     if (affectedRows === 0) {
@@ -73,4 +106,13 @@ const destroy: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, add, edit, destroy };
+export default {
+  browse,
+  browseCollection,
+  browseSelectCollection,
+  readCollection,
+  read,
+  add,
+  edit,
+  destroy,
+};

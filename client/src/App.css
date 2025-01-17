@@ -37,11 +37,11 @@ body {
   height: 100%;
   width: 100%;
   background: linear-gradient(
-    70deg,
+    85deg,
     var(--background-primary-color) 0%,
-    var(--background-secondary-color) 48%,
+    var(--background-secondary-color) 40%,
     var(--background-tertiary-color) 50%,
-    var(--background-secondary-color) 52%,
+    var(--background-secondary-color) 60%,
     var(--background-primary-color) 100%
   );
   background-repeat: no-repeat;

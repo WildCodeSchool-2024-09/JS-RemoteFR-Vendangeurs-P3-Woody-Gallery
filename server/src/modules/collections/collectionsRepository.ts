@@ -16,22 +16,87 @@ type Collection = {
 class CollectionRepository {
   async readAll() {
     const [rows] = await databaseClient.query<Rows>(
-      `SELECT c.name nameCollection, p.name namePhoto, p.image, p.price
-            FROM collections c
-            LEFT JOIN photos p 
-            ON c.id = p.collection_id`,
+      `SELECT c.id, c.name 
+      FROM collections c`,
     );
 
     return rows as Collection[];
   }
 
+  async readAllCollection() {
+    const [rows] = await databaseClient.query<Rows>(
+      `SELECT c.id collectionId, c.name collectionName, p.id photoId, p.name, p.image, p.price
+      FROM collections c
+      LEFT JOIN photos p
+      ON c.id = p.collection_id`,
+    );
+
+    const collection = rows.map((row) => ({
+      id: row.collectionId,
+      name: row.collectionName,
+      photos: {
+        id: row.photoId,
+        name: row.name,
+        image: row.image,
+        price: row.price,
+      },
+    }));
+
+    return collection;
+  }
+
+  async readSelectCollection() {
+    const [rows] = await databaseClient.query<Rows>(
+      `SELECT c.id collectionId, c.name collectionName, p.id photoId, p.name, p.image, p.price
+      FROM collections c
+      LEFT JOIN photos p
+      ON c.id = p.collection_id
+      WHERE p.id IN (4, 13, 18, 30)`,
+    );
+
+    const collection = rows.map((row) => ({
+      id: row.collectionId,
+      name: row.collectionName,
+      photos: {
+        id: row.photoId,
+        name: row.name,
+        image: row.image,
+        price: row.price,
+      },
+    }));
+
+    return collection;
+  }
+
+  async readCollection(id: number) {
+    const [rows] = await databaseClient.query<Rows>(
+      `SELECT c.id collectionId, c.name collectionName, p.id photoId, p.name, p.image, p.price
+      FROM collections c
+      LEFT JOIN photos p
+      ON c.id = p.collection_id
+      WHERE c.id = ?`,
+      [id],
+    );
+
+    const collection = rows.map((row) => ({
+      id: row.collectionId,
+      name: row.collectionName,
+      photos: {
+        id: row.photoId,
+        name: row.name,
+        image: row.image,
+        price: row.price,
+      },
+    }));
+
+    return collection;
+  }
+
   async read(id: number) {
     const [rows] = await databaseClient.query<Rows>(
-      `SELECT c.name nameCollection, p.name namePhoto, p.image, p.price
-            FROM collections c
-            LEFT JOIN photos p 
-            ON c.id = p.collection_id
-            WHERE c.id = ?`,
+      `SELECT id, name
+            FROM collections 
+            WHERE id = ?`,
       [id],
     );
 
@@ -47,10 +112,12 @@ class CollectionRepository {
     return result.insertId;
   }
 
-  async update(name: string) {
+  async update(id: number, name: string) {
     const [result] = await databaseClient.query<Result>(
-      "UPDATE collections SET name = ? WHERE id = ?",
-      [name],
+      `UPDATE collections 
+      SET name = ? 
+      WHERE id = ?`,
+      [name, id],
     );
 
     return result.affectedRows;
@@ -58,7 +125,8 @@ class CollectionRepository {
 
   async delete(id: number) {
     const [result] = await databaseClient.query<Result>(
-      "DELETE FROM collections WHERE id = ?",
+      `DELETE FROM collections 
+      WHERE id = ?`,
       [id],
     );
 
