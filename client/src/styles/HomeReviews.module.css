@@ -3,6 +3,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  font-weight: 500;
 
   h2 {
     font-family: var(--font-aboreto);
