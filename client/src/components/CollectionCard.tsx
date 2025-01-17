@@ -38,7 +38,7 @@ export default function CollectionCard({
     >
       <figure>
         <img src={photos.image} alt={photos.name} />
-      </figure>
+      </figure>{" "}
       <h3>Collection {collectionName}</h3>
       <div
         className={isVisible ? styles.modalVisible : styles.modalOff}

@@ -46,17 +46,21 @@ export default function LogInConnect() {
         <div className={styles.formulaire}>
           <form onSubmit={handleSubmit}>
             <input
+              id="email-connect"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
               type="email"
               placeholder="Email"
+              autoComplete="email"
             />
             <div>
               <input
+                id="password-connect"
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
                 type={passwordVisible ? "text" : "password"}
                 placeholder="Mot de passe"
+                autoComplete="current-password"
               />
               <button
                 onClick={togglePasswordVisibility}

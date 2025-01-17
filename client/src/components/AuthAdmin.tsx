@@ -5,7 +5,7 @@ function AuthAdmin() {
   const isAdmin = localStorage.getItem("isAdmin") === "true";
 
   if (!isAuth) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/create-account" replace />;
   }
 
   if (!isAdmin) {

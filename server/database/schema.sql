@@ -128,7 +128,7 @@ VALUES
 
 INSERT INTO users ( firstname, lastname, email, password, rating_id, is_admin)
 VALUES 
-("Woody", "Gallery", "woody@gmail.com", "woody2025", 1, 1),
+("Woody", "Gallery", "woody@gmail.com", "Woody-2025", 1, 1),
 ("Jean", "no", "jean@gmail.com", "1234", 2, 0),
 ("Machin", "yes", "machin@gmail.com", "1230", 3, 0),
 ("Bernadette", "Machin", "bern@gmail.com", "1234", 4, 0),

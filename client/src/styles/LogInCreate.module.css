@@ -83,6 +83,7 @@
       }
 
       .confirm {
+        user-select: none;
         color: var(--fontcolor-white);
         -webkit-box-shadow: inset 0px 0px 38px 3px #000000;
         box-shadow: inset 0px 0px 38px 3px #000000;

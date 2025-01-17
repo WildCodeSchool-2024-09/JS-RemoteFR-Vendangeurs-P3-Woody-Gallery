@@ -8,7 +8,7 @@ type User = {
 
 type AuthContextProps = {
   user: User | null;
-  isAuthenticated: boolean;
+  isAuth: boolean;
   login: (email: string, password: string) => Promise<User | null>;
   logout: () => void;
 };
@@ -29,7 +29,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [user, setUser] = useState<User | null>(null);
 
-  const isAuthenticated = user !== null;
+  const isAuth = user !== null;
 
   const login = async (
     email: string,
@@ -59,10 +59,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
       setUser(loggedUser);
 
+      if (loggedUser.isAdmin) {
+        localStorage.setItem("isAdmin", "true");
+      }
+      if (loggedUser) {
+        localStorage.setItem("isAuth", "true");
+      }
+
       return loggedUser;
     } catch (error) {
       console.error("Login raté : ", error);
-      alert("Identifiants erronés");
+      alert("Identifiants erronés !");
       return null;
     }
   };
@@ -72,7 +79,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ user, isAuth, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

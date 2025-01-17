@@ -8,30 +8,26 @@ type Users = {
   lastname: string;
   email: string;
   phone_number: string;
-  password: string;
-  is_admin: boolean;
-  address_id: number;
-  rating_id: number;
 };
-
-// type User = {
-//   id: number;
-//   name: string;
-//   email: string;
-//   password: string;
-//   isAdmin: boolean;
-// };
 
 class UsersRepository {
   async readAll() {
-    const [rows] = await databaseClient.query<Rows>("SELECT * FROM users");
+    const [rows] = await databaseClient.query<Rows>(
+      "SELECT id, firstname, lastname, email, phone_number FROM users",
+    );
 
     return rows as Users[];
   }
 
+  async readAllEmail() {
+    const [rows] = await databaseClient.query<Rows>("SELECT email FROM users");
+
+    return rows;
+  }
+
   async read(id: number) {
     const [rows] = await databaseClient.query<Rows>(
-      "SELECT firstname, lastname, email, phone_number FROM users WHERE id = ?",
+      "SELECT id, firstname, lastname, email, phone_number FROM users WHERE id = ?",
       [id],
     );
 
