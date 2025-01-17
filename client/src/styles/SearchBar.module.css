@@ -3,6 +3,7 @@
   flex-direction: row;
 
   input {
+    padding-left: 10px;
     background-color: #363636;
     color: whitesmoke;
     width: 90%;
@@ -12,11 +13,11 @@
   }
   ::placeholder {
     color: whitesmoke;
-    padding-left: 5%;
   }
 
-  img {
+  .search {
     width: 1.5rem;
     margin-left: -2rem;
+    color: white;
   }
 }

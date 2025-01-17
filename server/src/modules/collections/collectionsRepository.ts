@@ -16,7 +16,8 @@ type Collection = {
 class CollectionRepository {
   async readAll() {
     const [rows] = await databaseClient.query<Rows>(
-      "SELECT c.id, c.name FROM collections c",
+      `SELECT c.id, c.name 
+      FROM collections c`,
     );
 
     return rows as Collection[];
@@ -113,7 +114,9 @@ class CollectionRepository {
 
   async update(id: number, name: string) {
     const [result] = await databaseClient.query<Result>(
-      "UPDATE collections SET name = ? WHERE id = ?",
+      `UPDATE collections 
+      SET name = ? 
+      WHERE id = ?`,
       [name, id],
     );
 
@@ -122,7 +125,8 @@ class CollectionRepository {
 
   async delete(id: number) {
     const [result] = await databaseClient.query<Result>(
-      "DELETE FROM collections WHERE id = ?",
+      `DELETE FROM collections 
+      WHERE id = ?`,
       [id],
     );
 
