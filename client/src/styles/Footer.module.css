@@ -11,6 +11,7 @@
   );
   display: grid;
   grid-template-columns: 50% 50%;
+  font-weight: 500;
 
   @media screen and (min-width: 768px) {
     grid-template-columns: 25% 25% 25% 25%;

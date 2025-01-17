@@ -4,6 +4,7 @@ import express from "express";
 
 const app = express();
 
+app.use(express.json());
 import cors from "cors";
 
 if (process.env.CLIENT_URL != null) {
@@ -52,7 +53,7 @@ app.use(express.json());
 // The current code contains different parsing options as comments to demonstrate different ways of extracting data.
 
 // 1. `express.json()`: Parses requests with JSON data.
-app.use(express.json()); // Ajouté ici pour analyser les requêtes JSON
+// app.use(express.json()); // Ajouté ici pour analyser les requêtes JSON
 // 2. `express.urlencoded()`: Parses requests with URL-encoded data.
 // app.use(express.urlencoded());
 // 3. `express.text()`: Parses requests with raw text data.
