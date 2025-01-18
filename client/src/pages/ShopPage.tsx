@@ -113,20 +113,25 @@ export default function ShopPage() {
   const filterNames = [...new Set(collections.map((a) => a.name))];
 
   return (
-    <>
+    <div className={styles.shopPage}>
       <section className={styles.searchTools}>
-        <SearchBar onSearch={handleSearch} />
-        <Filters
-          filter={filterNames}
-          setCurrentFilter={handleFilterChange}
-          photos={photos}
-        />
+        <div className={styles.navContainer}>
+          <h2>Shop</h2>
+          <SearchBar onSearch={handleSearch} />
+          <Filters
+            filter={filterNames}
+            setCurrentFilter={handleFilterChange}
+            photos={photos}
+          />
+        </div>
       </section>
-      <section className={styles.photos}>
+      <section
+        className={`${styles.photosContainer} ${visiblePhotos.length < filteredPhotos.length ? "" : styles.withoutSeeMore}`}
+      >
         {filteredPhotos.slice(0, visiblePhotos.length).map((photo) => (
           <ShopPhotos key={photo.id} photo={photo} />
         ))}
-        {visiblePhotos.length < filteredPhotos.length ? (
+        {visiblePhotos.length < filteredPhotos.length && (
           <button
             className={styles.seeMore}
             type="button"
@@ -134,10 +139,8 @@ export default function ShopPage() {
           >
             Voir plus
           </button>
-        ) : (
-          <hr className={styles.phantom} />
         )}
       </section>
-    </>
+    </div>
   );
 }

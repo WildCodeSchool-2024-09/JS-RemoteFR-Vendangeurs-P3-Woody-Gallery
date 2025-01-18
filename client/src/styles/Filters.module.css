@@ -1,6 +1,7 @@
 .filtersButton {
-  font-size: 18px;
-  width: 100%;
+  font-size: 22px;
+  width: 3.5rem;
+  justify-self: end;
   background-color: var(--background-secondary-color);
   color: var(--fontcolor-white);
   border: none;
@@ -9,19 +10,48 @@
   -webkit-box-shadow: 2px 2px 20px -3px rgba(0, 0, 0, 0.72) inset;
   -moz-box-shadow: 2px 2px 2px -3px rgba(0, 0, 0, 0.72) inset;
   position: relative;
+  grid-area: 1 / 3 / 2 / 4;
 }
 
 .modal {
   position: absolute;
   z-index: 20;
-  top: 14.2rem;
-  right: .5rem;
+  top: 14.7rem;
+  right: 5%;
   background-color: var(--background-secondary-color);
   color: var(--fontcolor-white);
   padding: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: start;
   font-family: var(--font-grotesk);
+
+  @media screen and (min-width: 868px) and (max-width: 1074px) {
+    top: 29.3rem;
+    left: 50%;
+    transform: translate(14.3rem, -50%);
+    width: 11.9rem;
+  }
+
+  @media screen and (min-width: 1075px) and (max-width: 1200px) {
+    top: 29.3rem;
+    left: 50%;
+    transform: translate(21.05rem, -50%);
+    width: 11.9rem;
+  }
+
+  @media screen and (min-width: 1200px) and (max-width: 1275px) {
+    top: 24.3rem;
+    left: 50%;
+    transform: translate(21.05rem, -50%);
+    width: 11.9rem;
+  }
+
+  @media screen and (min-width: 1275px) {
+    top: 24.3rem;
+    left: 50%;
+    transform: translate(27.2rem, -50%);
+    width: 11.9rem;
+  }
 }
 
 input[type="checkbox"] {
