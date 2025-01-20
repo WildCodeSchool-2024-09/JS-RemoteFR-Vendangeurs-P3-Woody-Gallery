@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styles from "../styles/SearchBar.module.css";
 
 interface SearchBarProps {
@@ -5,20 +6,36 @@ interface SearchBarProps {
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
   const handleSearchTerm = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
+    setSearchTerm(value);
     onSearch(value);
   };
 
+  const handleOpenSB = () => {
+    if (searchTerm.trim() === "") {
+      setIsOpen((prev) => !prev);
+    }
+  };
+
   return (
-    <div className={styles.searchBar}>
+    <div
+      className={`${styles.searchBar} ${isOpen ? styles.openSearchBar : styles.closeSearchBar}`}
+    >
       <input
-        type="text"
+        type={isOpen ? "text" : "none"}
         name="searchBar"
-        placeholder="Rechercher"
+        placeholder={isOpen ? "Rechercher" : ""}
         onChange={handleSearchTerm}
       />
-      <span className={`${styles.search} material-symbols-outlined`}>
+      <span
+        onClick={handleOpenSB}
+        onKeyDown={handleOpenSB}
+        className={`${styles.searchIcon} material-symbols-outlined ${isOpen ? styles.positionOpen : ""}`}
+      >
         search
       </span>
     </div>
