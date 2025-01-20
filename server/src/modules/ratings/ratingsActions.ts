@@ -1,5 +1,6 @@
 import type { RequestHandler } from "express";
 
+import usersRepository from "../users/usersRepository";
 import ratingsRepository from "./ratingsRepository";
 
 const browse: RequestHandler = async (req, res, next) => {
@@ -29,19 +30,30 @@ const read: RequestHandler = async (req, res, next) => {
 
 const add: RequestHandler = async (req, res, next) => {
   try {
+    const { rating, comment, userId } = req.body;
+
+    const users = await usersRepository.readAll();
+
+    if (!users) {
+      res.status(404).json({ message: "Utilisateur non trouvé " });
+      return;
+    }
+
     const newRating = {
-      id: Number(req.params.id),
-      rating: Number(req.body.rating),
-      comment: req.body.comment,
-      date: req.body.date,
+      userId: userId,
+      rating: Number(rating),
+      comment: comment,
+      date: new Date(),
     };
 
     const insertId = await ratingsRepository.create(
       newRating.rating,
       newRating.comment,
+      newRating.userId,
+      newRating.date,
     );
 
-    res.status(204).json({ insertId });
+    res.status(201).json({ insertId });
   } catch (err) {
     next(err);
   }

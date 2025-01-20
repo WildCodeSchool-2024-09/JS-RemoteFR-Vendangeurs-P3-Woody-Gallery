@@ -18,7 +18,7 @@ class RatingsRepository {
       `SELECT r.id, u.firstname, u.lastname, r.rating, r.comment, r.date
         FROM ratings r 
         LEFT JOIN users u 
-        ON r.id = u.rating_id
+        ON r.user_id = u.id
         ORDER BY r.date DESC LIMIT 10`,
     );
 
@@ -68,10 +68,10 @@ class RatingsRepository {
     return rows[0] as RatingsUsers;
   }
 
-  async create(rating: number, comment: string) {
+  async create(rating: number, comment: string, userId: number, date: Date) {
     const [result] = await databaseClient.query<Result>(
-      "INSERT INTO ratings (rating, comment) VALUES (?,?)",
-      [rating, comment],
+      "INSERT INTO ratings (rating, comment, user_id, date) VALUES (?, ?, ?, ?)",
+      [rating, comment, userId, date],
     );
 
     return result.insertId;
