@@ -8,8 +8,12 @@
   transition: all 0.2s ease-in-out;
   grid-area: 1 / 1 / 2 / 4;
   margin-right: 4.5rem;
-  padding-left: 4rem;
+  padding-left: 3rem;
   justify-self: end;
+
+  @media screen and (min-width: 1275px) {
+    padding-left: 4rem;
+  }
 
   input {
     padding-left: 10px;
