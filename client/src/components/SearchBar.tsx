@@ -34,7 +34,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
       <span
         onClick={handleOpenSB}
         onKeyDown={handleOpenSB}
-        className={`${styles.searchIcon} material-symbols-outlined ${isOpen ? styles.positionOpen : ""}`}
+        className={`${styles.searchIcon} material-symbols-outlined ${isOpen ? styles.positionOpen : styles.positionClose}`}
       >
         search
       </span>
