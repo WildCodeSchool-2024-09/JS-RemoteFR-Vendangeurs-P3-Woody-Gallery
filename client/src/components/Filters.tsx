@@ -55,7 +55,7 @@ const Filters: React.FC<FilterProps> = ({ filter, setCurrentFilter }) => {
   return (
     <>
       <button
-        className={styles.filtersButton}
+        className={`${styles.filtersButton} ${isClicked ? styles.isClicked : ""}`}
         type="button"
         onClick={toggleClick}
       >
