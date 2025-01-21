@@ -1,23 +1,15 @@
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
+import AccountMenu from "../components/AccountMenu";
+import Deconnection from "../components/Deconnection";
+import styles from "../styles/AccountPage.module.css";
 
 export default function AccountPage() {
-  const { logout, user } = useAuth();
-  const navigate = useNavigate();
-
-  const handleDeconnect = () => {
-    localStorage.clear();
-    logout;
-    navigate("/");
-    window.location.reload();
-  };
-
   return (
-    <>
-      <h2>Page du compte de {user?.name}</h2>
-      <button type="button" onClick={handleDeconnect}>
-        Déconnection
-      </button>
-    </>
+    <section className={styles.container}>
+      <h2 className={styles.title}>INFORMATIONS PERSONNELLES</h2>
+      <section className={styles.buttons}>
+        <AccountMenu />
+        <Deconnection />
+      </section>
+    </section>
   );
 }
