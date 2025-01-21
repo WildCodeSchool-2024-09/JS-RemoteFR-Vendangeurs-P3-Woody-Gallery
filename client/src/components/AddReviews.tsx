@@ -1,6 +1,6 @@
-import { useState } from "react";
-import star from "/star.png";
-import star_empty from "/star_empty.png";
+import { useEffect, useState } from "react";
+import star_empty from "/star_empty_white.png";
+import star from "/star_white.png";
 import { useAuth } from "../contexts/AuthContext";
 import styles from "../styles/AddReview.module.css";
 
@@ -9,6 +9,7 @@ export default function AddReview() {
   const [rating, setRating] = useState<number>(0);
   const [comment, setComment] = useState("");
   const [noVoted, setNoVoted] = useState<boolean>(true);
+  const [alertReview, setAlertReview] = useState<boolean>(false);
 
   const { user } = useAuth();
 
@@ -20,6 +21,10 @@ export default function AddReview() {
     setRating(index + 1);
   };
 
+  const handleAlertReview = () => {
+    setAlertReview(false);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -28,8 +33,8 @@ export default function AddReview() {
       return;
     }
 
-    if (comment.length === 0) {
-      alert("Veuillez ajouter un commentaire"); // AJOUTER UNE LIMITE DE CHARACTERE A RENSEIGNER OU BLOQUER LE SURPLUS DE CHARACTERE
+    if (comment.length < 5) {
+      alert("Veuillez ajouter un commentaire entre 5 et 120 charactère");
       return;
     }
 
@@ -46,12 +51,23 @@ export default function AddReview() {
       if (response.ok) {
         setModal(false);
         setNoVoted(false);
+        setAlertReview(true);
       }
     } catch (error) {
       console.error("Erreur lors de la création de l'avis :", error);
       alert("Une érreur s'est produite durant l'ajout de votre avis");
     }
   };
+
+  useEffect(() => {
+    if (alertReview) {
+      const timer = setTimeout(() => {
+        setAlertReview(false);
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [alertReview]);
 
   return (
     <>
@@ -65,6 +81,16 @@ export default function AddReview() {
           <span className="material-symbols-outlined">add_comment</span>
         </div>
       )}
+      {alertReview && (
+        <p
+          onClick={handleAlertReview}
+          onKeyDown={handleAlertReview}
+          className={styles.alertReview}
+        >
+          Merci pour votre avis.
+        </p>
+      )}
+
       {modal && (
         <section
           className={styles.reviewModalContainer}
@@ -91,11 +117,12 @@ export default function AddReview() {
                 placeholder="Votre avis"
                 rows={4}
                 cols={50}
+                maxLength={200}
               />
               <div className={styles.ratingContainer}>
                 {[...Array(5)].map((_, index: number) => (
                   <img
-                    key={`client_rating_${index}_${Math.random()}`} // CHANGER LA COULEUR DE STARS EN BLANC
+                    key={`client_rating_${index}_${Math.random()}`}
                     src={index < rating ? star : star_empty}
                     alt="étoiles"
                     className="material-symbols-outlined"

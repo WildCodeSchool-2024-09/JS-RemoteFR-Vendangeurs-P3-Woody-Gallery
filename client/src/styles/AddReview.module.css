@@ -22,6 +22,18 @@
   }
 }
 
+.alertReview {
+  position: absolute;
+  top: 0;
+  right: 44%;
+  z-index: 20;
+  background-color: var(--footerbg-primary-color);
+  font-family: var(--font-grotesk);
+  font-size: 22px;
+  padding: .5rem 1rem;
+  cursor: pointer;
+}
+
 .reviewModalContainer {
   position: fixed;
   width: 100%;

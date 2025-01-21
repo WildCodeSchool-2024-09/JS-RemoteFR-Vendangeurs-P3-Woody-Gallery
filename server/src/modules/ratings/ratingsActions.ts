@@ -5,7 +5,42 @@ import ratingsRepository from "./ratingsRepository";
 
 const browse: RequestHandler = async (req, res, next) => {
   try {
-    const rating = await ratingsRepository.readAll();
+    let rating = await ratingsRepository.readAll();
+
+    const badWord = [
+      " con ",
+      "connard",
+      "conar",
+      "conard",
+      "conare",
+      "connare",
+      "batard",
+      "battar",
+      "batar",
+      " fdp ",
+      "fils de pute",
+      "fil de put",
+      "fil de pute",
+      "fils de put",
+      "fils 2 pute",
+      "fils2pute",
+      "fil2put",
+      "fils2put",
+      "fil2pute",
+      "fils de putain",
+      "fils de putin",
+      "fils de putun",
+      "petasse",
+      " pute ",
+      " pd ",
+      "merde",
+      "enculé",
+      "enculer",
+    ];
+
+    rating = rating.filter((rating) => {
+      return !badWord.some((badWord) => rating.comment.includes(badWord));
+    });
 
     res.json(rating);
   } catch (err) {
