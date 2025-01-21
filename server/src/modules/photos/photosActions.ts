@@ -97,4 +97,27 @@ const destroy: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, edit, editIsFavorite, add, destroy };
+const browseSimilar: RequestHandler = async (req, res, next) => {
+  try {
+    const photosId = Number(req.params.id);
+    const similarPhotos = await photosRepository.findSimilar(photosId);
+
+    if (!similarPhotos || similarPhotos.length === 0) {
+      res.sendStatus(404); // Aucune photo similaire trouvée
+    } else {
+      res.json(similarPhotos);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
+export default {
+  browse,
+  read,
+  edit,
+  editIsFavorite,
+  add,
+  destroy,
+  browseSimilar,
+};

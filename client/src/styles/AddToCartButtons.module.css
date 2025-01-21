@@ -1,0 +1,60 @@
+.buttonContainer {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column; /* Aligne les boutons verticalement */
+  align-items: flex-start; /* Centre les boutons horizontalement */
+  width: 100%; /* Prend toute la largeur disponible */
+  padding: 0 1rem; /* Ajoute une marge intérieure pour éviter que les boutons touchent les bords */
+}
+
+.addToCart {
+  background-color: white;
+  color: black;
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  width: 100%; /* Largeur fixe pour uniformité */
+}
+
+.addToCart:hover {
+  background-color: #363636;
+}
+
+.buyNow {
+  background-color: #ffd700;
+  color: black;
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  width: 100%; /* Largeur fixe pour uniformité */
+}
+
+.buyNow:hover {
+  background-color: #ffd700;
+}
+.description {
+  color: white; /* Texte en blanc */
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: left; /* Aligne la description à gauche */
+  margin: 0;
+}
+.thinDecorativeBar2 {
+  width: 100%; /* Largeur complète */
+  height: 2px;
+  background-color: var(--footerbg-primary-color);
+  margin: 0.5rem 0; /* Espacement au-dessus et en dessous */
+}
+.seeMore {
+  color: black; /* Texte "Voir plus" en blanc */
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 1rem;
+  text-align: left; /* Aligne le texte à gauche */
+  margin-top: -1.0rem; /* Décale le lien vers le haut */
+}
+.seeMore:hover {
+  color: #ffa500; /* Couleur au survol */
+}

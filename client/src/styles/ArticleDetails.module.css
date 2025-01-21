@@ -1,0 +1,65 @@
+.articleDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+
+.image {
+  width: 100%;
+  max-width: 300px;
+  margin: 0;
+  padding: 0;
+  display: block;
+  border: none;
+}
+
+.name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.price,
+.format,
+.frameType,
+.description {
+  font-size: 16px;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+.decorativeTitle {
+  font-family: var(--font-aboreto);
+  font-weight: 500;
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.54);
+  background-color: var(--footerbg-primary-color);
+  margin: 0;
+  font-size: 28px;
+  text-align: center;
+  padding: 0;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 1);
+  -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 1);
+  width: 100%;
+  cursor: default;
+}
+.thinDecorativeBar {
+  position: relative; /* Position relative pour permettre un comportement adaptatif */
+  width: 100vw; /* Largeur de la barre (ajuste si nécessaire) */
+  height: 20px; /* Épaisseur de la barre */
+  background-color: var(--footerbg-primary-color); /* Couleur de la barre */
+  margin: 0; /* Centrer la barre avec un espacement vertical */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3); /* Optionnel : ombre subtile */
+  padding: 0;
+}
+
+.thinDecorativeBar3 {
+  width: 100vw; /* Largeur de la barre (ajuste si nécessaire) */
+  height: 20px; /* Épaisseur de la barre */
+  background-color: var(--footerbg-primary-color); /* Couleur de la barre */
+  margin: 1rem auto; /* Centrer la barre avec un espacement vertical */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3); /* Optionnel : ombre subtile */
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}

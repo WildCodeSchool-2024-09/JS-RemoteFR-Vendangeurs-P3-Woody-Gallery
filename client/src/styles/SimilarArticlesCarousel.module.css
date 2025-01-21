@@ -1,0 +1,143 @@
+/* --- Styles globaux du carrousel --- */
+.carousel {
+  display: grid;
+  grid-template-columns: 15% 70% 15%;
+  height: 17rem;
+  position: relative;
+  margin-bottom: 7rem;
+  width: 100%;
+  font-family: var(--font-grotesk);
+  cursor: default;
+}
+
+.carouselContainCol {
+  grid-column: 2 / 3;
+  overflow: hidden;
+  height: 17rem;
+}
+
+/* --- Styles pour chaque article --- */
+.articleCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  gap: 0.5rem;
+}
+
+.articleCard img {
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Assure que l'image remplit correctement son cadre */
+  border-radius: 5px;
+  box-shadow: 0 0 17px -3px rgba(0, 0, 0, 1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.articleCard:hover img {
+  transform: scale(1.1); /* Zoom sur l'image au survol */
+}
+
+/* --- Styles pour l'overlay --- */
+.articleOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 5;
+  border-radius: 5px; /* Coins arrondis pour correspondre à l'image */
+}
+
+.articleCard:hover .articleOverlay {
+  opacity: 1; /* Rendre l'overlay visible au survol */
+}
+
+.articleOverlay a {
+  color: var(--fontcolor-white);
+  font-family: var(--font-grotesk);
+  font-size: 20px;
+  font-weight: 100;
+  text-decoration: none;
+  background-color: var(--footerbg-primary-color);
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  position: relative; /* Nécessaire pour les pseudo-éléments */
+}
+
+.articleOverlay a::before,
+.articleOverlay a::after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -10px;
+  right: -10px;
+  bottom: -5px;
+  border: 2px solid transparent;
+  transition: border 0.3s ease-in-out;
+}
+
+.articleOverlay a:hover {
+  background-color: white; /* Change la couleur de fond au survol */
+  color: var(--footerbg-primary-color); /* Change la couleur du texte au survol */
+}
+
+.articleOverlay a:hover::before {
+  border-color: var(--footerbg-primary-color); /* Bordure colorée au survol */
+}
+
+.articleOverlay a:hover::after {
+  border-color: white; /* Bordure blanche visible au survol */
+}
+
+/* --- Flèches de navigation --- */
+
+.prev {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  margin: auto;
+  rotate: 180deg;
+  font-size: 50px;
+  color: var(--footerbg-primary-color);
+  cursor: pointer;
+  user-select: none;
+}
+
+.next {
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+  margin: auto;
+  font-size: 50px;
+  color: var(--footerbg-primary-color);
+  cursor: pointer;
+  user-select: none;
+}
+
+/* --- Responsivité (écrans plus larges) --- */
+@media screen and (min-width: 1280px) {
+  .carousel {
+    grid-template-columns: 10% 80% 10%;
+    height: 19rem;
+  }
+
+  .carouselContainCol {
+    height: 19rem;
+  }
+
+  .articleOverlay a {
+    font-size: 22px; /* Texte légèrement plus grand */
+    padding: 0.6rem 1.2rem;
+  }
+}
