@@ -50,6 +50,7 @@
 
   .comment {
     grid-area: 2 / 1 / 3 / 3;
+    overflow: hidden;
     @media screen and (min-width: 1280px) {
       font-size: 18px;
     }

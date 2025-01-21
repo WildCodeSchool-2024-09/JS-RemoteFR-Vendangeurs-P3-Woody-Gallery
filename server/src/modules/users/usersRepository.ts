@@ -51,8 +51,10 @@ class UsersRepository {
   async readByEmail(email: string) {
     const [rows] = await databaseClient.query<Rows>(
       `
-       SELECT id, CONCAT(firstname,"-", lastname) name, email, password, is_admin isAdmin
-       FROM users
+       SELECT u.id, CONCAT(u.firstname,"-", u.lastname) name, u.email, u.password, u.is_admin isAdmin, r.user_id rating
+       FROM users u
+       LEFT JOIN ratings r
+       ON r.user_id = u.id
        WHERE email = ?
        `,
       [email],

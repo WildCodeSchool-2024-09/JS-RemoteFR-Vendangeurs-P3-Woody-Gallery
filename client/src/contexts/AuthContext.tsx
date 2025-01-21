@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from "react";
 
 type User = {
+  id: number;
   email: string;
   isAdmin: boolean;
   name: string;
@@ -9,6 +10,7 @@ type User = {
 type AuthContextProps = {
   user: User | null;
   isAuth: boolean;
+  rating: boolean;
   login: (email: string, password: string) => Promise<User | null>;
   logout: () => void;
 };
@@ -28,6 +30,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [rating, setRating] = useState<boolean>(false);
 
   const isAuth = user !== null;
 
@@ -52,10 +55,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       const data = await response.json();
 
       const loggedUser = {
+        id: data.user.id,
         email: data.user.email,
         isAdmin: data.user.isAdmin,
         name: data.user.name,
       };
+
+      setRating(data.user.rating === null);
 
       setUser(loggedUser);
 
@@ -79,7 +85,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   return (
-    <AuthContext.Provider value={{ user, isAuth, login, logout }}>
+    <AuthContext.Provider value={{ user, rating, isAuth, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
