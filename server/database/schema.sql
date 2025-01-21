@@ -7,18 +7,6 @@ CREATE TABLE addresses (
     country VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE ratings (
-    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    rating INT NOT NULL,
-    comment VARCHAR(110) NOT NULL,
-    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
-) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
-CREATE TABLE collections (
-    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    name VARCHAR(50) NOT NULL
-);
-
 CREATE TABLE users (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     firstname VARCHAR(50) NOT NULL,
@@ -28,9 +16,21 @@ CREATE TABLE users (
     password VARCHAR(100) NOT NULL,
     is_admin BOOLEAN DEFAULT FALSE NOT NULL,
     address_id INT NULL,
-    rating_id INT NULL,
-    FOREIGN KEY (address_id) REFERENCES addresses(id),
-    FOREIGN KEY (rating_id) REFERENCES ratings(id)
+    FOREIGN KEY (address_id) REFERENCES addresses(id)
+);
+
+CREATE TABLE ratings (
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    rating INT NOT NULL,
+    comment VARCHAR(120) NOT NULL,
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    user_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+CREATE TABLE collections (
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    name VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE collections_users (
@@ -118,20 +118,19 @@ VALUES
   (31, "Col de la Vanoise", "/photos/alpes/Col-de-la-Vanoise.jpg", "Le col de la Vanoise est un col des Alpes françaises situé à 2 517 mètres d'altitude dans le parc national de la Vanoise. Il permet l'accès entre les localités de Pralognan-la-Vanoise et Termignon, appartenant respectivement aux vallées de la Tarentaise et de la Maurienne, dans le département de la Savoie.", "42x20cm", 5, 34.99, 4),
   (32, "Lac des Vaches", "/photos/alpes/Lac-des-vaches1.jpg", "Le lac des Vaches est un lac situé en France sur la commune de Pralognan-la-Vanoise, dans le département de la Savoie en région Auvergne-Rhône-Alpes. Il s'agit d'un lac de montagne du massif de la Vanoise et du parc national de la Vanoise, culminant à 2 318 mètres d'altitude.", "20x42cm", 8, 39.99, 4);
 
-INSERT INTO ratings (id, rating, comment, date)
+INSERT INTO users ( id, firstname, lastname, email, password, is_admin)
+VALUES 
+( 1 , "Woody", "Gallery", "woody@gmail.com", "Woody-2025", 1),
+( 2 , "Jean", "no", "jean@gmail.com", "1234", 0),
+( 3 , "Machin", "yes", "machin@gmail.com", "1230", 0),
+( 4 , "Bernadette", "Machin", "bern@gmail.com", "1234", 0),
+( 5 , "Timoté", "Angoulem", "tim@gmail.com", "1234", 0);
+
+INSERT INTO ratings (user_id, rating, comment, date)
 VALUES 
 (1, 5, "Les tableaux sont vraiment cool ! Je peux enfin habiller mes murs avec de magnifique photos", '2024-12-11 15:17:07'),
 (2, 4, "Je trouve que c'est cool. Take my money !!!", '2025-01-11 10:44:07'),
 (3, 3, "C'est acceptable ! Un peu cher mais si non de bonne qualité ces photos", '2025-01-12 10:44:07'),
 (4, 2, "Mouais, de mon temps nous proposions quelque chose de meilleur", '2025-01-11 15:17:07'),
 (5, 1, "Bof joré fé ceu sitte otremant moa !!!!!", '2025-01-11 15:17:07');
-
-INSERT INTO users ( firstname, lastname, email, password, rating_id)
-VALUES 
-("Woody", "Gallery", "woody@gmail.com", 1234, 1),
-("Jean", "no", "woody@gmail.com", 1234, 2),
-("Machin", "yes", "woody@gmail.com", 1230, 3),
-("Bernadette", "Machin", "woody@gmail.com", 1234, 4),
-("Timoté", "Angoulem", "woody@gmail.com", 1234, 5);
-
 

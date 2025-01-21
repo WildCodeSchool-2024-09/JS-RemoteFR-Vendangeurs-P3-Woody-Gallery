@@ -81,7 +81,7 @@ export default function HomeOurSelection() {
                 </NavLink>
                 <NavLink
                   className={styles.aSimilaire}
-                  to={`/shop/collection/${collection.id}`}
+                  to={`/shop?collection=${collection.id}`}
                 >
                   VOIR SIMILAIRE
                 </NavLink>

@@ -21,6 +21,7 @@ import usersActions from "./modules/users/usersActions";
 router.get("/api/users", usersActions.browse);
 router.get("/api/users/:id", usersActions.read);
 router.post("/api/users", usersActions.add);
+router.post("/api/auth/login", usersActions.login);
 router.put("/api/users/:id/firstname", usersActions.editFirstname);
 router.put("/api/users/:id/lastname", usersActions.editLastname);
 router.put("/api/users/:id/email", usersActions.editEmail);

@@ -47,7 +47,7 @@ export default function CollectionCard({
         onFocus={handleMouseOver}
         onBlur={handleMouseOut}
       >
-        <NavLink to={`/shop/collection/${id}`}>VOIR LA COLLECTION</NavLink>
+        <NavLink to={`/shop?collection=${id}`}>VOIR LA COLLECTION</NavLink>
       </div>
     </div>
   );

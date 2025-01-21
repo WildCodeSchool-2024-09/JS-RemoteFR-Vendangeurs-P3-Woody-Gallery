@@ -19,15 +19,25 @@ export default function HomeReviews() {
   const [reviewShow, setReviewsShow] = useState(1);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/ratings`)
-      .then((response) => response.json())
-      .then((data: Review[]) => {
-        setReviews(data);
-      });
+    const fetchReviews = () => {
+      fetch(`${import.meta.env.VITE_API_URL}/api/ratings`)
+        .then((response) => response.json())
+        .then((data: Review[]) => {
+          setReviews(data);
+        });
+    };
+
+    fetchReviews();
+
+    const intervalId = setInterval(fetchReviews, 300000);
 
     handleMediaQ();
     window.addEventListener("resize", handleMediaQ);
-    return () => window.removeEventListener("resize", handleMediaQ);
+
+    return () => {
+      clearInterval(intervalId);
+      window.removeEventListener("resize", handleMediaQ);
+    };
   }, []);
 
   const handleMediaQ = () => {

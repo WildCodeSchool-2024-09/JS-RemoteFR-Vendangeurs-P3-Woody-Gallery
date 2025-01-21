@@ -59,18 +59,23 @@
   }
 
   .shopIcon {
-    height: 45px;
-    width: 45px;
-    margin: 5px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 35px;
-    background-color: var(--fontcolor-white);
     grid-area: 1 / 5 / 3 / 6;
     margin: auto;
     cursor: pointer;
+    text-decoration: none;
+
+    span {
+      height: 45px;
+      width: 45px;
+      margin: 5px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 35px;
+      background-color: var(--fontcolor-white);
+      color: var(--fontcolor-black);
+    }
 
     @media screen and (min-width: 1200px) {
       display: none;
@@ -78,12 +83,15 @@
   }
 
   .accountIcon {
-    font-size: 55px;
     color: var(--fontcolor-white);
     grid-area: 1 / 6 / 3 / 7;
     margin: auto;
     padding-right: 1rem;
     cursor: pointer;
+
+    span {
+      font-size: 55px;
+    }
 
     @media screen and (min-width: 1200px) {
       display: none;

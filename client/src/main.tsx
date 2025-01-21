@@ -2,29 +2,26 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { AuthProvider } from "./contexts/AuthContext";
 
 /* ************************************************************************* */
 
 import App from "./App";
-import ArticlePage from "./pages/ArticlePage";
 import Homepage from "./pages/Homepage";
 import ShopPage from "./pages/ShopPage";
 
 const router = createBrowserRouter([
   {
+    path: "/",
     element: <App />,
     children: [
       {
-        path: "/",
+        path: "",
         element: <Homepage />,
       },
       {
-        path: "/shop",
+        path: "shop",
         element: <ShopPage />,
-      },
-      {
-        path: "/shop/article/:id",
-        element: <ArticlePage />,
       },
     ],
   },
@@ -38,6 +35,8 @@ if (rootElement == null) {
 // Render the app inside the root element
 createRoot(rootElement).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>,
 );
