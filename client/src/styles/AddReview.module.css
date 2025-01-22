@@ -24,14 +24,17 @@
 
 .alertReview {
   position: absolute;
-  top: 0;
-  right: 44%;
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, 0%);
   z-index: 20;
   background-color: var(--footerbg-primary-color);
   font-family: var(--font-grotesk);
   font-size: 22px;
   padding: .5rem 1rem;
   cursor: pointer;
+  width: 15rem;
+  text-align: center;
 }
 
 .reviewModalContainer {
@@ -50,6 +53,10 @@
     width: 100%;
     position: relative;
     z-index: 300;
+
+    @media screen and (min-width: 768px) {
+      width: 50rem;
+    }
 
     h2 {
       font-family: var(--font-aboreto);
@@ -82,6 +89,11 @@
       padding: 1.2rem;
       -webkit-box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.5);
       box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.5);
+
+      @media screen and (min-width: 768px) {
+        width: 48rem;
+        margin: 1rem;
+      }
 
       textarea {
         width: 100%;
