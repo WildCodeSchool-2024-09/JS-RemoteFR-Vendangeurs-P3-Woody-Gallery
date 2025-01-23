@@ -56,6 +56,7 @@ class UsersRepository {
        LEFT JOIN ratings r
        ON r.user_id = u.id
        WHERE email = ?
+       LIMIT 1
        `,
       [email],
     );

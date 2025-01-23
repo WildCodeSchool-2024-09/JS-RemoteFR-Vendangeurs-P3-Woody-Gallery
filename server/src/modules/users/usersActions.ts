@@ -8,6 +8,7 @@ const hashingOptions = {
   parallelism: 1,
 };
 
+import { generateToken } from "./authTools/authTools";
 import usersRepository from "./usersRepository";
 
 const browse: RequestHandler = async (req, res, next) => {
@@ -177,12 +178,23 @@ const login: RequestHandler = async (req, res, next) => {
     }
 
     const { password: _, ...user } = userVerify;
-
     user.password = undefined;
 
-    res.json({
-      user,
-    });
+    const userForToken = {
+      userId: user.id,
+      isAdmin: user.isAdmin,
+    };
+
+    const token = generateToken({ user: userForToken });
+
+    res
+      .cookie("authToken", token, {
+        httpOnly: true,
+        sameSite: "strict",
+        maxAge: 24 * 1000 * 60 * 60,
+      })
+      .status(200)
+      .json({ message: "Connection réussie", user });
   } catch (err) {
     console.error("Erreur lors de la connexion :", err);
     res.status(500).json({ message: "Erreur interne du serveur" });

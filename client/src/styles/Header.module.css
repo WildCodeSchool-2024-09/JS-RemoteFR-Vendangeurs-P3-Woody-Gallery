@@ -132,8 +132,11 @@
     @media screen and (max-width: 1200px) {
       display: none;
     }
-  }
 
+    .account {
+      font-size: 50px;
+    }
+  }
   li {
     cursor: pointer;
     display: flex;
