@@ -1,10 +1,26 @@
-import { NavLink } from "react-router-dom";
+import { useEffect } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 import styles from "../styles/Header.module.css";
 
 export default function Header() {
   const isAuth = localStorage.getItem("isAuth") === "true";
-
   const userName = sessionStorage.getItem("userName");
+  const { logout } = useAuth();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (
+      sessionStorage.getItem("userName") === null &&
+      localStorage.getItem("isAuth") === "true"
+    ) {
+      localStorage.clear();
+      logout;
+      navigate("/");
+      window.location.reload();
+    }
+  });
 
   return (
     <header className={styles.header}>
@@ -57,7 +73,9 @@ export default function Header() {
             to={isAuth ? `/user/${userName}` : "/create-account"}
           >
             {isAuth ? (
-              <span className="material-symbols-outlined">account_circle</span>
+              <span className={`material-symbols-outlined ${styles.account}`}>
+                account_circle
+              </span>
             ) : (
               "Connexion"
             )}

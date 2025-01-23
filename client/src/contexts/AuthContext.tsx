@@ -66,13 +66,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
       setUser(loggedUser);
 
-      if (loggedUser.isAdmin) {
-        localStorage.setItem("isAdmin", "true");
-      }
       if (loggedUser) {
         localStorage.setItem("isAuth", "true");
         sessionStorage.setItem("user", `${loggedUser.id}`);
         sessionStorage.setItem("userName", `${loggedUser.name}`);
+      }
+
+      if (loggedUser.isAdmin) {
+        localStorage.setItem("isAdmin", "true");
       }
 
       return loggedUser;
