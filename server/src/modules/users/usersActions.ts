@@ -277,6 +277,34 @@ const editPassword: RequestHandler = async (req, res, next) => {
   }
 };
 
+const edit: RequestHandler = async (req, res, next) => {
+  try {
+    const users = {
+      id: Number.parseInt(req.params.id),
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      email: req.body.email,
+      phone_number: req.body.phone_number,
+    };
+
+    const affectedRows = await usersRepository.update(
+      users.id,
+      users.firstname,
+      users.lastname,
+      users.email,
+      users.phone_number,
+    );
+
+    if (affectedRows === 0) {
+      res.sendStatus(404);
+    } else {
+      res.sendStatus(204);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
 const destroy: RequestHandler = async (req, res, next) => {
   try {
     const usersId = Number(req.params.id);
@@ -296,6 +324,7 @@ export default {
   editEmail,
   editPhoneNumber,
   editPassword,
+  edit,
   destroy,
   login,
 };

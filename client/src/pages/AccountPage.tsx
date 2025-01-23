@@ -1,3 +1,4 @@
+import Account from "../components/Account";
 import AccountMenu from "../components/AccountMenu";
 import Deconnection from "../components/Deconnection";
 import styles from "../styles/AccountPage.module.css";
@@ -9,6 +10,9 @@ export default function AccountPage() {
       <section className={styles.buttons}>
         <AccountMenu />
         <Deconnection />
+      </section>
+      <section className={styles.components}>
+        <Account />
       </section>
     </section>
   );

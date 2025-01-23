@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import { useAuth } from "../contexts/AuthContext";
 import styles from "../styles/HomeLastCollection.module.css";
+import AddReview from "./AddReviews";
 
 type Collection = {
   id: number;
@@ -15,6 +17,10 @@ type Collection = {
 export default function HomeLastCollection() {
   const [collections, setCollections] = useState<Collection[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const isAuth = localStorage.getItem("isAuth") === "true";
+
+  const { rating } = useAuth();
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/collections/2/photos`)
@@ -66,6 +72,7 @@ export default function HomeLastCollection() {
           <h2>Collection </h2>
           {collections[2] && <h2>{collections[2].name}</h2>}
         </article>
+        {isAuth && rating && <AddReview />}
       </div>
       <div className={styles.timer}>
         {filteredCollections.map((collection, index) => (
