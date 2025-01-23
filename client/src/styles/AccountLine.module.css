@@ -1,0 +1,66 @@
+.account {
+  background-color: var(--footerbg-primary-color);
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.lines {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  background-color: var(--background-secondary-color);
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+}
+
+.container {
+  margin: 1rem 0 1rem 1.3rem;
+  font-family: var(--font-grotesk);
+  font-size: 1.2rem;
+  color: var(--fontcolor-white);
+  position: relative;
+}
+
+.editButton {
+  margin: 0.7rem;
+  border-radius: 8px;
+  padding: 0 .2rem 0 .2rem;
+}
+
+.editIcon {
+  font-size: 2rem;
+  margin-top: 0.1rem;
+}
+
+.modal {
+  position: absolute;
+  width: 90%;
+  height: 10%;
+  z-index: 10;
+  background-color: var(--background-secondary-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.input {
+  height: 60%;
+  width: 70%;
+  background-color: var(--background--color);
+  color: var(--fontcolor-white);
+  padding-left: 1rem;
+  font-size: 1.2rem;
+  font-family: var(--font-grotesk);
+}
+
+.modifyButton {
+  height: 60%;
+  width: 12%;
+}
+
+.check {
+  font-size: 2rem;
+}

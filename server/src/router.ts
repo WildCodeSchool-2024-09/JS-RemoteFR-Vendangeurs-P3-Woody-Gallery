@@ -27,6 +27,7 @@ router.put("/api/users/:id/lastname", usersActions.editLastname);
 router.put("/api/users/:id/email", usersActions.editEmail);
 router.put("/api/users/:id/phonenumber", usersActions.editPhoneNumber);
 router.put("/api/users/:id/password", usersActions.editPassword);
+router.put("/api/users/:id/", usersActions.edit);
 router.delete("/api/users/:id", usersActions.destroy);
 
 // Define photos-related routes
