@@ -45,6 +45,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email, password }),
+          credentials: "include",
         },
       );
 
@@ -70,6 +71,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       }
       if (loggedUser) {
         localStorage.setItem("isAuth", "true");
+        sessionStorage.setItem("user", `${loggedUser.id}`);
+        sessionStorage.setItem("userName", `${loggedUser.name}`);
       }
 
       return loggedUser;

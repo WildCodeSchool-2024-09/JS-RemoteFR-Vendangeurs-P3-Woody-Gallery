@@ -1,11 +1,10 @@
 import { NavLink } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
 import styles from "../styles/Header.module.css";
 
 export default function Header() {
   const isAuth = localStorage.getItem("isAuth") === "true";
 
-  const { user } = useAuth();
+  const userName = sessionStorage.getItem("userName");
 
   return (
     <header className={styles.header}>
@@ -18,7 +17,7 @@ export default function Header() {
       </NavLink>
       <NavLink
         className={styles.accountIcon}
-        to={isAuth ? `/user/${user?.name}` : "/create-account"}
+        to={isAuth ? `/user/${userName}` : "/create-account"}
       >
         <span className="material-symbols-outlined">account_circle</span>
       </NavLink>
@@ -55,7 +54,7 @@ export default function Header() {
         <li>
           <NavLink
             className={styles.navLink}
-            to={isAuth ? `/user/${user?.name}` : "/create-account"}
+            to={isAuth ? `/user/${userName}` : "/create-account"}
           >
             {isAuth ? (
               <span className="material-symbols-outlined">account_circle</span>
