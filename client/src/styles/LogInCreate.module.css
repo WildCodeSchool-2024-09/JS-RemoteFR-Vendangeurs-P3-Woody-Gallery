@@ -5,6 +5,12 @@
   width: 100%;
   background-color: var(--footerbg-primary-color);
 
+  @media screen and (min-width: 1200px) {
+    align-self: flex-start;
+    margin: 0;
+    height: 100%;
+  }
+
   a {
     margin: auto;
     font-size: 22px;
@@ -19,6 +25,9 @@
   .createAccount,
   .connexion {
     color: var(--fontcolor-black);
+    @media screen and (min-width: 1200px) {
+      display: none;
+    }
   }
 
   .connexionCreate,
@@ -27,6 +36,9 @@
     background-color: var(--background-secondary-color);
     -webkit-box-shadow: inset 6px -6px 5px 0px rgba(0, 0, 0, 0.25);
     box-shadow: inset 6px -6px 5px 0px rgba(0, 0, 0, 0.25);
+    @media screen and (min-width: 1200px) {
+      display: none;
+    }
   }
 
   .formulaire {
@@ -37,6 +49,43 @@
     margin: 1.1rem 0;
     display: flex;
     flex-direction: column;
+
+    @media screen and (min-width: 1200px) {
+      margin: 1.1rem;
+    }
+
+    .quest {
+      display: none;
+      @media screen and (min-width: 1200px) {
+        display: block;
+        font-family: var(--font-grotesk);
+        color: var(--fontcolor-white);
+        font-size: 20px;
+        text-align: center;
+        margin: .75rem 0;
+      }
+    }
+
+    hr {
+      display: none;
+      @media screen and (min-width: 1200px) {
+        display: block;
+        border: none;
+        background-color: var(--fontcolor-black);
+        height: 2px;
+      }
+    }
+
+    .title {
+      display: none;
+      @media screen and (min-width: 1200px) {
+        display: block;
+        font-family: var(--font-grotesk);
+        color: var(--fontcolor-white);
+        font-size: 20px;
+        margin: .75rem 0 -.25rem 1.5rem;
+      }
+    }
 
     form {
       display: flex;

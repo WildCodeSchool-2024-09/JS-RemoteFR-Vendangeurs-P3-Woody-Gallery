@@ -68,6 +68,9 @@ export default function LogInCreate() {
           Connexion
         </NavLink>
         <div className={styles.formulaire}>
+          <p className={styles.quest}>Vous n'avez pas encore un compte ?</p>
+          <hr />
+          <p className={styles.title}>Créer un compte</p>
           <form onSubmit={handleSubmit}>
             <input
               id="firstname"

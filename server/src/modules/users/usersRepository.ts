@@ -38,11 +38,11 @@ class UsersRepository {
     firstname: string,
     lastname: string,
     email: string,
-    password: string,
+    hashedPassword: string,
   ) {
     const [result] = await databaseClient.query<Result>(
       "INSERT INTO users (firstname, lastname, email, password) values (?, ?, ?, ?)",
-      [firstname, lastname, email, password],
+      [firstname, lastname, email, hashedPassword],
     );
 
     return result.insertId;

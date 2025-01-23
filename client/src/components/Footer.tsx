@@ -1,6 +1,21 @@
+import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import styles from "../styles/Footer.module.css";
 
+type CollectionProps = {
+  id: number;
+  name: string;
+};
+
 export default function Footer() {
+  const [collections, setCollections] = useState<CollectionProps[]>([]);
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/api/collections`)
+      .then((response) => response.json())
+      .then((data) => setCollections(data));
+  });
+
   return (
     <footer className={styles.footer}>
       <article>
@@ -13,10 +28,13 @@ export default function Footer() {
       <article>
         <h3>Shop</h3>
         <ul>
-          <li>Collection Tokyo Modern</li>
-          <li>Collection Tokyo Traditionnel</li>
-          <li>Collection Munich</li>
-          <li>Collection Alpes Françaises</li>
+          {collections.map((collection) => (
+            <li key={`collectionFooter${collection.id}`}>
+              <NavLink to={`/shop?collection=${collection.id}`}>
+                Collection {collection.name}
+              </NavLink>
+            </li>
+          ))}
         </ul>
       </article>
       <article>

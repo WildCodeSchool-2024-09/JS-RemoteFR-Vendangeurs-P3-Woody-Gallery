@@ -29,7 +29,7 @@ export default function Header() {
           </NavLink>
         </li>
         <li>
-          <NavLink className={styles.navLink} to="/">
+          <NavLink className={styles.navLink} to="/shop?collection=2">
             Nouveautés
           </NavLink>
         </li>

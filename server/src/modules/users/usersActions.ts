@@ -1,4 +1,12 @@
+import argon2 from "argon2";
 import type { RequestHandler } from "express";
+
+const hashingOptions = {
+  type: argon2.argon2d,
+  memoryCost: 2 ** 16,
+  timeCost: 5,
+  parallelism: 1,
+};
 
 import usersRepository from "./usersRepository";
 
@@ -50,39 +58,48 @@ const add: RequestHandler = async (req, res, next) => {
       return;
     }
 
-    if (newUsers.firstname.length < 2 || newUsers.firstname.length > 20) {
-      res
-        .status(400)
-        .json({ error: "Le prénom doit contenir entre 2 et 20 caractères" });
-      return;
-    }
-
-    if (newUsers.lastname.length < 2 || newUsers.lastname.length > 20) {
-      res
-        .status(400)
-        .json({ error: "Le nom doit contenir entre 2 et 20 caractères" });
-      return;
-    }
-
-    const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ]+$/;
-    if (!nameRegex.test(newUsers.firstname)) {
-      res
-        .status(400)
-        .json({ error: "Le prénom ne doit contenir que des lettres" });
-      return;
-    }
-
-    if (!nameRegex.test(newUsers.lastname)) {
-      res
-        .status(400)
-        .json({ error: "Le nom ne doit contenir que des lettres" });
-      return;
-    }
-
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(newUsers.email)) {
       res.status(400).json({ error: "L'email n'est pas valide" });
       return;
+    }
+
+    const firstname = newUsers.firstname;
+    const firstnameRequirements = [
+      {
+        regex: /.{2,20}/,
+        message: "Le prénom doit contenir entre 2 et 20 caractères",
+      },
+      {
+        regex: /^[A-Za-zÀ-ÖØ-öø-ÿ]+$/,
+        message: "Le prénom ne doit contenir que des lettres",
+      },
+    ];
+
+    for (const requirement of firstnameRequirements) {
+      if (!requirement.regex.test(firstname)) {
+        res.status(400).json({ error: requirement.message });
+        return;
+      }
+    }
+
+    const lastname = newUsers.lastname;
+    const lastnameRequirements = [
+      {
+        regex: /.{2,20}/,
+        message: "Le nom doit contenir entre 2 et 20 caractères",
+      },
+      {
+        regex: /^[A-Za-zÀ-ÖØ-öø-ÿ]+$/,
+        message: "Le nom ne doit contenir que des lettres",
+      },
+    ];
+
+    for (const requirement of lastnameRequirements) {
+      if (!requirement.regex.test(lastname)) {
+        res.status(400).json({ error: requirement.message });
+        return;
+      }
     }
 
     const password = newUsers.password;
@@ -124,11 +141,13 @@ const add: RequestHandler = async (req, res, next) => {
       newUsers.lastname.charAt(0).toUpperCase() +
       newUsers.lastname.slice(1).toLowerCase();
 
+    const hashedPassword = await argon2.hash(newUsers.password, hashingOptions);
+
     const insertId = await usersRepository.create(
       newUsers.firstname,
       newUsers.lastname,
       newUsers.email,
-      newUsers.password,
+      hashedPassword,
     );
 
     newUsers.password = undefined;
@@ -143,17 +162,21 @@ const login: RequestHandler = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
-    const user = await usersRepository.readByEmail(email);
+    const userVerify = await usersRepository.readByEmail(email);
 
-    if (!user) {
+    if (!userVerify) {
       res.status(404).json({ message: "ce compte n'existe pas" });
       return;
     }
 
-    if (user.password !== password) {
-      res.status(401).json({ message: "identifants incorrect" });
+    const verify = await argon2.verify(userVerify.password, password);
+
+    if (!verify) {
+      res.status(401).json({ message: "Identifiants incorrects" });
       return;
     }
+
+    const { password: _, ...user } = userVerify;
 
     user.password = undefined;
 
