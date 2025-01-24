@@ -28,7 +28,7 @@ export default function Header() {
         <span className={styles.woodyTitle}>Woody</span>
         <span className={styles.galleryTitle}>Gallery</span>
       </h1>
-      <NavLink className={styles.shopIcon} to="/">
+      <NavLink className={styles.shopIcon} to="/panier">
         <span className="material-symbols-outlined">shopping_cart</span>
       </NavLink>
       <NavLink
@@ -63,7 +63,7 @@ export default function Header() {
         </li>
         <li>
           <span className="material-symbols-outlined">shopping_cart</span>
-          <NavLink className={styles.navLink} to="/">
+          <NavLink className={styles.navLink} to="/panier">
             Panier
           </NavLink>
         </li>
