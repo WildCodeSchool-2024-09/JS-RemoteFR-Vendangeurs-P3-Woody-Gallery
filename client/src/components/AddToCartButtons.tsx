@@ -1,25 +1,6 @@
-import { useState } from "react";
 import styles from "../styles/AddToCartButtons.module.css";
 
-type AddToCartButtonsProps = {
-  description: string;
-  onToggleBar: (visible: boolean) => void; // Callback pour gérer la barre
-};
-
-export default function AddToCartButtons({
-  description,
-  onToggleBar,
-}: AddToCartButtonsProps) {
-  const [showFullDescription, setShowFullDescription] = useState(false);
-
-  const toggleDescription = () => {
-    setShowFullDescription((prevState) => {
-      const newState = !prevState;
-      onToggleBar(!newState); // Masquer la barre si la description est affichée
-      return newState;
-    });
-  };
-
+export default function AddToCartButtons() {
   const handleAddToCart = () => {
     alert("Article ajouté au panier !");
   };
@@ -39,27 +20,6 @@ export default function AddToCartButtons({
       </button>
       <button type="button" onClick={handleBuyNow} className={styles.buyNow}>
         Acheter
-      </button>
-
-      {/* Description avec "Voir plus" */}
-      <p className={styles.description}>
-        {showFullDescription
-          ? description // Affiche toute la description si "Voir plus" est activé
-          : `${description.slice(0, 100)}...`}{" "}
-        {/* Sinon, affiche un extrait */}
-      </p>
-
-      {/* Barre conditionnelle */}
-
-      {!showFullDescription && <div className={styles.thinDecorativeBar2} />}
-
-      {/* Bouton "Voir plus / Voir moins" */}
-      <button
-        type="button"
-        className={styles.seeMore}
-        onClick={toggleDescription}
-      >
-        {showFullDescription ? "Voir moins" : "Voir plus"}
       </button>
     </div>
   );

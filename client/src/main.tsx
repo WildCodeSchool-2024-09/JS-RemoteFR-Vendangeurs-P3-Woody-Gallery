@@ -7,6 +7,13 @@ import { AuthProvider } from "./contexts/AuthContext";
 /* ************************************************************************* */
 
 import App from "./App";
+import AuthAdmin from "./components/AuthAdmin";
+import AuthUser from "./components/AuthUser";
+import AccountPage from "./pages/AccountPage";
+import AdminPage from "./pages/AdminPage";
+import ArticlePage from "./pages/ArticlePage";
+import ConnectionPage from "./pages/ConnectionPage";
+import CreateAccountPage from "./pages/CreateAccountPage";
 import Homepage from "./pages/Homepage";
 import ShopPage from "./pages/ShopPage";
 
@@ -22,6 +29,43 @@ const router = createBrowserRouter([
       {
         path: "shop",
         element: <ShopPage />,
+      },
+      {
+        path: "shop/article/:id",
+        element: <ArticlePage />,
+      },
+      {
+        path: "login",
+        element: <ConnectionPage />,
+      },
+      {
+        path: "create-account",
+        element: <CreateAccountPage />,
+      },
+      // CONNEXION CLIENT
+
+      {
+        path: "user",
+        element: <AuthUser />,
+        children: [
+          {
+            path: ":name",
+            element: <AccountPage />,
+          },
+        ],
+      },
+
+      // CONNEXION ADMIN
+
+      {
+        path: "admin",
+        element: <AuthAdmin />,
+        children: [
+          {
+            path: "",
+            element: <AdminPage />,
+          },
+        ],
       },
     ],
   },

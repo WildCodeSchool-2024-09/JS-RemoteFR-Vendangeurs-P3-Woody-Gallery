@@ -18,7 +18,15 @@ export default function SimilarArticlesCarousel({
 }: SimilarArticlesCarouselProps) {
   const [similarArticles, setSimilarArticles] = useState<Article[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [hoveredId, setHoveredId] = useState<number | null>(null);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+
+  const handleMouseOver = () => {
+    setIsVisible(true);
+  };
+
+  const handleMouseOut = () => {
+    setIsVisible(false);
+  };
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/photos/${articleId}/similar`)
@@ -31,9 +39,6 @@ export default function SimilarArticlesCarousel({
       .then((data: Article[]) => setSimilarArticles(data))
       .catch((err) => console.error(err));
   }, [articleId]);
-
-  const handleMouseOver = (id: number) => setHoveredId(id);
-  const handleMouseOut = () => setHoveredId(null);
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
@@ -52,62 +57,61 @@ export default function SimilarArticlesCarousel({
   }
 
   return (
-    <div className={styles.carousel}>
-      {/* Flèche précédente */}
-      <span
-        className={`${styles.prev} material-symbols-outlined`}
-        onClick={handlePrev}
-        onKeyUp={(e) => {
-          if (e.key === "Enter") handlePrev();
-        }}
-      >
-        arrow_back_ios
-      </span>
+    <section className={styles.retrouvez_egalement}>
+      <h2>Retrouvez Également</h2>
+      <div className={styles.carousel}>
+        {/* Flèche précédente */}
+        <span
+          className={`${styles.prev} material-symbols-outlined`}
+          onClick={handlePrev}
+          onKeyUp={(e) => {
+            if (e.key === "Enter") handlePrev();
+          }}
+        >
+          arrow_forward_ios
+        </span>
 
-      {/* Contenu du carrousel */}
-      <div className={styles.carouselContainCol}>
-        {similarArticles
-          .slice(currentIndex, currentIndex + 1) // Affiche un seul article à la fois
-          .map((article) => (
-            <div
-              key={article.id}
-              className={styles.articleCard}
-              onMouseOver={() => handleMouseOver(article.id)}
-              onFocus={() => handleMouseOver(article.id)}
-              onMouseOut={handleMouseOut}
-              onBlur={handleMouseOut}
-            >
-              <figure>
-                <img src={article.image} alt={article.name} />
-              </figure>
-              <div
-                className={
-                  hoveredId === article.id
-                    ? styles.articleOverlay
-                    : styles.modalOff
-                }
-              >
-                <NavLink
-                  to={`/shop/article/${article.id}`}
-                  className={styles.viewArticleButton}
+        {/* Contenu du carrousel */}
+        <div className={styles.carouselContainCol}>
+          {similarArticles
+            .slice(currentIndex, currentIndex + 1) // Affiche un seul article à la fois
+            .map((article) => (
+              <div key={article.id} className={styles.articleCard}>
+                <figure>
+                  <img src={article.image} alt={article.name} />
+                </figure>
+                <div
+                  className={
+                    isVisible ? styles.articleOverlay : styles.modalOff
+                  }
+                  id={styles.modal}
+                  onMouseOver={handleMouseOver}
+                  onMouseOut={handleMouseOut}
+                  onFocus={handleMouseOver}
+                  onBlur={handleMouseOut}
                 >
-                  VOIR L'ARTICLE
-                </NavLink>
+                  <NavLink
+                    to={`/shop/article/${article.id}`}
+                    className={styles.viewArticleButton}
+                  >
+                    VOIR L'ARTICLE
+                  </NavLink>
+                </div>
               </div>
-            </div>
-          ))}
-      </div>
+            ))}
+        </div>
 
-      {/* Flèche suivante */}
-      <span
-        className={`${styles.next} material-symbols-outlined`}
-        onClick={handleNext}
-        onKeyUp={(e) => {
-          if (e.key === "Enter") handleNext();
-        }}
-      >
-        arrow_forward_ios
-      </span>
-    </div>
+        {/* Flèche suivante */}
+        <span
+          className={`${styles.next} material-symbols-outlined`}
+          onClick={handleNext}
+          onKeyUp={(e) => {
+            if (e.key === "Enter") handleNext();
+          }}
+        >
+          arrow_forward_ios
+        </span>
+      </div>
+    </section>
   );
 }
