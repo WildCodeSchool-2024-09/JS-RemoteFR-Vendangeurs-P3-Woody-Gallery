@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useAuth } from "../contexts/AuthContext";
 import styles from "../styles/AccountLine.module.css";
 
 type AccountLineProps = {
@@ -8,6 +7,7 @@ type AccountLineProps = {
   email?: string;
   phone_number?: string;
   password?: string;
+  onReload: () => void;
 };
 
 export default function AccountLine({
@@ -16,10 +16,11 @@ export default function AccountLine({
   email,
   phone_number,
   password,
+  onReload,
 }: AccountLineProps) {
-  const { user } = useAuth();
   const [data, setData] = useState("");
   const [isClicked, setIsClicked] = useState(false);
+  const user = sessionStorage.getItem("user");
 
   const toggleClick = () => {
     setIsClicked(!isClicked);
@@ -57,7 +58,7 @@ export default function AccountLine({
       };
 
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/users/${user.id}/${route}`,
+        `${import.meta.env.VITE_API_URL}/api/users/${user}/${route}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -66,6 +67,7 @@ export default function AccountLine({
       );
       if (response.ok) {
         toggleClick();
+        onReload();
       }
     } catch (error) {
       console.error("Erreur lors de la modification du compte:", error);
