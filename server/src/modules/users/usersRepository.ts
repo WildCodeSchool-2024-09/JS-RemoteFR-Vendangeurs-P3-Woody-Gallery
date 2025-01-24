@@ -38,11 +38,11 @@ class UsersRepository {
     firstname: string,
     lastname: string,
     email: string,
-    password: string,
+    hashedPassword: string,
   ) {
     const [result] = await databaseClient.query<Result>(
       "INSERT INTO users (firstname, lastname, email, password) values (?, ?, ?, ?)",
-      [firstname, lastname, email, password],
+      [firstname, lastname, email, hashedPassword],
     );
 
     return result.insertId;
@@ -56,6 +56,7 @@ class UsersRepository {
        LEFT JOIN ratings r
        ON r.user_id = u.id
        WHERE email = ?
+       LIMIT 1
        `,
       [email],
     );
@@ -105,6 +106,43 @@ class UsersRepository {
       [password, id],
     );
 
+    return result.affectedRows;
+  }
+
+  async update(
+    id: number,
+    firstname: string | null,
+    lastname: string | null,
+    email: string | null,
+    phone_number: string | null,
+  ) {
+    let query = "UPDATE users SET ";
+    const values: (string | number)[] = [];
+
+    if (firstname !== null) {
+      query += "firstname = ?, ";
+      values.push(firstname);
+    }
+    if (lastname !== null) {
+      query += "lastname = ?, ";
+      values.push(lastname);
+    }
+    if (email !== null) {
+      query += "email = ?, ";
+      values.push(email);
+    }
+    if (phone_number !== null) {
+      query += "phone_number = ?, ";
+      values.push(phone_number);
+    }
+
+    // Suppression de la dernière virgule et espace superflus
+    query = query.slice(0, -2);
+
+    query += " WHERE id = ?";
+    values.push(id);
+
+    const [result] = await databaseClient.query<Result>(query, values);
     return result.affectedRows;
   }
 

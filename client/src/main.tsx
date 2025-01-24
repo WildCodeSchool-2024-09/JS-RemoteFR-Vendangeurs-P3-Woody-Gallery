@@ -17,6 +17,8 @@ import CreateAccountPage from "./pages/CreateAccountPage";
 import Homepage from "./pages/Homepage";
 import ShopPage from "./pages/ShopPage";
 
+const userName = sessionStorage.getItem("userName");
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -50,6 +52,10 @@ const router = createBrowserRouter([
         children: [
           {
             path: ":name",
+            element: <AccountPage />,
+          },
+          {
+            path: `${userName}`,
             element: <AccountPage />,
           },
         ],

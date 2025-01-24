@@ -44,6 +44,9 @@ export default function LogInConnect() {
           Connexion
         </NavLink>
         <div className={styles.formulaire}>
+          <p className={styles.quest}>Vous avez déjà un compte ?</p>
+          <hr />
+          <p className={styles.title}>Connexion</p>
           <form onSubmit={handleSubmit}>
             <input
               id="email-connect"
