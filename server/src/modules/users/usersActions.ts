@@ -202,94 +202,6 @@ const login: RequestHandler = async (req, res, next) => {
   }
 };
 
-const editFirstname: RequestHandler = async (req, res, next) => {
-  try {
-    const users = {
-      id: Number(req.params.id),
-      firstname: req.body.firstname,
-    };
-
-    const affectedRows = await usersRepository.updateFirstname(
-      users.id,
-      users.firstname,
-    );
-
-    if (affectedRows === 0) {
-      res.sendStatus(404);
-    } else {
-      res.sendStatus(204);
-    }
-  } catch (err) {
-    next(err);
-  }
-};
-
-const editLastname: RequestHandler = async (req, res, next) => {
-  try {
-    const users = {
-      id: Number(req.params.id),
-      lastname: req.body.lastname,
-    };
-
-    const affectedRows = await usersRepository.updateLastname(
-      users.id,
-      users.lastname,
-    );
-
-    if (affectedRows === 0) {
-      res.sendStatus(404);
-    } else {
-      res.sendStatus(204);
-    }
-  } catch (err) {
-    next(err);
-  }
-};
-
-const editEmail: RequestHandler = async (req, res, next) => {
-  try {
-    const users = {
-      id: Number(req.params.id),
-      email: req.body.email,
-    };
-
-    const affectedRows = await usersRepository.updateEmail(
-      users.id,
-      users.email,
-    );
-
-    if (affectedRows === 0) {
-      res.sendStatus(404);
-    } else {
-      res.sendStatus(204);
-    }
-  } catch (err) {
-    next(err);
-  }
-};
-
-const editPhoneNumber: RequestHandler = async (req, res, next) => {
-  try {
-    const users = {
-      id: Number(req.params.id),
-      phone_number: req.body.phone_number,
-    };
-
-    const affectedRows = await usersRepository.updatePhoneNumber(
-      users.id,
-      users.phone_number,
-    );
-
-    if (affectedRows === 0) {
-      res.sendStatus(404);
-    } else {
-      res.sendStatus(204);
-    }
-  } catch (err) {
-    next(err);
-  }
-};
-
 const editPassword: RequestHandler = async (req, res, next) => {
   try {
     const users = {
@@ -354,10 +266,6 @@ export default {
   browse,
   read,
   add,
-  editFirstname,
-  editLastname,
-  editEmail,
-  editPhoneNumber,
   editPassword,
   edit,
   destroy,

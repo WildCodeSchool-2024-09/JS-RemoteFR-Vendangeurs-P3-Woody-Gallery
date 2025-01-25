@@ -18,36 +18,39 @@ export default function AccountLine({
   password,
   onReload,
 }: AccountLineProps) {
-  const [data, setData] = useState("");
   const [isClicked, setIsClicked] = useState(false);
   const user = sessionStorage.getItem("user");
 
-  const toggleClick = () => {
-    setIsClicked(!isClicked);
-  };
-
   let value = "";
-  let route = "";
 
   if (firstname !== undefined) {
     value = firstname;
-    route = "firstname";
   } else if (lastname !== undefined) {
     value = lastname;
-    route = "lastname";
   } else if (email !== undefined) {
     value = email;
-    route = "email";
   } else if (phone_number !== undefined) {
     value = phone_number;
-    route = "phonenumber";
   } else if (password !== undefined) {
     value = "Modifier le mot de passe";
   }
 
+  const [data, setData] = useState(value);
+
+  const toggleClick = () => {
+    setIsClicked(!isClicked);
+    setData(value);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!user) return;
+
+    if (data === value) {
+      toggleClick();
+      return;
+    }
+
     try {
       const fieldToUpdate = {
         firstname: firstname !== undefined ? data : undefined,
@@ -58,7 +61,7 @@ export default function AccountLine({
       };
 
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/users/${user}/${route}`,
+        `${import.meta.env.VITE_API_URL}/api/users/${user}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -78,36 +81,26 @@ export default function AccountLine({
     <section className={styles.account}>
       <section className={styles.lines}>
         <div className={styles.container}>
-          <p>{value}</p>
-        </div>
-        <button
-          type="button"
-          className={styles.editButton}
-          onClick={toggleClick}
-        >
-          <span className={`material-symbols-outlined ${styles.editIcon}`}>
-            edit_square
-          </span>
-        </button>
-        {isClicked && (
-          <section className={styles.modal}>
+          {isClicked ? (
             <input
               type="text"
               defaultValue={value}
               onChange={(e) => setData(e.target.value)}
               className={styles.input}
             />
-            <button
-              type="submit"
-              onClick={handleSubmit}
-              className={styles.modifyButton}
-            >
-              <span className={`material-symbols-outlined ${styles.check}`}>
-                check
-              </span>
-            </button>
-          </section>
-        )}
+          ) : (
+            <p>{value}</p>
+          )}
+        </div>
+        <button
+          type="button"
+          className={styles.editButton}
+          onClick={isClicked ? handleSubmit : toggleClick}
+        >
+          <span className={`material-symbols-outlined ${styles.editIcon}`}>
+            {isClicked ? "check" : "edit_square"}
+          </span>
+        </button>
       </section>
     </section>
   );
