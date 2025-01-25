@@ -39,6 +39,7 @@ router.put("/api/photos/:id", photosAction.edit);
 router.put("/api/photos/:id/is_favorite", photosAction.editIsFavorite);
 router.post("/api/photos", photosAction.add);
 router.delete("/api/photos/:id", photosAction.destroy);
+router.get("/api/photos/:id/similar", photosAction.browseSimilar);
 
 // Define collections-related routes
 import collectionsActions from "./modules/collections/collectionsActions";

@@ -1,0 +1,194 @@
+/* --- Styles globaux du carrousel --- */
+h2 {
+  font-family: var(--font-aboreto);
+  font-weight: 500;
+  font-style: normal;
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.54);
+  background-color: var(--footerbg-primary-color);
+  margin: 0 0 3rem 0;
+  font-size: 28px;
+  text-align: center;
+  padding: 0.25rem 0;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 1);
+  -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 1);
+  width: 100%;
+  cursor: default;
+}
+
+.carousel {
+  display: grid;
+  grid-template-columns: 15% 70% 15%;
+  grid-template-rows: 100%;
+  height: 17rem;
+  position: relative;
+  margin-bottom: 7rem;
+  width: 100%;
+  font-family: var(--font-grotesk);
+  cursor: default;
+  position: relative;
+}
+
+.carouselContainCol {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  height: 17rem;
+  overflow: hidden;
+}
+
+/* --- Styles pour chaque article --- */
+.articleCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  gap: 0.5rem;
+}
+
+.articleCard img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  box-shadow: 0 0 17px -3px rgba(0, 0, 0, 1);
+}
+
+/* --- Styles pour l'overlay --- */
+.articleOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+
+  z-index: 5;
+}
+
+.articleCard:hover .articleOverlay {
+  opacity: 1; /* Rendre l'overlay visible au survol */
+}
+
+.articleOverlay a {
+  color: var(--fontcolor-white);
+  font-family: var(--font-grotesk);
+  font-size: 20px;
+  font-weight: 100;
+  text-decoration: none;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  position: relative;
+}
+
+.articleOverlay a::before,
+.articleOverlay a::after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -10px;
+  right: -10px;
+  bottom: -5px;
+  border: 2px solid transparent;
+}
+
+.articleOverlay a:hover::after {
+  border-color: white; /* Bordure blanche visible au survol */
+}
+
+/* --- Flèches de navigation --- */
+
+#modal {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.404);
+  -webkit-box-shadow: inset 0px 0px 17px -3px #000000;
+  box-shadow: inset 0px 0px 17px -3px #000000;
+  transition: opacity 0.2s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  a {
+    margin-bottom: 5rem;
+    color: var(--fontcolor-white);
+    font-family: var(--font-grotesk);
+    font-size: 20px;
+    font-weight: 100;
+    text-decoration: none;
+    margin-top: 4.9rem;
+    position: relative;
+    z-index: 11;
+    text-shadow: 2px 2px 4px #000000;
+    transition: border 0.2s ease-in-out;
+
+    @media screen and (min-width: 1280px) {
+      font-size: 21px;
+    }
+    @media screen and (min-width: 1100px) and (max-width: 1280px) {
+      font-size: 23px;
+    }
+  }
+
+  a::after,
+  a::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: -12px;
+    right: -12px;
+    bottom: -5px;
+    border: 2px solid transparent;
+    transition: border 0.2s ease-in-out;
+    @media screen and (min-width: 1280px) {
+      left: -16px;
+      right: -16px;
+    }
+  }
+
+  a:hover::after {
+    border-color: var(--footerbg-primary-color);
+  }
+
+  a:active::before {
+    border-color: var(--footerbg-primary-color);
+    background-color: var(--background-tertiary-color);
+    z-index: -5;
+    transition: all 0.1s ease-in-out;
+  }
+}
+
+.modalOff {
+  opacity: 0;
+}
+
+.modalVisible {
+  opacity: 1;
+}
+
+.prev {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  margin: auto;
+  rotate: 180deg;
+  font-size: 50px;
+  color: var(--footerbg-primary-color);
+  cursor: pointer;
+  user-select: none;
+}
+
+.next {
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+  margin: auto;
+  font-size: 50px;
+  color: var(--footerbg-primary-color);
+  cursor: pointer;
+  user-select: none;
+}

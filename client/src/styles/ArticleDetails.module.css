@@ -1,0 +1,114 @@
+.articleDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .photoContainer {
+    height: 20rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background-secondary-color);
+
+    .articlePhoto {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+  div {
+    padding: 1.5rem O;
+    background-color: white;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+    border: none;
+    div {
+      position: relative;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-direction: column;
+      width: 100%;
+      padding: 1rem;
+      color: white;
+      font-family: var(--font-grotesk);
+      background-color: var(--background-secondary-color);
+      margin: 1.5rem 0;
+
+      span {
+        position: absolute;
+        right: 1rem;
+      }
+    }
+  }
+}
+
+.favoriteIcon {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  font-size: 32px;
+  color: gray;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, color 0.3s;
+}
+
+.favoriteIcon.active {
+  color: red;
+  transform: scale(1.2); /* Zoom léger au clic */
+}
+
+.name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.price,
+.format,
+.frameType,
+.description {
+  font-size: 16px;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+.horizontalLine {
+  border: none; /* Supprime la bordure par défaut */
+  height: 2px; /* Épaisseur de la ligne */
+  background-color: var(--footerbg-primary-color); /* Couleur de la ligne */
+  margin: 1rem 0; /* Espacement au-dessus et au-dessous */
+  width: 100%; /* Ligne étendue sur toute la largeur */
+}
+
+.decorativeTitle {
+  font-family: var(--font-aboreto);
+  font-weight: 500;
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.54);
+  background-color: var(--footerbg-primary-color);
+  margin: 0;
+  font-size: 28px;
+  text-align: center;
+  padding: 0;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 1);
+  -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 1);
+  width: 100%;
+  cursor: default;
+}
+.seeMore {
+  color: white; /* Texte "Voir plus" en blanc */
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 1rem;
+  text-align: left; /* Aligne le texte à gauche */
+  margin-top: -1.0rem; /* Décale le lien vers le haut */
+  background: none;
+  border: none;
+  font-family: "Familjen Grotesk", sans-serif;
+}
+.seeMore:hover {
+  color: #ffa500; /* Couleur au survol */
+}

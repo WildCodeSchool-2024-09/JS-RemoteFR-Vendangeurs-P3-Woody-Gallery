@@ -74,6 +74,24 @@ class PhotosRepository {
     );
     return result.affectedRows;
   }
+
+  async findSimilar(photosId: number) {
+    const [rows] = await databaseClient.query<Rows>(
+      `
+    SELECT * 
+    FROM photos 
+    WHERE collection_id = (
+      SELECT collection_id 
+      FROM photos 
+      WHERE id = ?
+    ) 
+    AND id != ? 
+    LIMIT 5
+  `,
+      [photosId, photosId],
+    );
+    return rows as Photos[];
+  }
 }
 
 export default new PhotosRepository();
