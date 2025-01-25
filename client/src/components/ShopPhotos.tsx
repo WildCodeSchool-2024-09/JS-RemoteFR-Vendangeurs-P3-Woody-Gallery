@@ -40,7 +40,7 @@ export default function ShopPhotos({ photo }: PhotoProps) {
         onFocus={handleMouseOver}
         onBlur={handleMouseOut}
       >
-        <NavLink to={`/shop/photos/${photo.id}`}>VOIR L'ARTICLE</NavLink>
+        <NavLink to={`/shop/article/${photo.id}`}>VOIR L'ARTICLE</NavLink>
       </div>
     </section>
   );

@@ -7,6 +7,10 @@
   margin: 1rem 0;
   width: 100%;
 
+  @media screen and (min-width: 1050px) {
+    flex-direction: row;
+  }
+
   .addToCart {
     color: black;
     padding: 0.5rem 1rem;
@@ -30,8 +34,21 @@
     font-family: var(--font-grotesk);
     font-size: 22px;
   }
+
   .buyNow {
     background-color: #eac700;
+    color: var(--fontcolor-black);
+    text-decoration: none;
+    color: black;
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    font-family: var(--font-grotesk);
+    font-size: 22px;
+    text-align: center;
   }
 
   .addToCart:hover,

@@ -8,7 +8,6 @@ type ArticleDetailsProps = {
   name: string;
   price: string;
   format: string;
-  frameType: string;
   image: string;
   description: string;
 };
@@ -28,6 +27,12 @@ export default function ArticleDetails({
     const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
     setIsFavorite(favorites.includes(id));
   }, [id]);
+
+  useEffect(() => {
+    if (window.innerWidth > 1050) {
+      setShowFullDescription(true);
+    }
+  });
 
   const handleFavoriteClick = () => {
     const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
@@ -60,9 +65,9 @@ export default function ArticleDetails({
             onClick={handleFavoriteClick}
           >
             {isFavorite ? (
-              "favorite"
-            ) : (
               <img src={isfavorite} alt="coeur rouge" />
+            ) : (
+              "favorite"
             )}
           </button>
           <p className={styles.price}>{price} €</p>

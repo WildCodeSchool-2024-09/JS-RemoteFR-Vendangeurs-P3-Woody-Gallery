@@ -5,19 +5,26 @@ import styles from "../styles/SimilarArticlesCarousel.module.css";
 type Article = {
   id: number;
   name: string;
-  price: string;
-  image: string;
+  photos: {
+    id: number;
+    name: string;
+    image: string;
+    price: string;
+  };
 };
 
 type SimilarArticlesCarouselProps = {
+  collection_id: number;
   articleId: number;
 };
 
 export default function SimilarArticlesCarousel({
+  collection_id,
   articleId,
 }: SimilarArticlesCarouselProps) {
   const [similarArticles, setSimilarArticles] = useState<Article[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [collectionShow, setCollectionShow] = useState(1);
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
   const handleMouseOver = () => {
@@ -29,16 +36,30 @@ export default function SimilarArticlesCarousel({
   };
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/photos/${articleId}/similar`)
+    fetch(
+      `${import.meta.env.VITE_API_URL}/api/collections/${collection_id}/photos`,
+    )
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Erreur lors du chargement des articles similaires.");
+          throw new Error("Erreur lors du chargement.");
         }
         return response.json();
       })
       .then((data: Article[]) => setSimilarArticles(data))
       .catch((err) => console.error(err));
-  }, [articleId]);
+
+    handleMediaQ();
+    window.addEventListener("resize", handleMediaQ);
+    return () => window.removeEventListener("resize", handleMediaQ);
+  }, [collection_id]);
+
+  const handleMediaQ = () => {
+    if (window.innerWidth >= 1000) {
+      setCollectionShow(4);
+    } else {
+      setCollectionShow(1);
+    }
+  };
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
@@ -52,8 +73,14 @@ export default function SimilarArticlesCarousel({
     );
   };
 
-  if (similarArticles.length === 0) {
-    return <p>Aucun article similaire trouvé.</p>;
+  const visibleCollections = [];
+  for (let i = 0; i < collectionShow; i++) {
+    const collection =
+      similarArticles[(currentIndex + i) % similarArticles.length];
+    if (collection) {
+      visibleCollections.filter((photos) => photos.photos.id !== articleId);
+      visibleCollections.push(collection);
+    }
   }
 
   const scrollToTop = () => {
@@ -65,7 +92,7 @@ export default function SimilarArticlesCarousel({
 
   return (
     <>
-      <h2>Retrouvez Également</h2>
+      <h2 className={styles.h2ArticlesCarousel}>Retrouvez Également</h2>
       <div className={styles.carousel}>
         <span
           className={`${styles.prev} material-symbols-outlined`}
@@ -77,34 +104,32 @@ export default function SimilarArticlesCarousel({
           arrow_forward_ios
         </span>
         <div className={styles.carouselContainCol}>
-          {similarArticles
-            .slice(currentIndex, currentIndex + 1)
-            .map((article) => (
-              <div key={article.id} className={styles.articleCard}>
-                <figure>
-                  <img src={article.image} alt={article.name} />
-                </figure>
-                <div
-                  className={
-                    isVisible ? styles.articleOverlay : styles.modalOff
-                  }
-                  id={styles.modal}
-                  onMouseOver={handleMouseOver}
-                  onMouseOut={handleMouseOut}
-                  onFocus={handleMouseOver}
-                  onBlur={handleMouseOut}
+          {visibleCollections.map((article) => (
+            <div key={article.photos.id} className={styles.articleCard}>
+              <figure>
+                <img src={article.photos.image} alt={article.photos.name} />
+                <p className={styles.name}>{article.photos.name}</p>
+                <p className={styles.price}>{article.photos.price} €</p>
+              </figure>
+              <div
+                className={isVisible ? styles.articleOverlay : styles.modalOff}
+                id={styles.modal}
+                onMouseOver={handleMouseOver}
+                onMouseOut={handleMouseOut}
+                onFocus={handleMouseOver}
+                onBlur={handleMouseOut}
+              >
+                <NavLink
+                  to={`/shop/article/${article.photos.id}`}
+                  onClick={scrollToTop}
+                  onKeyDown={scrollToTop}
+                  className={styles.viewArticleButton}
                 >
-                  <NavLink
-                    to={`/shop/article/${article.id}`}
-                    onClick={scrollToTop}
-                    onKeyDown={scrollToTop}
-                    className={styles.viewArticleButton}
-                  >
-                    VOIR L'ARTICLE
-                  </NavLink>
-                </div>
+                  VOIR L'ARTICLE
+                </NavLink>
               </div>
-            ))}
+            </div>
+          ))}
         </div>
         <span
           className={`${styles.next} material-symbols-outlined`}

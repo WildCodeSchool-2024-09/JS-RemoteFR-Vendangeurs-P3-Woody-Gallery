@@ -10,9 +10,9 @@ type Article = {
   name: string;
   price: string;
   format: string;
-  frameType: string;
   description: string;
   image: string;
+  collection_id: number;
 };
 
 export default function ArticlePage() {
@@ -61,11 +61,13 @@ export default function ArticlePage() {
         name={article.name}
         price={article.price}
         format={article.format}
-        frameType={article.frameType}
         image={article.image}
         description={article.description}
       />
-      <SimilarArticlesCarousel articleId={Number(id)} />
+      <SimilarArticlesCarousel
+        collection_id={article.collection_id}
+        articleId={article.id}
+      />
     </>
   );
 }
