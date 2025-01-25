@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import isfavorite from "/isfavorite.png";
 import styles from "../styles/ArticleDetails.module.css";
 import AddToCartButtons from "./AddToCartButtons";
 
@@ -22,22 +23,17 @@ export default function ArticleDetails({
 }: ArticleDetailsProps) {
   const [showFullDescription, setShowFullDescription] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
-  // État pour gérer les favoris
+
   useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
     setIsFavorite(favorites.includes(id));
   }, [id]);
-
-  const toggleDescription = () => {
-    setShowFullDescription((prev) => !prev);
-  };
 
   const handleFavoriteClick = () => {
     const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
     let updatedFavorites: number[];
 
     if (!isFavorite) {
-      // Ajouter aux favoris
       updatedFavorites = [...favorites, id];
     } else {
       updatedFavorites = favorites.filter((fav: number) => fav !== id);
@@ -46,23 +42,28 @@ export default function ArticleDetails({
     setIsFavorite(!isFavorite);
   };
 
+  const toggleDescription = () => {
+    setShowFullDescription((prev) => !prev);
+  };
+
   return (
     <div className={styles.articleDetails}>
       <figure className={styles.photoContainer}>
         <img src={image} alt={name} className={styles.articlePhoto} />
       </figure>
-      <div>
-        <div>
-          <h3 className={styles.name}>{name}</h3>
+      <div className={styles.backgroundArticleWhite}>
+        <div className={styles.articlesContain}>
+          <h3>{name}</h3>
           <button
             type="button"
-            className={`${styles.favoriteIcon} ${
-              isFavorite ? styles.active : ""
-            }`}
+            className={`material-symbols-outlined ${styles.favoriteIcon}`}
             onClick={handleFavoriteClick}
-            aria-label="Add to favorites"
           >
-            {isFavorite ? "❤️" : "🤍"}
+            {isFavorite ? (
+              "favorite"
+            ) : (
+              <img src={isfavorite} alt="coeur rouge" />
+            )}
           </button>
           <p className={styles.price}>{price} €</p>
           <p className={styles.format}>Format : {format}</p>
@@ -73,7 +74,7 @@ export default function ArticleDetails({
               ? description
               : `${description.slice(0, 100)}...`}{" "}
           </p>
-          <hr className={styles.horizontalLine} />
+          <hr />
           <button
             type="button"
             className={styles.seeMore}

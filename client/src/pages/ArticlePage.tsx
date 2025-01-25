@@ -52,9 +52,10 @@ export default function ArticlePage() {
   }
 
   return (
-    <div>
-      <h2 className={styles.decorativeTitle}>Shop</h2>
-
+    <>
+      <h2 id="topOfPage" className={styles.shopTitle}>
+        Shop
+      </h2>
       <ArticleDetails
         id={article.id}
         name={article.name}
@@ -64,8 +65,7 @@ export default function ArticlePage() {
         image={article.image}
         description={article.description}
       />
-
       <SimilarArticlesCarousel articleId={Number(id)} />
-    </div>
+    </>
   );
 }

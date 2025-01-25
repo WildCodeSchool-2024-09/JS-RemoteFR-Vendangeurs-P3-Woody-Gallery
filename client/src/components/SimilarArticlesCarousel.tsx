@@ -56,11 +56,17 @@ export default function SimilarArticlesCarousel({
     return <p>Aucun article similaire trouvé.</p>;
   }
 
+  const scrollToTop = () => {
+    const topElement = document.getElementById("topOfPage");
+    if (topElement) {
+      topElement.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <section className={styles.retrouvez_egalement}>
+    <>
       <h2>Retrouvez Également</h2>
       <div className={styles.carousel}>
-        {/* Flèche précédente */}
         <span
           className={`${styles.prev} material-symbols-outlined`}
           onClick={handlePrev}
@@ -70,11 +76,9 @@ export default function SimilarArticlesCarousel({
         >
           arrow_forward_ios
         </span>
-
-        {/* Contenu du carrousel */}
         <div className={styles.carouselContainCol}>
           {similarArticles
-            .slice(currentIndex, currentIndex + 1) // Affiche un seul article à la fois
+            .slice(currentIndex, currentIndex + 1)
             .map((article) => (
               <div key={article.id} className={styles.articleCard}>
                 <figure>
@@ -92,6 +96,8 @@ export default function SimilarArticlesCarousel({
                 >
                   <NavLink
                     to={`/shop/article/${article.id}`}
+                    onClick={scrollToTop}
+                    onKeyDown={scrollToTop}
                     className={styles.viewArticleButton}
                   >
                     VOIR L'ARTICLE
@@ -100,8 +106,6 @@ export default function SimilarArticlesCarousel({
               </div>
             ))}
         </div>
-
-        {/* Flèche suivante */}
         <span
           className={`${styles.next} material-symbols-outlined`}
           onClick={handleNext}
@@ -112,6 +116,6 @@ export default function SimilarArticlesCarousel({
           arrow_forward_ios
         </span>
       </div>
-    </section>
+    </>
   );
 }
