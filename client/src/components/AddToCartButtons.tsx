@@ -1,21 +1,27 @@
 import { NavLink } from "react-router-dom";
 import styles from "../styles/AddToCartButtons.module.css";
 
-export default function AddToCartButtons() {
-  const handleAddToCart = () => {
-    alert("Article ajouté au panier !");
-  };
+type OrderProps = {
+  handleAddToOrder: () => void;
+};
 
+export default function AddToCartButtons({ handleAddToOrder }: OrderProps) {
   return (
     <div className={styles.buttonContainer}>
       <button
         type="button"
-        onClick={handleAddToCart}
+        onClick={handleAddToOrder}
+        onKeyDown={handleAddToOrder}
         className={styles.addToCart}
       >
         Ajouter au panier
       </button>
-      <NavLink className={styles.buyNow} to="/panier">
+      <NavLink
+        onClick={handleAddToOrder}
+        onKeyDown={handleAddToOrder}
+        className={styles.buyNow}
+        to="/panier"
+      >
         Acheter
       </NavLink>
     </div>

@@ -22,17 +22,28 @@ export default function ArticleDetails({
 }: ArticleDetailsProps) {
   const [showFullDescription, setShowFullDescription] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [addToOrder, setAddToOrder] = useState(0);
 
   useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
     setIsFavorite(favorites.includes(id));
+    const order = JSON.parse(localStorage.getItem("order") || "[]");
+    setAddToOrder(order.includes(id));
   }, [id]);
 
   useEffect(() => {
-    if (window.innerWidth > 1050) {
-      setShowFullDescription(true);
-    }
-  });
+    const handleResize = () => {
+      if (window.innerWidth > 1050) {
+        setShowFullDescription(true);
+      } else {
+        setShowFullDescription(false);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleFavoriteClick = () => {
     const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
@@ -47,12 +58,20 @@ export default function ArticleDetails({
     setIsFavorite(!isFavorite);
   };
 
+  const handleAddToOrder = () => {
+    const order = JSON.parse(localStorage.getItem("order") || "[]");
+    const updatedOrder = [...order, id];
+
+    localStorage.setItem("order", JSON.stringify(updatedOrder));
+    setAddToOrder(1);
+  };
+
   const toggleDescription = () => {
     setShowFullDescription((prev) => !prev);
   };
 
   return (
-    <div className={styles.articleDetails}>
+    <div key={addToOrder} className={styles.articleDetails}>
       <figure className={styles.photoContainer}>
         <img src={image} alt={name} className={styles.articlePhoto} />
       </figure>
@@ -73,7 +92,7 @@ export default function ArticleDetails({
           <p className={styles.price}>{price} €</p>
           <p className={styles.format}>Format : {format}</p>
           <p className={styles.frameType}>Photo imprimé sur toile sans cadre</p>
-          <AddToCartButtons />
+          <AddToCartButtons handleAddToOrder={handleAddToOrder} />
           <p className={styles.description}>
             {showFullDescription
               ? description
