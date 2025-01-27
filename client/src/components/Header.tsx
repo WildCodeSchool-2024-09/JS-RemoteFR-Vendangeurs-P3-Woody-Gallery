@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import styles from "../styles/Header.module.css";
@@ -6,21 +6,36 @@ import styles from "../styles/Header.module.css";
 export default function Header() {
   const isAuth = localStorage.getItem("isAuth") === "true";
   const userName = sessionStorage.getItem("userName");
+  const [orderNumber, setOrderNumber] = useState(0);
   const { logout } = useAuth();
 
   const navigate = useNavigate();
 
   useEffect(() => {
+    const updateOrderNumber = () => {
+      const order = JSON.parse(localStorage.getItem("order") || "[]");
+      if (order) {
+        setOrderNumber(order.length);
+      }
+    };
+
+    updateOrderNumber();
+    const intervalOrder = setInterval(updateOrderNumber, 100);
+
     if (
       sessionStorage.getItem("userName") === null &&
       localStorage.getItem("isAuth") === "true"
     ) {
       localStorage.clear();
-      logout;
+      logout();
       navigate("/");
       window.location.reload();
     }
-  });
+
+    return () => {
+      clearInterval(intervalOrder);
+    };
+  }, [logout, navigate]);
 
   return (
     <header className={styles.header}>
@@ -30,6 +45,7 @@ export default function Header() {
       </h1>
       <NavLink className={styles.shopIcon} to="/panier">
         <span className="material-symbols-outlined">shopping_cart</span>
+        {orderNumber !== 0 ? <p>{orderNumber}</p> : ""}
       </NavLink>
       <NavLink
         className={styles.accountIcon}

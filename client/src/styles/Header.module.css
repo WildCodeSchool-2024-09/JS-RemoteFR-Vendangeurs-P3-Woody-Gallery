@@ -63,6 +63,7 @@
     margin: auto;
     cursor: pointer;
     text-decoration: none;
+    position: relative;
 
     span {
       height: 45px;
@@ -75,6 +76,24 @@
       font-size: 35px;
       background-color: var(--fontcolor-white);
       color: var(--fontcolor-black);
+    }
+
+    p {
+      color: var(--fontcolor-white);
+      font-size: 15px;
+      position: absolute;
+      z-index: 10;
+      border-radius: 50%;
+      background-color: #c50000;
+      height: 20px;
+      width: 20px;
+      top: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: var(--font-grotesk);
+      padding-bottom: .1rem;
     }
 
     @media screen and (min-width: 1200px) {
