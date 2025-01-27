@@ -5,6 +5,7 @@ import styles from "../styles/Header.module.css";
 
 export default function Header() {
   const isAuth = localStorage.getItem("isAuth") === "true";
+  const isAdmin = localStorage.getItem("isAdmin") === "true";
   const userName = sessionStorage.getItem("userName");
   const [orderNumber, setOrderNumber] = useState(0);
   const { logout } = useAuth();
@@ -48,7 +49,7 @@ export default function Header() {
         {orderNumber !== 0 ? <p>{orderNumber}</p> : ""}
       </NavLink>
       <NavLink
-        className={styles.accountIcon}
+        className={`${styles.accountIcon} ${isAdmin ? `${styles.accountAdmin}` : ""}`}
         to={isAuth ? `/user/${userName}` : "/create-account"}
       >
         <span className="material-symbols-outlined">account_circle</span>
@@ -89,7 +90,9 @@ export default function Header() {
             to={isAuth ? `/user/${userName}` : "/create-account"}
           >
             {isAuth ? (
-              <span className={`material-symbols-outlined ${styles.account}`}>
+              <span
+                className={`material-symbols-outlined ${styles.account} ${isAdmin ? `${styles.accountAdmin}` : ""}`}
+              >
                 account_circle
               </span>
             ) : (
