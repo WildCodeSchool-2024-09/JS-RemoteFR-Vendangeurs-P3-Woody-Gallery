@@ -33,7 +33,7 @@ export default function ArticleDetails({
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth > 1050) {
+      if (window.innerWidth > 1200) {
         setShowFullDescription(true);
       } else {
         setShowFullDescription(false);
