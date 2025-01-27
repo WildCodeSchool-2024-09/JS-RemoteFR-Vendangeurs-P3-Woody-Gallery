@@ -7,7 +7,8 @@ export default function Deconnection() {
   const navigate = useNavigate();
 
   const handleDeconnect = () => {
-    localStorage.clear();
+    localStorage.removeItem("isAdmin");
+    localStorage.removeItem("isAuth");
     logout;
     navigate("/");
     window.location.reload();
