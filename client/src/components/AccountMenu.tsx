@@ -36,7 +36,11 @@ export default function AccountMenu() {
             Moyen de paiement
           </NavLink>
           {isAdmin && (
-            <NavLink to="/admin" className={styles.nav} id={styles.admin}>
+            <NavLink
+              to="/user/admin/Woody-Gallery"
+              className={styles.nav}
+              id={styles.admin}
+            >
               Admin
             </NavLink>
           )}
