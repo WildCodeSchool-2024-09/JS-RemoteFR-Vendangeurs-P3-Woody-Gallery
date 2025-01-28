@@ -1,4 +1,9 @@
 .adminPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
   h2 {
     font-family: var(--font-aboreto);
     font-weight: 500;
@@ -14,5 +19,59 @@
     -moz-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 1);
     width: 100%;
     cursor: default;
+  }
+
+  .panel {
+    width: 90%;
+    background-color: var(--footerbg-primary-color);
+    min-height: 20rem;
+    margin: 3rem 0;
+    -webkit-box-shadow: inset 0px 3.37rem 0px 0px
+      var(--background-secondary-color);
+    box-shadow: inset 0px 3.37rem 0px 0px var(--background-secondary-color);
+
+    ul {
+      display: grid;
+      grid-template-columns: 12rem 12rem 12rem;
+      height: 3.37rem;
+      position: relative;
+      list-style-type: none;
+      box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.72) inset;
+      -webkit-box-shadow: 2px 2px 20px -3px rgba(0, 0, 0, 0.72) inset;
+      -moz-box-shadow: 2px 2px 2px -3px rgba(0, 0, 0, 0.72) inset;
+
+      a {
+        padding: .5rem 1.5rem;
+        color: var(--fontcolor-white);
+        text-decoration: none;
+        font-family: var(--font-grotesk);
+        font-size: 25px;
+        text-align: center;
+        border-right: 2px solid black;
+      }
+
+      .currentPage {
+        background-color: var(--footerbg-primary-color);
+        color: var(--fontcolor-black);
+      }
+
+      .deconnexion {
+        position: absolute;
+        right: 0;
+        width: 12rem;
+        border-left: 2px solid black;
+        border-right: none;
+      }
+
+      .currentDeconnexion {
+        position: absolute;
+        right: 0;
+        width: 12rem;
+        border-left: 2px solid black;
+        border-right: none;
+        background-color: var(--footerbg-primary-color);
+        color: var(--fontcolor-black);
+      }
+    }
   }
 }
