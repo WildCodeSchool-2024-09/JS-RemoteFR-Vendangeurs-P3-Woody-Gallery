@@ -116,6 +116,15 @@ class UsersRepository {
     );
     return result.affectedRows;
   }
+
+  async updateAddressForUser(userId: number, addressId: number) {
+    const [result] = await databaseClient.query<Result>(
+      "UPDATE users SET address_id = ? WHERE id = ?",
+      [addressId, userId],
+    );
+
+    return result.affectedRows;
+  }
 }
 
 export default new UsersRepository();

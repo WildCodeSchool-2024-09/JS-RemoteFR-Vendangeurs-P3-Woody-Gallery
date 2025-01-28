@@ -1,22 +1,21 @@
+CREATE TABLE users (
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    firstname VARCHAR(50) NOT NULL,
+    lastname VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    phone_number VARCHAR(15) NULL,
+    password VARCHAR(100) NOT NULL,
+    is_admin BOOLEAN DEFAULT FALSE NOT NULL
+);
 CREATE TABLE addresses (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     street_number VARCHAR(10) NOT NULL,
     street_name VARCHAR(50) NOT NULL,
     postal_code VARCHAR(15) NOT NULL,
     city VARCHAR(100) NOT NULL,
-    country VARCHAR(50) NOT NULL
-);
-
-CREATE TABLE users (
-    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    firstname VARCHAR(50) NOT NULL,
-    lastname VARCHAR(50) NOT NULL,
-    email VARCHAR(100) NOT NULL,
-    phone_number VARCHAR(15) NULL,
-    password VARCHAR(100) NOT NULL,
-    is_admin BOOLEAN DEFAULT FALSE NOT NULL,
-    address_id INT NULL,
-    FOREIGN KEY (address_id) REFERENCES addresses(id)
+    country VARCHAR(50) NOT NULL,
+    user_id INT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id) 
 );
 
 CREATE TABLE ratings (
@@ -134,3 +133,6 @@ VALUES
 (4, 2, "Mouais, de mon temps nous proposions quelque chose de meilleur", '2025-01-11 15:17:07'),
 (5, 1, "Bof joré fé ceu sitte otremant moa !!!!!", '2025-01-11 15:17:07');
 
+INSERT INTO addresses ( id, street_number, street_name, postal_code, city, country, user_id)
+VALUES 
+(1, 8, 'rue du photographe', '13000', 'Marseille', 'France', 1);

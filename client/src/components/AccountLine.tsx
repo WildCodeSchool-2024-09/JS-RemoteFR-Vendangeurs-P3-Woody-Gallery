@@ -2,38 +2,18 @@ import { useState } from "react";
 import styles from "../styles/AccountLine.module.css";
 
 type AccountLineProps = {
-  firstname?: string;
-  lastname?: string;
-  email?: string;
-  phone_number?: string;
-  password?: string;
+  value: string;
+  valueName: string;
   onReload: () => void;
 };
 
 export default function AccountLine({
-  firstname,
-  lastname,
-  email,
-  phone_number,
-  password,
+  value,
+  valueName,
   onReload,
 }: AccountLineProps) {
   const [isClicked, setIsClicked] = useState(false);
   const user = sessionStorage.getItem("user");
-
-  let value = "";
-
-  if (firstname !== undefined) {
-    value = firstname;
-  } else if (lastname !== undefined) {
-    value = lastname;
-  } else if (email !== undefined) {
-    value = email;
-  } else if (phone_number !== undefined) {
-    value = phone_number;
-  } else if (password !== undefined) {
-    value = "Modifier le mot de passe";
-  }
 
   const [data, setData] = useState(value);
 
@@ -52,20 +32,12 @@ export default function AccountLine({
     }
 
     try {
-      const fieldToUpdate = {
-        firstname: firstname !== undefined ? data : undefined,
-        lastname: lastname !== undefined ? data : undefined,
-        email: email !== undefined ? data : undefined,
-        phone_number: phone_number !== undefined ? data : undefined,
-        password: password !== undefined ? data : undefined,
-      };
-
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/api/users/${user}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(fieldToUpdate),
+          body: JSON.stringify({ [valueName]: data }),
         },
       );
       if (response.ok) {
@@ -77,17 +49,32 @@ export default function AccountLine({
       alert("Une erreur est survenue durant la modification du compte");
     }
   };
+
   return (
     <section className={styles.account}>
       <section className={styles.lines}>
         <div className={styles.container}>
           {isClicked ? (
-            <input
-              type="text"
-              defaultValue={value}
-              onChange={(e) => setData(e.target.value)}
-              className={styles.input}
-            />
+            <>
+              {valueName === "password" ? (
+                <input
+                  type="text"
+                  placeholder="Ancien mot de passe"
+                  className={styles.input}
+                />
+              ) : (
+                <p>"</p>
+              )}
+              <input
+                type="text"
+                defaultValue={valueName === "password" ? "" : value}
+                placeholder={
+                  valueName === "password" ? "Nouveau mot de passe" : valueName
+                }
+                onChange={(e) => setData(e.target.value)}
+                className={styles.input}
+              />
+            </>
           ) : (
             <p>{value}</p>
           )}

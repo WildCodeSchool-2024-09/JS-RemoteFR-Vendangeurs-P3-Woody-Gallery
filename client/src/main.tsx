@@ -15,6 +15,8 @@ import ConnectionPage from "./pages/ConnectionPage";
 import CreateAccountPage from "./pages/CreateAccountPage";
 import Homepage from "./pages/Homepage";
 import ShopPage from "./pages/ShopPage";
+import Account from "./components/Account";
+import Addresses from "./components/Addresses";
 
 const userName = sessionStorage.getItem("userName");
 
@@ -48,7 +50,23 @@ const router = createBrowserRouter([
         children: [
           {
             path: ":name",
-            element: <AccountPage />,
+            element: (
+              <>
+                <AccountPage />
+                <Account />
+              </>
+            ),
+            children: [
+              {
+                path: "addresses",
+                element: (
+                  <>
+                    <AccountPage />
+                    <Addresses />
+                  </>
+                ),
+              },
+            ],
           },
           {
             path: `${userName}`,

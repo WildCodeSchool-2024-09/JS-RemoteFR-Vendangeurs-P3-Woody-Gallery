@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-
 import styles from "../styles/Account.module.css";
 import AccountLine from "./AccountLine";
 
@@ -35,17 +34,31 @@ export default function Account() {
   return (
     <section className={styles.account}>
       <div className={styles.container}>
-        <AccountLine firstname={userData.firstname} onReload={handleReload} />
-        <AccountLine lastname={userData.lastname} onReload={handleReload} />
-        <AccountLine email={userData.email} onReload={handleReload} />
         <AccountLine
-          phone_number={
-            userData.phone_number ? userData.phone_number : "Pas de numéro"
-          }
+          value={userData.firstname}
+          valueName="firstname"
           onReload={handleReload}
         />
         <AccountLine
-          password={"Modifier le mot de passe"}
+          value={userData.lastname}
+          valueName="lastname"
+          onReload={handleReload}
+        />
+        <AccountLine
+          value={userData.email}
+          valueName="email"
+          onReload={handleReload}
+        />
+        <AccountLine
+          value={
+            userData.phone_number ? userData.phone_number : "Pas de numéro"
+          }
+          valueName="phone_number"
+          onReload={handleReload}
+        />
+        <AccountLine
+          value={"Modifier le mot de passe"}
+          valueName="password"
           onReload={handleReload}
         />
       </div>

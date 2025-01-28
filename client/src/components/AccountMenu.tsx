@@ -4,6 +4,7 @@ import styles from "../styles/AccountMenu.module.css";
 
 export default function AccountMenu() {
   const [isClicked, setIsClicked] = useState(false);
+  const userName = sessionStorage.getItem("userName");
 
   const toggleClick = () => {
     setIsClicked(!isClicked);
@@ -19,10 +20,10 @@ export default function AccountMenu() {
 
       {isClicked && (
         <div className={styles.modal}>
-          <NavLink to="/" className={styles.nav}>
+          <NavLink to={`/user/${userName}`} className={styles.nav}>
             Compte
           </NavLink>
-          <NavLink to="/" className={styles.nav}>
+          <NavLink to={`/user/${userName}/adresses`} className={styles.nav}>
             Adresses
           </NavLink>
           <NavLink to="/" className={styles.nav}>

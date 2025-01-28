@@ -55,7 +55,7 @@ const add: RequestHandler = async (req, res, next) => {
     if (userExists) {
       res
         .status(409)
-        .json({ error: "Il existe déjà un utilisateur avec cette email" });
+        .json({ error: "Il existe déjà un utilisateur avec cet email" });
       return;
     }
 
