@@ -1,6 +1,6 @@
 import type { RequestHandler } from "express";
-import * as addressRepository from "./addressRepository";
 import type { AddressRow } from ".//addressRepository";
+import * as addressRepository from "./addressRepository";
 
 // Ajouter une adresse
 export const addAddress: RequestHandler = async (req, res, next) => {

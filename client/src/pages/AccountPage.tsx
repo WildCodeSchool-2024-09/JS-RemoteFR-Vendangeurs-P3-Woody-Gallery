@@ -1,6 +1,7 @@
 // import Account from "../components/Account";
 import AccountMenu from "../components/AccountMenu";
-import Addresses from "../components/Addresses";
+import AccountOrders from "../components/AccountOrders";
+// import Addresses from "../components/Addresses";
 
 import Deconnection from "../components/Deconnection";
 import styles from "../styles/AccountPage.module.css";
@@ -15,7 +16,8 @@ export default function AccountPage() {
       </section>
       <section className={styles.components}>
         {/* <Account /> */}
-        <Addresses />
+        {/* <Addresses /> */}
+        <AccountOrders />
       </section>
     </section>
   );

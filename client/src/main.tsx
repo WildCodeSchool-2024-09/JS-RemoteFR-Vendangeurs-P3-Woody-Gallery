@@ -7,6 +7,8 @@ import { AuthProvider } from "./contexts/AuthContext";
 /* ************************************************************************* */
 
 import App from "./App";
+import Account from "./components/Account";
+import Addresses from "./components/Addresses";
 import AuthAdmin from "./components/AuthAdmin";
 import AuthUser from "./components/AuthUser";
 import AccountPage from "./pages/AccountPage";
@@ -15,8 +17,6 @@ import ConnectionPage from "./pages/ConnectionPage";
 import CreateAccountPage from "./pages/CreateAccountPage";
 import Homepage from "./pages/Homepage";
 import ShopPage from "./pages/ShopPage";
-import Account from "./components/Account";
-import Addresses from "./components/Addresses";
 
 const userName = sessionStorage.getItem("userName");
 
