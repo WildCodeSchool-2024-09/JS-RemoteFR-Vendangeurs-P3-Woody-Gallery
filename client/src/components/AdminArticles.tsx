@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import styles from "../styles/AdminArticles.module.css";
 import AdminArticlesCard from "./AdminArticlesCard";
+import ModalCreateArticle from "./ModalCreateArticle";
 
 type Article = {
   id: number;
-  name: number;
+  name: string;
   photos: {
     id: number;
     name: string;
@@ -18,6 +19,15 @@ type Article = {
 
 export default function AdminArticles() {
   const [articles, setArticles] = useState<Article[]>([]);
+  const [modalCA, setModalCA] = useState<boolean>(false);
+
+  const handleOpenModal = () => {
+    setModalCA(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalCA(false);
+  };
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/collection-articles`)
@@ -39,6 +49,7 @@ export default function AdminArticles() {
           Tri
         </button>
         <button
+          onClick={handleOpenModal}
           className={`material-symbols-outlined ${styles.addArticles}`}
           type="button"
         >
@@ -62,6 +73,7 @@ export default function AdminArticles() {
           photos={article.photos}
         />
       ))}
+      {modalCA && <ModalCreateArticle handleCloseModal={handleCloseModal} />}
     </div>
   );
 }

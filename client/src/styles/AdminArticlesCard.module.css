@@ -23,6 +23,7 @@
     min-height: 5rem;
     background-color: var(--background-secondary-color);
     color: var(--fontcolor-white);
+    cursor: default;
 
     figure {
       height: 4rem;
