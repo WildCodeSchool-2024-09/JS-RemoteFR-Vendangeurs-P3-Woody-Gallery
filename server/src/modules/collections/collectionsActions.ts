@@ -22,6 +22,16 @@ const browseCollection: RequestHandler = async (req, res, next) => {
   }
 };
 
+const browseArticles: RequestHandler = async (req, res, next) => {
+  try {
+    const collections = await collectionsRepository.readAllArticles();
+
+    res.json(collections);
+  } catch (err) {
+    next(err);
+  }
+};
+
 const browseSelectCollection: RequestHandler = async (req, res, next) => {
   try {
     const collections = await collectionsRepository.readSelectCollection();
@@ -115,4 +125,5 @@ export default {
   add,
   edit,
   destroy,
+  browseArticles,
 };
