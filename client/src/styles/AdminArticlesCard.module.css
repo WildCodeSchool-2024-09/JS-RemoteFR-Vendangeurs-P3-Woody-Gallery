@@ -24,6 +24,7 @@
     background-color: var(--background-secondary-color);
     color: var(--fontcolor-white);
     cursor: default;
+    text-align: center;
 
     figure {
       height: 4rem;

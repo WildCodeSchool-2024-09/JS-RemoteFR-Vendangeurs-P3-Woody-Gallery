@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "../styles/AdminArticlesCard.module.css";
 import ModalAAC from "./ModalAAC";
+import ModalDeleteArticle from "./ModalDeleteArticle";
 
 type Article = {
   id: number;
@@ -18,6 +19,7 @@ type Article = {
 
 export default function AdminArticlesCard({ name, photos }: Article) {
   const [modalAAC, setModalAAC] = useState<boolean>(false);
+  const [modalDelete, setModaleDelete] = useState<boolean>(false);
 
   const handleOpenModal = () => {
     setModalAAC(true);
@@ -25,6 +27,14 @@ export default function AdminArticlesCard({ name, photos }: Article) {
 
   const handleCloseModal = () => {
     setModalAAC(false);
+  };
+
+  const handleOpenModalDelete = () => {
+    setModaleDelete(true);
+  };
+
+  const handleCloseModalDelete = () => {
+    setModaleDelete(false);
   };
 
   const numberChar = photos.description.length;
@@ -54,6 +64,8 @@ export default function AdminArticlesCard({ name, photos }: Article) {
             edit_square
           </button>
           <button
+            onClick={handleOpenModalDelete}
+            onKeyDown={handleOpenModalDelete}
             className={`material-symbols-outlined ${styles.delete}`}
             type="button"
           >
@@ -65,6 +77,12 @@ export default function AdminArticlesCard({ name, photos }: Article) {
         <ModalAAC
           handleCloseModal={handleCloseModal}
           name={name}
+          photos={photos}
+        />
+      )}
+      {modalDelete && (
+        <ModalDeleteArticle
+          handleCloseModalDelete={handleCloseModalDelete}
           photos={photos}
         />
       )}
