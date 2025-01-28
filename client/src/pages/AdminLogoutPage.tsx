@@ -27,7 +27,7 @@ export default function AdminLogoutPage() {
         <AdminMobile />
       ) : (
         <div className={styles.panel}>
-          <ul>
+          <ul className={styles.nav}>
             <NavLink to="/user/admin/articles">
               <li>Articles</li>
             </NavLink>
