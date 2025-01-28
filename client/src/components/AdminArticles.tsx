@@ -20,6 +20,7 @@ type Article = {
 export default function AdminArticles() {
   const [articles, setArticles] = useState<Article[]>([]);
   const [modalCA, setModalCA] = useState<boolean>(false);
+  const [search, setSearch] = useState<string>("");
 
   const handleOpenModal = () => {
     setModalCA(true);
@@ -28,6 +29,16 @@ export default function AdminArticles() {
   const handleCloseModal = () => {
     setModalCA(false);
   };
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
+
+  const articlesSearch = articles.filter((article) =>
+    article.photos.name
+      .toLocaleLowerCase()
+      .includes(search.toLocaleLowerCase()),
+  );
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/collection-articles`)
@@ -38,7 +49,11 @@ export default function AdminArticles() {
   return (
     <div className={styles.adminArticles}>
       <div className={styles.interraction}>
-        <input type="text" />
+        <input
+          placeholder="Recherche par nom"
+          onChange={handleSearch}
+          type="text"
+        />
         <button
           className={`material-symbols-outlined ${styles.search}`}
           type="button"
@@ -65,7 +80,7 @@ export default function AdminArticles() {
         <li>Stock</li>
         <li className={styles.last}>Actions</li>
       </ul>
-      {articles.map((article) => (
+      {articlesSearch.map((article) => (
         <AdminArticlesCard
           key={article.photos.id}
           id={article.photos.id}
