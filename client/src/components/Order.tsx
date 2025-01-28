@@ -79,17 +79,15 @@ export default function Order() {
           {photos
             .filter((order) => orderNumber.includes(order.id))
             .map((photo) => (
-              <>
-                <OrderCard
-                  key={`orderCard${photo.id}`}
-                  id={photo.id}
-                  name={photo.name}
-                  image={photo.image}
-                  format={photo.format}
-                  price={photo.price}
-                  count={occurrences[photo.id]}
-                />
-              </>
+              <OrderCard
+                key={`orderCard-${photo.id}-${photo.name} `}
+                id={photo.id}
+                name={photo.name}
+                image={photo.image}
+                format={photo.format}
+                price={photo.price}
+                count={occurrences[photo.id]}
+              />
             ))}
           <div className={styles.priceTotal}>
             <h5>{`Sous-total (${orderNumber.length} articles) :`}</h5>

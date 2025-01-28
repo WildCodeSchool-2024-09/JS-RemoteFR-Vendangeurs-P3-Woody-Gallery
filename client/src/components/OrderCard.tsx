@@ -16,6 +16,7 @@ export default function OrderCard({
   format,
   price,
   count,
+  image,
 }: OrderProps) {
   const [orderNumber, setOrderNumber] = useState(0);
 
@@ -63,6 +64,9 @@ export default function OrderCard({
         delete
       </button>
       <hr className={styles.hrDelete} />
+      <figure>
+        <img src={image} alt={name} />
+      </figure>
       <div>
         <h3>{name}</h3>
         <p className={styles.format}>Format : {format}</p>

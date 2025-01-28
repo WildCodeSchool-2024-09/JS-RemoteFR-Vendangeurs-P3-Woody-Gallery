@@ -79,8 +79,9 @@ export default function Header() {
         </li>
         <li>
           <span className="material-symbols-outlined">shopping_cart</span>
-          <NavLink className={styles.navLink} to="/panier">
+          <NavLink className={`${styles.navLink} ${styles.order}`} to="/panier">
             Panier
+            {orderNumber !== 0 ? <p>{orderNumber}</p> : ""}
           </NavLink>
         </li>
         <li>
