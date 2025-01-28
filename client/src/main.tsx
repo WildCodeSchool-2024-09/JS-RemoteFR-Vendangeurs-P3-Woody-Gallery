@@ -63,18 +63,17 @@ const router = createBrowserRouter([
             path: `${userName}`,
             element: <AccountPage />,
           },
-        ],
-      },
+          // CONNEXION ADMIN
 
-      // CONNEXION ADMIN
-
-      {
-        path: "admin",
-        element: <AuthAdmin />,
-        children: [
           {
-            path: "",
-            element: <AdminPage />,
+            path: "admin",
+            element: <AuthAdmin />,
+            children: [
+              {
+                path: `${userName}`,
+                element: <AdminPage />,
+              },
+            ],
           },
         ],
       },
