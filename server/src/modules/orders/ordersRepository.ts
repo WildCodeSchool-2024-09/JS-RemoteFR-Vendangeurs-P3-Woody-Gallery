@@ -8,11 +8,16 @@ type Orders = {
 };
 
 class OrdersRepository {
-  // C - CREATE
-  async create(orders: Omit<Orders, "id">) {
+  async create(
+    userId: number,
+    articles: string,
+    total_amount: number,
+    date: Date,
+    status: string,
+  ) {
     const [result] = await databaseClient.query<Result>(
-      "insert into orders (is_done) values (?)",
-      [orders.is_done],
+      "INSERT INTO orders (user_id, articles, total_amount, date, status) VALUES (?, ?, ?, ?, ?)",
+      [userId, articles, total_amount, date, status],
     );
     return result.insertId;
   }
