@@ -10,10 +10,7 @@ import App from "./App";
 import AuthAdmin from "./components/AuthAdmin";
 import AuthUser from "./components/AuthUser";
 import AccountPage from "./pages/AccountPage";
-import AdminArticlesPage from "./pages/AdminArticlesPage";
-import AdminLogoutPage from "./pages/AdminLogoutPage";
-import AdminOrdersPage from "./pages/AdminOrdersPage";
-import AdminUsersPage from "./pages/AdminUsersPage";
+import AdminPage from "./pages/AdminPage";
 import ArticlePage from "./pages/ArticlePage";
 import ConnectionPage from "./pages/ConnectionPage";
 import CreateAccountPage from "./pages/CreateAccountPage";
@@ -74,19 +71,19 @@ const router = createBrowserRouter([
             children: [
               {
                 path: "articles",
-                element: <AdminArticlesPage />,
+                element: <AdminPage />,
               },
               {
                 path: "users",
-                element: <AdminUsersPage />,
+                element: <AdminPage />,
               },
               {
                 path: "orders",
-                element: <AdminOrdersPage />,
+                element: <AdminPage />,
               },
               {
                 path: "logout",
-                element: <AdminLogoutPage />,
+                element: <AdminPage />,
               },
             ],
           },
