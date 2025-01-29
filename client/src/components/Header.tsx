@@ -1,26 +1,42 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import styles from "../styles/Header.module.css";
 
 export default function Header() {
   const isAuth = localStorage.getItem("isAuth") === "true";
+  const isAdmin = localStorage.getItem("isAdmin") === "true";
   const userName = sessionStorage.getItem("userName");
+  const [orderNumber, setOrderNumber] = useState(0);
   const { logout } = useAuth();
 
   const navigate = useNavigate();
 
   useEffect(() => {
+    const updateOrderNumber = () => {
+      const order = JSON.parse(localStorage.getItem("order") || "[]");
+      if (order) {
+        setOrderNumber(order.length);
+      }
+    };
+
+    updateOrderNumber();
+    const intervalOrder = setInterval(updateOrderNumber, 100);
+
     if (
       sessionStorage.getItem("userName") === null &&
       localStorage.getItem("isAuth") === "true"
     ) {
       localStorage.clear();
-      logout;
+      logout();
       navigate("/");
       window.location.reload();
     }
-  });
+
+    return () => {
+      clearInterval(intervalOrder);
+    };
+  }, [logout, navigate]);
 
   return (
     <header className={styles.header}>
@@ -28,11 +44,12 @@ export default function Header() {
         <span className={styles.woodyTitle}>Woody</span>
         <span className={styles.galleryTitle}>Gallery</span>
       </h1>
-      <NavLink className={styles.shopIcon} to="/">
+      <NavLink className={styles.shopIcon} to="/panier">
         <span className="material-symbols-outlined">shopping_cart</span>
+        {orderNumber !== 0 ? <p>{orderNumber}</p> : ""}
       </NavLink>
       <NavLink
-        className={styles.accountIcon}
+        className={`${styles.accountIcon} ${isAdmin ? `${styles.accountAdmin}` : ""}`}
         to={isAuth ? `/user/${userName}` : "/create-account"}
       >
         <span className="material-symbols-outlined">account_circle</span>
@@ -63,8 +80,9 @@ export default function Header() {
         </li>
         <li>
           <span className="material-symbols-outlined">shopping_cart</span>
-          <NavLink className={styles.navLink} to="/">
+          <NavLink className={`${styles.navLink} ${styles.order}`} to="/panier">
             Panier
+            {orderNumber !== 0 ? <p>{orderNumber}</p> : ""}
           </NavLink>
         </li>
         <li>
@@ -73,7 +91,9 @@ export default function Header() {
             to={isAuth ? `/user/${userName}` : "/create-account"}
           >
             {isAuth ? (
-              <span className={`material-symbols-outlined ${styles.account}`}>
+              <span
+                className={`material-symbols-outlined ${styles.account} ${isAdmin ? `${styles.accountAdmin}` : ""}`}
+              >
                 account_circle
               </span>
             ) : (

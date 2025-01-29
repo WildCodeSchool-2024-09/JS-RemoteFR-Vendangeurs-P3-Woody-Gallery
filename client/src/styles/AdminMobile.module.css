@@ -1,0 +1,66 @@
+.adminMobile {
+  width: 100%;
+  position: relative;
+  background-color: var(--footerbg-primary-color);
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  -webkit-box-shadow: 5px 5px 15px -3px rgba(0, 0, 0, 0.64);
+  box-shadow: 5px 5px 15px -3px rgba(0, 0, 0, 0.64);
+  -webkit-box-shadow: inset -5px -5px 15px -3px rgba(0, 0, 0, 0.64);
+  box-shadow: inset -5px -5px 15px -3px rgba(0, 0, 0, 0.64);
+
+  hr {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: none;
+    height: 3.5rem;
+    width: 5rem;
+    background-color: var(--background-secondary-color);
+    -webkit-box-shadow: inset -5px -5px 15px -3px rgba(0, 0, 0, 0.64);
+    box-shadow: inset -5px -5px 15px -3px rgba(0, 0, 0, 0.64);
+  }
+
+  h3 {
+    text-align: center;
+    font-family: var(--font-grotesk);
+    font-weight: 400;
+    font-size: 22px;
+    padding: .75rem 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.42);
+    cursor: default;
+  }
+
+  .logoutIcon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: none;
+    height: 3.5rem;
+    width: 5rem;
+    background-color: var(--background-secondary-color);
+    color: var(--fontcolor-white);
+    font-size: 40px;
+    -webkit-box-shadow: inset -5px -5px 15px -3px rgba(0, 0, 0, 0.64);
+    box-shadow: inset -5px -5px 15px -3px rgba(0, 0, 0, 0.64);
+    cursor: pointer;
+  }
+
+  p {
+    font-family: var(--font-grotesk);
+    background-color: var(--background-secondary-color);
+    color: var(--fontcolor-white);
+    width: 80%;
+    padding: .5rem .5rem;
+    text-align: center;
+    margin: 1.5rem 0;
+    -webkit-box-shadow: 5px 5px 15px -3px rgba(0, 0, 0, 0.64);
+    box-shadow: 5px 5px 15px -3px rgba(0, 0, 0, 0.64);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.42);
+    cursor: default;
+  }
+}

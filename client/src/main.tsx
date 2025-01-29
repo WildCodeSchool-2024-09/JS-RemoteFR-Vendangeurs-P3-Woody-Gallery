@@ -13,9 +13,11 @@ import AuthAdmin from "./components/AuthAdmin";
 import AuthUser from "./components/AuthUser";
 import AccountPage from "./pages/AccountPage";
 import AdminPage from "./pages/AdminPage";
+import ArticlePage from "./pages/ArticlePage";
 import ConnectionPage from "./pages/ConnectionPage";
 import CreateAccountPage from "./pages/CreateAccountPage";
 import Homepage from "./pages/Homepage";
+import OrderPage from "./pages/OrderPage";
 import ShopPage from "./pages/ShopPage";
 
 const userName = sessionStorage.getItem("userName");
@@ -34,6 +36,14 @@ const router = createBrowserRouter([
         element: <ShopPage />,
       },
       {
+        path: "panier",
+        element: <OrderPage />,
+      },
+      {
+        path: "shop/article/:id",
+        element: <ArticlePage />,
+      },
+      {
         path: "login",
         element: <ConnectionPage />,
       },
@@ -41,7 +51,6 @@ const router = createBrowserRouter([
         path: "create-account",
         element: <CreateAccountPage />,
       },
-
       // CONNEXION CLIENT
 
       {
@@ -72,18 +81,17 @@ const router = createBrowserRouter([
             path: `${userName}`,
             element: <AccountPage />,
           },
-        ],
-      },
+          // CONNEXION ADMIN
 
-      // CONNEXION ADMIN
-
-      {
-        path: "admin",
-        element: <AuthAdmin />,
-        children: [
           {
-            path: "",
-            element: <AdminPage />,
+            path: "admin",
+            element: <AuthAdmin />,
+            children: [
+              {
+                path: `${userName}`,
+                element: <AdminPage />,
+              },
+            ],
           },
         ],
       },

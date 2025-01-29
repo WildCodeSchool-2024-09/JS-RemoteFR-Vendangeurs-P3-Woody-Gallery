@@ -54,5 +54,5 @@
 }
 
 #admin {
-  color: red;
+  color: var(--color-red);
 }

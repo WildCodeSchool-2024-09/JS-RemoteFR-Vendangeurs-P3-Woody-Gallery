@@ -5,6 +5,7 @@ import styles from "../styles/AccountMenu.module.css";
 export default function AccountMenu() {
   const [isClicked, setIsClicked] = useState(false);
   const userName = sessionStorage.getItem("userName");
+  const isAdmin = localStorage.getItem("isAdmin") === "true";
 
   const toggleClick = () => {
     setIsClicked(!isClicked);
@@ -35,9 +36,15 @@ export default function AccountMenu() {
           <NavLink to="/" className={styles.nav}>
             Moyen de paiement
           </NavLink>
-          <NavLink to="/" className={styles.nav} id={styles.admin}>
-            Admin
-          </NavLink>
+          {isAdmin && (
+            <NavLink
+              to="/user/admin/Woody-Gallery"
+              className={styles.nav}
+              id={styles.admin}
+            >
+              Admin
+            </NavLink>
+          )}
         </div>
       )}
     </section>
