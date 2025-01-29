@@ -4,7 +4,6 @@ import ModalAAC from "./ModalAAC";
 import ModalDeleteArticle from "./ModalDeleteArticle";
 
 type Article = {
-  id: number;
   name: string;
   photos: {
     id: number;
@@ -14,6 +13,7 @@ type Article = {
     format: string;
     stock: number;
     price: number;
+    collection_id: number;
   };
 };
 
@@ -74,11 +74,7 @@ export default function AdminArticlesCard({ name, photos }: Article) {
         </li>
       </ul>
       {modalAAC && (
-        <ModalAAC
-          handleCloseModal={handleCloseModal}
-          name={name}
-          photos={photos}
-        />
+        <ModalAAC handleCloseModal={handleCloseModal} photos={photos} />
       )}
       {modalDelete && (
         <ModalDeleteArticle

@@ -36,7 +36,17 @@ const edit: RequestHandler = async (req, res, next) => {
       price: Number(req.body.price),
       collection_id: Number(req.body.collection_id),
     };
-    const affectedRows = await photosRepository.update(photos);
+
+    const affectedRows = await photosRepository.update(
+      photos.id,
+      photos.name,
+      photos.image,
+      photos.description,
+      photos.format,
+      photos.stock,
+      photos.price,
+      photos.collection_id,
+    );
 
     if (affectedRows === 0) {
       res.sendStatus(404);

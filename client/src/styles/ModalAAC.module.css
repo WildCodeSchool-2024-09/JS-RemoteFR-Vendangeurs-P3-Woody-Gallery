@@ -55,18 +55,50 @@
         font-size: 18px;
         font-family: var(--font-grotesk);
       }
+
+      select {
+        height: 2.5rem;
+        border: none;
+        padding: 0 .5rem;
+        font-size: 18px;
+        font-family: var(--font-grotesk);
+      }
     }
 
     .file {
       width: auto;
       align-self: flex-start;
       margin-left: 5%;
+      display: flex;
+      position: relative;
+      width: 23.5rem;
+      cursor: pointer;
 
-      input[type="file"] {
+      input {
         padding: 0;
-        background-color: var(--background-secondary-color);
-        color: var(--fontcolor-white);
+        cursor: pointer;
+      }
+
+      input[type="file"]::file-selector-button {
         font-family: var(--font-grotesk);
+        border: none;
+        border-radius: 8px;
+        height: 2.5rem;
+        cursor: pointer;
+      }
+
+      figure {
+        height: 60px;
+        width: 60px;
+        position: absolute;
+        right: 0;
+        top: 1rem;
+
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
       }
     }
 

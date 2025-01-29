@@ -1,8 +1,10 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useArticles } from "../contexts/AdminArticlesContext";
 import styles from "../styles/ModalAAC.module.css";
 
 type ModalAACProps = {
   handleCloseModal: () => void;
-  name: string;
   photos: {
     id: number;
     name: string;
@@ -11,17 +13,68 @@ type ModalAACProps = {
     format: string;
     stock: number;
     price: number;
+    collection_id: number;
   };
 };
 
-export default function ModalAAC({
-  handleCloseModal,
-  name,
-  photos,
-}: ModalAACProps) {
+type CollectionProps = {
+  id: number;
+  name: string;
+};
+
+export default function ModalAAC({ handleCloseModal, photos }: ModalAACProps) {
+  const [collections, setCollections] = useState<CollectionProps[]>([]);
+  const [newPhoto, setNewPhoto] = useState(photos);
+  const { fetchArticles } = useArticles();
+  const navigate = useNavigate();
+
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
+    const { name, value } = e.target;
+    setNewPhoto((prevPhoto) => ({
+      ...prevPhoto,
+      [name]: value,
+    }));
+  };
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/api/collections`)
+      .then((response) => response.json())
+      .then((data: CollectionProps[]) => setCollections(data));
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/photos/${photos.id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newPhoto),
+        },
+      );
+
+      if (response.ok) {
+        handleCloseModal();
+        fetchArticles();
+        navigate("/user/admin/articles");
+      }
+    } catch (error) {
+      console.error(
+        "Une erreur est survenue durant la modification de l'image",
+        error,
+      );
+    }
+  };
+
   return (
     <div className={styles.modalAAC}>
-      <form>
+      <form onSubmit={handleSubmit}>
         <h2>Modification de {photos.name}</h2>
         <button
           onClick={handleCloseModal}
@@ -37,12 +90,16 @@ export default function ModalAAC({
             id="name"
             name="name"
             placeholder="Nom de l'article"
-            value={photos.name}
+            value={newPhoto.name}
+            onChange={handleChange}
           />
         </label>
         <label className={styles.file} htmlFor="image">
           Image
-          <input type="file" id="image" name="image" />
+          <input type="file" id="image" name="image" onChange={handleChange} />
+          <figure>
+            <img src={newPhoto.image} alt={newPhoto.name} />
+          </figure>
         </label>
         <label htmlFor="description">
           Description
@@ -50,18 +107,27 @@ export default function ModalAAC({
             id="description"
             name="description"
             placeholder="Description de l'article"
-            value={photos.description}
+            value={newPhoto.description}
+            onChange={handleChange}
           />
         </label>
         <label htmlFor="collection">
           Collection
-          <input
-            type="text"
-            id="collection"
-            name="collection"
-            placeholder="Nom de la collection de l'article (déjà existante)"
-            value={name}
-          />
+          <select
+            name="collection_id"
+            id="collection_id"
+            value={newPhoto.collection_id}
+            onChange={handleChange}
+          >
+            {collections.map((collection) => (
+              <option
+                key={`selectCollection${collection.id}`}
+                value={collection.id}
+              >
+                {collection.name}
+              </option>
+            ))}
+          </select>
         </label>
         <label htmlFor="format">
           Format
@@ -70,7 +136,8 @@ export default function ModalAAC({
             id="format"
             name="format"
             placeholder={`Format de l'article "LONGUEURxLARGUEURcm"`}
-            value={photos.format}
+            value={newPhoto.format}
+            onChange={handleChange}
           />
         </label>
         <label htmlFor="stock">
@@ -80,7 +147,8 @@ export default function ModalAAC({
             id="stock"
             name="stock"
             placeholder="Nombre de stock disponible de l'article"
-            value={photos.stock}
+            value={newPhoto.stock}
+            onChange={handleChange}
           />
         </label>
         <label htmlFor="price">
@@ -90,10 +158,11 @@ export default function ModalAAC({
             id="price"
             name="price"
             placeholder="Prix de l'article en euros (€)"
-            value={photos.price}
+            value={newPhoto.price}
+            onChange={handleChange}
           />
         </label>
-        <button className={styles.confirm} type="button">
+        <button className={styles.confirm} type="submit">
           Confirmer la modification
         </button>
       </form>

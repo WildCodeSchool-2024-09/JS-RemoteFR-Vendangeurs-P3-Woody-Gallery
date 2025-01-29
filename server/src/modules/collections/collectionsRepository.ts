@@ -47,7 +47,7 @@ class CollectionRepository {
 
   async readAllArticles() {
     const [rows] = await databaseClient.query<Rows>(
-      `SELECT c.id collectionId, c.name collectionName, p.id photoId, p.name, p.image, p.price, p.description, p.format, p.stock
+      `SELECT c.id collectionId, c.name collectionName, p.id photoId, p.name, p.image, p.price, p.description, p.format, p.stock, p.collection_id
       FROM collections c
       LEFT JOIN photos p
       ON c.id = p.collection_id`,
@@ -64,6 +64,7 @@ class CollectionRepository {
         format: row.format,
         stock: row.stock,
         price: row.price,
+        collection_id: row.collection_id,
       },
     }));
 

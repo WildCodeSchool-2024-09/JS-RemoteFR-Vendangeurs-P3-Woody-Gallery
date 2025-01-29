@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useArticles } from "../contexts/AdminArticlesContext";
 import styles from "../styles/ModalDeleteArticle.module.css";
 
 type ModalDeleteProps = {
@@ -15,6 +16,7 @@ export default function ModalDeleteArticle({
 }: ModalDeleteProps) {
   const [isValid, setIsValid] = useState<boolean>(false);
   const [isClicked, setIsClicked] = useState<boolean>(false);
+  const { fetchArticles } = useArticles();
 
   const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value === "Supprimer") {
@@ -34,7 +36,7 @@ export default function ModalDeleteArticle({
         method: "DELETE",
       });
       handleCloseModalDelete();
-      window.location.reload();
+      fetchArticles();
     }
   });
 

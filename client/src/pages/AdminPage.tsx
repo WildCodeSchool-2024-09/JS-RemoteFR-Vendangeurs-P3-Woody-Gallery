@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import AdminArticles from "../components/AdminArticles";
 import AdminLogout from "../components/AdminLogout";
 import AdminMobile from "../components/AdminMobile";
+import { ArticlesProvider } from "../contexts/AdminArticlesContext";
 import styles from "../styles/AdminPage.module.css";
 
 export default function AdminPage() {
@@ -78,7 +79,11 @@ export default function AdminPage() {
               <li>Déconnexion</li>
             </NavLink>
           </ul>
-          {isArticlesPage && <AdminArticles />}
+          {isArticlesPage && (
+            <ArticlesProvider>
+              <AdminArticles />
+            </ArticlesProvider>
+          )}
           {isLogoutPage && <AdminLogout />}
         </div>
       )}
