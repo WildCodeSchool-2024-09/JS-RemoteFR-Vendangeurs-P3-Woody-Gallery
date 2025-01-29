@@ -1,4 +1,5 @@
 import type { RequestHandler } from "express";
+import usersRepository from "../users/usersRepository";
 import ordersRepository from "./ordersRepository";
 
 const browse: RequestHandler = async (req, res, next) => {
@@ -45,13 +46,35 @@ const edit: RequestHandler = async (req, res, next) => {
 
 const add: RequestHandler = async (req, res, next) => {
   try {
-    const neworders = {
-      date: req.body.date,
-      is_done: req.body.is_done,
+    const { userId, articles, total_amount } = req.body;
+
+    const user = await usersRepository.read(userId);
+
+    if (!user) {
+      res.status(404).json({ message: "Utilisateur non trouvé" });
+      return;
+    }
+
+    const newOrder = {
+      userId: userId,
+      articles: JSON.stringify(articles),
+      total_amount: total_amount,
+      date: new Date(),
+      status: "préparation",
     };
-    const insertId = await ordersRepository.create(neworders);
+
+    const insertId = await ordersRepository.create(
+      newOrder.userId,
+      newOrder.articles,
+      newOrder.total_amount,
+      newOrder.date,
+      newOrder.status,
+    );
+
     res.status(201).json({ insertId });
   } catch (err) {
+    console.error("Erreur lors de la création de la commande:", err);
+    res.status(500).json({ message: "Erreur interne du serveur" });
     next(err);
   }
 };

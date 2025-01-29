@@ -9,6 +9,7 @@ export default function Deconnection() {
   const handleDeconnect = () => {
     localStorage.removeItem("isAdmin");
     localStorage.removeItem("isAuth");
+    sessionStorage.clear();
     logout;
     navigate("/");
     window.location.reload();
