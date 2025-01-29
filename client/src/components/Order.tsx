@@ -13,6 +13,7 @@ type OrderProps = {
 export default function Order() {
   const [orderNumber, setOrderNumber] = useState<number[]>([]);
   const [photos, setPhotos] = useState<OrderProps[]>([]);
+  const userId = sessionStorage.getItem("user");
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/photos`)
@@ -65,9 +66,32 @@ export default function Order() {
 
   const totalPrice = countTotalPrice(orderNumber);
 
-  const handleClearOrder = () => {
-    localStorage.removeItem("order");
-    alert("Votre commande viens d'être éffectuée");
+  const handleConfirmOrder = () => {
+    if (userId && orderNumber && totalPrice) {
+      fetch(`${import.meta.env.VITE_API_URL}/api/orders`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userId: userId,
+          articles: [...orderNumber],
+          total_amount: totalPrice,
+        }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Erreur lors de la commande");
+          }
+          localStorage.removeItem("order");
+          alert("Votre commande viens d'être éffectuée");
+          return response.json();
+        })
+        .catch((error) => {
+          console.error("Erreur lors de la commande:", error);
+          alert("Une erreur est survenue lors de la commande");
+        });
+    } else {
+      alert("Une erreur viens de se produire");
+    }
   };
 
   return (
@@ -98,8 +122,8 @@ export default function Order() {
             <p>{totalPrice} €</p>
           </div>
           <button
-            onClick={handleClearOrder}
-            onKeyDown={handleClearOrder}
+            onClick={handleConfirmOrder}
+            onKeyDown={handleConfirmOrder}
             className={styles.validateOrder}
             type="button"
           >
