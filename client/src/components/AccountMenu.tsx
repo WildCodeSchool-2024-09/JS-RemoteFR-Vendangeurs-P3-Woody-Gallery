@@ -21,19 +21,31 @@ export default function AccountMenu() {
 
       {isClicked && (
         <div className={styles.modal}>
-          <NavLink to={`/user/${userName}`} className={styles.nav}>
+          <NavLink
+            to={`/user/${userName}`}
+            className={styles.nav}
+            onClick={toggleClick}
+          >
             Compte
           </NavLink>
-          <NavLink to={`/user/${userName}/adresses`} className={styles.nav}>
+          <NavLink
+            to={`/user/${userName}/addresses`}
+            className={styles.nav}
+            onClick={toggleClick}
+          >
             Adresses
           </NavLink>
-          <NavLink to="/" className={styles.nav}>
+          <NavLink
+            to={`/user/${userName}/orders`}
+            className={styles.nav}
+            onClick={toggleClick}
+          >
             Commandes
           </NavLink>
-          <NavLink to="/" className={styles.nav}>
+          <NavLink to="/" className={styles.nav} onClick={toggleClick}>
             Favoris
           </NavLink>
-          <NavLink to="/" className={styles.nav}>
+          <NavLink to="/" className={styles.nav} onClick={toggleClick}>
             Moyen de paiement
           </NavLink>
           {isAdmin && (

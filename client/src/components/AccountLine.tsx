@@ -63,7 +63,7 @@ export default function AccountLine({
                   className={styles.input}
                 />
               ) : (
-                <p>"</p>
+                <></>
               )}
               <input
                 type="text"

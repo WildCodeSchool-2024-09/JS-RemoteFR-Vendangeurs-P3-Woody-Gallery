@@ -8,6 +8,7 @@ import { AuthProvider } from "./contexts/AuthContext";
 
 import App from "./App";
 import Account from "./components/Account";
+import AccountOrders from "./components/AccountOrders";
 import Addresses from "./components/Addresses";
 import AuthAdmin from "./components/AuthAdmin";
 import AuthUser from "./components/AuthUser";
@@ -59,27 +60,16 @@ const router = createBrowserRouter([
         children: [
           {
             path: ":name",
-            element: (
-              <>
-                <AccountPage />
-                <Account />
-              </>
-            ),
-            children: [
-              {
-                path: "addresses",
-                element: (
-                  <>
-                    <AccountPage />
-                    <Addresses />
-                  </>
-                ),
-              },
-            ],
+            element: <AccountPage />,
           },
           {
             path: `${userName}`,
             element: <AccountPage />,
+            children: [
+              { path: "", element: <Account /> },
+              { path: "addresses", element: <Addresses /> },
+              { path: "orders", element: <AccountOrders /> },
+            ],
           },
           // CONNEXION ADMIN
 
