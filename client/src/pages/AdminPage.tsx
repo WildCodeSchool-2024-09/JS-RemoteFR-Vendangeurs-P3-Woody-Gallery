@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import AdminArticles from "../components/AdminArticles";
+import AdminLogout from "../components/AdminLogout";
 import AdminMobile from "../components/AdminMobile";
 import styles from "../styles/AdminPage.module.css";
 
@@ -78,6 +79,7 @@ export default function AdminPage() {
             </NavLink>
           </ul>
           {isArticlesPage && <AdminArticles />}
+          {isLogoutPage && <AdminLogout />}
         </div>
       )}
     </section>

@@ -1,0 +1,32 @@
+.adminLogout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 15rem;
+  gap: 2rem;
+
+  p {
+    font-family: var(--font-grotesk);
+    font-weight: 400;
+    font-size: 22px;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.35);
+    cursor: default;
+  }
+
+  button {
+    font-family: var(--font-grotesk);
+    font-weight: 400;
+    width: 12rem;
+    height: 3rem;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--color-red);
+    color: var(--fontcolor-white);
+    font-size: 22px;
+    -webkit-box-shadow: 5px 5px 15px -3px #000000;
+    box-shadow: 5px 5px 15px -3px #000000;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.62);
+    cursor: pointer;
+  }
+}
