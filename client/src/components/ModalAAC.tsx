@@ -111,11 +111,11 @@ export default function ModalAAC({ handleCloseModal, photos }: ModalAACProps) {
             onChange={handleChange}
           />
         </label>
-        <label htmlFor="collection">
+        <label htmlFor="collection_id">
           Collection
           <select
-            name="collection_id"
             id="collection_id"
+            name="collection_id"
             value={newPhoto.collection_id}
             onChange={handleChange}
           >

@@ -20,6 +20,15 @@ type Article = {
 export default function AdminArticlesCard({ name, photos }: Article) {
   const [modalAAC, setModalAAC] = useState<boolean>(false);
   const [modalDelete, setModaleDelete] = useState<boolean>(false);
+  const [imageBig, setImageBig] = useState<boolean>(false);
+
+  const handleImageBig = () => {
+    setImageBig(true);
+  };
+
+  const handleImageSmall = () => {
+    setImageBig(false);
+  };
 
   const handleOpenModal = () => {
     setModalAAC(true);
@@ -44,7 +53,11 @@ export default function AdminArticlesCard({ name, photos }: Article) {
       <ul className={styles.adminArticlesCard}>
         <li>{photos.name}</li>
         <li>
-          <figure>
+          <figure
+            onClick={handleImageBig}
+            onKeyDown={handleImageBig}
+            title="Agrandir l'image"
+          >
             <img src={photos.image} alt={photos.name} />
           </figure>
         </li>
@@ -81,6 +94,26 @@ export default function AdminArticlesCard({ name, photos }: Article) {
           handleCloseModalDelete={handleCloseModalDelete}
           photos={photos}
         />
+      )}
+      {imageBig && (
+        <div
+          className={styles.imageBig}
+          onClick={handleImageSmall}
+          onKeyDown={handleImageSmall}
+          title="Fermer l'image"
+        >
+          <figure>
+            <img src={photos.image} alt={photos.name} />
+            <span
+              className="material-symbols-outlined"
+              onClick={handleImageSmall}
+              onKeyDown={handleImageSmall}
+              title="Fermer l'image"
+            >
+              close
+            </span>
+          </figure>
+        </div>
       )}
     </>
   );

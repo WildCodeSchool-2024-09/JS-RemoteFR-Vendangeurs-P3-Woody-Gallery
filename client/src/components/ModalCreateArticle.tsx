@@ -1,16 +1,112 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useArticles } from "../contexts/AdminArticlesContext";
 import styles from "../styles/ModalAAC.module.css";
 
 type ModalAACProps = {
   handleCloseModal: () => void;
 };
 
+type CollectionProps = {
+  id: number;
+  name: string;
+};
+
+type PhotoProps = {
+  name: string;
+  image: string;
+  description: string;
+  format: string;
+  stock: number;
+  price: number;
+  collection_id: number;
+};
+
 export default function ModalCreateArticle({
   handleCloseModal,
 }: ModalAACProps) {
+  const [collections, setCollections] = useState<CollectionProps[]>([]);
+  const [newPhoto, setNewPhoto] = useState<PhotoProps>({
+    name: "",
+    image: "/photos/modernTokyo/Akihabara.jpg",
+    description: "",
+    format: "",
+    stock: 0,
+    price: 0,
+    collection_id: 1,
+  });
+  const { fetchArticles } = useArticles();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/api/collections`)
+      .then((response) => response.json())
+      .then((data: CollectionProps[]) => setCollections(data));
+  }, []);
+
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
+    const { name, value } = e.target;
+    setNewPhoto((prevPhoto) => ({
+      ...prevPhoto,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/photos/`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newPhoto),
+        },
+      );
+
+      if (response.ok) {
+        handleCloseModal();
+        fetchArticles();
+        navigate("/user/admin/articles");
+      }
+    } catch (error) {
+      console.error(
+        "Une erreur est survenue durant la modification de l'image",
+        error,
+      );
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (
+      e.key === "Backspace" ||
+      e.key === "Delete" ||
+      e.key === "Tab" ||
+      e.key === "Escape" ||
+      e.key === "Enter" ||
+      e.key === "."
+    ) {
+      return;
+    }
+
+    if (
+      (e.key < "0" || e.key > "9") &&
+      e.key !== "ArrowLeft" &&
+      e.key !== "ArrowRight"
+    ) {
+      e.preventDefault();
+    }
+  };
+
   return (
     <div className={styles.modalAAC}>
-      <form>
-        <h2>Création de l'article</h2>
+      <form onSubmit={handleSubmit}>
+        <h2>Créer un article</h2>
         <button
           onClick={handleCloseModal}
           type="button"
@@ -25,11 +121,12 @@ export default function ModalCreateArticle({
             id="name"
             name="name"
             placeholder="Nom de l'article"
+            onChange={handleChange}
           />
         </label>
         <label className={styles.file} htmlFor="image">
           Image
-          <input type="file" id="image" name="image" />
+          <input type="file" id="image" name="image" onChange={handleChange} />
         </label>
         <label htmlFor="description">
           Description
@@ -37,16 +134,28 @@ export default function ModalCreateArticle({
             id="description"
             name="description"
             placeholder="Description de l'article"
+            onChange={handleChange}
           />
         </label>
-        <label htmlFor="collection">
+        <label htmlFor="collection_id">
           Collection
-          <input
-            type="text"
-            id="collection"
-            name="collection"
-            placeholder="Nom de la collection de l'article (déjà existante)"
-          />
+          <select
+            id="collection_id"
+            name="collection_id"
+            onChange={handleChange}
+          >
+            <option value="0" disabled>
+              Veuillez choisir une collection
+            </option>
+            {collections.map((collection) => (
+              <option
+                key={`selectCollection${collection.id}`}
+                value={collection.id}
+              >
+                {collection.name}
+              </option>
+            ))}
+          </select>
         </label>
         <label htmlFor="format">
           Format
@@ -55,6 +164,7 @@ export default function ModalCreateArticle({
             id="format"
             name="format"
             placeholder={`Format de l'article "LONGUEURxLARGUEURcm"`}
+            onChange={handleChange}
           />
         </label>
         <label htmlFor="stock">
@@ -64,6 +174,8 @@ export default function ModalCreateArticle({
             id="stock"
             name="stock"
             placeholder="Nombre de stock disponible de l'article"
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
           />
         </label>
         <label htmlFor="price">
@@ -73,9 +185,11 @@ export default function ModalCreateArticle({
             id="price"
             name="price"
             placeholder="Prix de l'article en euros (€)"
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
           />
         </label>
-        <button className={styles.confirm} type="button">
+        <button className={styles.confirm} type="submit">
           Confirmer la modification
         </button>
       </form>
