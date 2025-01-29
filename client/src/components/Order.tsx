@@ -67,6 +67,13 @@ export default function Order() {
   const totalPrice = countTotalPrice(orderNumber);
 
   const handleConfirmOrder = () => {
+    if (!userId) {
+      alert(
+        "Veuillez vous connecter à votre compte pour passer votre commande",
+      );
+      return;
+    }
+
     if (userId && orderNumber && totalPrice) {
       fetch(`${import.meta.env.VITE_API_URL}/api/orders`, {
         method: "POST",
