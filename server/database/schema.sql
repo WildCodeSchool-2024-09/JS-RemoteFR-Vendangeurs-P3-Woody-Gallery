@@ -56,8 +56,12 @@ CREATE TABLE photos (
 
 CREATE TABLE orders (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    articles VARCHAR(1000) NOT NULL,
+    total_amount DECIMAL(10, 2) NOT NULL,
     date TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    is_done BOOLEAN DEFAULT FALSE NULL
+    status ENUM('préparation','livraison','terminé') DEFAULT 'préparation',
+    user_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
 CREATE TABLE photos_orders (
