@@ -1,5 +1,6 @@
 .adminArticles {
   padding: 2rem;
+  position: relative;
 
   .interraction {
     display: flex;

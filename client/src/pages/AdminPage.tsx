@@ -4,6 +4,7 @@ import AdminArticles from "../components/AdminArticles";
 import AdminLogout from "../components/AdminLogout";
 import AdminMobile from "../components/AdminMobile";
 import { ArticlesProvider } from "../contexts/AdminArticlesContext";
+import { MyCollectionsProvider } from "../contexts/MyCollectionContext";
 import styles from "../styles/AdminPage.module.css";
 
 export default function AdminPage() {
@@ -81,7 +82,9 @@ export default function AdminPage() {
           </ul>
           {isArticlesPage && (
             <ArticlesProvider>
-              <AdminArticles />
+              <MyCollectionsProvider>
+                <AdminArticles />
+              </MyCollectionsProvider>
             </ArticlesProvider>
           )}
           {isLogoutPage && <AdminLogout />}

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useArticles } from "../contexts/AdminArticlesContext.tsx";
-import { MyCollectionsProvider } from "../contexts/MyCollectionContext.tsx";
 import styles from "../styles/AdminArticles.module.css";
 import AdminArticlesCard from "./AdminArticlesCard";
+import ArticlesFilter from "./ArticlesFilter.tsx";
 import ModalCreateArticle from "./ModalCreateArticle";
 import MyCollection from "./MyCollection.tsx";
 
@@ -10,7 +10,12 @@ export default function AdminArticles() {
   const [modalCA, setModalCA] = useState<boolean>(false);
   const [search, setSearch] = useState<string>("");
   const [myCollection, setMyCollection] = useState<boolean>(false);
+  const [filter, setFilter] = useState<boolean>(false);
   const { articles, fetchArticles } = useArticles();
+
+  const handleFilter = () => {
+    setFilter((prev) => !prev);
+  };
 
   const handleOpenMyCollection = () => {
     setMyCollection(true);
@@ -59,7 +64,7 @@ export default function AdminArticles() {
         >
           search
         </button>
-        <button className={styles.tri} type="button">
+        <button onClick={handleFilter} className={styles.tri} type="button">
           Tri
         </button>
         <button
@@ -77,6 +82,7 @@ export default function AdminArticles() {
           add <p>Ajouter un articles</p>
         </button>
       </div>
+      {filter && <ArticlesFilter />}
       <ul className={styles.list}>
         <li>Nom</li>
         <li>Image</li>
@@ -95,9 +101,7 @@ export default function AdminArticles() {
       ))}
       {modalCA && <ModalCreateArticle handleCloseModal={handleCloseModal} />}
       {myCollection && (
-        <MyCollectionsProvider>
-          <MyCollection handleCloseMyCollection={handleCloseMyCollection} />
-        </MyCollectionsProvider>
+        <MyCollection handleCloseMyCollection={handleCloseMyCollection} />
       )}
     </div>
   );
