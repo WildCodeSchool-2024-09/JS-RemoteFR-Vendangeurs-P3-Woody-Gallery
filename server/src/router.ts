@@ -10,7 +10,8 @@ const router = express.Router();
 import ordersAction from "./modules/orders/ordersActions";
 
 router.get("/api/orders", ordersAction.browse);
-router.get("/api/orders/:id", ordersAction.read);
+// router.get("/api/orders/:id", ordersAction.read);
+router.get("/api/orders/:id", ordersAction.readById);
 router.put("/api/orders/:id", ordersAction.edit);
 router.post("/api/orders", ordersAction.add);
 router.delete("/api/orders/:id", ordersAction.destroy);

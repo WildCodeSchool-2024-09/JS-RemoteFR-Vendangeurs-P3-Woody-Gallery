@@ -1,47 +1,52 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../styles/AccountOrders.module.css";
 
+interface Order {
+  id: number;
+  date: string;
+  total_amount: number;
+  status: string;
+}
+
 export default function AccountOrders() {
-  // const users = sessionStorage.getItem("user");
-  // const [orders, setOrders] = useState("");
+  const userId = sessionStorage.getItem("user");
+  const [orders, setOrders] = useState<Order[]>([]);
   const [selectedOrder, setSelectedOrder] = useState<number | null>(null);
 
   const toggleClick = (orderId: number) => {
     setSelectedOrder(selectedOrder === orderId ? null : orderId);
   };
 
-  // useEffect(() => {
-  //   if (users) {
-  //     fetch(`${import.meta.env.VITE_API_URL}/api/orders/${users}`)
-  //       .then((response) => {
-  //         if (!response.ok) {
-  //           throw new Error(
-  //             `Erreur ${response.status}: Commandes non trouvées.`,
-  //           );
-  //         }
-  //         return response.json();
-  //       })
-  //       .then((data) => setOrders(data))
-  //       .catch((error) => {
-  //         console.error("Erreur lors du fetch des commandes:", error.message);
-  //       });
-  //   }
-  // }, [users]);
-
-  const orders = [
-    {
-      id: 123456,
-      date: "2025-01-14",
-      total_amount: 23.59,
-      status: "En cours de livraison",
-    },
-    {
-      id: 12454577,
-      date: "2025-01-14",
-      total_amount: 23.59,
-      status: "En cours de livraison",
-    },
-  ];
+  useEffect(() => {
+    if (userId) {
+      fetch(`${import.meta.env.VITE_API_URL}/api/orders/${userId}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(
+              `Erreur ${response.status}: Commandes non trouvées.`,
+            );
+          }
+          return response.json();
+        })
+        .then((data) => {
+          if (Array.isArray(data)) {
+            setOrders(data);
+          } else {
+            const parsedOrder = {
+              ...data,
+              articles: JSON.parse(data.articles),
+            };
+            setOrders([parsedOrder]);
+          }
+          // console.log("data:", data);
+          // console.log("orders:", orders);
+        })
+        .catch((error) => {
+          console.error("Erreur lors du fetch des commandes:", error.message);
+          setOrders([]);
+        });
+    }
+  }, [userId]);
 
   return (
     <section className={styles.orders}>
@@ -54,7 +59,7 @@ export default function AccountOrders() {
           orders.map((order) => (
             <section key={order.id} className={styles.orderMini}>
               <div className={styles.orderHeader}>
-                <p id={styles.orderNumber}>Commande n° : {order.id}</p>
+                <p id={styles.orderNumber}>Commande n° : 000{order.id}</p>
                 <button
                   type="button"
                   id={styles.orderDetailsButton}

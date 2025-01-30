@@ -44,6 +44,21 @@ const edit: RequestHandler = async (req, res, next) => {
   }
 };
 
+// ordersActions.ts
+const readById: RequestHandler = async (req, res, next) => {
+  try {
+    const userId = Number(req.params.id);
+    const orders = await ordersRepository.readByUser(userId);
+    if (orders.length === 0) {
+      res.sendStatus(404);
+    } else {
+      res.json(orders);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
 const add: RequestHandler = async (req, res, next) => {
   try {
     const { userId, articles, total_amount } = req.body;
@@ -89,4 +104,4 @@ const destroy: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, edit, add, destroy };
+export default { browse, read, readById, edit, add, destroy };

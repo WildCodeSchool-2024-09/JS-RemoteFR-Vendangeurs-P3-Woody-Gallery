@@ -8,6 +8,7 @@ type Users = {
   lastname: string;
   email: string;
   phone_number: string;
+  password: string;
 };
 
 class UsersRepository {
@@ -27,7 +28,7 @@ class UsersRepository {
 
   async read(id: number) {
     const [rows] = await databaseClient.query<Rows>(
-      "SELECT id, firstname, lastname, email, phone_number FROM users WHERE id = ?",
+      "SELECT id, firstname, lastname, email, phone_number, password FROM users WHERE id = ?",
       [id],
     );
 
@@ -64,10 +65,10 @@ class UsersRepository {
     return rows[0];
   }
 
-  async updatePassword(id: number, password: string) {
+  async updatePassword(id: number, hashedpassword: string) {
     const [result] = await databaseClient.query<Result>(
       "UPDATE users SET password = ? WHERE id = ?",
-      [password, id],
+      [hashedpassword, id],
     );
 
     return result.affectedRows;
@@ -79,6 +80,7 @@ class UsersRepository {
     lastname: string | undefined,
     email: string | undefined,
     phone_number: string | undefined,
+    password: string | undefined,
   ) {
     let query = "UPDATE users SET ";
     const values: (string | number)[] = [];
@@ -98,6 +100,10 @@ class UsersRepository {
     if (phone_number !== undefined) {
       query += "phone_number = ?, ";
       values.push(phone_number);
+    }
+    if (password !== undefined) {
+      query += "password = ?, ";
+      values.push(password);
     }
 
     query = query.slice(0, -2);
