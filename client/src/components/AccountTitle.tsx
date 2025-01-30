@@ -1,4 +1,4 @@
-import { useLocation, matchPath } from "react-router-dom";
+import { matchPath, useLocation } from "react-router-dom";
 import styles from "../styles/AccountTitle.module.css";
 
 export default function AccountTitle() {
