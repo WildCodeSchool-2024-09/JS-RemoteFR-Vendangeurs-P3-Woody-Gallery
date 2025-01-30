@@ -103,6 +103,11 @@ export default function AdminArticles() {
       {myCollection && (
         <MyCollection handleCloseMyCollection={handleCloseMyCollection} />
       )}
+      {search && articlesSearch.length === 0 && (
+        <p className={styles.notFound}>
+          Aucun article ne correspond à votre recherche
+        </p>
+      )}
     </div>
   );
 }
