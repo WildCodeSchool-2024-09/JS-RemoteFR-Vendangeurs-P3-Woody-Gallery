@@ -150,17 +150,7 @@
         gap: 0.5rem;
         position: relative;
 
-        p {
-          text-decoration: transparent;
-          transition: text-decoration 0.1s ease-in-out;
-          z-index: 10;
-        }
-
-        p:hover {
-          text-decoration: underline;
-        }
-
-        .order p {
+        .numberOrder {
           color: var(--fontcolor-white);
           font-size: 15px;
           position: absolute;
@@ -176,6 +166,16 @@
           align-items: center;
           font-family: var(--font-grotesk);
           padding-bottom: .1rem;
+        }
+
+        p {
+          text-decoration: transparent;
+          transition: text-decoration 0.1s ease-in-out;
+          z-index: 10;
+        }
+
+        p:hover {
+          text-decoration: underline;
         }
       }
 

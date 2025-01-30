@@ -46,8 +46,6 @@ export default function AdminArticlesCard({ name, photos }: Article) {
     setModaleDelete(false);
   };
 
-  const numberChar = photos.description.length;
-
   return (
     <>
       <ul className={styles.adminArticlesCard}>
@@ -61,12 +59,12 @@ export default function AdminArticlesCard({ name, photos }: Article) {
             <img src={photos.image} alt={photos.name} />
           </figure>
         </li>
-        <li>{numberChar} charactères</li>
         <li>{name}</li>
         <li>{photos.format}</li>
         <li className={photos.stock <= 5 ? styles.urgent : ""}>
           {photos.stock}
         </li>
+        <li>{photos.price} €</li>
         <li className={styles.last}>
           <button
             onClick={handleOpenModal}

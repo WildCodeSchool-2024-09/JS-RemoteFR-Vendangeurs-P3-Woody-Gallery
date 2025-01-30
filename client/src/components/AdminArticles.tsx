@@ -80,10 +80,10 @@ export default function AdminArticles() {
       <ul className={styles.list}>
         <li>Nom</li>
         <li>Image</li>
-        <li>Description</li>
         <li>Collection</li>
         <li>Format</li>
         <li>Stock</li>
+        <li>Prix</li>
         <li className={styles.last}>Actions</li>
       </ul>
       {articlesSearch.map((article) => (

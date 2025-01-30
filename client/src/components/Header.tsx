@@ -84,7 +84,11 @@ export default function Header() {
           <li>
             <span className="material-symbols-outlined">shopping_cart</span>
             <p>Panier</p>
-            {orderNumber !== 0 ? <p>{orderNumber}</p> : ""}
+            {orderNumber !== 0 ? (
+              <p className={styles.numberOrder}>{orderNumber}</p>
+            ) : (
+              ""
+            )}
           </li>
         </NavLink>
         <NavLink

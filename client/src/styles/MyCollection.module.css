@@ -58,6 +58,7 @@
         padding: 0 .5rem;
         font-size: 18px;
         font-family: var(--font-grotesk);
+        cursor: pointer;
       }
     }
 
@@ -82,9 +83,13 @@
         justify-content: center;
         align-items: center;
         gap: .25rem;
+        font-size: 26px;
+        -webkit-box-shadow: 0px 0px 15px -5px #000000;
+        box-shadow: 0px 0px 15px -5px #000000;
 
         p {
           font-family: var(--font-grotesk);
+          font-size: 22px;
         }
       }
 
