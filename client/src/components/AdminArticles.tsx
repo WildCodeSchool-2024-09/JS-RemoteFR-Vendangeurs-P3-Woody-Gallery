@@ -1,13 +1,24 @@
 import { useEffect, useState } from "react";
 import { useArticles } from "../contexts/AdminArticlesContext.tsx";
+import { MyCollectionsProvider } from "../contexts/MyCollectionContext.tsx";
 import styles from "../styles/AdminArticles.module.css";
 import AdminArticlesCard from "./AdminArticlesCard";
 import ModalCreateArticle from "./ModalCreateArticle";
+import MyCollection from "./MyCollection.tsx";
 
 export default function AdminArticles() {
   const [modalCA, setModalCA] = useState<boolean>(false);
   const [search, setSearch] = useState<string>("");
+  const [myCollection, setMyCollection] = useState<boolean>(false);
   const { articles, fetchArticles } = useArticles();
+
+  const handleOpenMyCollection = () => {
+    setMyCollection(true);
+  };
+
+  const handleCloseMyCollection = () => {
+    setMyCollection(false);
+  };
 
   const handleOpenModal = () => {
     setModalCA(true);
@@ -24,8 +35,10 @@ export default function AdminArticles() {
 
   const articlesSearch = articles.filter((article) =>
     article.photos.name
-      .toLocaleLowerCase()
-      .includes(search.toLocaleLowerCase()),
+      ? article.photos.name
+          .toLocaleLowerCase()
+          .includes(search.toLocaleLowerCase())
+      : false,
   );
 
   useEffect(() => {
@@ -48,6 +61,13 @@ export default function AdminArticles() {
         </button>
         <button className={styles.tri} type="button">
           Tri
+        </button>
+        <button
+          onClick={handleOpenMyCollection}
+          className={styles.collectionsButton}
+          type="button"
+        >
+          Mes collections
         </button>
         <button
           onClick={handleOpenModal}
@@ -74,6 +94,11 @@ export default function AdminArticles() {
         />
       ))}
       {modalCA && <ModalCreateArticle handleCloseModal={handleCloseModal} />}
+      {myCollection && (
+        <MyCollectionsProvider>
+          <MyCollection handleCloseMyCollection={handleCloseMyCollection} />
+        </MyCollectionsProvider>
+      )}
     </div>
   );
 }
