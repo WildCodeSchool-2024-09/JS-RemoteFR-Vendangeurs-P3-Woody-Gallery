@@ -5,13 +5,20 @@ interface Order {
   id: number;
   date: string;
   total_amount: number;
-  status: string;
+  status: "préparation" | "livraison" | "terminé";
+  articles: number[];
+}
+
+interface Article {
+  id: number;
+  name: string;
 }
 
 export default function AccountOrders() {
   const userId = sessionStorage.getItem("user");
   const [orders, setOrders] = useState<Order[]>([]);
   const [selectedOrder, setSelectedOrder] = useState<number | null>(null);
+  const [articles, setArticles] = useState<Article[]>([]);
 
   const toggleClick = (orderId: number) => {
     setSelectedOrder(selectedOrder === orderId ? null : orderId);
@@ -38,8 +45,6 @@ export default function AccountOrders() {
             };
             setOrders([parsedOrder]);
           }
-          // console.log("data:", data);
-          // console.log("orders:", orders);
         })
         .catch((error) => {
           console.error("Erreur lors du fetch des commandes:", error.message);
@@ -47,6 +52,26 @@ export default function AccountOrders() {
         });
     }
   }, [userId]);
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/api/photos`)
+      .then((response) => response.json())
+      .then((data) => setArticles(data))
+      .catch((error) =>
+        console.error("Erreur lors du fetch des articles:", error),
+      );
+  }, []);
+
+  //Modify the sentence of the order's status
+  const statusMessages: { [key in Order["status"]]: string } = {
+    préparation: "En cours de préparation",
+    livraison: "En cours de livraison",
+    terminé: "Commande livrée",
+  };
+
+  function getOrderStatusMessage(order: Order) {
+    return statusMessages[order.status] || "Statut inconnu";
+  }
 
   return (
     <section className={styles.orders}>
@@ -67,6 +92,7 @@ export default function AccountOrders() {
                 >
                   <span
                     className={`material-symbols-outlined ${styles.openIcon}`}
+                    id={selectedOrder === order.id ? styles.close : styles.open}
                   >
                     {selectedOrder === order.id ? "close" : "arrow_back"}
                   </span>
@@ -75,13 +101,28 @@ export default function AccountOrders() {
               {selectedOrder === order.id && (
                 <div className={styles.orderDetails}>
                   <section className={styles.orderDate}>
-                    <p>{`Commande effectuée le : ${order.date}`}</p>
+                    <p className={styles.category}>Commande effectuée le :</p>
+                    <p>{order.date.split("T")[0]}</p>
                   </section>
                   <section className={styles.orderPrice}>
-                    <p>{`Total : ${order.total_amount} €`}</p>
+                    <p className={styles.category}>Total :</p>
+                    <p>{order.total_amount} €</p>
                   </section>
                   <section className={styles.orderStatus}>
-                    <p>{`Statut : ${order.status}`}</p>
+                    <p className={styles.category}>Statut : </p>
+                    <p>{getOrderStatusMessage(order)}</p>
+                  </section>
+                  <section className={styles.orderArticles}>
+                    <p className={styles.category}>Articles :</p>
+                    <ul>
+                      {articles
+                        .filter((article) =>
+                          order.articles.includes(article.id),
+                        )
+                        .map((article) => (
+                          <li key={article.id}>{article.name}</li>
+                        ))}
+                    </ul>
                   </section>
                 </div>
               )}

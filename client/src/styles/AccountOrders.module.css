@@ -85,3 +85,15 @@
       0.12
     ) 0px 4px 4px 2px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 1px -7px 8px 7px;
 }
+
+#close {
+  transform: rotate(0deg);
+}
+
+.category {
+  color: var(--fontcolor-gold);
+}
+
+ul {
+  list-style-type: none;
+}

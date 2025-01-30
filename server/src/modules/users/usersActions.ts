@@ -273,12 +273,9 @@ const edit: RequestHandler = async (req, res, next) => {
     const firstname = users.firstname;
     const firstnameRequirements = [
       {
-        regex: /.{2,20}/,
-        message: "Le prénom doit contenir entre 2 et 20 caractères",
-      },
-      {
-        regex: /^[A-Za-zÀ-ÖØ-öø-ÿ]+$/,
-        message: "Le prénom ne doit contenir que des lettres",
+        regex: /^[A-Za-zÀ-ÖØ-öø-ÿ-]{2,20}$/,
+        message:
+          "Le prénom doit contenir entre 2 et 20 caractères et ne doit contenir que des lettres",
       },
     ];
 
@@ -288,15 +285,13 @@ const edit: RequestHandler = async (req, res, next) => {
         return;
       }
     }
+
     const lastname = users.lastname;
     const lastnameRequirements = [
       {
-        regex: /.{2,20}/,
-        message: "Le nom doit contenir entre 2 et 20 caractères",
-      },
-      {
-        regex: /^[A-Za-zÀ-ÖØ-öø-ÿ]+$/,
-        message: "Le nom ne doit contenir que des lettres",
+        regex: /^[A-Za-zÀ-ÖØ-öø-ÿ-]{2,20}$/,
+        message:
+          "Le nom doit contenir entre 2 et 20 caractères et ne doit contenir que des lettres",
       },
     ];
 
@@ -307,17 +302,15 @@ const edit: RequestHandler = async (req, res, next) => {
       }
     }
 
-    users.firstname =
-      users.firstname.charAt(0).toUpperCase() +
-      users.firstname.slice(1).toLowerCase();
-    users.lastname =
-      users.lastname.charAt(0).toUpperCase() +
-      users.lastname.slice(1).toLowerCase();
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(users.email)) {
-      res.status(400).json({ error: "L'email n'est pas valide" });
-      return;
+    if (users.firstname) {
+      users.firstname =
+        users.firstname.charAt(0).toUpperCase() +
+        users.firstname.slice(1).toLowerCase();
+    }
+    if (users.lastname) {
+      users.lastname =
+        users.lastname.charAt(0).toUpperCase() +
+        users.lastname.slice(1).toLowerCase();
     }
 
     const affectedRows = await usersRepository.update(

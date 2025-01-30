@@ -91,7 +91,7 @@ export default function ArticleDetails({
           </button>
           <p className={styles.price}>{price} €</p>
           <p className={styles.format}>Format : {format}</p>
-          <p className={styles.frameType}>Photo imprimé sur toile sans cadre</p>
+          <p className={styles.frameType}>Photo imprimée sur toile</p>
           <AddToCartButtons handleAddToOrder={handleAddToOrder} />
           <p className={styles.description}>
             {showFullDescription

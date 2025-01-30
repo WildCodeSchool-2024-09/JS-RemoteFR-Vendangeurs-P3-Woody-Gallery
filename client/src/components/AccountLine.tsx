@@ -147,7 +147,13 @@ export default function AccountLine({
                 </section>
               ) : (
                 <input
-                  type={valueName === "email" ? "email" : "text"}
+                  type={
+                    valueName === "email"
+                      ? "email"
+                      : valueName === "phone_number"
+                        ? "tel"
+                        : "text"
+                  }
                   defaultValue={value}
                   placeholder={valueName}
                   onChange={(e) => setData(e.target.value)}
