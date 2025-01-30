@@ -35,7 +35,10 @@ export default function MyCollection({
           Liste de toutes les collections
           <select name="collection" id="collection">
             {uniqueCollection.map((collection) => (
-              <option key={collection.id} value={collection.id}>
+              <option
+                key={`collectionList${collection.id}`}
+                value={collection.id}
+              >
                 {collection.name}
               </option>
             ))}

@@ -88,7 +88,10 @@ export default function DeleteMyCollection({
           onChange={handleChange}
         >
           {uniqueCollection.map((collection) => (
-            <option key={collection.id} value={collection.id}>
+            <option
+              key={`collectionDelete${collection.id}`}
+              value={collection.id}
+            >
               {collection.name}
             </option>
           ))}

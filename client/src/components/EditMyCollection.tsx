@@ -75,11 +75,14 @@ export default function EditMyCollection({
         Modification d'une collection
         <select
           name="editCollection"
-          id="editCollection"
+          id="editCollectionSelect"
           onChange={handleSelectChange}
         >
           {uniqueCollection.map((collection) => (
-            <option key={collection.id} value={collection.id}>
+            <option
+              key={`collectionEdit${collection.id}`}
+              value={collection.id}
+            >
               {collection.name}
             </option>
           ))}
