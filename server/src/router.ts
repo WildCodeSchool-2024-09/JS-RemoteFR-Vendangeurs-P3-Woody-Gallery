@@ -46,6 +46,7 @@ router.get(
   "/api/collectionsPhotosSelect",
   collectionsActions.browseSelectCollection,
 );
+router.get("/api/collection-articles", collectionsActions.browseArticles);
 router.get("/api/collections/:id", collectionsActions.read);
 router.get("/api/collections/:id/photos", collectionsActions.readCollection);
 router.post("/api/collections", collectionsActions.add);

@@ -58,7 +58,7 @@ export default function AccountMenu() {
           </NavLink>
           {isAdmin && (
             <NavLink
-              to="/user/admin/Woody-Gallery"
+              to="/user/admin/articles"
               className={styles.nav}
               id={styles.admin}
             >

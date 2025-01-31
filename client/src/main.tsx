@@ -23,8 +23,6 @@ import Homepage from "./pages/Homepage";
 import OrderPage from "./pages/OrderPage";
 import ShopPage from "./pages/ShopPage";
 
-const userName = sessionStorage.getItem("userName");
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -78,7 +76,19 @@ const router = createBrowserRouter([
             element: <AuthAdmin />,
             children: [
               {
-                path: `${userName}`,
+                path: "articles",
+                element: <AdminPage />,
+              },
+              {
+                path: "users",
+                element: <AdminPage />,
+              },
+              {
+                path: "orders",
+                element: <AdminPage />,
+              },
+              {
+                path: "logout",
                 element: <AdminPage />,
               },
             ],
