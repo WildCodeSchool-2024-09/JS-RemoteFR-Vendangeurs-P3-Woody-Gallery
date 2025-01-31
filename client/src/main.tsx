@@ -9,6 +9,7 @@ import { AuthProvider } from "./contexts/AuthContext";
 import App from "./App";
 import Account from "./components/Account";
 import AccountOrders from "./components/AccountOrders";
+import AccountPayment from "./components/AccountPayment";
 import Addresses from "./components/Addresses";
 import AuthAdmin from "./components/AuthAdmin";
 import AuthUser from "./components/AuthUser";
@@ -67,6 +68,7 @@ const router = createBrowserRouter([
               { path: "addresses", element: <Addresses /> },
               { path: "orders", element: <AccountOrders /> },
               { path: "favorites", element: <FavoriteAccount /> },
+              { path: "payment", element: <AccountPayment /> },
             ],
           },
 

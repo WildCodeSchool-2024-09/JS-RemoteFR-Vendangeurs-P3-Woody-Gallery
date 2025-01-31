@@ -49,7 +49,11 @@ export default function AccountMenu() {
           >
             Favoris
           </NavLink>
-          <NavLink to="/" className={styles.nav} onClick={toggleClick}>
+          <NavLink
+            to={`/user/${userName}/payment`}
+            className={styles.nav}
+            onClick={toggleClick}
+          >
             Moyen de paiement
           </NavLink>
           {isAdmin && (
