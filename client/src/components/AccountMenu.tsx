@@ -42,7 +42,11 @@ export default function AccountMenu() {
           >
             Commandes
           </NavLink>
-          <NavLink to="/" className={styles.nav} onClick={toggleClick}>
+          <NavLink
+            to={`/user/${userName}/favorites`}
+            className={styles.nav}
+            onClick={toggleClick}
+          >
             Favoris
           </NavLink>
           <NavLink to="/" className={styles.nav} onClick={toggleClick}>

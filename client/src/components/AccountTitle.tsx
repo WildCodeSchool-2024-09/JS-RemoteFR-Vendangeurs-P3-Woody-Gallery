@@ -7,7 +7,7 @@ export default function AccountTitle() {
   const routes = [
     { path: "/user/:name/addresses", title: "Adresse" },
     { path: "/user/:name/orders", title: "Commandes" },
-    { path: "/user/:name/favorite", title: "Favoris" },
+    { path: "/user/:name/favorites", title: "Favoris" },
     { path: "/user/:name/payment", title: "Moyen de paiement" },
   ];
 

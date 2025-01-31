@@ -12,6 +12,7 @@ import AccountOrders from "./components/AccountOrders";
 import Addresses from "./components/Addresses";
 import AuthAdmin from "./components/AuthAdmin";
 import AuthUser from "./components/AuthUser";
+import FavoriteAccount from "./components/FavoritesAccount";
 import AccountPage from "./pages/AccountPage";
 import AdminPage from "./pages/AdminPage";
 import ArticlePage from "./pages/ArticlePage";
@@ -65,6 +66,7 @@ const router = createBrowserRouter([
               { path: "", element: <Account /> },
               { path: "addresses", element: <Addresses /> },
               { path: "orders", element: <AccountOrders /> },
+              { path: "favorites", element: <FavoriteAccount /> },
             ],
           },
 
