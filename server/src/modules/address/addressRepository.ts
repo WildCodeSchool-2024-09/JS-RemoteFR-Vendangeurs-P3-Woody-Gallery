@@ -6,6 +6,7 @@ interface Address {
   postal_code: string;
   city: string;
   country: string;
+  user_id: number;
 }
 
 export type AddressRow = Address & { id: number }; // Export du type AddressRow
@@ -13,8 +14,8 @@ export type AddressRow = Address & { id: number }; // Export du type AddressRow
 // Ajouter une adresse
 export const createAddress = async (address: Address) => {
   const query = `
-        INSERT INTO addresses (street_number, street_name, postal_code, city, country)
-        VALUES (?, ?, ?, ?, ?)
+        INSERT INTO addresses (street_number, street_name, postal_code, city, country, user_id)
+        VALUES (?, ?, ?, ?, ?, ?)
     `;
   const values = [
     address.street_number,
@@ -22,6 +23,7 @@ export const createAddress = async (address: Address) => {
     address.postal_code,
     address.city,
     address.country,
+    address.user_id,
   ];
   return db.execute(query, values);
 };
@@ -35,10 +37,10 @@ export const getAllAddresses = async (): Promise<[AddressRow[], unknown]> => {
 
 // Récupérer une adresse par ID
 export const getAddressById = async (
-  id: number,
+  userId: number,
 ): Promise<[AddressRow[], unknown]> => {
-  const query = "SELECT * FROM addresses WHERE id = ?";
-  const [rows, fields] = await db.execute(query, [id]);
+  const query = "SELECT * FROM addresses  WHERE user_id = ?";
+  const [rows, fields] = await db.execute(query, [userId]);
   return [rows as AddressRow[], fields];
 };
 
@@ -47,7 +49,7 @@ export const updateAddress = async (id: number, address: Address) => {
   const query = `
         UPDATE addresses
         SET street_number = ?, street_name = ?, postal_code = ?, city = ?, country = ?
-        WHERE id = ?
+        WHERE user_id = ?
     `;
   const values = [
     address.street_number,

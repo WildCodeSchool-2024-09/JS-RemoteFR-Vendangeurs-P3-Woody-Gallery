@@ -56,3 +56,8 @@
 #admin {
   color: var(--color-red);
 }
+
+.navLink:active {
+  text-decoration: underline;
+  color: var(--fontcolor-white);
+}

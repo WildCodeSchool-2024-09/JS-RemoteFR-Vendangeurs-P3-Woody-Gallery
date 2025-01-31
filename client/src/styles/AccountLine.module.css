@@ -17,11 +17,17 @@
 }
 
 .container {
-  margin: 1rem 0 1rem 1.3rem;
+  margin: 0 0 0 1.3rem;
   font-family: var(--font-grotesk);
   font-size: 1.2rem;
   color: var(--fontcolor-white);
   position: relative;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  width: 100%;
 }
 
 .editButton {
@@ -35,32 +41,36 @@
   margin-top: 0.1rem;
 }
 
-.modal {
-  position: absolute;
-  width: 90%;
-  height: 10%;
-  z-index: 10;
-  background-color: var(--background-secondary-color);
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-}
-
 .input {
-  height: 60%;
-  width: 70%;
+  height: 2rem;
   background-color: var(--background--color);
   color: var(--fontcolor-white);
   padding-left: 1rem;
   font-size: 1.2rem;
   font-family: var(--font-grotesk);
+  margin: .3rem 0 1rem 0;
 }
 
-.modifyButton {
-  height: 60%;
-  width: 12%;
+#lineName {
+  margin-top: 1rem;
 }
 
-.check {
-  font-size: 2rem;
+.passwords {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  padding: 1rem 0;
+}
+
+.eyes {
+  position: absolute;
+  border: none;
+  background-color: var(--background-secondary-color);
+  color: var(--fontcolor-white);
+  right: 5rem;
+  top: 8.4rem;
+}
+
+.passwordVisibility {
+  display: flex;
 }

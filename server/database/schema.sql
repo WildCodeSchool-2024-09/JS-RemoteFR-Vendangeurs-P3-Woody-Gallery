@@ -1,22 +1,21 @@
+CREATE TABLE users (
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    firstname VARCHAR(50) NOT NULL,
+    lastname VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    phone_number VARCHAR(15) NULL,
+    password VARCHAR(100) NOT NULL,
+    is_admin BOOLEAN DEFAULT FALSE NOT NULL
+);
 CREATE TABLE addresses (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     street_number VARCHAR(10) NOT NULL,
     street_name VARCHAR(50) NOT NULL,
     postal_code VARCHAR(15) NOT NULL,
     city VARCHAR(100) NOT NULL,
-    country VARCHAR(50) NOT NULL
-);
-
-CREATE TABLE users (
-    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    firstname VARCHAR(50) NOT NULL,
-    lastname VARCHAR(50) NOT NULL,
-    email VARCHAR(100) NOT NULL,
-    phone_number VARCHAR(15) NULL,
-    password VARCHAR(100) NOT NULL,
-    is_admin BOOLEAN DEFAULT FALSE NOT NULL,
-    address_id INT NULL,
-    FOREIGN KEY (address_id) REFERENCES addresses(id)
+    country VARCHAR(50) NOT NULL,
+    user_id INT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id) 
 );
 
 CREATE TABLE ratings (
@@ -90,7 +89,7 @@ VALUES
 INSERT INTO photos(id, name, image, description, format, stock, price, collection_id)
 VALUES
   (1, "Akihabara", "/photos/modernTokyo/Akihabara.jpg", "Akihabara est un quartier commerçant animé connu pour ses boutiques d'électronique, qui vont des petits stands aux grands magasins comme Yodobashi Multimedia Akiba. Le Tokyo Anime Center, avec ses expositions et souvenirs, et le Radio Kaikan, un bâtiment de 9 étages qui propose des jouets, des cartes à échanger et des objets de collection, font partie des établissements spécialisés dans les mangas, les anime et les jeux vidéo. À proximité, du thé et des desserts sont servis dans les maid cafés, où le personnel porte un uniforme de domestique.", "55x25cm", 24, 24.99 , 1),
-  (2, "Cimetière d'Aoyama", "/photos/modernTokyo/Cimetiere_Aoyama.jpg", "Le cimetière d'Aoyama est un cimetière situé dans le quartier de Minato à Tokyo au Japon et géré par le gouvernement métropolitain de Tokyo. Le cimetière, célèbre pour ses cerisiers en fleurs, est très visité pendant la saison du hanami.", "20x34cm", 10, 32.50, 1),
+  (2, "Cimetière d'Aoyama", "/photos/modernTokyo/Cimetiere_Aoyama.jpg", "Le cimetière d'Aoyama est un cimetière situé dans le quartier de Minato à Tokyo au Japon et géré par le gouvernement métropolitain de Tokyo. Le cimetière, célèbre pour ses cerisiers en fleurs, est très visité pendant la saison du hanami.", "20x34cm", 0, 32.50, 1),
   (3, "La tour de Tokyo", "/photos/modernTokyo/Tour_Tokyo.jpg","La tour de Tokyo est une tour rouge et blanche située dans l'arrondissement de Minato à Tokyo au Japon. Son concept est fondé sur celui de la tour Eiffel de Paris. Elle a été réalisée par l'architecte Tachū Naitō. La tour mesure 332,6 mètres de haut, ce qui en fait l'une des plus hautes tours en métal du monde.", "20x42cm", 20, 39.99, 1),
   (4, "Shibuya Scramble Crossing", "/photos/modernTokyo/Shibuya_Scramble_Crossing.jpg", "Shibuya Crossing est un carrefour situé dans le quartier de Shibuya à Tokyo au Japon, connu pour ses passages zébrés pour piétons dont l'un en diagonale traverse le centre du carrefour.", "42x19cm", 5, 34.99, 1),
   (5, "Shibuya road","/photos/modernTokyo/Shibuya_Road.jpg", "Shibuya est un des vingt-trois arrondissements spéciaux formant Tokyo, au Japon. L'arrondissement a été fondé en 1932. En même temps qu'au nom de l'arrondissement, le nom « Shibuya » se rapporte à la gare et au quartier d'affaires autour de la gare.", "20x42cm", 11, 24.99, 1),
@@ -138,3 +137,6 @@ VALUES
 (4, 2, "Mouais, de mon temps nous proposions quelque chose de meilleur", '2025-01-11 15:17:07'),
 (5, 1, "Bof joré fé ceu sitte otremant moa !!!!!", '2025-01-11 15:17:07');
 
+INSERT INTO addresses ( id, street_number, street_name, postal_code, city, country, user_id)
+VALUES 
+(1, 8, 'rue du photographe', '13000', 'Marseille', 'France', 1);
