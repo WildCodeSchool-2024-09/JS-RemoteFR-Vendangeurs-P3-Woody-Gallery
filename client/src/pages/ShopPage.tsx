@@ -140,6 +140,11 @@ export default function ShopPage() {
             Voir plus
           </button>
         )}
+        {searchTerm && filteredPhotos.length === 0 && (
+          <p className={styles.notFound}>
+            Aucun article ne correspond à votre recherche
+          </p>
+        )}
       </section>
     </div>
   );

@@ -70,7 +70,19 @@ const router = createBrowserRouter([
             element: <AuthAdmin />,
             children: [
               {
-                path: `${userName}`,
+                path: "articles",
+                element: <AdminPage />,
+              },
+              {
+                path: "users",
+                element: <AdminPage />,
+              },
+              {
+                path: "orders",
+                element: <AdminPage />,
+              },
+              {
+                path: "logout",
                 element: <AdminPage />,
               },
             ],

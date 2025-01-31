@@ -45,6 +45,32 @@ class CollectionRepository {
     return collection;
   }
 
+  async readAllArticles() {
+    const [rows] = await databaseClient.query<Rows>(
+      `SELECT c.id collectionId, c.name collectionName, p.id photoId, p.name, p.image, p.price, p.description, p.format, p.stock, p.collection_id
+      FROM collections c
+      LEFT JOIN photos p
+      ON c.id = p.collection_id`,
+    );
+
+    const collection = rows.map((row) => ({
+      id: row.collectionId,
+      name: row.collectionName,
+      photos: {
+        id: row.photoId,
+        name: row.name,
+        image: row.image,
+        description: row.description,
+        format: row.format,
+        stock: row.stock,
+        price: row.price,
+        collection_id: row.collection_id,
+      },
+    }));
+
+    return collection;
+  }
+
   async readSelectCollection() {
     const [rows] = await databaseClient.query<Rows>(
       `SELECT c.id collectionId, c.name collectionName, p.id photoId, p.name, p.image, p.price

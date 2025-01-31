@@ -1,0 +1,116 @@
+.myCollection {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  background-color: rgba(0, 0, 0, 0.521);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  div {
+    width: 70%;
+    background-color: var(--background-secondary-color);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 1rem;
+    position: relative;
+
+    .exit {
+      background-color: transparent;
+      border: none;
+      position: absolute;
+      top: .5rem;
+      right: 1rem;
+      cursor: pointer;
+      font-size: 35px;
+    }
+
+    .allCollections {
+      width: 90%;
+    }
+
+    label {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      color: var(--fontcolor-white);
+      font-family: var(--font-grotesk);
+      font-size: 20px;
+      font-weight: 400;
+      margin-bottom: 1rem;
+
+      input {
+        border: none;
+        height: 2.5rem;
+        padding-left: .5rem;
+        font-size: 18px;
+        font-family: var(--font-grotesk);
+      }
+
+      select {
+        height: 2.5rem;
+        border: none;
+        padding: 0 .5rem;
+        font-size: 18px;
+        font-family: var(--font-grotesk);
+        cursor: pointer;
+      }
+    }
+
+    form {
+      width: 90%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      gap: 1rem;
+
+      button {
+        height: 2.5rem;
+        margin-top: .9rem;
+        min-width: 18rem;
+        padding: .5rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 22px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: .25rem;
+        font-size: 26px;
+        -webkit-box-shadow: 0px 0px 15px -5px #000000;
+        box-shadow: 0px 0px 15px -5px #000000;
+
+        p {
+          font-family: var(--font-grotesk);
+          font-size: 22px;
+        }
+      }
+
+      .delete {
+        background-color: var(--color-red);
+        color: var(--fontcolor-white);
+
+        p {
+          font-family: var(--font-grotesk);
+          margin-bottom: .25rem;
+        }
+      }
+
+      .noDelete {
+        background-color: #b96463;
+        color: var(--fontcolor-white);
+      }
+
+      .inputEditCollection {
+        margin-top: 1rem;
+      }
+    }
+  }
+}

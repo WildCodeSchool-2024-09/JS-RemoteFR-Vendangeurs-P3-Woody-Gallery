@@ -121,17 +121,93 @@
     color: var(--color-red);
   }
 
-  .ulNavigation {
+  .ulNavigation,
+  .ulUser {
     font-family: var(--font-aboreto);
     color: var(--fontcolor-white);
     text-shadow: 3px 2px 4px rgba(0, 0, 0, 0.83);
     font-size: 16px;
     gap: 1.5rem;
     list-style-type: none;
-    grid-area: 3 / 1 / 4 / 8;
     display: flex;
     justify-content: center;
     align-items: flex-end;
+
+    a {
+      text-decoration: none;
+      color: var(--fontcolor-white);
+      transition: all 0.1s ease-in-out;
+      color: inherit;
+      z-index: 20;
+      gap: 0.5rem;
+      text-decoration: transparent;
+
+      li {
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        position: relative;
+
+        .numberOrder {
+          color: var(--fontcolor-white);
+          font-size: 15px;
+          position: absolute;
+          z-index: 10;
+          border-radius: 50%;
+          background-color: #c50000;
+          height: 20px;
+          width: 20px;
+          top: -5px;
+          left: 12px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-family: var(--font-grotesk);
+          padding-bottom: .1rem;
+        }
+
+        p {
+          text-decoration: transparent;
+          transition: text-decoration 0.1s ease-in-out;
+          z-index: 10;
+        }
+
+        p:hover {
+          text-decoration: underline;
+        }
+      }
+
+      li::after,
+      li::before {
+        content: "";
+        position: absolute;
+        top: -5px;
+        left: -8px;
+        right: -8px;
+        bottom: -5px;
+        transition: all 0.1s ease-in-out;
+        -webkit-box-shadow: inset 3px 3px 11px -4px #00000000;
+        box-shadow: inset 3px 3px 11px -4px #00000000;
+      }
+
+      li:active::after,
+      li:active::before {
+        content: "";
+        position: absolute;
+        top: -5px;
+        left: -8px;
+        right: -8px;
+        bottom: -5px;
+        -webkit-box-shadow: inset 3px 3px 11px -4px #000000;
+        box-shadow: inset 3px 3px 11px -4px #000000;
+      }
+    }
+  }
+
+  .ulNavigation {
+    grid-area: 3 / 1 / 4 / 8;
 
     @media screen and (min-width: 1200px) {
       grid-area: 1 / 1 / 2 / 2;
@@ -141,97 +217,24 @@
   }
 
   .ulUser {
-    font-family: var(--font-aboreto);
-    color: var(--fontcolor-white);
-    text-shadow: 3px 2px 4px rgba(0, 0, 0, 0.83);
-    font-size: 21px;
-    gap: 1.5rem;
-    list-style-type: none;
-    grid-area: 1 / 3 / 2 / 4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: none;
 
-    @media screen and (max-width: 1200px) {
-      display: none;
+    @media screen and (min-width: 1200px) {
+      display: flex;
+      font-size: 21px;
+      grid-area: 1 / 3 / 2 / 4;
+      margin: auto;
     }
 
     .account {
       font-size: 50px;
     }
   }
-  li {
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-    transition: all 0.1s ease-in-out;
-    position: relative;
 
-    .navLink {
+  .navLink:hover {
+    color: var(--fontcolor-gold);
+    span:hover {
       text-decoration: none;
-      color: var(--fontcolor-white);
-      transition: all 0.1s ease-in-out;
-      color: inherit;
-      z-index: 20;
     }
-
-    .navLink:hover {
-      text-decoration: underline;
-      color: var(--fontcolor-gold);
-    }
-
-    .order p {
-      color: var(--fontcolor-white);
-      font-size: 15px;
-      position: absolute;
-      z-index: 10;
-      border-radius: 50%;
-      background-color: #c50000;
-      height: 20px;
-      width: 20px;
-      top: -5px;
-      left: 12px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: var(--font-grotesk);
-      padding-bottom: .1rem;
-    }
-  }
-
-  li:hover {
-    color: var(--fontcolor-gold);
-  }
-
-  li::after,
-  li::before {
-    content: "";
-    position: absolute;
-    top: -5px;
-    left: -8px;
-    right: -8px;
-    bottom: -5px;
-    transition: all 0.1s ease-in-out;
-    -webkit-box-shadow: inset 3px 3px 11px -4px #00000000;
-    box-shadow: inset 3px 3px 11px -4px #00000000;
-  }
-
-  li:active::after,
-  li:active::before {
-    content: "";
-    position: absolute;
-    top: -5px;
-    left: -8px;
-    right: -8px;
-    bottom: -5px;
-    -webkit-box-shadow: inset 3px 3px 11px -4px #000000;
-    box-shadow: inset 3px 3px 11px -4px #000000;
-  }
-
-  .navLink:active {
-    text-decoration: underline;
-    color: var(--fontcolor-gold);
   }
 }

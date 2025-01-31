@@ -54,42 +54,48 @@ export default function Header() {
       >
         <span className="material-symbols-outlined">account_circle</span>
       </NavLink>
+
       <ul className={styles.ulNavigation}>
-        <li>
-          <NavLink className={styles.navLink} to="/">
-            Accueil
-          </NavLink>
-        </li>
-        <li>
-          <NavLink className={styles.navLink} to="/shop?collection=2">
-            Nouveautés
-          </NavLink>
-        </li>
-        <li>
-          <NavLink className={styles.navLink} to="/shop">
-            Shop
-          </NavLink>
-        </li>
+        <NavLink className={styles.navLink} to="/">
+          <li>
+            <p>Accueil</p>
+          </li>
+        </NavLink>
+        <NavLink className={styles.navLink} to="/shop?collection=2">
+          <li>
+            <p>Nouveautés</p>
+          </li>
+        </NavLink>
+        <NavLink className={styles.navLink} to="/shop">
+          <li>
+            <p>Shop</p>
+          </li>
+        </NavLink>
       </ul>
+
       <ul className={styles.ulUser}>
-        <li>
-          <span className="material-symbols-outlined">favorite</span>
-          <NavLink className={styles.navLink} to="/">
-            Favoris
-          </NavLink>
-        </li>
-        <li>
-          <span className="material-symbols-outlined">shopping_cart</span>
-          <NavLink className={`${styles.navLink} ${styles.order}`} to="/panier">
-            Panier
-            {orderNumber !== 0 ? <p>{orderNumber}</p> : ""}
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            className={styles.navLink}
-            to={isAuth ? `/user/${userName}` : "/create-account"}
-          >
+        <NavLink className={styles.navLink} to="/">
+          <li>
+            <span className="material-symbols-outlined">favorite</span>
+            <p>Favoris</p>
+          </li>
+        </NavLink>
+        <NavLink className={`${styles.navLink} ${styles.order}`} to="/panier">
+          <li>
+            <span className="material-symbols-outlined">shopping_cart</span>
+            <p>Panier</p>
+            {orderNumber !== 0 ? (
+              <p className={styles.numberOrder}>{orderNumber}</p>
+            ) : (
+              ""
+            )}
+          </li>
+        </NavLink>
+        <NavLink
+          className={styles.navLink}
+          to={isAuth ? `/user/${userName}` : "/create-account"}
+        >
+          <li>
             {isAuth ? (
               <span
                 className={`material-symbols-outlined ${styles.account} ${isAdmin ? `${styles.accountAdmin}` : ""}`}
@@ -99,8 +105,8 @@ export default function Header() {
             ) : (
               "Connexion"
             )}
-          </NavLink>
-        </li>
+          </li>
+        </NavLink>
       </ul>
     </header>
   );
