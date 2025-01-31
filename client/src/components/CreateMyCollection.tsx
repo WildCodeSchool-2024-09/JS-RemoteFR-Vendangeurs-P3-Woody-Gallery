@@ -41,7 +41,7 @@ export default function CreateMyCollection({
         fetchCollections();
         fetchArticles();
         handleCloseMyCollection();
-        navigate("/user/admin/articles");
+        navigate("/admin/articles");
       }
     } catch (error) {
       console.error(

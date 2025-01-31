@@ -72,7 +72,7 @@ export default function ModalCreateArticle({
       if (response.ok) {
         handleCloseModal();
         fetchArticles();
-        navigate("/user/admin/articles");
+        navigate("/admin/articles");
       }
     } catch (error) {
       console.error(

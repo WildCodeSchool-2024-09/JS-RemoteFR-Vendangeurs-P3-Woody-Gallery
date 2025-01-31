@@ -62,7 +62,7 @@ export default function ModalAAC({ handleCloseModal, photos }: ModalAACProps) {
       if (response.ok) {
         handleCloseModal();
         fetchArticles();
-        navigate("/user/admin/articles");
+        navigate("/admin/articles");
       }
     } catch (error) {
       console.error(

@@ -59,7 +59,7 @@ export default function EditMyCollection({
         fetchCollections();
         fetchArticles();
         handleCloseMyCollection();
-        navigate("/user/admin/articles");
+        navigate("/admin/articles");
       }
     } catch (err) {
       console.error(

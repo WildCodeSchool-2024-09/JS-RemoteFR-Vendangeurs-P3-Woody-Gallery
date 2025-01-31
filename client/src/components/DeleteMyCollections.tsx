@@ -69,7 +69,7 @@ export default function DeleteMyCollection({
         fetchCollections();
         fetchArticles();
         handleCloseMyCollection();
-        navigate("/user/admin/articles");
+        navigate("/admin/articles");
       }
     } catch (err) {
       console.error(
