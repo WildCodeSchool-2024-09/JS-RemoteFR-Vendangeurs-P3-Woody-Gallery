@@ -69,29 +69,28 @@ const router = createBrowserRouter([
               { path: "payment", element: <AccountPayment /> },
             ],
           },
-
+        ],
+      },
+      {
+        path: "admin",
+        element: <AuthAdmin />,
+        children: [
           // CONNEXION ADMIN
           {
-            path: "admin",
-            element: <AuthAdmin />,
-            children: [
-              {
-                path: "articles",
-                element: <AdminPage />,
-              },
-              {
-                path: "users",
-                element: <AdminPage />,
-              },
-              {
-                path: "orders",
-                element: <AdminPage />,
-              },
-              {
-                path: "logout",
-                element: <AdminPage />,
-              },
-            ],
+            path: "articles",
+            element: <AdminPage />,
+          },
+          {
+            path: "users",
+            element: <AdminPage />,
+          },
+          {
+            path: "orders",
+            element: <AdminPage />,
+          },
+          {
+            path: "logout",
+            element: <AdminPage />,
           },
         ],
       },

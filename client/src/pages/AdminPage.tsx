@@ -31,16 +31,16 @@ export default function AdminPage() {
   useEffect(() => {
     const url = window.location.href;
 
-    url === `${import.meta.env.VITE_CURRENT_URL}/user/admin/articles`
+    url === `${import.meta.env.VITE_CURRENT_URL}/admin/articles`
       ? setIsArticlesPage(true)
       : setIsArticlesPage(false);
-    url === `${import.meta.env.VITE_CURRENT_URL}/user/admin/users`
+    url === `${import.meta.env.VITE_CURRENT_URL}/admin/users`
       ? setIsUsersPage(true)
       : setIsUsersPage(false);
-    url === `${import.meta.env.VITE_CURRENT_URL}/user/admin/orders`
+    url === `${import.meta.env.VITE_CURRENT_URL}/admin/orders`
       ? setIsOrdersPage(true)
       : setIsOrdersPage(false);
-    url === `${import.meta.env.VITE_CURRENT_URL}/user/admin/logout`
+    url === `${import.meta.env.VITE_CURRENT_URL}/admin/logout`
       ? setIsLogoutPage(true)
       : setIsLogoutPage(false);
   });
@@ -55,19 +55,19 @@ export default function AdminPage() {
           <ul className={styles.nav}>
             <NavLink
               className={isArticlesPage ? styles.currentPage : ""}
-              to="/user/admin/articles"
+              to="/admin/articles"
             >
               <li>Articles</li>
             </NavLink>
             <NavLink
               className={isUsersPage ? styles.currentPage : ""}
-              to="/user/admin/users"
+              to="/admin/users"
             >
               <li>Utilisateurs</li>
             </NavLink>
             <NavLink
               className={isOrdersPage ? styles.currentPage : ""}
-              to="/user/admin/orders"
+              to="/admin/orders"
             >
               <li>Commandes</li>
             </NavLink>
@@ -75,7 +75,7 @@ export default function AdminPage() {
               className={
                 isLogoutPage ? styles.currentDeconnexion : styles.deconnexion
               }
-              to="/user/admin/logout"
+              to="/admin/logout"
             >
               <li>Déconnexion</li>
             </NavLink>
