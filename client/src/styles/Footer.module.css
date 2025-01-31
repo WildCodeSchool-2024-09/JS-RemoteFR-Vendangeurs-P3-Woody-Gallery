@@ -75,6 +75,9 @@
       }
     }
   }
+  .contatcs {
+    color: var(--fontcolor-black);
+  }
 
   .credit {
     margin: auto;
@@ -84,6 +87,7 @@
     margin-bottom: 1rem;
     font-family: var(--font-grotesk);
     cursor: default;
+    color: var(--fontcolor-black);
     @media screen and (min-width: 768px) {
       grid-column: 1 / 5;
       margin: 2rem 0;
