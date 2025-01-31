@@ -93,7 +93,13 @@ export default function Header() {
         </NavLink>
         <NavLink
           className={styles.navLink}
-          to={isAuth ? `/user/${userName}` : "/create-account"}
+          to={
+            isAuth
+              ? isAdmin
+                ? "admin/articles"
+                : `/user/${userName}`
+              : "/create-account"
+          }
         >
           <li>
             {isAuth ? (
