@@ -77,6 +77,10 @@ export default function Addresses() {
         if (response.ok) {
           setAddress(editedAddress);
           setIsClicked(false);
+        } else if (response.status === 400) {
+          response.json().then((errorData) => {
+            alert(errorData.error);
+          });
         }
       })
       .catch((error) =>
@@ -144,12 +148,10 @@ export default function Addresses() {
           isClicked ? (
             <>
               <input
-                type="number"
+                type="text"
                 value={editedAddress?.street_number || ""}
                 placeholder="Numéro de rue"
-                onChange={(e) =>
-                  handleChange("street_number", Number.parseInt(e.target.value))
-                }
+                onChange={(e) => handleChange("street_number", e.target.value)}
                 className={styles.input}
               />
               <input
