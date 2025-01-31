@@ -11,6 +11,10 @@ export default function AdminArticles() {
   const [search, setSearch] = useState<string>("");
   const [myCollection, setMyCollection] = useState<boolean>(false);
   const [filter, setFilter] = useState<boolean>(false);
+  const [selectCollection, setSelectCollection] = useState<number[]>([]);
+  const [selectStock, setSelectStock] = useState<string>("none");
+  const [selectPrice, setSelectPrice] = useState<string>("none");
+  const [stockOrPrice, setStockOrPrice] = useState<boolean>(false);
   const { articles, fetchArticles } = useArticles();
 
   const handleFilter = () => {
@@ -82,7 +86,18 @@ export default function AdminArticles() {
           add <p>Ajouter un articles</p>
         </button>
       </div>
-      {filter && <ArticlesFilter />}
+      {filter && (
+        <ArticlesFilter
+          setSelectCollection={setSelectCollection}
+          selectCollection={selectCollection}
+          setSelectStock={setSelectStock}
+          setSelectPrice={setSelectPrice}
+          selectStock={selectStock}
+          selectPrice={selectPrice}
+          setStockOrPrice={setStockOrPrice}
+          stockOrPrice={stockOrPrice}
+        />
+      )}
       <ul className={styles.list}>
         <li>Nom</li>
         <li>Image</li>
@@ -92,13 +107,34 @@ export default function AdminArticles() {
         <li>Prix</li>
         <li className={styles.last}>Actions</li>
       </ul>
-      {articlesSearch.map((article) => (
-        <AdminArticlesCard
-          key={article.photos.id}
-          name={article.name}
-          photos={article.photos}
-        />
-      ))}
+      {articlesSearch
+        .filter(
+          (collection) =>
+            selectCollection.length === 0 ||
+            selectCollection.includes(collection.id),
+        )
+        .sort((a, b) => {
+          if (selectStock === "ArtStockAsc" && stockOrPrice) {
+            return a.photos.stock - b.photos.stock;
+          }
+          if (selectStock === "ArtStockDesc" && stockOrPrice) {
+            return b.photos.stock - a.photos.stock;
+          }
+          if (selectPrice === "ArtPriceAsc" && !stockOrPrice) {
+            return a.photos.price - b.photos.price;
+          }
+          if (selectPrice === "ArtPriceDesc" && !stockOrPrice) {
+            return b.photos.price - a.photos.price;
+          }
+          return 0;
+        })
+        .map((article) => (
+          <AdminArticlesCard
+            key={article.photos.id}
+            name={article.name}
+            photos={article.photos}
+          />
+        ))}
       {modalCA && <ModalCreateArticle handleCloseModal={handleCloseModal} />}
       {myCollection && (
         <MyCollection handleCloseMyCollection={handleCloseMyCollection} />
