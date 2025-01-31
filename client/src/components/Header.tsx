@@ -50,7 +50,13 @@ export default function Header() {
       </NavLink>
       <NavLink
         className={`${styles.accountIcon} ${isAdmin ? `${styles.accountAdmin}` : ""}`}
-        to={isAuth ? `/user/${userName}` : "/create-account"}
+        to={
+          isAuth
+            ? isAdmin
+              ? "admin/articles"
+              : `/user/${userName}`
+            : "/create-account"
+        }
       >
         <span className="material-symbols-outlined">account_circle</span>
       </NavLink>

@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "../contexts/AuthContext";
 import styles from "../styles/Account.module.css";
 import AccountLine from "./AccountLine";
 
 export default function Account() {
-  const { user } = useAuth();
+  const user = sessionStorage.getItem("user");
   const [userData, setUserData] = useState({
     firstname: "",
     lastname: "",
@@ -13,25 +12,55 @@ export default function Account() {
   });
 
   useEffect(() => {
+    const fetchUserData = () => {
+      if (user) {
+        fetch(`${import.meta.env.VITE_API_URL}/api/users/${user}`)
+          .then((response) => response.json())
+          .then((data) => setUserData(data));
+      }
+    };
+
+    fetchUserData();
+  }, [user]);
+
+  const handleReload = () => {
     if (user) {
-      fetch(`${import.meta.env.VITE_API_URL}/api/users/${user.id}`)
+      fetch(`${import.meta.env.VITE_API_URL}/api/users/${user}`)
         .then((response) => response.json())
         .then((data) => setUserData(data));
     }
-  }, [user]);
+  };
 
   return (
     <section className={styles.account}>
       <div className={styles.container}>
-        <AccountLine firstname={userData.firstname} />
-        <AccountLine lastname={userData.lastname} />
-        <AccountLine email={userData.email} />
         <AccountLine
-          phone_number={
+          value={userData.firstname}
+          valueName="firstname"
+          onReload={handleReload}
+        />
+        <AccountLine
+          value={userData.lastname}
+          valueName="lastname"
+          onReload={handleReload}
+        />
+        <AccountLine
+          value={userData.email}
+          valueName="email"
+          onReload={handleReload}
+        />
+        <AccountLine
+          value={
             userData.phone_number ? userData.phone_number : "Pas de numéro"
           }
+          valueName="phone_number"
+          onReload={handleReload}
         />
-        <AccountLine password={"Modifier le mot de passe"} />
+        <AccountLine
+          value={"Modifier le mot de passe"}
+          valueName="password"
+          onReload={handleReload}
+        />
       </div>
     </section>
   );

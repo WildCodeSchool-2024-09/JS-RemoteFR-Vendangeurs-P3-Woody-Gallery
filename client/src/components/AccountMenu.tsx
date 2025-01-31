@@ -4,6 +4,7 @@ import styles from "../styles/AccountMenu.module.css";
 
 export default function AccountMenu() {
   const [isClicked, setIsClicked] = useState(false);
+  const userName = sessionStorage.getItem("userName");
 
   const toggleClick = () => {
     setIsClicked(!isClicked);
@@ -19,19 +20,39 @@ export default function AccountMenu() {
 
       {isClicked && (
         <div className={styles.modal}>
-          <NavLink to="/" className={styles.nav}>
+          <NavLink
+            to={`/user/${userName}`}
+            className={styles.nav}
+            onClick={toggleClick}
+          >
             Compte
           </NavLink>
-          <NavLink to="/" className={styles.nav}>
+          <NavLink
+            to={`/user/${userName}/addresses`}
+            className={styles.nav}
+            onClick={toggleClick}
+          >
             Adresses
           </NavLink>
-          <NavLink to="/" className={styles.nav}>
+          <NavLink
+            to={`/user/${userName}/orders`}
+            className={styles.nav}
+            onClick={toggleClick}
+          >
             Commandes
           </NavLink>
-          <NavLink to="/" className={styles.nav}>
+          <NavLink
+            to={`/user/${userName}/favorites`}
+            className={styles.nav}
+            onClick={toggleClick}
+          >
             Favoris
           </NavLink>
-          <NavLink to="/" className={styles.nav}>
+          <NavLink
+            to={`/user/${userName}/payment`}
+            className={styles.nav}
+            onClick={toggleClick}
+          >
             Moyen de paiement
           </NavLink>
         </div>

@@ -30,6 +30,16 @@ class OrdersRepository {
     return rows[0] as Orders;
   }
 
+  async readByUser(userId: number) {
+    const [rows] = await databaseClient.query<Rows>(
+      `SELECT o.id, o.articles, o.total_amount, o.date, o.status
+       FROM orders o 
+       WHERE o.user_id = ?`,
+      [userId],
+    );
+    return rows as Orders[];
+  }
+
   async readAll() {
     const [rows] = await databaseClient.query<Rows>("select * from orders");
     return rows as Orders[];

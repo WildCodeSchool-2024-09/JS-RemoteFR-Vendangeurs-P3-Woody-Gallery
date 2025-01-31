@@ -7,8 +7,13 @@ import { AuthProvider } from "./contexts/AuthContext";
 /* ************************************************************************* */
 
 import App from "./App";
+import Account from "./components/Account";
+import AccountOrders from "./components/AccountOrders";
+import AccountPayment from "./components/AccountPayment";
+import Addresses from "./components/Addresses";
 import AuthAdmin from "./components/AuthAdmin";
 import AuthUser from "./components/AuthUser";
+import FavoriteAccount from "./components/FavoritesAccount";
 import AccountPage from "./pages/AccountPage";
 import AdminPage from "./pages/AdminPage";
 import ArticlePage from "./pages/ArticlePage";
@@ -17,8 +22,6 @@ import CreateAccountPage from "./pages/CreateAccountPage";
 import Homepage from "./pages/Homepage";
 import OrderPage from "./pages/OrderPage";
 import ShopPage from "./pages/ShopPage";
-
-const userName = sessionStorage.getItem("userName");
 
 const router = createBrowserRouter([
   {
@@ -58,18 +61,21 @@ const router = createBrowserRouter([
           {
             path: ":name",
             element: <AccountPage />,
+            children: [
+              { path: "", element: <Account /> },
+              { path: "addresses", element: <Addresses /> },
+              { path: "orders", element: <AccountOrders /> },
+              { path: "favorites", element: <FavoriteAccount /> },
+              { path: "payment", element: <AccountPayment /> },
+            ],
           },
-          {
-            path: `${userName}`,
-            element: <AccountPage />,
-          },
-          // CONNEXION ADMIN
         ],
       },
       {
         path: "admin",
         element: <AuthAdmin />,
         children: [
+          // CONNEXION ADMIN
           {
             path: "articles",
             element: <AdminPage />,

@@ -1,6 +1,6 @@
 import type { RequestHandler } from "express";
+import type { AddressRow } from ".//addressRepository";
 import * as addressRepository from "./addressRepository";
-import type { AddressRow } from "./addressRepository";
 
 // Ajouter une adresse
 export const addAddress: RequestHandler = async (req, res, next) => {
@@ -17,7 +17,7 @@ export const addAddress: RequestHandler = async (req, res, next) => {
       res.status(400).json({ error: "Données invalides" });
       return;
     }
-    await addressRepository.createAddress(newAddress);
+    const data = await addressRepository.createAddress(newAddress);
     res.status(201).json({ message: "Adresse ajoutée avec succès." });
   } catch (error) {
     res.status(500).json({

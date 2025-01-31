@@ -19,7 +19,7 @@ export default function LogInConnect() {
       const loggedUser = await login(email, password);
 
       if (loggedUser) {
-        navigate(`/user/${loggedUser.name}`);
+        navigate("/");
       }
     } catch {
       alert("Mauvais identifiants");

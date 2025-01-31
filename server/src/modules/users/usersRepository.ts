@@ -8,6 +8,7 @@ type Users = {
   lastname: string;
   email: string;
   phone_number: string;
+  password: string;
 };
 
 class UsersRepository {
@@ -27,7 +28,7 @@ class UsersRepository {
 
   async read(id: number) {
     const [rows] = await databaseClient.query<Rows>(
-      "SELECT id, firstname, lastname, email, phone_number FROM users WHERE id = ?",
+      "SELECT id, firstname, lastname, email, phone_number, password FROM users WHERE id = ?",
       [id],
     );
 
@@ -64,46 +65,10 @@ class UsersRepository {
     return rows[0];
   }
 
-  async updateFirstname(id: number, firstname: string) {
-    const [result] = await databaseClient.query<Result>(
-      "UPDATE users SET firstname = ? WHERE id = ?",
-      [firstname, id],
-    );
-
-    return result.affectedRows;
-  }
-
-  async updateLastname(id: number, lastname: string) {
-    const [result] = await databaseClient.query<Result>(
-      "UPDATE users SET lastname = ? WHERE id = ?",
-      [lastname, id],
-    );
-
-    return result.affectedRows;
-  }
-
-  async updateEmail(id: number, email: string) {
-    const [result] = await databaseClient.query<Result>(
-      "UPDATE users SET email = ? WHERE id = ?",
-      [email, id],
-    );
-
-    return result.affectedRows;
-  }
-
-  async updatePhoneNumber(id: number, phone_number: string) {
-    const [result] = await databaseClient.query<Result>(
-      "UPDATE users SET phone_number = ? WHERE id = ?",
-      [phone_number, id],
-    );
-
-    return result.affectedRows;
-  }
-
-  async updatePassword(id: number, password: string) {
+  async updatePassword(id: number, hashedpassword: string) {
     const [result] = await databaseClient.query<Result>(
       "UPDATE users SET password = ? WHERE id = ?",
-      [password, id],
+      [hashedpassword, id],
     );
 
     return result.affectedRows;
@@ -111,32 +76,36 @@ class UsersRepository {
 
   async update(
     id: number,
-    firstname: string | null,
-    lastname: string | null,
-    email: string | null,
-    phone_number: string | null,
+    firstname: string | undefined,
+    lastname: string | undefined,
+    email: string | undefined,
+    phone_number: string | undefined,
+    password: string | undefined,
   ) {
     let query = "UPDATE users SET ";
     const values: (string | number)[] = [];
 
-    if (firstname !== null) {
+    if (firstname !== undefined) {
       query += "firstname = ?, ";
       values.push(firstname);
     }
-    if (lastname !== null) {
+    if (lastname !== undefined) {
       query += "lastname = ?, ";
       values.push(lastname);
     }
-    if (email !== null) {
+    if (email !== undefined) {
       query += "email = ?, ";
       values.push(email);
     }
-    if (phone_number !== null) {
+    if (phone_number !== undefined) {
       query += "phone_number = ?, ";
       values.push(phone_number);
     }
+    if (password !== undefined) {
+      query += "password = ?, ";
+      values.push(password);
+    }
 
-    // Suppression de la dernière virgule et espace superflus
     query = query.slice(0, -2);
 
     query += " WHERE id = ?";
@@ -151,6 +120,15 @@ class UsersRepository {
       "DELETE FROM users WHERE id = ?",
       [id],
     );
+    return result.affectedRows;
+  }
+
+  async updateAddressForUser(userId: number, addressId: number) {
+    const [result] = await databaseClient.query<Result>(
+      "UPDATE users SET address_id = ? WHERE id = ?",
+      [addressId, userId],
+    );
+
     return result.affectedRows;
   }
 }

@@ -55,7 +55,7 @@ const add: RequestHandler = async (req, res, next) => {
     if (userExists) {
       res
         .status(409)
-        .json({ error: "Il existe déjà un utilisateur avec cette email" });
+        .json({ error: "Il existe déjà un utilisateur avec cet email" });
       return;
     }
 
@@ -202,111 +202,58 @@ const login: RequestHandler = async (req, res, next) => {
   }
 };
 
-const editFirstname: RequestHandler = async (req, res, next) => {
-  try {
-    const users = {
-      id: Number(req.params.id),
-      firstname: req.body.firstname,
-    };
-
-    const affectedRows = await usersRepository.updateFirstname(
-      users.id,
-      users.firstname,
-    );
-
-    if (affectedRows === 0) {
-      res.sendStatus(404);
-    } else {
-      res.sendStatus(204);
-    }
-  } catch (err) {
-    next(err);
-  }
-};
-
-const editLastname: RequestHandler = async (req, res, next) => {
-  try {
-    const users = {
-      id: Number(req.params.id),
-      lastname: req.body.lastname,
-    };
-
-    const affectedRows = await usersRepository.updateLastname(
-      users.id,
-      users.lastname,
-    );
-
-    if (affectedRows === 0) {
-      res.sendStatus(404);
-    } else {
-      res.sendStatus(204);
-    }
-  } catch (err) {
-    next(err);
-  }
-};
-
-const editEmail: RequestHandler = async (req, res, next) => {
-  try {
-    const users = {
-      id: Number(req.params.id),
-      email: req.body.email,
-    };
-
-    const affectedRows = await usersRepository.updateEmail(
-      users.id,
-      users.email,
-    );
-
-    if (affectedRows === 0) {
-      res.sendStatus(404);
-    } else {
-      res.sendStatus(204);
-    }
-  } catch (err) {
-    next(err);
-  }
-};
-
-const editPhoneNumber: RequestHandler = async (req, res, next) => {
-  try {
-    const users = {
-      id: Number(req.params.id),
-      phone_number: req.body.phone_number,
-    };
-
-    const affectedRows = await usersRepository.updatePhoneNumber(
-      users.id,
-      users.phone_number,
-    );
-
-    if (affectedRows === 0) {
-      res.sendStatus(404);
-    } else {
-      res.sendStatus(204);
-    }
-  } catch (err) {
-    next(err);
-  }
-};
-
 const editPassword: RequestHandler = async (req, res, next) => {
   try {
-    const users = {
-      id: Number(req.params.id),
-      password: req.body.password,
-    };
+    const userId = Number(req.params.id);
+    const { oldPassword, newPassword } = req.body;
 
-    const affectedRows = await usersRepository.updatePassword(
-      users.id,
-      users.password,
-    );
+    const user = await usersRepository.read(userId);
 
-    if (affectedRows === 0) {
-      res.sendStatus(404);
-    } else {
-      res.sendStatus(204);
+    if (!user) {
+      res.status(404).json({ message: "Utilisateur non trouvé" });
+      return;
     }
+    const passwordMatch = await argon2.verify(user.password, oldPassword);
+    if (!passwordMatch) {
+      res.status(401).json({ message: "Ancien mot de passe incorrect" });
+      return;
+    }
+
+    const passwordRequirements = [
+      {
+        regex: /.{8,}/,
+        message: "Le mot de passe doit contenir au moins 8 caractères",
+      },
+      {
+        regex: /[A-Z]/,
+        message: "Le mot de passe doit contenir au moins une lettre majuscule",
+      },
+      {
+        regex: /[a-z]/,
+        message: "Le mot de passe doit contenir au moins une lettre minuscule",
+      },
+      {
+        regex: /[0-9]/,
+        message: "Le mot de passe doit contenir au moins un chiffre",
+      },
+      {
+        regex: /[^A-Za-z0-9]/,
+        message:
+          "Le mot de passe doit contenir un caractère spécial (par exemple, -!@#$%^&*)",
+      },
+    ];
+
+    for (const requirement of passwordRequirements) {
+      if (!requirement.regex.test(newPassword)) {
+        res.status(400).json({ message: requirement.message });
+        return;
+      }
+    }
+
+    const hashedPassword = await argon2.hash(newPassword, hashingOptions);
+    await usersRepository.updatePassword(userId, hashedPassword);
+
+    res.status(200).json({ message: "Mot de passe mis à jour avec succès" });
   } catch (err) {
     next(err);
   }
@@ -320,7 +267,51 @@ const edit: RequestHandler = async (req, res, next) => {
       lastname: req.body.lastname,
       email: req.body.email,
       phone_number: req.body.phone_number,
+      password: req.body.password,
     };
+
+    const firstname = users.firstname;
+    const firstnameRequirements = [
+      {
+        regex: /^[A-Za-zÀ-ÖØ-öø-ÿ-]{2,20}$/,
+        message:
+          "Le prénom doit contenir entre 2 et 20 caractères et ne doit contenir que des lettres",
+      },
+    ];
+
+    for (const requirement of firstnameRequirements) {
+      if (!requirement.regex.test(firstname)) {
+        res.status(400).json({ error: requirement.message });
+        return;
+      }
+    }
+
+    const lastname = users.lastname;
+    const lastnameRequirements = [
+      {
+        regex: /^[A-Za-zÀ-ÖØ-öø-ÿ-]{2,20}$/,
+        message:
+          "Le nom doit contenir entre 2 et 20 caractères et ne doit contenir que des lettres",
+      },
+    ];
+
+    for (const requirement of lastnameRequirements) {
+      if (!requirement.regex.test(lastname)) {
+        res.status(400).json({ error: requirement.message });
+        return;
+      }
+    }
+
+    if (users.firstname) {
+      users.firstname =
+        users.firstname.charAt(0).toUpperCase() +
+        users.firstname.slice(1).toLowerCase();
+    }
+    if (users.lastname) {
+      users.lastname =
+        users.lastname.charAt(0).toUpperCase() +
+        users.lastname.slice(1).toLowerCase();
+    }
 
     const affectedRows = await usersRepository.update(
       users.id,
@@ -328,6 +319,7 @@ const edit: RequestHandler = async (req, res, next) => {
       users.lastname,
       users.email,
       users.phone_number,
+      users.password,
     );
 
     if (affectedRows === 0) {
@@ -354,10 +346,6 @@ export default {
   browse,
   read,
   add,
-  editFirstname,
-  editLastname,
-  editEmail,
-  editPhoneNumber,
   editPassword,
   edit,
   destroy,
