@@ -160,7 +160,10 @@ export default function AccountLine({
                   className={styles.input}
                 />
               )}
-              <button type="submit" className={styles.editButton}>
+              <button
+                type="submit"
+                className={`${styles.editButton} ${isClicked ? styles.colorButton : ""}`}
+              >
                 <span
                   className={`material-symbols-outlined ${styles.editIcon}`}
                 >

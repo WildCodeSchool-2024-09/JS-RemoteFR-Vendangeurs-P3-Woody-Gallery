@@ -6,7 +6,7 @@
   justify-content: center;
 
   @media screen and (min-width: 1200px) {
-    min-height: 6rem;
+    min-height: 5rem;
   }
 }
 
@@ -55,6 +55,11 @@
   }
 }
 
+.colorButton {
+  background-color: #10ab00;
+  color: var(--fontcolor-white);
+}
+
 .editIcon {
   font-size: 2rem;
   margin-top: 0.1rem;
@@ -77,6 +82,9 @@
     font-size: 1.3rem;
     margin: 0;
     width: 60%;
+    height: 80%;
+    background-color: var(--fontcolor-white);
+    color: var(--fontcolor-black);
   }
 }
 
@@ -84,7 +92,7 @@
   margin-top: 1rem;
 
   @media screen and (min-width: 1200px) {
-    margin-top: 2.1rem;
+    margin-top: 1.8rem;
     font-size: 1.3rem;
   }
 }
@@ -104,6 +112,11 @@
   color: var(--fontcolor-white);
   right: .5rem;
   top: .3rem;
+  @media screen and (min-width: 1200px) {
+    top: 1.5rem;
+    background-color: var(--fontcolor-white);
+    color: var(--fontcolor-black);
+  }
 }
 
 .passwordVisibility {
@@ -124,10 +137,16 @@
 
 .oldPwdInput {
   width: 252px;
+  @media screen and (min-width: 1200px) {
+    height: 70px;
+  }
 }
 
 .newPwdInput {
   width: 252px;
+  @media screen and (min-width: 1200px) {
+    height: 70px;
+  }
 }
 
 #desktopModify {
