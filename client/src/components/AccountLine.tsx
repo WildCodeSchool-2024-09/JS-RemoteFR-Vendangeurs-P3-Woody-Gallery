@@ -120,7 +120,7 @@ export default function AccountLine({
                       type="password"
                       placeholder="Ancien mot de passe"
                       onChange={(e) => setOldPassword(e.target.value)}
-                      className={styles.input}
+                      className={`${styles.input}  ${styles.oldPwdInput}`}
                     />
                   </label>
 
@@ -132,7 +132,7 @@ export default function AccountLine({
                         type={passwordVisible ? "text" : "password"}
                         placeholder="Nouveau mot de passe"
                         onChange={(e) => setData(e.target.value)}
-                        className={styles.input}
+                        className={`${styles.input} ${styles.newPwdInput}`}
                       />
                       <button
                         onClick={togglePasswordVisibility}
@@ -166,6 +166,7 @@ export default function AccountLine({
                 >
                   check
                 </span>
+                <span id={styles.desktopValidate}>Valider</span>
               </button>
             </form>
           ) : (
@@ -181,6 +182,7 @@ export default function AccountLine({
             <span className={`material-symbols-outlined ${styles.editIcon}`}>
               edit_square
             </span>
+            <span id={styles.desktopModify}>Modifier</span>
           </button>
         )}
       </section>

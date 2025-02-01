@@ -1,0 +1,7 @@
+@media screen and (min-width: 1200px) {
+  .desktopContainer {
+    padding: 0 10%;
+    background-color: var(--footerbg-primary-color);
+    margin: 0 5rem 5rem 5rem;
+  }
+}
