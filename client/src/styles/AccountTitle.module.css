@@ -9,3 +9,9 @@
 .title {
   font-family: var(--font-grotesk);
 }
+
+@media screen and (min-width: 1200px) {
+  .hidden {
+    display: none;
+  }
+}

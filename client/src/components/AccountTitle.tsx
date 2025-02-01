@@ -8,7 +8,7 @@ export default function AccountTitle() {
     { path: "/user/:name/addresses", title: "Adresse" },
     { path: "/user/:name/orders", title: "Commandes" },
     { path: "/user/:name/favorites", title: "Favoris" },
-    { path: "/user/:name/payment", title: "Moyen de paiement" },
+    { path: "/user/:name/payment", title: "Paiement" },
   ];
 
   const matchedRoute = routes.find((route) =>
@@ -16,7 +16,7 @@ export default function AccountTitle() {
   );
 
   return (
-    <section className={styles.container}>
+    <section className={`${styles.container} ${styles.hidden}`}>
       <h3 className={styles.title}>
         {matchedRoute ? matchedRoute.title : "Compte"}
       </h3>

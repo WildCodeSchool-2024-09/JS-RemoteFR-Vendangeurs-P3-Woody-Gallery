@@ -17,3 +17,15 @@
   display: flex;
   justify-content: space-between;
 }
+
+@media screen and (min-width: 1200px) {
+  .title {
+    margin-bottom: 5rem;
+    font-size: 2rem;
+    padding: 0;
+  }
+
+  .desktopContainer {
+    padding: 0 5rem;
+  }
+}

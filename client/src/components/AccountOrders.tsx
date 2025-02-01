@@ -62,7 +62,6 @@ export default function AccountOrders() {
       );
   }, []);
 
-  //Modify the sentence of the order's status
   const statusMessages: { [key in Order["status"]]: string } = {
     préparation: "En cours de préparation",
     livraison: "En cours de livraison",
