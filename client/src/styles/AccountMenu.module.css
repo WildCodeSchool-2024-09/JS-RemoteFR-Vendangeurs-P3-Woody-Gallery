@@ -4,6 +4,7 @@
 
 .menu {
   width: 100%;
+  height: 100%;
   background-color: var(--background-secondary-color);
   color: var(--fontcolor-white);
   border: none;
@@ -53,6 +54,12 @@
   text-decoration: none;
 }
 
+a {
+  color: var(--fontcolor-white);
+  text-decoration: none;
+  cursor: pointer;
+}
+
 #admin {
   color: var(--color-red);
 }
@@ -60,4 +67,46 @@
 .navLink:active {
   text-decoration: underline;
   color: var(--fontcolor-white);
+}
+
+.desktopMenu {
+  display: none;
+}
+
+@media screen and (min-width: 1200px) {
+  .modal,
+  .menu {
+    display: none;
+  }
+
+  .desktopMenu {
+    display: grid;
+    height: 100%;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    font-family: var(--font-grotesk);
+    text-align: center;
+    background-color: var(--background-secondary-color);
+    box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.72) inset;
+    -webkit-box-shadow: 2px 2px 20px -3px rgba(0, 0, 0, 0.72) inset;
+    -moz-box-shadow: 2px 2px 2px -3px rgba(0, 0, 0, 0.72) inset;
+
+    a {
+      padding: 0.5rem 0;
+      font-size: 1.5rem;
+      border-right: 2px solid black;
+    }
+  }
+
+  .container {
+    width: 85%;
+  }
+
+  .desktopNav {
+    transition: background 0.3s ease-in-out, color 0.3s;
+  }
+
+  .active {
+    background: var(--fontcolor-white);
+    color: var(--fontcolor-black);
+  }
 }
