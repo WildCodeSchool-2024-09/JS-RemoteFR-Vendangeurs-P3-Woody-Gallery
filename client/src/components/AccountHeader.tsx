@@ -1,8 +1,7 @@
-// import Account from "../components/Account";
-import AccountMenu from "./AccountMenu";
-import Disconnection from "./Disconnection";
 import styles from "../styles/AccountHeader.module.css";
+import AccountMenu from "./AccountMenu";
 import AccountTitle from "./AccountTitle";
+import Disconnection from "./Disconnection";
 
 export default function AccountHeader() {
   return (
