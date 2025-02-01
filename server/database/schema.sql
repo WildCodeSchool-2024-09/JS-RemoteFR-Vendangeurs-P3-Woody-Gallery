@@ -124,7 +124,7 @@ VALUES
 INSERT INTO users ( id, firstname, lastname, email, password, is_admin)
 VALUES 
 ( 1 , "Woody", "Gallery", "woody@gmail.com", "$argon2d$v=19$m=65536,t=5,p=1$N1Dl3cqsJJzjhv9VcEZtpQ$LnawO/raZQGrIVWtYyHqar3+VXudyNMjePsrw3ZLkV8", 1),
-( 2 , "Jean", "no", "jean@gmail.com", "$argon2d$v=19$m=65536,t=5,p=1$amZb3TCwR6N3vT7SrZ7vbg$n6tUjY4XHEKDfKX4M29nJT7AGNbmUFAT5T+WAJgENto", 0),
+( 2 , "Woody", "Gallery", "woody2@gmail.com", "$argon2d$v=19$m=65536,t=5,p=1$N1Dl3cqsJJzjhv9VcEZtpQ$LnawO/raZQGrIVWtYyHqar3+VXudyNMjePsrw3ZLkV8", 0),
 ( 3 , "Machin", "yes", "machin@gmail.com", "$argon2d$v=19$m=65536,t=5,p=1$gvJN95BA1kPpicuNiAAChw$MfoCAYd+ssVUa6BMmTx11V/eViOQmMtGPP9lvqPP6nA", 0),
 ( 4 , "Bernadette", "Machin", "bern@gmail.com", "$argon2d$v=19$m=65536,t=5,p=1$Osp1zqpkWOD1uaAvsViF1Q$ug9fPxwZijgy7ODos1J1pJxbZy+XCAiETs5h0MX3TZc", 0),
 ( 5 , "Timoté", "Angoulem", "tim@gmail.com", "$argon2d$v=19$m=65536,t=5,p=1$OkMLY99OXgcrNZVjKobRRQ$PFz4ZNKifY+hVwD/Xy8LMSFMXDGoqVq5eqnNxVvQgzQ", 0);
