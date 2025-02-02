@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import styles from "../styles/Addresses.module.css";
+import styles from "../styles/AccountAddresses.module.css";
 
 type AddressesProps = {
   id?: number;
@@ -77,6 +77,10 @@ export default function Addresses() {
         if (response.ok) {
           setAddress(editedAddress);
           setIsClicked(false);
+        } else if (response.status === 400) {
+          response.json().then((errorData) => {
+            alert(errorData.error);
+          });
         }
       })
       .catch((error) =>
@@ -144,12 +148,10 @@ export default function Addresses() {
           isClicked ? (
             <>
               <input
-                type="number"
+                type="text"
                 value={editedAddress?.street_number || ""}
                 placeholder="Numéro de rue"
-                onChange={(e) =>
-                  handleChange("street_number", Number.parseInt(e.target.value))
-                }
+                onChange={(e) => handleChange("street_number", e.target.value)}
                 className={styles.input}
               />
               <input
@@ -180,17 +182,18 @@ export default function Addresses() {
                 onChange={(e) => handleChange("country", e.target.value)}
                 className={styles.input}
               />
-              <section className={styles.buttons}>
+              <section className={styles.updateButtons}>
                 <button
                   type="button"
                   className={styles.saveButton}
                   onClick={handleEdit}
                 >
-                  Sauvegarder
+                  <span id={styles.titleSave}>Sauvegarder</span>
+                  <span id={styles.titleRegister}>Enregistrer l'adresse</span>
                 </button>
                 <button
                   type="button"
-                  className={styles.abortbutton}
+                  className={styles.abortButton}
                   onClick={toggleClick}
                 >
                   Annuler
@@ -257,7 +260,7 @@ export default function Addresses() {
               onChange={(e) => handleNewChange("country", e.target.value)}
               className={styles.input}
             />
-            <section className={styles.buttons}>
+            <section className={styles.newAddressButtons}>
               <button
                 type="button"
                 className={styles.saveButton}
@@ -267,7 +270,7 @@ export default function Addresses() {
               </button>
               <button
                 type="button"
-                className={styles.abortbutton}
+                className={styles.abortButton}
                 onClick={toggleNewClick}
               >
                 Annuler

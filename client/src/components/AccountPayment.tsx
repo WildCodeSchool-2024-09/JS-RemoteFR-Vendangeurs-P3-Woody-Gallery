@@ -8,8 +8,8 @@ export default function AccountPayment() {
           <span className={`material-symbols-outlined ${styles.addIcon}`}>
             add_circle
           </span>
+          <p className={styles.addPayment}>Ajouter un moyen de paiement</p>
         </button>
-        <p className={styles.addPayment}>Ajouter un moyen de paiement</p>
       </section>
     </section>
   );

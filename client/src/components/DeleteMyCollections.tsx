@@ -76,7 +76,7 @@ export default function DeleteMyCollection({
       }
     } catch (err) {
       console.error(
-        "Une erreur est survenue durant la suppréssion de la collection",
+        "Une erreur est survenue durant la suppression de la collection",
       );
     }
   };
@@ -84,7 +84,7 @@ export default function DeleteMyCollection({
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="deleteCollection">
-        Suppréssion d'une collection
+        Suppression d'une collection
         <select
           name="deleteCollection"
           id="deleteCollection"
@@ -109,7 +109,7 @@ export default function DeleteMyCollection({
             : "Supprimé définitivement la collection"
         }
       >
-        delete<p className={styles.textDelete}>Confirmer la suppréssion</p>
+        delete<p className={styles.textDelete}>Confirmer la suppression</p>
       </button>
     </form>
   );

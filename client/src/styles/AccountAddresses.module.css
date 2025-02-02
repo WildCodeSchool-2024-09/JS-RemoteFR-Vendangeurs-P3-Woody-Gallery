@@ -2,7 +2,7 @@
   background-color: var(--fontcolor-white);
   align-items: center;
   min-height: 400px;
-  padding: 1rem;
+  padding: 1rem 5rem;
 }
 
 .container {
@@ -16,6 +16,13 @@
   padding: 1.3rem;
   color: var(--fontcolor-white);
   font-size: 1.2rem;
+  box-shadow:
+    rgba(0, 0, 0, 0.25) 1px 4px 8px 4px, rgba(0, 0, 0, 0.12) -1px -9px 30px, rgba(
+      0,
+      0,
+      0,
+      0.12
+    ) 0px 4px 4px 2px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 1px -7px 8px 7px;
 }
 
 .newContainer {
@@ -30,11 +37,26 @@
   padding: 1.3rem;
   color: var(--fontcolor-white);
   font-size: 1.2rem;
+  box-shadow:
+    rgba(0, 0, 0, 0.25) 1px 4px 8px 4px, rgba(0, 0, 0, 0.12) -1px -9px 30px, rgba(
+      0,
+      0,
+      0,
+      0.12
+    ) 0px 4px 4px 2px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 1px -7px 8px 7px;
+
+  @media screen and (min-width: 1200px) {
+    font-size: 1.5rem;
+  }
 }
 
 .street,
 .city {
   display: flex;
+
+  @media screen and (min-width: 1200px) {
+    flex-direction: column;
+  }
 }
 
 .addButton {
@@ -66,6 +88,28 @@
 .buttons {
   display: flex;
   gap: 1rem;
+  @media screen and (min-width: 1200px) {
+    width: 100%;
+  }
+}
+
+.newAddressButtons {
+  display: flex;
+  gap: 1rem;
+  @media screen and (min-width: 1200px) {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+.updateButtons {
+  display: flex;
+  gap: 1rem;
+
+  @media screen and (min-width: 1200px) {
+    justify-content: space-between;
+    width: 100%;
+  }
 }
 
 .input {
@@ -75,6 +119,14 @@
   margin-bottom: 1rem;
   font-family: var(--font-grotesk);
   font-size: 1rem;
+
+  @media screen and (min-width: 1200px) {
+    background-color: var(--fontcolor-white);
+    color: var(--fontcolor-black);
+    height: 50px;
+    width: 100%;
+    font-size: 1.2rem;
+  }
 }
 
 .saveButton,
@@ -84,4 +136,23 @@
   font-size: 1rem;
   font-family: var(--font-grotesk);
   padding: 0.3rem;
+
+  @media screen and (min-width: 1200px) {
+    width: 45%;
+    font-size: 1.2rem;
+    background-color: var(--fontcolor-grey);
+  }
+}
+
+#titleRegister {
+  display: none;
+  @media screen and (min-width: 1200px) {
+    display: inline-block;
+  }
+}
+
+#titleSave {
+  @media screen and (min-width: 1200px) {
+    display: none;
+  }
 }

@@ -8,12 +8,12 @@ import { AuthProvider } from "./contexts/AuthContext";
 
 import App from "./App";
 import Account from "./components/Account";
+import Addresses from "./components/AccountAddresses";
+import FavoriteAccount from "./components/AccountFavorite";
 import AccountOrders from "./components/AccountOrders";
 import AccountPayment from "./components/AccountPayment";
-import Addresses from "./components/Addresses";
 import AuthAdmin from "./components/AuthAdmin";
 import AuthUser from "./components/AuthUser";
-import FavoriteAccount from "./components/FavoritesAccount";
 import AccountPage from "./pages/AccountPage";
 import AdminPage from "./pages/AdminPage";
 import ArticlePage from "./pages/ArticlePage";
