@@ -182,17 +182,18 @@ export default function Addresses() {
                 onChange={(e) => handleChange("country", e.target.value)}
                 className={styles.input}
               />
-              <section className={styles.buttons}>
+              <section className={styles.updateButtons}>
                 <button
                   type="button"
                   className={styles.saveButton}
                   onClick={handleEdit}
                 >
-                  Sauvegarder
+                  <span id={styles.titleSave}>Sauvegarder</span>
+                  <span id={styles.titleRegister}>Enregistrer l'adresse</span>
                 </button>
                 <button
                   type="button"
-                  className={styles.abortbutton}
+                  className={styles.abortButton}
                   onClick={toggleClick}
                 >
                   Annuler
@@ -259,7 +260,7 @@ export default function Addresses() {
               onChange={(e) => handleNewChange("country", e.target.value)}
               className={styles.input}
             />
-            <section className={styles.buttons}>
+            <section className={styles.newAddressButtons}>
               <button
                 type="button"
                 className={styles.saveButton}
@@ -269,7 +270,7 @@ export default function Addresses() {
               </button>
               <button
                 type="button"
-                className={styles.abortbutton}
+                className={styles.abortButton}
                 onClick={toggleNewClick}
               >
                 Annuler
