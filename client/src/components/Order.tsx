@@ -89,7 +89,7 @@ export default function Order() {
             throw new Error("Erreur lors de la commande");
           }
           localStorage.removeItem("order");
-          alert("Votre commande viens d'être éffectuée");
+          alert("Votre commande vient d'être éffectuée");
           return response.json();
         })
         .catch((error) => {
@@ -97,7 +97,7 @@ export default function Order() {
           alert("Une erreur est survenue lors de la commande");
         });
     } else {
-      alert("Une erreur viens de se produire");
+      alert("Une erreur vient de se produire");
     }
   };
 

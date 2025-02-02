@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import styles from "../styles/FavoriteAccount.module.css";
+import styles from "../styles/AccountFavorite.module.css";
 
 interface Article {
   id: number;

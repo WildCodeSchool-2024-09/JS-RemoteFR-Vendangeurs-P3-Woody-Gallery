@@ -79,7 +79,7 @@ export default function AdminArticles() {
           className={`material-symbols-outlined ${styles.addArticles}`}
           type="button"
         >
-          add <p>Ajouter un articles</p>
+          add <p>Ajouter un article</p>
         </button>
       </div>
       {filter && <ArticlesFilter />}

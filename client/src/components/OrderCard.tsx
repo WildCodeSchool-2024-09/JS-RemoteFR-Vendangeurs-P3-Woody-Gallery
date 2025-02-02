@@ -70,7 +70,7 @@ export default function OrderCard({
       <div>
         <h3>{name}</h3>
         <p className={styles.format}>Format : {format}</p>
-        <p className={styles.cadre}>Photo imprimé sur toile sans cadre</p>
+        <p className={styles.cadre}>Photo imprimée sur toile sans cadre</p>
         <div>
           <h4>{"Nombre(s):"}</h4>
           <button
