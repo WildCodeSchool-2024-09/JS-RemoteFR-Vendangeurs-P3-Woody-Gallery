@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import styles from "../styles/FavoriteAccount.module.css";
+import styles from "../styles/AccountFavorite.module.css";
 
 interface Article {
   id: number;
@@ -25,7 +25,7 @@ export default function FavoriteAccount() {
   return (
     <section className={styles.favorites}>
       <section className={styles.container}>
-        {favorites?.length === 0 ? (
+        {favoriteIds?.length === 0 ? (
           <div className={styles.noFavoritesContainer}>
             <p id={styles.noFavorite}>Aucun favoris enregistré</p>
           </div>
@@ -33,7 +33,7 @@ export default function FavoriteAccount() {
           <>
             <ul>
               {articles
-                .filter((article) => favoriteIds.includes(article.id)) // Filtrer les articles favoris
+                .filter((article) => favoriteIds.includes(article.id))
                 .map((article) => (
                   <section key={article.id} className={styles.favoriteArticles}>
                     <li className={styles.name}>{article.name}</li>

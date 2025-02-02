@@ -43,7 +43,7 @@ export default function ModalDeleteArticle({
   return (
     <div className={styles.modalDeleteArticle}>
       <form>
-        <h2>Confirmer la suppréssion ?</h2>
+        <h2>Confirmer la suppression ?</h2>
         <button
           onClick={handleCloseModalDelete}
           onKeyDown={handleCloseModalDelete}
@@ -57,7 +57,7 @@ export default function ModalDeleteArticle({
         </p>
         <p>
           Entrez "<span className={styles.delete}>Supprimer</span>" pour valider
-          la suppréssion de l'article.
+          la suppression de l'article.
         </p>
         <input onChange={handleCheck} type="text" />
         <div>

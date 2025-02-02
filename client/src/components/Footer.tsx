@@ -63,7 +63,7 @@ export default function Footer() {
       </article>
       <ul className={styles.credit}>
         <li>©2024</li>
-        <li>Mateusz Plebanek - Jérémy Perez - Flavien Rousseau</li>
+        <li>Mateusz Plebanek - Jeremy Perez - Flavien Rousseau</li>
       </ul>
     </footer>
   );

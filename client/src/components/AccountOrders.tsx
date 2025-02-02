@@ -37,13 +37,19 @@ export default function AccountOrders() {
         })
         .then((data) => {
           if (Array.isArray(data)) {
-            setOrders(data);
+            setOrders(
+              data.map((order) => ({
+                ...order,
+                articles: JSON.parse(order.articles), // Transforme en tableau de nombres
+              })),
+            );
           } else {
-            const parsedOrder = {
-              ...data,
-              articles: JSON.parse(data.articles),
-            };
-            setOrders([parsedOrder]);
+            setOrders([
+              {
+                ...data,
+                articles: JSON.parse(data.articles), // Transforme en tableau de nombres
+              },
+            ]);
           }
         })
         .catch((error) => {
@@ -56,7 +62,9 @@ export default function AccountOrders() {
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/photos`)
       .then((response) => response.json())
-      .then((data) => setArticles(data))
+      .then((data) => {
+        setArticles(data);
+      })
       .catch((error) =>
         console.error("Erreur lors du fetch des articles:", error),
       );
@@ -70,6 +78,27 @@ export default function AccountOrders() {
 
   function getOrderStatusMessage(order: Order) {
     return statusMessages[order.status] || "Statut inconnu";
+  }
+
+  // Compter le nombre de mêmes articles
+  function getGroupedArticles(orderArticles: number[], allArticles: Article[]) {
+    const articleCount: Record<number, number> = {};
+
+    for (const articleId of orderArticles) {
+      articleCount[articleId] = (articleCount[articleId] || 0) + 1;
+    }
+
+    return Object.keys(articleCount)
+      .map((articleId) => {
+        const article = allArticles.find((a) => a.id === Number(articleId));
+        if (!article) return null;
+
+        return {
+          ...article,
+          quantity: articleCount[article.id],
+        };
+      })
+      .filter(Boolean) as (Article & { quantity: number })[];
   }
 
   return (
@@ -95,6 +124,9 @@ export default function AccountOrders() {
                   >
                     {selectedOrder === order.id ? "close" : "arrow_back"}
                   </span>
+                  <span className={styles.seeMore}>
+                    {selectedOrder === order.id ? "Voir moins" : "Voir plus"}
+                  </span>
                 </button>
               </div>
               {selectedOrder === order.id && (
@@ -114,13 +146,20 @@ export default function AccountOrders() {
                   <section className={styles.orderArticles}>
                     <p className={styles.category}>Articles :</p>
                     <ul>
-                      {articles
-                        .filter((article) =>
-                          order.articles.includes(article.id),
-                        )
-                        .map((article) => (
-                          <li key={article.id}>{article.name}</li>
-                        ))}
+                      {getGroupedArticles(order.articles, articles).map(
+                        (article) => (
+                          <li key={article.id} className={styles.articleCount}>
+                            {article.name}
+
+                            <p className={styles.quantity}>
+                              Qté :{" "}
+                              <span className={styles.quantityCount}>
+                                {article.quantity}
+                              </span>
+                            </p>
+                          </li>
+                        ),
+                      )}
                     </ul>
                   </section>
                 </div>

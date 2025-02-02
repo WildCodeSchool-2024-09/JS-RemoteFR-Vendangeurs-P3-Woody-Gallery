@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import styles from "../styles/Addresses.module.css";
+import styles from "../styles/AccountAddresses.module.css";
 
 type AddressesProps = {
   id?: number;
