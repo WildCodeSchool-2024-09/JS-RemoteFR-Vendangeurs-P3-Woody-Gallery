@@ -124,6 +124,9 @@ export default function AccountOrders() {
                   >
                     {selectedOrder === order.id ? "close" : "arrow_back"}
                   </span>
+                  <span className={styles.seeMore}>
+                    {selectedOrder === order.id ? "Voir moins" : "Voir plus"}
+                  </span>
                 </button>
               </div>
               {selectedOrder === order.id && (

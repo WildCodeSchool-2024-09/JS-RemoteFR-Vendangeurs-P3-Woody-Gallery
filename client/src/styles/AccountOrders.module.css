@@ -31,6 +31,9 @@
   transform: rotate(225deg);
   font-size: 2.5rem;
   margin: 0.2rem 0.1rem 0 0.1rem;
+  @media screen and (min-width: 1200px) {
+    display: none;
+  }
 }
 
 .orderMini {
@@ -52,10 +55,18 @@
 
 #orderDetailsButton {
   border-radius: 6px;
+
+  @media screen and (min-width: 1200px) {
+    padding: 0 1rem;
+  }
 }
 
 #orderNumber {
   font-family: var(--font-grotesk);
+
+  @media screen and (min-width: 1200px) {
+    font-size: 1.5rem;
+  }
 }
 
 .orderHeader {
@@ -84,6 +95,10 @@
       0,
       0.12
     ) 0px 4px 4px 2px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 1px -7px 8px 7px;
+
+  @media screen and (min-width: 1200px) {
+    font-size: 1.5rem;
+  }
 }
 
 #close {
@@ -92,6 +107,10 @@
 
 .category {
   color: var(--fontcolor-gold);
+
+  @media screen and (min-width: 1200px) {
+    font-size: 1.4rem;
+  }
 }
 
 ul {
@@ -112,4 +131,14 @@ ul {
 .quantityCount {
   color: var(--fontcolor-white);
   font-size: 1.2rem;
+}
+
+.seeMore {
+  display: none;
+
+  @media screen and (min-width: 1200px) {
+    display: inline-block;
+    font-size: 1.3rem;
+    font-family: var(--font-grotesk);
+  }
 }
