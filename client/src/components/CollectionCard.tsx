@@ -37,7 +37,10 @@ export default function CollectionCard({
       onBlur={handleMouseOut}
     >
       <figure>
-        <img src={photos.image} alt={photos.name} />
+        <img
+          src={`${import.meta.env.VITE_API_URL}/${photos.image}`}
+          alt={photos.name}
+        />
       </figure>
       <h3>Collection {collectionName}</h3>
       <div

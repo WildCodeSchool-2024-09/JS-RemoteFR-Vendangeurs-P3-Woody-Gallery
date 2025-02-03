@@ -26,14 +26,15 @@ router.put("/api/users/:id/password", usersActions.editPassword);
 router.put("/api/users/:id", usersActions.edit);
 router.delete("/api/users/:id", usersActions.destroy);
 
+import { adjustFilePath, upload } from "./modules/middlewares/multerUpload";
 // Define photos-related routes
 import photosAction from "./modules/photos/photosActions";
 
 router.get("/api/photos", photosAction.browse);
 router.get("/api/photos/:id", photosAction.read);
-router.put("/api/photos/:id", photosAction.edit);
+router.put("/api/photos/:id", upload, adjustFilePath, photosAction.edit);
 router.put("/api/photos/:id/is_favorite", photosAction.editIsFavorite);
-router.post("/api/photos", photosAction.add);
+router.post("/api/photos", upload, adjustFilePath, photosAction.add);
 router.delete("/api/photos/:id", photosAction.destroy);
 
 // Define collections-related routes
