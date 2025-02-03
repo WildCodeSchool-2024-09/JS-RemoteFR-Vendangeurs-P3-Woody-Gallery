@@ -54,6 +54,9 @@ export default function DeleteMyCollection({
   const handleChange = (e: React.FormEvent<HTMLSelectElement>) => {
     const { value } = e.target as HTMLSelectElement;
     setCollectionId(Number(value));
+    fetchCollections();
+    fetchArticles();
+    navigate("/admin/articles");
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -66,10 +69,10 @@ export default function DeleteMyCollection({
             method: "DELETE",
           },
         );
+        handleCloseMyCollection();
         fetchCollections();
         fetchArticles();
-        handleCloseMyCollection();
-        navigate("/user/admin/articles");
+        navigate("/admin/articles");
       }
     } catch (err) {
       console.error(

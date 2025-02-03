@@ -56,7 +56,7 @@ export default function Footer() {
       </article>
       <article>
         <h3>Contacts</h3>
-        <ul>
+        <ul className={styles.contatcs}>
           <li>woody@woody_gallery.com</li>
           <li>02.25.02.25.02</li>
         </ul>
