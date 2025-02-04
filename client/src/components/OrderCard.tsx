@@ -65,7 +65,7 @@ export default function OrderCard({
       </button>
       <hr className={styles.hrDelete} />
       <figure>
-        <img src={image} alt={name} />
+        <img src={`${import.meta.env.VITE_API_URL}/${image}`} alt={name} />
       </figure>
       <div>
         <h3>{name}</h3>

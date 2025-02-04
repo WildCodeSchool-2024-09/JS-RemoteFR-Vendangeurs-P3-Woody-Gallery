@@ -49,13 +49,21 @@ export default function ModalAAC({ handleCloseModal, photos }: ModalAACProps) {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const formData = new FormData();
+    formData.append("name", newPhoto.name);
+    formData.append("image", (e.target as HTMLFormElement).image.files[0]);
+    formData.append("description", newPhoto.description);
+    formData.append("format", newPhoto.format);
+    formData.append("stock", newPhoto.stock.toString());
+    formData.append("price", newPhoto.price.toString());
+    formData.append("collection_id", newPhoto.collection_id.toString());
+
     try {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/api/photos/${photos.id}`,
         {
           method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(newPhoto),
+          body: formData,
         },
       );
 
@@ -98,7 +106,10 @@ export default function ModalAAC({ handleCloseModal, photos }: ModalAACProps) {
           Image
           <input type="file" id="image" name="image" onChange={handleChange} />
           <figure>
-            <img src={newPhoto.image} alt={newPhoto.name} />
+            <img
+              src={`${import.meta.env.VITE_API_URL}/${newPhoto.image}`}
+              alt={newPhoto.name}
+            />
           </figure>
         </label>
         <label htmlFor="description">

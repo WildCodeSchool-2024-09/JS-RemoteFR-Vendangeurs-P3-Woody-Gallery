@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useCollection } from "../contexts/MyCollectionContext";
 import styles from "../styles/MyCollection.module.css";
 import CreateMyCollection from "./CreateMyCollection";
@@ -11,7 +12,11 @@ type MyCollectionProps = {
 export default function MyCollection({
   handleCloseMyCollection,
 }: MyCollectionProps) {
-  const { collections } = useCollection();
+  const { collections, fetchCollections } = useCollection();
+
+  useEffect(() => {
+    fetchCollections();
+  });
 
   const uniqueCollection = Array.from(
     new Map(

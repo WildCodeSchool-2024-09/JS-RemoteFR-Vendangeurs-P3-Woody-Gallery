@@ -107,7 +107,10 @@ export default function SimilarArticlesCarousel({
           {visibleCollections.map((article) => (
             <div key={article.photos.id} className={styles.articleCard}>
               <figure>
-                <img src={article.photos.image} alt={article.photos.name} />
+                <img
+                  src={`${import.meta.env.VITE_API_URL}/${article.photos.image}`}
+                  alt={article.photos.name}
+                />
                 <p className={styles.name}>{article.photos.name}</p>
                 <p className={styles.price}>{article.photos.price} €</p>
               </figure>

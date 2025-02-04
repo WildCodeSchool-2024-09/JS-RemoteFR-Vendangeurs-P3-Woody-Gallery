@@ -73,7 +73,11 @@ export default function ArticleDetails({
   return (
     <div key={addToOrder} className={styles.articleDetails}>
       <figure className={styles.photoContainer}>
-        <img src={image} alt={name} className={styles.articlePhoto} />
+        <img
+          src={`${import.meta.env.VITE_API_URL}/${image}`}
+          alt={name}
+          className={styles.articlePhoto}
+        />
       </figure>
       <div className={styles.backgroundArticleWhite}>
         <div className={styles.articlesContain}>

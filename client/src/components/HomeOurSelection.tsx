@@ -61,7 +61,7 @@ export default function HomeOurSelection() {
                 onBlur={handleMouseOut}
               >
                 <img
-                  src={collection.photos.image}
+                  src={`${import.meta.env.VITE_API_URL}/${collection.photos.image}`}
                   alt={collection.photos.name}
                 />
               </figure>
