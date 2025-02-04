@@ -29,7 +29,7 @@ const edit: RequestHandler = async (req, res, next) => {
     const photos = {
       id: Number(req.params.id),
       name: req.body.name,
-      image: req.body.image,
+      image: req.file ? `/assets/photos/${req.file.filename}` : req.body.image,
       description: req.body.description,
       format: req.body.format,
       stock: Number(req.body.stock),
@@ -83,7 +83,7 @@ const add: RequestHandler = async (req, res, next) => {
   try {
     const newPhotos = {
       name: req.body.name,
-      image: req.body.image,
+      image: req.file ? `/assets/photos/${req.file.filename}` : req.body.image,
       description: req.body.description,
       format: req.body.format,
       stock: Number(req.body.stock),

@@ -56,7 +56,10 @@ export default function AdminArticlesCard({ name, photos }: Article) {
             onKeyDown={handleImageBig}
             title="Agrandir l'image"
           >
-            <img src={photos.image} alt={photos.name} />
+            <img
+              src={`${import.meta.env.VITE_API_URL}/${photos.image}`}
+              alt={photos.name}
+            />
           </figure>
         </li>
         <li>{name}</li>
@@ -101,7 +104,10 @@ export default function AdminArticlesCard({ name, photos }: Article) {
           title="Fermer l'image"
         >
           <figure>
-            <img src={photos.image} alt={photos.name} />
+            <img
+              src={`${import.meta.env.VITE_API_URL}/${photos.image}`}
+              alt={photos.name}
+            />
             <span
               className="material-symbols-outlined"
               onClick={handleImageSmall}

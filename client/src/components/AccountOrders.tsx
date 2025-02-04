@@ -80,7 +80,6 @@ export default function AccountOrders() {
     return statusMessages[order.status] || "Statut inconnu";
   }
 
-  // Compter le nombre de mêmes articles
   function getGroupedArticles(orderArticles: number[], allArticles: Article[]) {
     const articleCount: Record<number, number> = {};
 

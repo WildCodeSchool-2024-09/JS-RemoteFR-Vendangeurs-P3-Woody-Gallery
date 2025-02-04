@@ -9,7 +9,7 @@ function AuthAdmin() {
   }
 
   if (!isAdmin) {
-    return <Navigate to="/admin" replace />;
+    return <Navigate to="/create-account" replace />;
   }
 
   return <Outlet />;

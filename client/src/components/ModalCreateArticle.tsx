@@ -14,7 +14,7 @@ type CollectionProps = {
 
 type PhotoProps = {
   name: string;
-  image: string;
+  file: string;
   description: string;
   format: string;
   stock: number;
@@ -28,7 +28,7 @@ export default function ModalCreateArticle({
   const [collections, setCollections] = useState<CollectionProps[]>([]);
   const [newPhoto, setNewPhoto] = useState<PhotoProps>({
     name: "",
-    image: "/photos/modernTokyo/Akihabara.jpg",
+    file: "",
     description: "",
     format: "",
     stock: 0,
@@ -59,13 +59,21 @@ export default function ModalCreateArticle({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const formData = new FormData();
+    formData.append("name", newPhoto.name);
+    formData.append("image", (e.target as HTMLFormElement).image.files[0]);
+    formData.append("description", newPhoto.description);
+    formData.append("format", newPhoto.format);
+    formData.append("stock", newPhoto.stock.toString());
+    formData.append("price", newPhoto.price.toString());
+    formData.append("collection_id", newPhoto.collection_id.toString());
+
     try {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/api/photos/`,
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(newPhoto),
+          body: formData,
         },
       );
 
