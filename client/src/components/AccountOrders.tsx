@@ -40,14 +40,14 @@ export default function AccountOrders() {
             setOrders(
               data.map((order) => ({
                 ...order,
-                articles: JSON.parse(order.articles), // Transforme en tableau de nombres
+                articles: JSON.parse(order.articles),
               })),
             );
           } else {
             setOrders([
               {
                 ...data,
-                articles: JSON.parse(data.articles), // Transforme en tableau de nombres
+                articles: JSON.parse(data.articles),
               },
             ]);
           }
