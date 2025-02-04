@@ -40,14 +40,14 @@ export default function AccountOrders() {
             setOrders(
               data.map((order) => ({
                 ...order,
-                articles: JSON.parse(order.articles), // Transforme en tableau de nombres
+                articles: JSON.parse(order.articles),
               })),
             );
           } else {
             setOrders([
               {
                 ...data,
-                articles: JSON.parse(data.articles), // Transforme en tableau de nombres
+                articles: JSON.parse(data.articles),
               },
             ]);
           }
@@ -80,7 +80,6 @@ export default function AccountOrders() {
     return statusMessages[order.status] || "Statut inconnu";
   }
 
-  // Compter le nombre de mêmes articles
   function getGroupedArticles(orderArticles: number[], allArticles: Article[]) {
     const articleCount: Record<number, number> = {};
 
