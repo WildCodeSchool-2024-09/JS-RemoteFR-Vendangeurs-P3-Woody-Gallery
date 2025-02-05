@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import AdminArticles from "../components/AdminArticles";
 import AdminLogout from "../components/AdminLogout";
 import AdminMobile from "../components/AdminMobile";
+import AdminUsers from "../components/AdminUsers";
 import { ArticlesProvider } from "../contexts/AdminArticlesContext";
 import { MyCollectionsProvider } from "../contexts/MyCollectionContext";
 import styles from "../styles/AdminPage.module.css";
@@ -87,6 +88,7 @@ export default function AdminPage() {
               </MyCollectionsProvider>
             </ArticlesProvider>
           )}
+          {isUsersPage && <AdminUsers />}
           {isLogoutPage && <AdminLogout />}
         </div>
       )}
