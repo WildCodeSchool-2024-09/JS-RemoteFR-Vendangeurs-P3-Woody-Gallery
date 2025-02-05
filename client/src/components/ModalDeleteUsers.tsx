@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useUsers } from "../contexts/AdminUsersContext";
 import styles from "../styles/ModalDeleteArticle.module.css";
 
 type ModalProps = {
@@ -18,6 +19,7 @@ export default function ModalDeleteUsers({
   const [isValid, setIsValid] = useState<boolean>(false);
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const navigate = useNavigate();
+  const { fetchUsers } = useUsers();
 
   const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value === "Supprimer") {
@@ -37,6 +39,7 @@ export default function ModalDeleteUsers({
         method: "DELETE",
       });
       handleDeleteFalse();
+      fetchUsers();
       navigate("/admin/users");
     }
   });
