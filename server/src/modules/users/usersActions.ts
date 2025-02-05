@@ -21,6 +21,16 @@ const browse: RequestHandler = async (req, res, next) => {
   }
 };
 
+const browseUsers: RequestHandler = async (req, res, next) => {
+  try {
+    const users = await usersRepository.readAllUsers();
+
+    res.json(users);
+  } catch (err) {
+    next(err);
+  }
+};
+
 const read: RequestHandler = async (req, res, next) => {
   try {
     const usersId = Number(req.params.id);
@@ -350,4 +360,5 @@ export default {
   edit,
   destroy,
   login,
+  browseUsers,
 };
