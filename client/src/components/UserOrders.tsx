@@ -96,13 +96,13 @@ export default function UserOrders({ orders }: UserProps) {
               {ordersInProgress === order.id ? (
                 <React.Fragment key={`commande-${order.id}`}>
                   <li>
-                    Commande éffectuées le : <p>{order.date.slice(0, 10)}</p>
+                    Commande effectuée le : <p>{order.date.slice(0, 10)}</p>
                   </li>
                   <li>
                     Total : <p>{order.total_amount} €</p>
                   </li>
                   <li>
-                    Status : <p>{getOrderStatusMessage(order)}</p>{" "}
+                    Statut : <p>{getOrderStatusMessage(order)}</p>{" "}
                   </li>
                   <li className={styles.comment}>
                     Articles :
@@ -144,25 +144,25 @@ export default function UserOrders({ orders }: UserProps) {
               {ordersInProgress === order.id ? (
                 <React.Fragment key={`commande-${order.id}`}>
                   <li>
-                    Commande éffectuées le : <p>{order.date.slice(0, 10)}</p>
+                    Commande effectuée le : <p>{order.date.slice(0, 10)}</p>
                   </li>
                   <li>
                     Total : <p>{order.total_amount} €</p>
                   </li>
                   <li>
-                    Status : <p>{getOrderStatusMessage(order)}</p>{" "}
+                    Statut : <p>{getOrderStatusMessage(order)}</p>{" "}
                   </li>
                   <li className={styles.comment}>
                     Articles :
-                    <ul>
-                      {getGroupedArticles(order.articles, articles).map(
-                        (article) => (
-                          <li key={article.id}>
+                    {getGroupedArticles(order.articles, articles).map(
+                      (article) => (
+                        <li key={article.id}>
+                          <p>
                             {article.name} (x{article.quantity})
-                          </li>
-                        ),
-                      )}
-                    </ul>
+                          </p>
+                        </li>
+                      ),
+                    )}
                   </li>
                 </React.Fragment>
               ) : (
