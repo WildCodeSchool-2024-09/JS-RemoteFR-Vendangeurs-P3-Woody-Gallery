@@ -7,13 +7,13 @@ import { AuthProvider } from "./contexts/AuthContext";
 /* ************************************************************************* */
 
 import App from "./App";
-import Account from "./components/Account";
-import Addresses from "./components/AccountAddresses";
-import FavoriteAccount from "./components/AccountFavorite";
-import AccountOrders from "./components/AccountOrders";
-import AccountPayment from "./components/AccountPayment";
 import AuthAdmin from "./components/AuthAdmin";
 import AuthUser from "./components/AuthUser";
+import Account from "./components/UserAccount/Account";
+import Addresses from "./components/UserAccount/AccountAddresses";
+import FavoriteAccount from "./components/UserAccount/AccountFavorite";
+import AccountOrders from "./components/UserAccount/AccountOrders";
+import AccountPayment from "./components/UserAccount/AccountPayment";
 import AccountPage from "./pages/AccountPage";
 import AdminPage from "./pages/AdminPage";
 import ArticlePage from "./pages/ArticlePage";
@@ -28,32 +28,13 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
-      {
-        path: "",
-        element: <Homepage />,
-      },
-      {
-        path: "shop",
-        element: <ShopPage />,
-      },
-      {
-        path: "panier",
-        element: <OrderPage />,
-      },
-      {
-        path: "shop/article/:id",
-        element: <ArticlePage />,
-      },
-      {
-        path: "login",
-        element: <ConnectionPage />,
-      },
-      {
-        path: "create-account",
-        element: <CreateAccountPage />,
-      },
+      { path: "", element: <Homepage /> },
+      { path: "shop", element: <ShopPage /> },
+      { path: "panier", element: <OrderPage /> },
+      { path: "shop/article/:id", element: <ArticlePage /> },
+      { path: "login", element: <ConnectionPage /> },
+      { path: "create-account", element: <CreateAccountPage /> },
       // CONNEXION CLIENT
-
       {
         path: "user",
         element: <AuthUser />,
@@ -76,22 +57,10 @@ const router = createBrowserRouter([
         element: <AuthAdmin />,
         children: [
           // CONNEXION ADMIN
-          {
-            path: "articles",
-            element: <AdminPage />,
-          },
-          {
-            path: "users",
-            element: <AdminPage />,
-          },
-          {
-            path: "orders",
-            element: <AdminPage />,
-          },
-          {
-            path: "logout",
-            element: <AdminPage />,
-          },
+          { path: "articles", element: <AdminPage /> },
+          { path: "users", element: <AdminPage /> },
+          { path: "orders", element: <AdminPage /> },
+          { path: "logout", element: <AdminPage /> },
         ],
       },
     ],
