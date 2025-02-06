@@ -13,6 +13,31 @@
     margin-bottom: 1rem;
   }
 
+  input {
+    width: 25rem;
+    height: 100%;
+    border: none;
+    background-color: var(--background-secondary-color);
+    padding: 0 2.25rem 0 .5rem;
+    color: var(--fontcolor-white);
+    font-family: var(--font-grotesk);
+    font-size: 18px;
+    -webkit-box-shadow: inset 4px 6px 15px -5px #000000;
+    box-shadow: inset 4px 6px 15px -5px #000000;
+  }
+
+  .search {
+    height: 2.5rem;
+    width: 2.5rem;
+    background-color: transparent;
+    border: none;
+    color: var(--fontcolor-white);
+    position: absolute;
+    left: 22.5rem;
+    cursor: pointer;
+    font-size: 30px;
+  }
+
   .list {
     width: 100%;
     background-color: var(--background-secondary-color);
@@ -22,7 +47,7 @@
     font-family: var(--font-grotesk);
     color: var(--fontcolor-gold);
     font-size: 18px;
-    height: 4rem;
+    height: 4.2rem;
     -webkit-box-shadow: 0px 0px 15px -5px #000000;
     box-shadow: 0px 0px 15px -5px #000000;
     cursor: default;

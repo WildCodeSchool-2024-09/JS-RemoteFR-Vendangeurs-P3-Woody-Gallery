@@ -131,12 +131,16 @@ export default function AdminOrdersCard({
     setModalDelete(false);
   };
 
+  const formatOrderNumber = (id: number) => {
+    return id.toString().padStart(4, "0");
+  };
+
   return (
     <>
       <ul className={styles.adminOrdersCard}>
         <li>{user.lastname}</li>
         <li>{user.firstname}</li>
-        <li>{order.id}</li>
+        <li>{formatOrderNumber(order.id)}</li>
         <li className={styles.noBorderLi}>
           <ul>
             {getGroupedArticles(

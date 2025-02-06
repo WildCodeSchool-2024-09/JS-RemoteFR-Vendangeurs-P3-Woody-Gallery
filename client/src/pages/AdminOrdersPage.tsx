@@ -94,7 +94,7 @@ export default function AdminOrdersPage() {
     <div className={styles.adminOrders}>
       <div className={styles.interaction}>
         <input
-          placeholder="Recherche par nom"
+          placeholder="Recherche par nom ou prénom"
           onChange={(e) => handleSearch(e.target.value)}
           type="text"
         />
