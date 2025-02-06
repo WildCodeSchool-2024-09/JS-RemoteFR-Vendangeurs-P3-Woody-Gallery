@@ -3,7 +3,9 @@ import { NavLink } from "react-router-dom";
 import AdminArticles from "../components/AdminArticles";
 import AdminLogout from "../components/AdminLogout";
 import AdminMobile from "../components/AdminMobile";
+import AdminUsers from "../components/AdminUsers";
 import { ArticlesProvider } from "../contexts/AdminArticlesContext";
+import { UsersProvider } from "../contexts/AdminUsersContext";
 import { MyCollectionsProvider } from "../contexts/MyCollectionContext";
 import styles from "../styles/AdminPage.module.css";
 import AdminOrdersPage from "./AdminOrdersPage";
@@ -87,6 +89,11 @@ export default function AdminPage() {
                 <AdminArticles />
               </MyCollectionsProvider>
             </ArticlesProvider>
+          )}
+          {isUsersPage && (
+            <UsersProvider>
+              <AdminUsers />
+            </UsersProvider>
           )}
           {isLogoutPage && <AdminLogout />}
           {isOrdersPage && <AdminOrdersPage />}

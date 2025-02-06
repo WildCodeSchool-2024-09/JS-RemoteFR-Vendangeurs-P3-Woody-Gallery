@@ -19,6 +19,7 @@ router.delete("/api/orders/:id", ordersAction.destroy);
 import usersActions from "./modules/users/usersActions";
 
 router.get("/api/users", usersActions.browse);
+router.get("/api/users-list", usersActions.browseUsers);
 router.get("/api/users/:id", usersActions.read);
 router.post("/api/users", usersActions.add);
 router.post("/api/auth/login", usersActions.login);
