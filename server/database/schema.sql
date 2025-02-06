@@ -125,18 +125,35 @@ INSERT INTO users ( id, firstname, lastname, email, password, is_admin)
 VALUES 
 ( 1 , "Woody", "Gallery", "woody@gmail.com", "$argon2d$v=19$m=65536,t=5,p=1$N1Dl3cqsJJzjhv9VcEZtpQ$LnawO/raZQGrIVWtYyHqar3+VXudyNMjePsrw3ZLkV8", 1),
 ( 2 , "Woody", "Gallery", "woody2@gmail.com", "$argon2d$v=19$m=65536,t=5,p=1$N1Dl3cqsJJzjhv9VcEZtpQ$LnawO/raZQGrIVWtYyHqar3+VXudyNMjePsrw3ZLkV8", 0),
-( 3 , "Machin", "yes", "machin@gmail.com", "$argon2d$v=19$m=65536,t=5,p=1$gvJN95BA1kPpicuNiAAChw$MfoCAYd+ssVUa6BMmTx11V/eViOQmMtGPP9lvqPP6nA", 0),
-( 4 , "Bernadette", "Machin", "bern@gmail.com", "$argon2d$v=19$m=65536,t=5,p=1$Osp1zqpkWOD1uaAvsViF1Q$ug9fPxwZijgy7ODos1J1pJxbZy+XCAiETs5h0MX3TZc", 0),
-( 5 , "Timoté", "Angoulem", "tim@gmail.com", "$argon2d$v=19$m=65536,t=5,p=1$OkMLY99OXgcrNZVjKobRRQ$PFz4ZNKifY+hVwD/Xy8LMSFMXDGoqVq5eqnNxVvQgzQ", 0);
+( 3 , "Benoît", "Vandanjon", "benoît@vandanjon.com", "$argon2d$v=19$m=65536,t=5,p=1$N1Dl3cqsJJzjhv9VcEZtpQ$LnawO/raZQGrIVWtYyHqar3+VXudyNMjePsrw3ZLkV8", 0),
+( 4 , "Anthony", "Gorski", "antho@poudlard.com", "$argon2d$v=19$m=65536,t=5,p=1$N1Dl3cqsJJzjhv9VcEZtpQ$LnawO/raZQGrIVWtYyHqar3+VXudyNMjePsrw3ZLkV8", 0),
+( 5 , "Ayoub", "Idrissi Ouedrhiri", "ioayoub@io.com", "$argon2d$v=19$m=65536,t=5,p=1$N1Dl3cqsJJzjhv9VcEZtpQ$LnawO/raZQGrIVWtYyHqar3+VXudyNMjePsrw3ZLkV8", 0),
+( 6 , "Yavuz", "Kutuk", "Yavuz@president.com", "$argon2d$v=19$m=65536,t=5,p=1$N1Dl3cqsJJzjhv9VcEZtpQ$LnawO/raZQGrIVWtYyHqar3+VXudyNMjePsrw3ZLkV8", 0),
+( 7 , "Timoté", "Angoulême", "tim@gmail.com", "$argon2d$v=19$m=65536,t=5,p=1$N1Dl3cqsJJzjhv9VcEZtpQ$LnawO/raZQGrIVWtYyHqar3+VXudyNMjePsrw3ZLkV8", 0),
+( 8 , "Bernadette", "Machin", "bern@gmail.com", "$argon2d$v=19$m=65536,t=5,p=1$N1Dl3cqsJJzjhv9VcEZtpQ$LnawO/raZQGrIVWtYyHqar3+VXudyNMjePsrw3ZLkV8", 0);
 
 INSERT INTO ratings (user_id, rating, comment, date)
 VALUES 
-(1, 5, "Les tableaux sont vraiment cool ! Je peux enfin habiller mes murs avec de magnifique photos", '2024-12-11 15:17:07'),
+(1, 5, "Les tableaux sont vraiment cool ! Je peux enfin habiller mes murs avec de magnifiques photos", '2024-12-11 15:17:07'),
 (2, 4, "Je trouve que c'est cool. Take my money !!!", '2025-01-11 10:44:07'),
-(3, 3, "C'est acceptable ! Un peu cher mais si non de bonne qualité ces photos", '2025-01-12 10:44:07'),
-(4, 2, "Mouais, de mon temps nous proposions quelque chose de meilleur", '2025-01-11 15:17:07'),
-(5, 1, "Bof joré fé ceu sitte otremant moa !!!!!", '2025-01-11 15:17:07');
+(3, 4, "Un peu cher et ça manque de dinosaures, mais sinon ces photos sont de bonne qualité", '2025-01-12 10:44:07'),
+(4, 3, "Déçu, les personnes ne bougent pas", '2025-01-12 10:44:07'),
+(5, 1, "Je suis un tyran, je n'aime donc pas ces photos", '2025-01-12 10:44:07'),
+(6, 5, "Classe pour décorer mon super bureau de président", '2025-01-12 10:44:07'),
+(7, 2, "Mouais, de mon temps nous proposions quelque chose de meilleur", '2025-01-11 15:17:07'),
+(8, 1, "Bof joré fé ceu sitte otremant moa !!!!!", '2025-01-11 15:17:07');
 
 INSERT INTO addresses ( id, street_number, street_name, postal_code, city, country, user_id)
 VALUES 
-(1, 8, 'rue du photographe', '13000', 'Marseille', 'France', 1);
+(1, 8, 'rue du photographe', '13000', 'Marseille', 'France', 1),
+(2, 8, 'rue du photographe', '13000', 'Marseille', 'France', 2),
+(3, 16, 'avenue des dragibus', '85200', 'Fontenay-le-Comte', 'France', 3),
+(4, 128, "allée l'OM", '13000', 'Marseille', 'France', 4),
+(5, 666, 'place des enfers', '44170', 'Jans', 'France', 5),
+(6, 1, "faubourg de l'Elysée", '67000', 'Strasbourg', 'France', 6);
+
+INSERT INTO orders (id, articles, total_amount, user_id)
+VALUES
+(1, '[1,1,12,30]', 129.98, 2),
+(2, '[4,5,6,30,30]', 144.95, 5),
+(3, '[7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7]', 2990, 3);
