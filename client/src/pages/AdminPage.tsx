@@ -6,6 +6,7 @@ import AdminMobile from "../components/AdminMobile";
 import { ArticlesProvider } from "../contexts/AdminArticlesContext";
 import { MyCollectionsProvider } from "../contexts/MyCollectionContext";
 import styles from "../styles/AdminPage.module.css";
+import AdminOrdersPage from "./AdminOrdersPage";
 
 export default function AdminPage() {
   const [isMobile, setIsMobile] = useState<boolean>(true);
@@ -88,6 +89,7 @@ export default function AdminPage() {
             </ArticlesProvider>
           )}
           {isLogoutPage && <AdminLogout />}
+          {isOrdersPage && <AdminOrdersPage />}
         </div>
       )}
     </section>

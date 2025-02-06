@@ -30,7 +30,7 @@ const edit: RequestHandler = async (req, res, next) => {
     const orders = {
       id: Number(req.params.id),
       date: req.body.date,
-      is_done: req.body.is_done,
+      status: req.body.status,
     };
     const affectedRows = await ordersRepository.update(orders);
 

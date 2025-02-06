@@ -56,7 +56,7 @@ export default function AdminArticles() {
 
   return (
     <div className={styles.adminArticles}>
-      <div className={styles.interraction}>
+      <div className={styles.interaction}>
         <input
           placeholder="Recherche par nom"
           onChange={handleSearch}

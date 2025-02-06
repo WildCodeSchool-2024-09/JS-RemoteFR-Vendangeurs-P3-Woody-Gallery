@@ -140,3 +140,8 @@ VALUES
 INSERT INTO addresses ( id, street_number, street_name, postal_code, city, country, user_id)
 VALUES 
 (1, 8, 'rue du photographe', '13000', 'Marseille', 'France', 1);
+
+INSERT INTO orders (id, articles, total_amount, user_id)
+VALUES
+(1, '[1,1,12,30]', 132.96, 2),
+(2, '[4,5,6,30,30]', 152.95, 3);

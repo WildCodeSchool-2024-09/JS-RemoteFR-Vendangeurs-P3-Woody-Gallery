@@ -70,6 +70,7 @@ export default function AccountOrders() {
       );
   }, []);
 
+  //Message personnalisé en fonction du statut de la commande
   const statusMessages: { [key in Order["status"]]: string } = {
     préparation: "En cours de préparation",
     livraison: "En cours de livraison",
