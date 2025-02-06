@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import AdminOrdersCard from "../components/AdminOrdersCard";
 import styles from "../styles/AdminOrdersPage.module.css";
 
@@ -71,6 +71,25 @@ export default function AdminOrdersPage() {
     );
   });
 
+  const fetchOrders = useCallback(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/api/orders`)
+      .then((response) => response.json())
+      .then((data) => {
+        setOrders(data);
+        const userIds = new Set<number>(
+          data.map((order: OrderProps) => order.user_id),
+        );
+        setUserIdsWithOrders(userIds);
+      })
+      .catch((error) =>
+        console.error("Erreur lors de la récupération des commandes :", error),
+      );
+  }, []);
+
+  useEffect(() => {
+    fetchOrders();
+  }, [fetchOrders]);
+
   return (
     <div className={styles.adminOrders}>
       <div className={styles.interaction}>
@@ -102,7 +121,7 @@ export default function AdminOrdersPage() {
             key={order.id}
             user={user}
             order={order}
-            onReload={() => {}}
+            onReload={fetchOrders}
           />
         ) : null;
       })}

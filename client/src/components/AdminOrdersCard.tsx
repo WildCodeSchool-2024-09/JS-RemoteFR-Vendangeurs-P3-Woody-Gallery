@@ -189,7 +189,7 @@ export default function AdminOrdersCard({
 
       {modalChangeStatus && (
         <ModalChangeStatus
-          handleCloseModal={() => setModalChangeStatus(false)}
+          handleCloseModalStatus={() => setModalChangeStatus(false)}
           onConfirm={handleChangeStatus}
           nextStatus={getNextStatus(order.status)}
         />
