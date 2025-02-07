@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import ArticleDetails from "../components/ArticleDetails";
-import SimilarArticlesCarousel from "../components/SimilarArticlesCarousel";
-import styles from "../styles/ArticleDetails.module.css";
+import ArticleDetails from "../components/ShopPage/ArticlePage/ArticleDetails";
+import SimilarArticlesCarousel from "../components/ShopPage/ArticlePage/SimilarArticlesCarousel";
+import styles from "../styles/ShopPage/ArticlePage/ArticleDetails.module.css";
 
 type Article = {
   id: number;

@@ -1,5 +1,5 @@
-import Order from "../components/Order";
-import styles from "../styles/OrderPage.module.css";
+import Order from "../components/Cart/Order";
+import styles from "../styles/Cart/OrderPage.module.css";
 
 export default function OrderPage() {
   return (

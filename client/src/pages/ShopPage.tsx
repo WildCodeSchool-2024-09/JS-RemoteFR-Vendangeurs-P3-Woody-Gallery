@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import Filters from "../components/Filters";
-import SearchBar from "../components/SearchBar";
-import ShopPhotos from "../components/ShopPhotos";
-import styles from "../styles/ShopPage.module.css";
+import Filters from "../components/ShopPage/Filters";
+import SearchBar from "../components/ShopPage/SearchBar";
+import ShopPhotos from "../components/ShopPage/ShopPhotos";
+import styles from "../styles/ShopPage/ShopPage.module.css";
 
 interface PhotosProps {
   id: number;

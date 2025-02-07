@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
-import AdminOrdersCard from "../components/AdminOrdersCard";
-import styles from "../styles/AdminOrdersPage.module.css";
+import AdminOrdersCard from "../components/AdminPage/Orders/AdminOrdersCard";
+import styles from "../styles/AdminPage/Orders/AdminOrdersPage.module.css";
 
 interface UserProps {
   id: number;
