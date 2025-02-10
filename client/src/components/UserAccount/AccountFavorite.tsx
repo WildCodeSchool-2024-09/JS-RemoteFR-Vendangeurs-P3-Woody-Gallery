@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import styles from "../../styles/UserAccount/AccountFavorite.module.css";
 
 interface Article {
@@ -36,7 +37,9 @@ export default function FavoriteAccount() {
                 .filter((article) => favoriteIds.includes(article.id))
                 .map((article) => (
                   <section key={article.id} className={styles.favoriteArticles}>
-                    <li className={styles.name}>{article.name}</li>
+                    <NavLink to={`/shop/article/${article.id}`}>
+                      <li className={styles.name}>{article.name}</li>
+                    </NavLink>
                     {article.stock > 0 ? (
                       <p className={styles.stock}>
                         <span
