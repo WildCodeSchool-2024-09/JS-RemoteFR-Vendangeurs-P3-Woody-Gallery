@@ -199,7 +199,7 @@ const login: RequestHandler = async (req, res, next) => {
 
     res
       .cookie("authToken", token, {
-        httpOnly: true,
+        httpOnly: false,
         sameSite: "strict",
         maxAge: 24 * 1000 * 60 * 60,
       })
