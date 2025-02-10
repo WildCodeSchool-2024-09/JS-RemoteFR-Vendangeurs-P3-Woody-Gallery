@@ -23,6 +23,7 @@ export default function ArticleDetails({
   const [showFullDescription, setShowFullDescription] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const [addToOrder, setAddToOrder] = useState(0);
+  const isAuth = localStorage.getItem("isAuth") === "true";
 
   useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
@@ -46,16 +47,20 @@ export default function ArticleDetails({
   }, []);
 
   const handleFavoriteClick = () => {
-    const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-    let updatedFavorites: number[];
-
-    if (!isFavorite) {
-      updatedFavorites = [...favorites, id];
+    if (isAuth === false) {
+      alert("Merci de vous connecter pour ajouter des favoris");
     } else {
-      updatedFavorites = favorites.filter((fav: number) => fav !== id);
+      const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+      let updatedFavorites: number[];
+
+      if (!isFavorite) {
+        updatedFavorites = [...favorites, id];
+      } else {
+        updatedFavorites = favorites.filter((fav: number) => fav !== id);
+      }
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+      setIsFavorite(!isFavorite);
     }
-    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-    setIsFavorite(!isFavorite);
   };
 
   const handleAddToOrder = () => {
