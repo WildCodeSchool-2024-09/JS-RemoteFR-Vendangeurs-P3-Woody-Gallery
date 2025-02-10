@@ -29,7 +29,7 @@ export default function HomeReviews() {
 
     fetchReviews();
 
-    const intervalId = setInterval(fetchReviews, 300000);
+    const intervalId = setInterval(fetchReviews, 2000);
 
     handleMediaQ();
     window.addEventListener("resize", handleMediaQ);
