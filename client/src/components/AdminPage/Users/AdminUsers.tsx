@@ -56,6 +56,11 @@ export default function AdminUsers() {
           ratings={user.ratings}
         />
       ))}
+      {search && usersSearch.length === 0 && (
+        <p className={styles.notFound}>
+          Aucun utilisateur ne correspond à votre recherche
+        </p>
+      )}
     </div>
   );
 }

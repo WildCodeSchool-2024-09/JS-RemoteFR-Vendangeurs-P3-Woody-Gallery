@@ -93,3 +93,17 @@
     }
   }
 }
+.notFound {
+  text-align: center;
+  background-color: var(--background-secondary-color);
+  color: var(--fontcolor-white);
+  font-family: var(--font-grotesk);
+  font-size: 19px;
+  padding: .5rem 1rem;
+  align-self: center;
+  justify-self: center;
+  margin: 3rem 0 8rem 0;
+  -webkit-box-shadow: 0px 5px 15px 3px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 5px 15px 3px rgba(0, 0, 0, 0.75);
+  cursor: default;
+}

@@ -55,6 +55,8 @@ export default function ShopPage() {
     const collectionId = searchParams.get("collection");
     if (collectionId) {
       setSelectedCollections([Number.parseInt(collectionId, 10)]);
+    } else {
+      setSelectedCollections([]);
     }
   }, [searchParams]);
 

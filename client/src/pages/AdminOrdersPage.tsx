@@ -164,6 +164,11 @@ export default function AdminOrdersPage() {
           />
         ) : null;
       })}
+      {searchTerm && filteredOrders.length === 0 && (
+        <p className={styles.notFound}>
+          Aucun utilisateur ne correspond à votre recherche
+        </p>
+      )}
     </div>
   );
 }
