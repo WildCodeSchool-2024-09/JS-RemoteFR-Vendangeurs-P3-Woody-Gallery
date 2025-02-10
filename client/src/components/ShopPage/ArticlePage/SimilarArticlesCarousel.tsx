@@ -10,7 +10,6 @@ type Article = {
     name: string;
     image: string;
     price: string;
-    collection_id: number;
   };
 };
 
