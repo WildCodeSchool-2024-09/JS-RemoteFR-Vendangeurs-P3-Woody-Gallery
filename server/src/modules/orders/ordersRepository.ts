@@ -4,7 +4,7 @@ import type { Result, Rows } from "../../../database/client";
 type Orders = {
   id: number;
   date: string;
-  is_done: boolean;
+  status: string;
 };
 
 class OrdersRepository {
@@ -47,8 +47,8 @@ class OrdersRepository {
 
   async update(orders: Orders) {
     const [result] = await databaseClient.query<Result>(
-      "update orders set is_done = ? where id = ?",
-      [orders.is_done, orders.id],
+      "update orders set status = ? where id = ?",
+      [orders.status, orders.id],
     );
     return result.affectedRows;
   }

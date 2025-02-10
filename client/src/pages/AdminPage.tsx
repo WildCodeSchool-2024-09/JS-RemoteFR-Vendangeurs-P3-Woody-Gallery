@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import AdminArticles from "../components/AdminArticles";
-import AdminLogout from "../components/AdminLogout";
-import AdminMobile from "../components/AdminMobile";
-import AdminUsers from "../components/AdminUsers";
+import AdminLogout from "../components/AdminPage/AdminLogout";
+import AdminMobile from "../components/AdminPage/AdminMobile";
+import AdminArticles from "../components/AdminPage/Articles/AdminArticles";
+import AdminUsers from "../components/AdminPage/Users/AdminUsers";
 import { ArticlesProvider } from "../contexts/AdminArticlesContext";
 import { UsersProvider } from "../contexts/AdminUsersContext";
 import { MyCollectionsProvider } from "../contexts/MyCollectionContext";
-import styles from "../styles/AdminPage.module.css";
+import styles from "../styles/AdminPage/AdminPage.module.css";
+import AdminOrdersPage from "./AdminOrdersPage";
 
 export default function AdminPage() {
   const [isMobile, setIsMobile] = useState<boolean>(true);
@@ -95,6 +96,7 @@ export default function AdminPage() {
             </UsersProvider>
           )}
           {isLogoutPage && <AdminLogout />}
+          {isOrdersPage && <AdminOrdersPage />}
         </div>
       )}
     </section>

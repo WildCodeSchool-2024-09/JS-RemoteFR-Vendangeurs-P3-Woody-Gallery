@@ -1,6 +1,6 @@
-import LogInConnect from "../components/LogInConnect";
-import LogInCreate from "../components/LogInCreate";
-import styles from "../styles/ConnectionPage.module.css";
+import LogInConnect from "../components/Login/LogInConnect";
+import LogInCreate from "../components/Login/LogInCreate";
+import styles from "../styles/Login/ConnectionPage.module.css";
 
 export default function ConnectionPage() {
   return (
