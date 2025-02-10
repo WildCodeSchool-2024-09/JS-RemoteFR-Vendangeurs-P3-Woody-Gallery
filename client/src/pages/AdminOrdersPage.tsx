@@ -22,13 +22,18 @@ export default function AdminOrdersPage() {
   const [userIdsWithOrders, setUserIdsWithOrders] = useState<Set<number>>(
     new Set(),
   );
+  const [sortMenuOpen, setSortMenuOpen] = useState(false);
+  const [selectedStatus, setSelectedStatus] = useState<string | null>(null);
 
   useEffect(() => {
+    fetchOrders();
+  }, []);
+
+  const fetchOrders = useCallback(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/orders`)
       .then((response) => response.json())
       .then((data) => {
         setOrders(data);
-
         const userIds = new Set<number>(
           data.map((order: OrderProps) => order.user_id),
         );
@@ -62,33 +67,26 @@ export default function AdminOrdersPage() {
     setSearchTerm(term);
   };
 
+  const handleSortClick = () => {
+    setSortMenuOpen(!sortMenuOpen);
+  };
+
+  const handleSortSelection = (status: string | null) => {
+    setSelectedStatus(status);
+    setSortMenuOpen(false);
+  };
+
   const filteredOrders = orders.filter((order) => {
     const user = users.find((u) => u.id === order.user_id);
-    return (
+    const matchesSearch =
       user &&
       (user.firstname.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        user.lastname.toLowerCase().includes(searchTerm.toLowerCase()))
-    );
+        user.lastname.toLowerCase().includes(searchTerm.toLowerCase()));
+    const matchesStatus = selectedStatus
+      ? order.status === selectedStatus
+      : true;
+    return matchesSearch && matchesStatus;
   });
-
-  const fetchOrders = useCallback(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/orders`)
-      .then((response) => response.json())
-      .then((data) => {
-        setOrders(data);
-        const userIds = new Set<number>(
-          data.map((order: OrderProps) => order.user_id),
-        );
-        setUserIdsWithOrders(userIds);
-      })
-      .catch((error) =>
-        console.error("Erreur lors de la récupération des commandes :", error),
-      );
-  }, []);
-
-  useEffect(() => {
-    fetchOrders();
-  }, [fetchOrders]);
 
   return (
     <div className={styles.adminOrders}>
@@ -111,7 +109,48 @@ export default function AdminOrdersPage() {
         <li>Numéro de commande</li>
         <li>Articles</li>
         <li>Quantité</li>
-        <li>Statut</li>
+        <li>
+          Statut
+          <button
+            type="button"
+            className={`material-symbols-outlined ${styles.sortStatus}`}
+            onClick={handleSortClick}
+          >
+            filter_list
+          </button>
+          {sortMenuOpen && (
+            <div className={styles.sortMenu}>
+              <button
+                type="button"
+                className={styles.sortButtons}
+                onClick={() => handleSortSelection("préparation")}
+              >
+                Nouvelle commande
+              </button>
+              <button
+                type="button"
+                className={styles.sortButtons}
+                onClick={() => handleSortSelection("livraison")}
+              >
+                Commande envoyée
+              </button>
+              <button
+                type="button"
+                className={styles.sortButtons}
+                onClick={() => handleSortSelection("terminé")}
+              >
+                Commande livrée
+              </button>
+              <button
+                type="button"
+                className={styles.sortButtons}
+                onClick={() => handleSortSelection(null)}
+              >
+                Réinitialiser
+              </button>
+            </div>
+          )}
+        </li>
         <li className={styles.last}>Actions</li>
       </ul>
       {filteredOrders.map((order) => {

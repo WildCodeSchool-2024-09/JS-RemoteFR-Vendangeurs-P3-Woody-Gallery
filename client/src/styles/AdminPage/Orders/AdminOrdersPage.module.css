@@ -68,4 +68,28 @@
       border-right: none;
     }
   }
+
+  .sortStatus {
+    background-color: var(--background-secondary-color);
+    border: none;
+    color: var(--fontcolor-white);
+    margin-left: 1rem;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .sortMenu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 8.5rem;
+    z-index: 10;
+
+    .sortButtons {
+      background: var(--background-secondary-color);
+      color: var(--fontcolor-white);
+      font-size: 1rem;
+      padding: 0.5rem;
+    }
+  }
 }
