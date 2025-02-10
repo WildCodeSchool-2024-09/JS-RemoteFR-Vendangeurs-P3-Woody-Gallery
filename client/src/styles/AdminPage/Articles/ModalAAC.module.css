@@ -12,6 +12,8 @@
 
   form {
     width: 70%;
+    max-height: 100vh;
+    overflow: scroll;
     background-color: var(--background-secondary-color);
     display: flex;
     justify-content: flex-start;
