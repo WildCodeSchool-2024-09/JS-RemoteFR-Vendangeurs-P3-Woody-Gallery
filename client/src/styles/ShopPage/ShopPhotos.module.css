@@ -49,6 +49,20 @@
       object-fit: cover;
     }
 
+    .news {
+      position: absolute;
+      top: 1rem;
+      color: var(--fontcolor-white);
+      font-family: var(--font-grotesk);
+      background-color: var(--color-red);
+      padding: 0 1rem 0 .5rem;
+      display: flex;
+      left: -.2rem;
+      z-index: 20;
+      cursor: default;
+      clip-path: polygon(0% 0%, 100% 0, 100% 0, 90% 100%, 0% 100%);
+    }
+
     .name {
       position: absolute;
       bottom: 0;

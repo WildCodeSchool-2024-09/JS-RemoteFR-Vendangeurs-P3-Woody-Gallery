@@ -80,12 +80,19 @@ export default function Header() {
       </ul>
 
       <ul className={styles.ulUser}>
-        <NavLink className={styles.navLink} to="/">
-          <li>
-            <span className="material-symbols-outlined">favorite</span>
-            <p>Favoris</p>
-          </li>
-        </NavLink>
+        {isAuth ? (
+          <NavLink
+            className={styles.navLink}
+            to={`/user/${userName}/favorites`}
+          >
+            <li>
+              <span className="material-symbols-outlined">favorite</span>
+              <p>Favoris</p>
+            </li>
+          </NavLink>
+        ) : (
+          ""
+        )}
         <NavLink className={`${styles.navLink} ${styles.order}`} to="/panier">
           <li>
             <span className="material-symbols-outlined">shopping_cart</span>

@@ -12,6 +12,8 @@
 
   div {
     width: 70%;
+    max-height: 100vh;
+    overflow: scroll;
     background-color: var(--background-secondary-color);
     display: flex;
     justify-content: flex-start;
@@ -19,8 +21,6 @@
     flex-direction: column;
     padding-bottom: 1rem;
     position: relative;
-    overflow: hidden;
-    max-height: 90vh;
 
     .exit {
       background-color: transparent;

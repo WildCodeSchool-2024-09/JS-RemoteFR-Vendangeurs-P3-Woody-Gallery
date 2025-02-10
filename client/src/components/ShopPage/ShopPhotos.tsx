@@ -33,6 +33,7 @@ export default function ShopPhotos({ photo }: PhotoProps) {
           src={`${import.meta.env.VITE_API_URL}/${photo.image}`}
           alt={photo.name}
         />
+        {photo.collection_id === 2 && <p className={styles.news}>nouveauté</p>}
         <p className={styles.name}>{photo.name}</p>
         <p className={styles.price}>{photo.price} €</p>
       </figure>

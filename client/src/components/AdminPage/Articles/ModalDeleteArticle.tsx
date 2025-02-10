@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useArticles } from "../../../contexts/AdminArticlesContext";
 import styles from "../../../styles/AdminPage/Articles/ModalDeleteArticle.module.css";
@@ -16,40 +16,49 @@ export default function ModalDeleteArticle({
   photos,
 }: ModalDeleteProps) {
   const [isValid, setIsValid] = useState<boolean>(false);
-  const [isClicked, setIsClicked] = useState<boolean>(false);
   const { fetchArticles } = useArticles();
   const navigate = useNavigate();
 
   const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value === "Supprimer") {
-      setIsValid(true);
-    } else {
-      setIsValid(false);
-    }
+    setIsValid(e.target.value === "Supprimer");
   };
 
-  const handleClick = () => {
-    setIsClicked((prev) => !prev);
-  };
+  const handleDelete = async () => {
+    if (!isValid) return;
 
-  useEffect(() => {
-    if (isValid && isClicked) {
-      fetch(`${import.meta.env.VITE_API_URL}/api/photos/${photos.id}`, {
-        method: "DELETE",
-      });
+    try {
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/photos/${photos.id}`,
+        {
+          method: "DELETE",
+        },
+      );
+
+      if (!res.ok) {
+        throw new Error("Erreur lors de la suppression de l'article");
+      }
+
+      await fetchArticles();
       handleCloseModalDelete();
-      fetchArticles();
       navigate("/admin/articles");
+    } catch (error) {
+      console.error(error);
     }
-  });
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleDelete();
+    }
+  };
 
   return (
     <div className={styles.modalDeleteArticle}>
-      <form>
+      <form onSubmit={(e) => e.preventDefault()}>
         <h2>Confirmer la suppression ?</h2>
         <button
           onClick={handleCloseModalDelete}
-          onKeyDown={handleCloseModalDelete}
           className={`material-symbols-outlined ${styles.exit}`}
           type="button"
         >
@@ -62,19 +71,17 @@ export default function ModalDeleteArticle({
           Entrez "<span className={styles.delete}>Supprimer</span>" pour valider
           la suppression de l'article.
         </p>
-        <input onChange={handleCheck} type="text" />
+        <input onChange={handleCheck} onKeyDown={handleKeyDown} type="text" />
         <div>
           <button
             onClick={handleCloseModalDelete}
-            onKeyDown={handleCloseModalDelete}
             className={`material-symbols-outlined ${styles.cancelDelete}`}
             type="button"
           >
             <p>Annuler</p> cancel
           </button>
           <button
-            onClick={handleClick}
-            onKeyDown={handleClick}
+            onClick={handleDelete}
             className={`material-symbols-outlined ${isValid ? styles.valideDelete : styles.usualDelete}`}
             type="button"
           >

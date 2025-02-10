@@ -24,9 +24,16 @@ export default function ModalDeleteOrder({
     }
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (isValid) {
+      onConfirm();
+    }
+  };
+
   return (
     <div className={styles.modalDeleteOrder}>
-      <form>
+      <form onSubmit={handleSubmit}>
         <h2>Confirmer la suppression ?</h2>
         <button
           onClick={handleCloseModalDelete}
