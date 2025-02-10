@@ -1,26 +1,25 @@
-import styles from "../../../styles/AdminPage/Orders/ModalChangeStatus.module.css";
+import { useState } from "react";
+import styles from "../../styles/AdminPage/Orders/ModalChangeStatus.module.css";
 
-interface ModalDeleteOrderProps {
+interface AccountDeleteModalProps {
   handleCloseModalDelete: () => void;
   onConfirm: () => void;
-  isValid: boolean;
-  setIsValid: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsClicked: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function ModalDeleteOrder({
+export default function AccountDeleteModal({
   handleCloseModalDelete,
   onConfirm,
-  setIsClicked,
-  isValid,
-  setIsValid,
-}: ModalDeleteOrderProps) {
+}: AccountDeleteModalProps) {
+  const [isValid, setIsValid] = useState<boolean>(false);
+
   const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value === "Supprimer") {
-      setIsValid(true);
-      setIsClicked(true);
-    } else {
-      setIsValid(false);
+    setIsValid(e.target.value === "Supprimer");
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && isValid) {
+      e.preventDefault();
+      onConfirm();
     }
   };
 
@@ -30,7 +29,6 @@ export default function ModalDeleteOrder({
         <h2>Confirmer la suppression ?</h2>
         <button
           onClick={handleCloseModalDelete}
-          onKeyDown={handleCloseModalDelete}
           className={`material-symbols-outlined ${styles.exit}`}
           type="button"
         >
@@ -38,9 +36,16 @@ export default function ModalDeleteOrder({
         </button>
         <p>
           Entrez "<span className={styles.delete}>Supprimer</span>" pour valider
-          la suppression de la commande.
+          la suppression du compte. Cette action est irréversible !
         </p>
-        <input onChange={handleCheck} type="text" />
+        <input
+          onChange={handleCheck}
+          onKeyDown={handleKeyDown}
+          type="text"
+          placeholder="Tapez 'Supprimer'"
+          className={styles.inputs}
+        />
+
         <div className={styles.actions}>
           <button
             onClick={handleCloseModalDelete}

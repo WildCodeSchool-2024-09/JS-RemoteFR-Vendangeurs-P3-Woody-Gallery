@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "../../styles/UserAccount/AccountAddresses.module.css";
+import AccountDeleteAddress from "./AccountDeleteAddress";
 
 type AddressesProps = {
   id?: number;
@@ -27,6 +28,9 @@ export default function Addresses() {
     user_id: 0,
   });
   const [isNewButtonClicked, setIsNewButtonClicked] = useState(false);
+  const [modalDelete, setModalDelete] = useState(false);
+  const [isValid, setIsValid] = useState<boolean>(false);
+  const [deleteIsClicked, setDeleteIsClicked] = useState<boolean>(false);
 
   const toggleClick = () => {
     setIsClicked(!isClicked);
@@ -110,17 +114,27 @@ export default function Addresses() {
       .catch((error) => console.error("Erreur lors de la création:", error));
   };
 
-  const handleDelete = () => {
-    if (!users) return;
-    fetch(`${import.meta.env.VITE_API_URL}/api/addresses/${users}`, {
-      method: "DELETE",
-    })
-      .then((response) => {
+  const handleDelete = async () => {
+    try {
+      if (isValid && deleteIsClicked) {
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/addresses/${users}`,
+          {
+            method: "DELETE",
+          },
+        );
         if (response.ok) {
           setAddress(null);
+          setModalDelete(false);
+        } else {
+          console.error("Erreur lors de la suppression de l'adresse'");
         }
-      })
-      .catch((error) => console.error("Erreur lors de la suppression:", error));
+      }
+    } catch (err) {
+      console.error("Erreur lors de la suppression de l'adresse' :", err);
+    }
+
+    setModalDelete(false);
   };
 
   const handleChange = (
@@ -141,8 +155,30 @@ export default function Addresses() {
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleEdit();
+    }
+  };
+  const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleAdd();
+    }
+  };
+
   return (
     <section className={styles.addresses}>
+      {modalDelete && (
+        <AccountDeleteAddress
+          handleCloseModalDelete={() => setModalDelete(false)}
+          onConfirm={handleDelete}
+          isValid={isValid}
+          setIsValid={setIsValid}
+          setDeleteIsClicked={setDeleteIsClicked}
+        />
+      )}
       <section className={address ? styles.container : styles.newContainer}>
         {address ? (
           isClicked ? (
@@ -152,6 +188,7 @@ export default function Addresses() {
                 value={editedAddress?.street_number || ""}
                 placeholder="Numéro de rue"
                 onChange={(e) => handleChange("street_number", e.target.value)}
+                onKeyDown={handleKeyDown}
                 className={styles.input}
               />
               <input
@@ -159,6 +196,7 @@ export default function Addresses() {
                 placeholder="Nom de la rue"
                 value={editedAddress?.street_name || ""}
                 onChange={(e) => handleChange("street_name", e.target.value)}
+                onKeyDown={handleKeyDown}
                 className={styles.input}
               />
               <input
@@ -166,6 +204,7 @@ export default function Addresses() {
                 placeholder="Code postal"
                 value={editedAddress?.postal_code || ""}
                 onChange={(e) => handleChange("postal_code", e.target.value)}
+                onKeyDown={handleKeyDown}
                 className={styles.input}
               />
               <input
@@ -173,6 +212,7 @@ export default function Addresses() {
                 placeholder="Ville"
                 value={editedAddress?.city || ""}
                 onChange={(e) => handleChange("city", e.target.value)}
+                onKeyDown={handleKeyDown}
                 className={styles.input}
               />
               <input
@@ -180,6 +220,7 @@ export default function Addresses() {
                 placeholder="Pays"
                 value={editedAddress?.country || ""}
                 onChange={(e) => handleChange("country", e.target.value)}
+                onKeyDown={handleKeyDown}
                 className={styles.input}
               />
               <section className={styles.updateButtons}>
@@ -216,7 +257,7 @@ export default function Addresses() {
                 <button
                   type="button"
                   className={styles.buttonModDel}
-                  onClick={handleDelete}
+                  onClick={() => setModalDelete(true)}
                 >
                   Effacer
                 </button>
@@ -240,24 +281,28 @@ export default function Addresses() {
               type="text"
               placeholder="Nom de la rue"
               onChange={(e) => handleNewChange("street_name", e.target.value)}
+              onKeyUp={handleKeyUp}
               className={styles.input}
             />
             <input
               type="text"
               placeholder="Code postal"
               onChange={(e) => handleNewChange("postal_code", e.target.value)}
+              onKeyUp={handleKeyUp}
               className={styles.input}
             />
             <input
               type="text"
               placeholder="Ville"
               onChange={(e) => handleNewChange("city", e.target.value)}
+              onKeyUp={handleKeyUp}
               className={styles.input}
             />
             <input
               type="text"
               placeholder="Pays"
               onChange={(e) => handleNewChange("country", e.target.value)}
+              onKeyUp={handleKeyUp}
               className={styles.input}
             />
             <section className={styles.newAddressButtons}>
