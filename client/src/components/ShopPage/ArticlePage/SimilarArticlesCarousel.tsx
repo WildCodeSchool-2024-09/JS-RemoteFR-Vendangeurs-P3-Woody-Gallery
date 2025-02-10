@@ -10,6 +10,7 @@ type Article = {
     name: string;
     image: string;
     price: string;
+    collection_id: number;
   };
 };
 
@@ -111,6 +112,7 @@ export default function SimilarArticlesCarousel({
                   src={`${import.meta.env.VITE_API_URL}/${article.photos.image}`}
                   alt={article.photos.name}
                 />
+                {article.id === 2 && <p className={styles.news}>nouveauté</p>}
                 <p className={styles.name}>{article.photos.name}</p>
                 <p className={styles.price}>{article.photos.price} €</p>
               </figure>
