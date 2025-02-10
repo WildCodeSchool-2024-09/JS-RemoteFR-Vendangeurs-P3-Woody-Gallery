@@ -63,7 +63,12 @@ export const updateAddress = async (id: number, address: Address) => {
 };
 
 // Supprimer une adresse
-export const deleteAddress = async (id: number) => {
-  const query = "DELETE FROM addresses WHERE id = ?";
-  return db.execute(query, [id]);
+export const deleteAddress = async (user_id: number) => {
+  const query = `
+  DELETE addresses 
+  FROM addresses 
+  INNER JOIN users ON addresses.user_id = users.id 
+  WHERE addresses.user_id = ?;
+`;
+  return db.execute(query, [user_id]);
 };
