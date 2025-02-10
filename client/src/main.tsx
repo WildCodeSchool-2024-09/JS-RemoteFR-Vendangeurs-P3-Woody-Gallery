@@ -52,11 +52,11 @@ const router = createBrowserRouter([
           },
         ],
       },
+      // CONNEXION ADMIN
       {
         path: "admin",
         element: <AuthAdmin />,
         children: [
-          // CONNEXION ADMIN
           { path: "articles", element: <AdminPage /> },
           { path: "users", element: <AdminPage /> },
           { path: "orders", element: <AdminPage /> },

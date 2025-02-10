@@ -86,6 +86,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const logout = () => {
     setUser(null);
+    localStorage.removeItem("isAuth");
+    localStorage.removeItem("isAdmin");
+    sessionStorage.removeItem("user");
+    sessionStorage.removeItem("userName");
   };
 
   return (
