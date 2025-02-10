@@ -46,14 +46,14 @@
       list-style-type: none;
       font-size: 14px;
 
-      li {
-        margin-bottom: 0.75rem;
-        cursor: pointer;
+      a {
+        font-family: var(--font-grotesk);
+        color: var(--fontcolor-black);
+        text-decoration: none;
 
-        a {
-          font-family: var(--font-grotesk);
-          color: var(--fontcolor-black);
-          text-decoration: none;
+        li {
+          margin-bottom: 0.75rem;
+          cursor: pointer;
         }
       }
 

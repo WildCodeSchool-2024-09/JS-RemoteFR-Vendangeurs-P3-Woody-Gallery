@@ -29,11 +29,12 @@ export default function Footer() {
         <h3>Shop</h3>
         <ul>
           {collections.map((collection) => (
-            <li key={`collectionFooter${collection.id}`}>
-              <NavLink to={`/shop?collection=${collection.id}`}>
-                Collection {collection.name}
-              </NavLink>
-            </li>
+            <NavLink
+              key={`collectionFooter${collection.id}`}
+              to={`/shop?collection=${collection.id}`}
+            >
+              <li>Collection {collection.name}</li>
+            </NavLink>
           ))}
         </ul>
       </article>
