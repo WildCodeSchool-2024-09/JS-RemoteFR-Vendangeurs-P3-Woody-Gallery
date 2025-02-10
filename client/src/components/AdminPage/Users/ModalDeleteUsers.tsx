@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUsers } from "../../../contexts/AdminUsersContext";
-import styles from "../../../styles/AdminPage/Users/UserModal.module.css";
+import styles from "../../../styles/AdminPage/Articles/ModalDeleteArticle.module.css";
 
 type ModalProps = {
   handleDeleteFalse: () => void;
