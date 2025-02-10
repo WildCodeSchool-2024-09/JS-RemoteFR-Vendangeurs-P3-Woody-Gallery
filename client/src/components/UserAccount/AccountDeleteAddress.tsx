@@ -1,39 +1,39 @@
-import styles from "../../../styles/AdminPage/Orders/ModalChangeStatus.module.css";
+import styles from "../../styles/AdminPage/Orders/ModalChangeStatus.module.css";
 
-interface ModalDeleteOrderProps {
+interface AccountDeleteAddressProps {
   handleCloseModalDelete: () => void;
   onConfirm: () => void;
   isValid: boolean;
   setIsValid: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsClicked: React.Dispatch<React.SetStateAction<boolean>>;
+  setDeleteIsClicked: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function ModalDeleteOrder({
+export default function AccountDeleteAddress({
   handleCloseModalDelete,
   onConfirm,
-  setIsClicked,
+  setDeleteIsClicked,
   isValid,
   setIsValid,
-}: ModalDeleteOrderProps) {
+}: AccountDeleteAddressProps) {
   const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value === "Supprimer") {
       setIsValid(true);
-      setIsClicked(true);
+      setDeleteIsClicked(true);
     } else {
       setIsValid(false);
     }
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (isValid) {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && isValid) {
+      e.preventDefault();
       onConfirm();
     }
   };
 
   return (
     <div className={styles.modalDeleteOrder}>
-      <form onSubmit={handleSubmit}>
+      <form>
         <h2>Confirmer la suppression ?</h2>
         <button
           onClick={handleCloseModalDelete}
@@ -45,9 +45,9 @@ export default function ModalDeleteOrder({
         </button>
         <p>
           Entrez "<span className={styles.delete}>Supprimer</span>" pour valider
-          la suppression de la commande.
+          la suppression de l'adresse'.
         </p>
-        <input onChange={handleCheck} type="text" />
+        <input onChange={handleCheck} onKeyDown={handleKeyDown} type="text" />
         <div className={styles.actions}>
           <button
             onClick={handleCloseModalDelete}

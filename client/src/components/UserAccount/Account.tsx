@@ -61,6 +61,11 @@ export default function Account() {
           valueName="password"
           onReload={handleReload}
         />
+        <AccountLine
+          value={"Supprimer le compte"}
+          valueName="deleteAccount"
+          onReload={handleReload}
+        />
       </div>
     </section>
   );

@@ -54,13 +54,24 @@
     padding: 1rem;
   }
 }
+.deleteButton {
+  margin: 0.7rem;
+  border-radius: 8px;
+  padding: 0 .2rem 0 .2rem;
+  background-color: red;
+
+  @media screen and (min-width: 1200px) {
+    padding: 1rem 0.3rem;
+  }
+}
 
 .colorButton {
   background-color: #10ab00;
   color: var(--fontcolor-white);
 }
 
-.editIcon {
+.editIcon,
+.deleteIcon {
   font-size: 2rem;
   margin-top: 0.1rem;
 
@@ -149,7 +160,8 @@
   }
 }
 
-#desktopModify {
+#desktopModify,
+#desktopDeleteAccount {
   display: none;
 
   @media screen and (min-width: 1200px) {
@@ -166,5 +178,10 @@
     display: inline;
     font-size: 1.3rem;
     margin: 0 2.8rem;
+  }
+
+  .deleteButton {
+    font-family: var(--font-grotesk);
+    background-color: var(--background-secondary-color);
   }
 }

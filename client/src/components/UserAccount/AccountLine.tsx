@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "../../styles/UserAccount/AccountLine.module.css";
+import AccountDeleteModal from "./AccountDeleteModal";
 
 type AccountLineProps = {
   value: string;
@@ -17,6 +18,7 @@ export default function AccountLine({
   const [data, setData] = useState(value);
   const [error, setError] = useState<string | null>(null);
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
+  const [modalDelete, setModalDelete] = useState(false);
   const user = sessionStorage.getItem("user");
 
   const toggleClick = () => {
@@ -100,8 +102,45 @@ export default function AccountLine({
     }
   };
 
+  const handleDeleteAccount = async () => {
+    if (!user) return;
+
+    const confirmDelete = window.confirm(
+      "Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.",
+    );
+
+    if (!confirmDelete) return;
+
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/users/${user}`,
+        {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+        },
+      );
+
+      if (response.ok) {
+        alert("Votre compte a été supprimé.");
+        sessionStorage.clear();
+        window.location.href = "/";
+      } else {
+        const errorData = await response.json();
+        alert(errorData.message || "Erreur lors de la suppression du compte.");
+      }
+    } catch (err) {
+      console.error("Erreur lors de la suppression du compte:", err);
+    }
+  };
+
   return (
     <section className={styles.account}>
+      {modalDelete && (
+        <AccountDeleteModal
+          handleCloseModalDelete={() => setModalDelete(false)}
+          onConfirm={handleDeleteAccount}
+        />
+      )}
       <section className={styles.lines}>
         <div className={styles.container}>
           {isClicked ? (
@@ -176,18 +215,32 @@ export default function AccountLine({
             <p id={styles.lineName}>{value}</p>
           )}
         </div>
-        {!isClicked && (
-          <button
-            type="button"
-            className={styles.editButton}
-            onClick={toggleClick}
-          >
-            <span className={`material-symbols-outlined ${styles.editIcon}`}>
-              edit_square
-            </span>
-            <span id={styles.desktopModify}>Modifier</span>
-          </button>
-        )}
+        {!isClicked &&
+          (valueName === "deleteAccount" ? (
+            <button
+              type="button"
+              className={styles.deleteButton}
+              onClick={() => setModalDelete(true)}
+            >
+              <span
+                className={`material-symbols-outlined ${styles.deleteIcon}`}
+              >
+                edit_square
+              </span>
+              <span id={styles.desktopDeleteAccount}>Supprimer</span>
+            </button>
+          ) : (
+            <button
+              type="button"
+              className={styles.editButton}
+              onClick={toggleClick}
+            >
+              <span className={`material-symbols-outlined ${styles.editIcon}`}>
+                edit_square
+              </span>
+              <span id={styles.desktopModify}>Modifier</span>
+            </button>
+          ))}
       </section>
     </section>
   );

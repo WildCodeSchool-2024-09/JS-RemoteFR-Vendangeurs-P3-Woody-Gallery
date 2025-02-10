@@ -9,6 +9,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
+
+  h2 {
+    font-family: var(--font-aboreto);
+    width: 100%;
+    background-color: var(--fontcolor-white);
+    padding: .5rem;
+  }
 
   form {
     width: 50%;
@@ -101,6 +109,15 @@
         background-color: var(--color-red);
         color: var(--fontcolor-white);
       }
+    }
+  }
+
+  @media screen and (max-width: 1200px) {
+    form {
+      width: 90%;
+    }
+    .inputs {
+      width: 90%;
     }
   }
 }
