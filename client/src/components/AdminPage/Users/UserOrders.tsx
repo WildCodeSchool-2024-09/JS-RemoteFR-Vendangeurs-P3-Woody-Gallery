@@ -69,17 +69,34 @@ export default function UserOrders({ orders }: UserProps) {
     return id.toString().padStart(4, "0");
   };
 
-  const ordersRun = orders.filter(
-    (order) => order.status === "préparation" || order.status === "livraison",
-  );
-  const ordersDone = orders.filter((order) => order.status === "terminé");
+  const parsedOrdersRun = orders
+    .filter(
+      (order) => order.status === "préparation" || order.status === "livraison",
+    )
+    .map((order) => ({
+      ...order,
+      articles:
+        typeof order.articles === "string"
+          ? JSON.parse(order.articles)
+          : order.articles,
+    }));
+
+  const parsedOrdersDone = orders
+    .filter((order) => order.status === "terminé")
+    .map((order) => ({
+      ...order,
+      articles:
+        typeof order.articles === "string"
+          ? JSON.parse(order.articles)
+          : order.articles,
+    }));
 
   return (
     <div className={styles.userOrders}>
       <h3>{"Commande(s) en en cours"}</h3>
       <ul>
-        {ordersRun.length > 0 ? (
-          ordersRun.map((order) => (
+        {parsedOrdersRun.length > 0 ? (
+          parsedOrdersRun.map((order) => (
             <React.Fragment key={order.id}>
               <li>
                 <p>Commande n°{formatOrderNumber(order.id)}</p>
@@ -129,8 +146,8 @@ export default function UserOrders({ orders }: UserProps) {
 
       <h3>{"Commande(s) terminée(s)"}</h3>
       <ul>
-        {ordersDone.length > 0 ? (
-          ordersDone.map((order) => (
+        {parsedOrdersDone.length > 0 ? (
+          parsedOrdersDone.map((order) => (
             <React.Fragment key={order.id}>
               <li>
                 <p>Commande n°{formatOrderNumber(order.id)}</p>
