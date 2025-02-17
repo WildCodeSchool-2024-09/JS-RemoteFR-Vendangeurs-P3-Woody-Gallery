@@ -1,0 +1,187 @@
+.account {
+  background-color: var(--footerbg-primary-color);
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  @media screen and (min-width: 1200px) {
+    min-height: 5rem;
+  }
+}
+
+.lines {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  background-color: var(--background-secondary-color);
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 0 1.3rem;
+  font-family: var(--font-grotesk);
+  font-size: 1.2rem;
+  color: var(--fontcolor-white);
+  width: 100%;
+
+  @media screen and (min-width: 1200px) {
+    margin: 0 0 0 3rem;
+  }
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+
+  @media screen and (min-width: 1200px) {
+    height: 100%;
+  }
+}
+
+.editButton {
+  margin: 0.7rem;
+  border-radius: 8px;
+  padding: 0 .2rem 0 .2rem;
+
+  @media screen and (min-width: 1200px) {
+    padding: 1rem;
+  }
+}
+.deleteButton {
+  margin: 0.7rem;
+  border-radius: 8px;
+  padding: 0 .2rem 0 .2rem;
+  background-color: red;
+
+  @media screen and (min-width: 1200px) {
+    padding: 1rem 0.3rem;
+  }
+}
+
+.colorButton {
+  background-color: #10ab00;
+  color: var(--fontcolor-white);
+}
+
+.editIcon,
+.deleteIcon {
+  font-size: 2rem;
+  margin-top: 0.1rem;
+
+  @media screen and (min-width: 1200px) {
+    display: none;
+  }
+}
+
+.input {
+  height: 2rem;
+  background-color: var(--background--color);
+  color: var(--fontcolor-white);
+  padding-left: 1rem;
+  font-size: 1.2rem;
+  font-family: var(--font-grotesk);
+  margin: auto 0;
+
+  @media screen and (min-width: 1200px) {
+    font-size: 1.3rem;
+    margin: 0;
+    width: 60%;
+    height: 80%;
+    background-color: var(--fontcolor-white);
+    color: var(--fontcolor-black);
+  }
+}
+
+#lineName {
+  margin-top: 1rem;
+
+  @media screen and (min-width: 1200px) {
+    margin-top: 1.8rem;
+    font-size: 1.3rem;
+  }
+}
+
+.passwords {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1rem 0;
+}
+
+.eyes {
+  position: absolute;
+  border: none;
+  cursor: pointer;
+  background-color: var(--background-secondary-color);
+  color: var(--fontcolor-white);
+  right: .5rem;
+  top: .3rem;
+  @media screen and (min-width: 1200px) {
+    top: 1.5rem;
+    background-color: var(--fontcolor-white);
+    color: var(--fontcolor-black);
+  }
+}
+
+.passwordVisibility {
+  display: flex;
+  flex-direction: row;
+  max-width: 255px;
+  position: relative;
+}
+
+.labels {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  @media screen and (min-width: 1200px) {
+    flex-direction: column;
+  }
+}
+
+.oldPwdInput {
+  width: 252px;
+  @media screen and (min-width: 1200px) {
+    height: 70px;
+  }
+}
+
+.newPwdInput {
+  width: 252px;
+  @media screen and (min-width: 1200px) {
+    height: 70px;
+  }
+}
+
+#desktopModify,
+#desktopDeleteAccount {
+  display: none;
+
+  @media screen and (min-width: 1200px) {
+    display: inline-block;
+    font-size: 1.3rem;
+    margin: 0 2.5rem;
+  }
+}
+
+#desktopValidate {
+  display: none;
+
+  @media screen and (min-width: 1200px) {
+    display: inline;
+    font-size: 1.3rem;
+    margin: 0 2.8rem;
+  }
+
+  .deleteButton {
+    font-family: var(--font-grotesk);
+    background-color: var(--background-secondary-color);
+  }
+}

@@ -1,0 +1,85 @@
+.searchBar {
+  display: flex;
+  height: 2.25rem;
+  position: relative;
+  font-family: var(--font-grotesk);
+  font-weight: 500;
+  width: 100%;
+  transition: all 0.2s ease-in-out;
+  grid-area: 1 / 1 / 2 / 4;
+  margin-right: 4.5rem;
+  padding-left: 3rem;
+  justify-self: end;
+
+  @media screen and (min-width: 1275px) {
+    padding-left: 4rem;
+  }
+
+  input {
+    padding-left: 10px;
+    background-color: #363636;
+    color: whitesmoke;
+    width: 100%;
+    box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.72) inset;
+    -webkit-box-shadow: 2px 2px 20px -3px rgba(0, 0, 0, 0.72) inset;
+    -moz-box-shadow: 2px 2px 2px -3px rgba(0, 0, 0, 0.72) inset;
+    font-size: 18px;
+    border: none;
+  }
+
+  input[type="text"]:-webkit-autofill,
+  input[type="text"]:-webkit-autofill:hover,
+  input[type="text"]:-webkit-autofill:focus,
+  input[type="text"]:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #363636 inset;
+    -webkit-text-fill-color: whitesmoke;
+    font-family: var(--font-grotesk);
+    font-size: 18px;
+  }
+
+  .searchIcon {
+    position: absolute;
+    font-size: 30px;
+    cursor: pointer;
+    user-select: none;
+    z-index: 10;
+    height: 36px;
+    width: 36px;
+    right: 0rem;
+    top: 0.2rem;
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+.openSearchBar {
+  width: 100%;
+
+  @media screen and (min-width: 1275px) {
+    width: 30rem;
+  }
+
+  ::placeholder {
+    transition: all 0.2s ease-in-out;
+    color: whitesmoke;
+    opacity: 1;
+  }
+}
+
+.closeSearchBar {
+  width: 2.3rem;
+  padding-left: 0;
+
+  ::placeholder {
+    opacity: 0;
+  }
+}
+
+.positionOpen {
+  right: 0.1rem;
+  top: 0.2rem;
+  color: var(--fontcolor-gold);
+}
+
+.positionClose {
+  color: var(--fontcolor-white);
+}

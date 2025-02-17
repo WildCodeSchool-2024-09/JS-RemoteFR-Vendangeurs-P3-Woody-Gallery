@@ -1,0 +1,147 @@
+.shopPage {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  overflow-y: auto;
+  height: 100%;
+
+  .searchTools {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 1);
+    -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 1);
+
+    .navContainer {
+      width: 90vw;
+      padding: .5rem 2rem .5rem 1.5rem;
+      text-align: center;
+      display: grid;
+      grid-template-columns: 68% 12% 20%;
+      gap: 1rem;
+
+      @media screen and (min-width: 868px) and (max-width: 1074px) {
+        width: 53.5rem;
+        padding: .5rem 2.5rem .5rem 5.5rem;
+      }
+
+      @media screen and (min-width: 1075px) and (max-width: 1275px) {
+        width: 67rem;
+        padding: 0.5rem 2.5rem 0.5rem 5.5rem;
+      }
+
+      @media screen and (min-width: 1275px) {
+        width: 79.2rem;
+        padding: 0.5rem 2.5rem 0.5rem 5.5rem;
+      }
+
+      h2 {
+        display: none;
+
+        @media screen and (min-width: 1275px) {
+          display: block;
+          grid-area: 1 / 1 / 2 / 4;
+          font-size: 100%;
+          font-family: var(--font-aboreto);
+          font-weight: 500;
+          font-style: normal;
+          text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.54);
+          text-align: center;
+          width: 100%;
+          cursor: default;
+          font-size: 24px;
+          padding-right: 5rem;
+        }
+      }
+    }
+  }
+
+  .photosContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+
+    @media screen and (min-width: 868px) and (max-width: 1074px) {
+      display: grid;
+      grid-template-columns: 12rem 12rem 12rem 12rem;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    @media screen and (min-width: 1075px) and (max-width: 1275px) {
+      display: grid;
+      grid-template-columns: 15rem 15rem 15rem 15rem;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    @media screen and (min-width: 1275px) {
+      display: grid;
+      grid-template-columns: 18rem 18rem 18rem 18rem;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .seeMore {
+      margin: 1.2rem 0;
+      padding: .25rem 1rem;
+      border: none;
+      background-color: var(--background-secondary-color);
+      color: var(--fontcolor-white);
+      font-family: var(--font-grotesk);
+      font-weight: 500;
+      font-size: 16px;
+      box-shadow: 2px -2px 25px -4px rgba(0, 0, 0, 0.75) inset, -5px 12px 12px
+        5px rgba(0, 0, 0, 0.75);
+      -webkit-box-shadow: 2px -2px 25px -4px rgba(0, 0, 0, 0.75) inset, -5px 5px
+        10px 2px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 2px -2px 25px -4px rgba(0, 0, 0, 0.75) inset, -5px 5px
+        12px -5px rgba(0, 0, 0, 0.75);
+      user-select: none;
+      cursor: pointer;
+
+      @media screen and (min-width: 768px) {
+        grid-column: 1 / 5;
+        margin: auto;
+        margin-bottom: 2.5rem;
+        width: 15rem;
+        font-size: 20px;
+      }
+    }
+
+    .seeMore:active {
+      color: var(--fontcolor-gold);
+      text-decoration: underline;
+    }
+  }
+}
+
+.withoutSeeMore {
+  margin-bottom: 3rem;
+}
+.notFound {
+  text-align: center;
+  background-color: var(--background-secondary-color);
+  color: var(--fontcolor-white);
+  font-family: var(--font-grotesk);
+  font-size: 19px;
+  padding: .5rem 1rem;
+  align-self: center;
+  justify-self: center;
+  margin: 3rem 0 8rem 0;
+  -webkit-box-shadow: 0px 5px 15px 3px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 5px 15px 3px rgba(0, 0, 0, 0.75);
+  cursor: default;
+
+  @media screen and (min-width: 860px) {
+    grid-area: 1 / 1 / 2 / 5;
+    margin: 3rem 0 12.41rem 0;
+  }
+}

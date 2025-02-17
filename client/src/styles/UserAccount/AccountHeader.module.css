@@ -1,0 +1,31 @@
+.title {
+  width: 100%;
+  background-color: var(--footerbg-primary-color);
+  font-size: 1.4rem;
+  font-family: var(--font-aboreto);
+  font-weight: 400;
+  text-align: center;
+  padding: .5rem 0;
+  margin-bottom: 1.5rem;
+}
+
+.container {
+  width: 100%;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (min-width: 1200px) {
+  .title {
+    margin-bottom: 5rem;
+    font-size: 2rem;
+    padding: 0;
+  }
+
+  .desktopContainer {
+    padding: 0 5rem;
+  }
+}

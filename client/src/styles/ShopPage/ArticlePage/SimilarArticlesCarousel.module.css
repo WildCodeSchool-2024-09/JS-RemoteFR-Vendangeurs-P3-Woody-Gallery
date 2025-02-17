@@ -1,0 +1,294 @@
+.h2ArticlesCarousel {
+  font-family: var(--font-aboreto);
+  font-weight: 500;
+  font-style: normal;
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.54);
+  background-color: var(--footerbg-primary-color);
+  margin: 0 0 2rem 0;
+  font-size: 28px;
+  text-align: center;
+  padding: 0.25rem 0;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 1);
+  -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 1);
+  width: 100%;
+  cursor: default;
+
+  @media screen and (min-width: 1050px) {
+    font-size: 33px;
+  }
+}
+
+.carousel {
+  display: grid;
+  grid-template-columns: 15% 70% 15%;
+  grid-template-rows: 100%;
+  height: 15rem;
+  position: relative;
+  margin: auto;
+  margin-bottom: 2rem;
+  width: 23rem;
+  font-family: var(--font-grotesk);
+  cursor: default;
+  position: relative;
+
+  @media screen and (min-width: 1000px) and (max-width: 1200px) {
+    width: 100%;
+    height: 17rem;
+    grid-template-columns: 5% 90% 5%;
+  }
+
+  @media screen and (min-width: 1200px) and (max-width: 1580px) {
+    width: 75rem;
+    height: 19rem;
+    grid-template-columns: 5% 90% 5%;
+  }
+
+  @media screen and (min-width: 1580px) {
+    width: 90rem;
+    height: 19rem;
+    grid-template-columns: 5% 90% 5%;
+  }
+
+  .carouselContainCol {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    margin: auto;
+    overflow: hidden;
+
+    @media screen and (min-width: 1000px) and (max-width: 1200px) {
+      display: grid;
+      grid-template-columns: 25% 25% 25% 25%;
+      grid-template-rows: 100%;
+      gap: 1rem;
+      padding: 0 5rem 0 2.5rem;
+      width: 100%;
+      height: 100%;
+    }
+
+    @media screen and (min-width: 1200px) and (max-width: 1580px) {
+      display: grid;
+      grid-template-columns: 25% 25% 25% 25%;
+      grid-template-rows: 100%;
+      gap: 1rem;
+      padding: 0 5rem 0 2.5rem;
+      width: 100%;
+      height: 100%;
+    }
+
+    @media screen and (min-width: 1580px) {
+      display: grid;
+      grid-template-columns: 25% 25% 25% 25%;
+      grid-template-rows: 100%;
+      gap: 2.5rem;
+      padding: 0 10rem 0 2.5rem;
+      width: 100%;
+      height: 100%;
+    }
+
+    .articleCard {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 15rem;
+      height: 15rem;
+
+      @media screen and (min-width: 1000px) and (max-width: 1200px) {
+        width: 12rem;
+        height: 12rem;
+        margin: auto;
+      }
+
+      @media screen and (min-width: 1200px) and (max-width: 1580px) {
+        margin: auto;
+      }
+
+      @media screen and (min-width: 1580px) {
+        width: 17rem;
+        height: 17rem;
+        margin: auto;
+      }
+
+      figure {
+        width: 100%;
+        height: 100%;
+        box-shadow: 0 0 17px -3px rgba(0, 0, 0, 1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .news {
+          position: absolute;
+          top: 1rem;
+          color: var(--fontcolor-white);
+          font-family: var(--font-grotesk);
+          background-color: var(--color-red);
+          padding: 0 1rem 0 .5rem;
+          display: flex;
+          left: -.2rem;
+          z-index: 20;
+          cursor: default;
+          clip-path: polygon(0% 0%, 100% 0, 100% 0, 90% 100%, 0% 100%);
+        }
+
+        .name {
+          position: absolute;
+          bottom: 2.16rem;
+          color: white;
+          background-color: rgba(0, 0, 0, 0.521);
+          width: 100%;
+          font-size: 22px;
+          padding: .5rem 0 0 .75rem;
+        }
+
+        .price {
+          position: absolute;
+          bottom: 0;
+          color: white;
+          background-color: rgba(0, 0, 0, 0.521);
+          left: 0;
+          font-size: 18px;
+          padding: 0 0 0.5rem 0.75rem;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+.articleOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  z-index: 5;
+}
+
+.articleCard:hover .articleOverlay {
+  opacity: 1;
+}
+
+.articleOverlay a {
+  color: var(--fontcolor-white);
+  font-family: var(--font-grotesk);
+  font-size: 20px;
+  font-weight: 100;
+  text-decoration: none;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  position: relative;
+}
+
+.articleOverlay a::before,
+.articleOverlay a::after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -10px;
+  right: -10px;
+  bottom: -5px;
+  border: 2px solid transparent;
+}
+
+.articleOverlay a:hover::after {
+  border-color: white;
+}
+
+#modal {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.404);
+  -webkit-box-shadow: inset 0px 0px 17px -3px #000000;
+  box-shadow: inset 0px 0px 17px -3px #000000;
+  transition: opacity 0.2s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  a {
+    margin-bottom: 5rem;
+    color: var(--fontcolor-white);
+    font-family: var(--font-grotesk);
+    font-size: 20px;
+    font-weight: 100;
+    text-decoration: none;
+    margin-top: 4.9rem;
+    position: relative;
+    z-index: 11;
+    text-shadow: 2px 2px 4px #000000;
+    transition: border 0.2s ease-in-out;
+
+    @media screen and (min-width: 1050px) {
+      font-size: 21px;
+    }
+    @media screen and (min-width: 1100px) and (max-width: 1280px) {
+      font-size: 23px;
+    }
+  }
+
+  a::after,
+  a::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: -12px;
+    right: -12px;
+    bottom: -5px;
+    border: 2px solid transparent;
+    transition: border 0.2s ease-in-out;
+    @media screen and (min-width: 1280px) {
+      left: -16px;
+      right: -16px;
+    }
+  }
+
+  a:hover::after {
+    border-color: var(--footerbg-primary-color);
+  }
+
+  a:active::before {
+    border-color: var(--footerbg-primary-color);
+    background-color: var(--background-tertiary-color);
+    z-index: -5;
+    transition: all 0.1s ease-in-out;
+  }
+}
+
+.modalOff {
+  opacity: 0;
+}
+
+.prev {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  margin: auto;
+  rotate: 180deg;
+  font-size: 50px;
+  color: var(--footerbg-primary-color);
+  cursor: pointer;
+  user-select: none;
+}
+
+.next {
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+  margin: auto;
+  font-size: 50px;
+  color: var(--footerbg-primary-color);
+  cursor: pointer;
+  user-select: none;
+}

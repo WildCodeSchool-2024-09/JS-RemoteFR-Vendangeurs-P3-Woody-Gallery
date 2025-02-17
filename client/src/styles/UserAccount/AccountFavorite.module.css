@@ -1,0 +1,100 @@
+.favorites {
+  background-color: var(--fontcolor-white);
+  align-items: center;
+  min-height: 400px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 100%;
+  max-width: 600px;
+  height: 30%;
+  margin: auto;
+  color: var(--fontcolor-white);
+  font-size: 1.2rem;
+  margin-top: .5rem;
+}
+
+.noFavoritesContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 100%;
+  max-width: 600px;
+  height: 30%;
+  margin: auto;
+  padding: .6rem 1rem;
+  color: var(--fontcolor-white);
+  font-size: 1.2rem;
+  margin-top: .5rem;
+  background-color: var(--background-secondary-color);
+  box-shadow:
+    rgba(0, 0, 0, 0.25) 1px 4px 8px 4px, rgba(0, 0, 0, 0.12) -1px -9px 30px, rgba(
+      0,
+      0,
+      0,
+      0.12
+    ) 0px 4px 4px 2px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 1px -7px 8px 7px;
+}
+
+#noFavorite {
+  width: 100%;
+  font-family: var(--font-grotesk);
+  text-align: center;
+
+  @media screen and (min-width: 1200px) {
+    font-size: 1.5rem;
+  }
+}
+
+.favoriteArticles {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: var(--background-secondary-color);
+  margin-bottom: 1rem;
+  padding: 1rem;
+  box-shadow:
+    rgba(0, 0, 0, 0.25) 1px 4px 8px 4px, rgba(0, 0, 0, 0.12) -1px -9px 30px, rgba(
+      0,
+      0,
+      0,
+      0.12
+    ) 0px 4px 4px 2px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 1px -7px 8px 7px;
+  font-family: var(--font-grotesk);
+  font-size: 1.1rem;
+
+  @media screen and (min-width: 1200px) {
+    font-size: 1.4rem;
+  }
+}
+
+ul {
+  color: var(--fontcolor-white);
+  width: 100%;
+}
+
+.outOfStockIcon {
+  color: red;
+  font-size: .7rem;
+  margin-right: 0.3rem;
+
+  @media screen and (min-width: 1200px) {
+    font-size: .9rem;
+  }
+}
+.inStockIcon {
+  color: greenyellow;
+  font-size: .7rem;
+  margin-right: 0.3rem;
+
+  @media screen and (min-width: 1200px) {
+    font-size: .9rem;
+  }
+}

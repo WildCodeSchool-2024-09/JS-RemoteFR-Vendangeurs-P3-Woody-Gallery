@@ -1,0 +1,150 @@
+.order {
+  background-color: var(--footerbg-primary-color);
+  height: 100%;
+  width: 100%;
+  margin-bottom: 3rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  -webkit-box-shadow: 5px 5px 15px -3px rgba(0, 0, 0, 0.64);
+  box-shadow: 5px 5px 15px -3px rgba(0, 0, 0, 0.64);
+  -webkit-box-shadow: inset 5px 5px 15px -3px rgba(0, 0, 0, 0.64);
+  box-shadow: inset 5px 5px 15px -3px rgba(0, 0, 0, 0.64);
+  padding: 1rem 0;
+
+  @media screen and (min-width: 1200px) {
+    width: 90%;
+    padding: 1.75rem 22.75rem 1.75rem 1.75rem;
+    align-items: flex-start;
+    position: relative;
+  }
+
+  .noOrder {
+    text-align: center;
+    font-family: var(--font-grotesk);
+    font-size: 17px;
+    font-weight: 400;
+    padding: .75rem 1rem;
+    width: 90%;
+    background-color: var(--background-secondary-color);
+    color: var(--fontcolor-white);
+    margin: 3rem 0;
+    -webkit-box-shadow: 5px 5px 15px -3px rgba(0, 0, 0, 0.64);
+    box-shadow: 5px 5px 15px -3px rgba(0, 0, 0, 0.64);
+    cursor: default;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.42);
+
+    @media screen and (min-width: 1200px) {
+      width: 30rem;
+      font-size: 20px;
+      margin-top: 3rem;
+      align-self: center;
+      margin-left: 21.75rem;
+    }
+  }
+
+  .priceTotal {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: row;
+    width: 100%;
+    position: relative;
+    background-color: var(--background-secondary-color);
+    padding: 0 1rem;
+    margin-top: -1px;
+    gap: .3rem;
+
+    @media screen and (min-width: 1200px) {
+      width: 100%;
+    }
+
+    h5,
+    p {
+      margin: 1rem 0;
+      font-family: var(--font-grotesk);
+      font-weight: 400;
+      font-size: 20px;
+      cursor: default;
+    }
+
+    h5 {
+      color: var(--fontcolor-gold);
+    }
+
+    p {
+      color: var(--fontcolor-white);
+    }
+  }
+
+  .totalToBuy {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 20rem;
+    height: 4rem;
+    position: relative;
+    background-color: var(--background-secondary-color);
+    padding: 0 1rem;
+    margin: 1rem;
+    gap: .3rem;
+    -webkit-box-shadow: 0px 3px 8px 3px rgba(0, 0, 0, 0.44);
+    box-shadow: 0px 3px 8px 3px rgba(0, 0, 0, 0.44);
+
+    @media screen and (min-width: 1200px) {
+      position: absolute;
+      right: 1.75rem;
+      top: 1.75rem;
+      margin: 0;
+      margin-top: -1px;
+    }
+
+    h5,
+    p {
+      margin: 1rem 0;
+      font-family: var(--font-grotesk);
+      font-weight: 400;
+      font-size: 20px;
+      cursor: default;
+    }
+
+    h5 {
+      color: var(--fontcolor-gold);
+    }
+
+    p {
+      color: var(--fontcolor-white);
+    }
+  }
+
+  .validateOrder {
+    user-select: none;
+    border: none;
+    height: 4rem;
+    width: 20rem;
+    color: var(--fontcolor-white);
+    -webkit-box-shadow: 0px 3px 8px 3px rgba(0, 0, 0, 0.44), inset 0px 0px 38px
+      3px #000000;
+    box-shadow: 0px 3px 8px 3px rgba(0, 0, 0, 0.44), inset 0px 0px 38px 3px
+      #000000;
+    font-size: 22px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease-in-out;
+    text-shadow: 3px 2px 4px rgba(0, 0, 0, 0.83);
+    background-color: var(--background-secondary-color);
+
+    @media screen and (min-width: 1200px) {
+      position: absolute;
+      right: 1.75rem;
+      top: 7rem;
+    }
+  }
+
+  .validateOrder:hover {
+    text-decoration: underline;
+    color: var(--fontcolor-gold);
+  }
+}

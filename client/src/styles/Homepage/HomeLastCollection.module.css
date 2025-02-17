@@ -1,0 +1,148 @@
+.lastCollection {
+  width: 100%;
+  height: 60vh;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 1);
+  -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 1);
+  margin-bottom: 1rem;
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+  .container {
+    width: 100vw;
+    height: 100%;
+    box-shadow: 0px 5px 0px 0px rgb(255, 255, 255);
+    -webkit-box-shadow: 0px 5px 0px 0px rgb(255, 255, 255);
+    -moz-box-shadow: 0px 5px 0px 0px rgb(255, 255, 255);
+    overflow: hidden;
+
+    .carouselLC {
+      height: 100%;
+      width: 100vw;
+      position: relative;
+
+      figure {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        position: absolute;
+        transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+
+        &.active {
+          opacity: 1;
+        }
+
+        &.off {
+          opacity: 0;
+        }
+
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+
+    article {
+      position: absolute;
+      top: -1px;
+      width: 100%;
+      color: var(--fontcolor-white);
+      background-color: rgba(245, 245, 245, 0.103);
+      backdrop-filter: blur(4px);
+      cursor: default;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 1.6rem 1.5rem;
+      gap: 0.5rem;
+
+      @media screen and (min-width: 1250px) {
+        width: 30%;
+        top: 0px;
+        left: 11%;
+      }
+
+      h3 {
+        font-family: var(--font-aboreto);
+        font-weight: 100;
+        font-size: 21px;
+        font-style: normal;
+        text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.54);
+        @media screen and (min-width: 1250px) {
+          margin-bottom: 0.75rem;
+        }
+      }
+
+      h2 {
+        font-family: var(--font-aboreto);
+        font-weight: 400;
+        font-style: normal;
+        font-size: 45px;
+        line-height: 1.1;
+        text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.54);
+        margin-top: -0.25rem;
+      }
+    }
+  }
+
+  .timer {
+    position: absolute;
+    bottom: 0;
+    z-index: 10;
+    height: 1.5rem;
+    width: 12rem;
+    background-color: rgba(255, 255, 255, 0.582);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    hr {
+      border: none;
+      height: 0.6rem;
+      width: 3rem;
+      border-radius: 10px;
+      background-color: var(--fontcolor-white);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+
+    hr::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 0;
+      background-color: #1e1e1e;
+      border-radius: 10px;
+      will-change: width;
+    }
+
+    hr.active::before {
+      animation: fill 10s linear forwards;
+    }
+
+    hr.disable::before {
+      background-color: var(--fontcolor-white);
+    }
+  }
+}
+
+@keyframes fill {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}

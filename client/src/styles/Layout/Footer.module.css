@@ -1,0 +1,96 @@
+.footer {
+  max-height: 35rem;
+  width: 100%;
+  background: linear-gradient(
+    70deg,
+    var(--footerbg-primary-color) 0%,
+    var(--footerbg-secondary-color) 40%,
+    var(--footerbg-tertiary-color) 50%,
+    var(--footerbg-secondary-color) 60%,
+    var(--footerbg-primary-color) 100%
+  );
+  display: grid;
+  grid-template-columns: 50% 50%;
+  font-weight: 500;
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: 25% 25% 25% 25%;
+  }
+
+  article {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 1.5rem;
+
+    h3 {
+      font-family: var(--font-aboreto);
+      font-size: 20px;
+      text-align: center;
+      margin-bottom: 0.5rem;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      font-weight: 500;
+      cursor: default;
+
+      @media screen and (min-width: 800px) {
+        font-size: 25px;
+        margin-top: 2rem;
+      }
+    }
+
+    ul {
+      font-family: var(--font-grotesk);
+      text-align: center;
+      list-style-type: none;
+      font-size: 14px;
+
+      a {
+        font-family: var(--font-grotesk);
+        color: var(--fontcolor-black);
+        text-decoration: none;
+
+        li {
+          margin-bottom: 0.75rem;
+          cursor: pointer;
+        }
+      }
+
+      @media screen and (min-width: 1030px) {
+        font-size: 19px;
+      }
+    }
+
+    p {
+      max-width: 9rem;
+      font-family: var(--font-grotesk);
+      font-size: 14px;
+      cursor: default;
+      line-height: 1.8;
+
+      @media screen and (min-width: 1030px) {
+        max-width: 15rem;
+        font-size: 19px;
+      }
+    }
+  }
+  .contatcs {
+    color: var(--fontcolor-black);
+  }
+
+  .credit {
+    margin: auto;
+    grid-column: 1 / 3;
+    text-align: center;
+    list-style-type: none;
+    margin-bottom: 1rem;
+    font-family: var(--font-grotesk);
+    cursor: default;
+    color: var(--fontcolor-black);
+    @media screen and (min-width: 768px) {
+      grid-column: 1 / 5;
+      margin: 2rem 0;
+    }
+  }
+}

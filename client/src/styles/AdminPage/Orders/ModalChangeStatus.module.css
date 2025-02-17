@@ -1,0 +1,206 @@
+.modalDeleteOrder {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: rgba(39, 39, 39, 0.507);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  h2 {
+    font-family: var(--font-aboreto);
+    width: 100%;
+    background-color: var(--fontcolor-white);
+    padding: .5rem;
+  }
+
+  form {
+    width: 50%;
+    background-color: var(--background-secondary-color);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 1rem;
+    position: relative;
+    -webkit-box-shadow: 2px 3px 18px -6px #000000;
+    box-shadow: 2px 3px 18px -6px #000000;
+
+    p {
+      font-family: var(--font-grotesk);
+      color: var(--fontcolor-white);
+      font-weight: 400;
+      font-size: 20px;
+      cursor: default;
+
+      .delete {
+        color: var(--color-red);
+      }
+
+      span {
+        font-weight: 700;
+      }
+    }
+
+    input {
+      width: 25rem;
+      height: 2.5rem;
+      margin: 1rem 0;
+      border: none;
+      padding-left: .25rem;
+      font-family: var(--font-grotesk);
+      font-size: 20px;
+      color: var(--color-red);
+      text-align: center;
+      font-weight: 700;
+      -webkit-box-shadow: inset 2px 3px 18px -6px #000000;
+      box-shadow: inset 2px 3px 18px -6px #000000;
+    }
+
+    .exit {
+      background-color: transparent;
+      border: none;
+      position: absolute;
+      top: .5rem;
+      right: 1rem;
+      cursor: pointer;
+      font-size: 35px;
+    }
+
+    div {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      button {
+        height: 2.5rem;
+        width: 8rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        -webkit-box-shadow: 2px 3px 7px 0px #000000;
+        box-shadow: 2px 3px 7px 0px #000000;
+
+        p {
+          font-family: var(--font-grotesk);
+          font-weight: 500;
+          margin: 0 .2rem .2rem 0;
+          cursor: pointer;
+        }
+      }
+
+      .cancelDelete p {
+        color: var(--fontcolor-black);
+      }
+
+      .usualDelete {
+        background-color: #b96463;
+        color: var(--fontcolor-white);
+      }
+
+      .valideDelete {
+        background-color: var(--color-red);
+        color: var(--fontcolor-white);
+      }
+    }
+  }
+
+  @media screen and (max-width: 1200px) {
+    form {
+      width: 90%;
+    }
+    .inputs {
+      width: 90%;
+    }
+  }
+}
+
+.modalOrderStatus {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: rgba(39, 39, 39, 0.507);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  form {
+    width: 50%;
+    background-color: var(--background-secondary-color);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 1rem;
+    position: relative;
+    -webkit-box-shadow: 2px 3px 18px -6px #000000;
+    box-shadow: 2px 3px 18px -6px #000000;
+
+    p {
+      font-family: var(--font-grotesk);
+      color: var(--fontcolor-white);
+      font-weight: 400;
+      font-size: 20px;
+      cursor: default;
+      margin: 1rem 0;
+      .delete {
+        color: var(--color-red);
+      }
+    }
+
+    .exit {
+      background-color: transparent;
+      border: none;
+      position: absolute;
+      top: .5rem;
+      right: 1rem;
+      cursor: pointer;
+      font-size: 35px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      button {
+        height: 2.5rem;
+        width: 8rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        -webkit-box-shadow: 2px 3px 7px 0px #000000;
+        box-shadow: 2px 3px 7px 0px #000000;
+
+        p {
+          font-family: var(--font-grotesk);
+          font-weight: 500;
+          margin: 0 .2rem .2rem 0;
+          cursor: pointer;
+        }
+      }
+
+      .cancelModifyStatus p {
+        color: var(--fontcolor-black);
+      }
+
+      .valideDelete {
+        background-color: var(--color-red);
+        color: var(--fontcolor-white);
+      }
+    }
+  }
+}

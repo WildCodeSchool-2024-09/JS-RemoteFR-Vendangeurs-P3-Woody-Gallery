@@ -1,0 +1,130 @@
+.filtersButton {
+  font-size: 22px;
+  width: 3.5rem;
+  justify-self: end;
+  background-color: var(--background-secondary-color);
+  color: var(--fontcolor-white);
+  border: none;
+  cursor: pointer;
+  box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.72) inset;
+  -webkit-box-shadow: 2px 2px 20px -3px rgba(0, 0, 0, 0.72) inset;
+  -moz-box-shadow: 2px 2px 2px -3px rgba(0, 0, 0, 0.72) inset;
+  position: relative;
+  grid-area: 1 / 3 / 2 / 4;
+}
+
+.isClicked {
+  color: var(--fontcolor-gold);
+}
+
+.modal {
+  position: absolute;
+  z-index: 20;
+  top: 14.7rem;
+  right: 5%;
+  background-color: var(--background-secondary-color);
+  color: var(--fontcolor-white);
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: start;
+  font-family: var(--font-grotesk);
+
+  @media screen and (min-width: 868px) and (max-width: 1074px) {
+    top: 29.3rem;
+    left: 50%;
+    transform: translate(14.3rem, -50%);
+    width: 11.9rem;
+  }
+
+  @media screen and (min-width: 1075px) and (max-width: 1200px) {
+    top: 29.3rem;
+    left: 50%;
+    transform: translate(21.05rem, -50%);
+    width: 11.9rem;
+  }
+
+  @media screen and (min-width: 1200px) and (max-width: 1275px) {
+    top: 24.3rem;
+    left: 50%;
+    transform: translate(21.05rem, -50%);
+    width: 11.9rem;
+  }
+
+  @media screen and (min-width: 1275px) {
+    top: 24.3rem;
+    left: 50%;
+    transform: translate(27.2rem, -50%);
+    width: 11.9rem;
+  }
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  width: 17px;
+  height: 17px;
+  background-color: var(--background-secondary-color);
+  border: 2px solid var(--fontcolor-white);
+  position: relative;
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
+
+input[type="checkbox"]:checked {
+  background: linear-gradient(
+    45deg,
+    var(--fontcolor-gold),
+    var(--fontcolor-gold-dark)
+  );
+}
+
+input[type="checkbox"]:checked::after {
+  position: absolute;
+  border: solid var(--fontcolor-white);
+}
+input[type="radio"] {
+  border-radius: 50%;
+  appearance: none;
+  width: 17px;
+  height: 17px;
+  background-color: var(--background-secondary-color);
+  border: 2px solid var(--fontcolor-white);
+  position: relative;
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
+
+input[type="radio"]:checked {
+  background: linear-gradient(
+    45deg,
+    var(--fontcolor-gold),
+    var(--fontcolor-gold-dark)
+  );
+}
+
+input[type="radio"]:checked::after {
+  position: absolute;
+  border: solid var(--fontcolor-white);
+}
+
+.modal h3 {
+  margin-bottom: 15px;
+  font-weight: 400;
+}
+
+.modal div {
+  margin-bottom: 10px;
+}
+
+.applyButton {
+  height: 1.5rem;
+  padding: 0 10px;
+  background-color: var(--footerbg-primary-color);
+  color: var(--fontcolor-black);
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+  border-radius: 0;
+  font-family: var(--font-grotesk);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}

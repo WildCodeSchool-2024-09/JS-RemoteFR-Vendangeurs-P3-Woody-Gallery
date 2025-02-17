@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  background-color: var(--fontcolor-white);
+}
+
+.title {
+  font-family: var(--font-grotesk);
+}
+
+@media screen and (min-width: 1200px) {
+  .hidden {
+    display: none;
+  }
+}

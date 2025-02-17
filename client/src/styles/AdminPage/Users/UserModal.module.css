@@ -1,0 +1,181 @@
+.userModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+  background-color: rgba(0, 0, 0, 0.445);
+  width: 100vw;
+  height: 100vh;
+
+  div {
+    width: 70%;
+    max-height: 100vh;
+    overflow: scroll;
+    background-color: var(--background-secondary-color);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 1rem;
+    position: relative;
+
+    .exit {
+      background-color: transparent;
+      border: none;
+      position: absolute;
+      top: .5rem;
+      right: 1rem;
+      cursor: pointer;
+      font-size: 35px;
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: 25% 25% 25% 25%;
+      width: 95%;
+      -webkit-box-shadow: 3px 3px 12px 2px rgba(0, 0, 0, 0.7);
+      box-shadow: 3px 3px 12px 2px rgba(0, 0, 0, 0.7);
+      user-select: none;
+
+      li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: var(--font-grotesk);
+        color: var(--fontcolor-wite);
+        background-color: var(--background-secondary-color);
+        font-size: 25px;
+        padding: .5rem 0;
+        width: 100%;
+        border-right: solid 2px black;
+        height: 100%;
+        cursor: pointer;
+      }
+
+      .currentLi {
+        color: var(--fontcolor-black);
+        background-color: var(--footerbg-primary-color);
+      }
+
+      .lastLi {
+        border-right: none;
+      }
+    }
+
+    section {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding: 1rem;
+      width: 95%;
+      background-color: var(--footerbg-primary-color);
+
+      ul {
+        width: 100%;
+        height: 100%;
+        background-color: var(--background-secondary-color);
+        padding: 1rem 1.5rem;
+        -webkit-box-shadow: 3px 3px 12px 2px rgba(0, 0, 0, 0.7);
+        box-shadow: 3px 3px 12px 2px rgba(0, 0, 0, 0.7);
+        cursor: default;
+
+        li {
+          display: flex;
+          font-family: var(--font-grotesk);
+          font-size: 25px;
+
+          p {
+            margin-left: .5rem;
+            font-size: 27px;
+            font-weight: 700;
+            margin-top: -.2rem;
+          }
+        }
+
+        .comment {
+          display: flex;
+          flex-direction: column;
+          margin-bottom: .5rem;
+        }
+
+        .badReview {
+          color: var(--color-red);
+        }
+
+        .noAddress,
+        .noReview {
+          display: flex;
+          justify-content: center;
+        }
+      }
+
+      .userOrders {
+        width: 100%;
+        max-height: 70vh;
+        background-color: transparent;
+        overflow: hidden;
+
+        h3 {
+          font-family: var(--font-grotesk);
+          font-weight: 500;
+          font-size: 30px;
+          margin: 0 0 1rem 0;
+          cursor: default;
+        }
+
+        ul {
+          max-height: 25rem;
+          overflow: scroll;
+
+          li {
+            color: var(--fontcolor-gold);
+            padding: .5rem 0;
+
+            button {
+              margin-left: 1rem;
+              width: 8rem;
+              border: none;
+              border-radius: 8px;
+              font-family: var(--font-grotesk);
+              font-size: 20px;
+              font-weight: 500;
+              cursor: pointer;
+            }
+
+            .seeMore {
+              -webkit-box-shadow: 3px 3px 12px 2px rgba(0, 0, 0, 0.7);
+              box-shadow: 3px 3px 12px 2px rgba(0, 0, 0, 0.7);
+            }
+
+            p {
+              color: var(--fontcolor-white);
+            }
+          }
+        }
+
+        ul::-webkit-scrollbar {
+          width: 8px;
+          height: 0px;
+        }
+
+        ul::-webkit-scrollbar-track {
+          background: transparent;
+        }
+
+        ul::-webkit-scrollbar-thumb {
+          box-shadow: inset 0 0 6px rgb(255, 255, 255);
+        }
+
+        .noOrder {
+          display: flex;
+          justify-content: center;
+          color: var(--footerbg-primary-color);
+        }
+      }
+    }
+  }
+}
