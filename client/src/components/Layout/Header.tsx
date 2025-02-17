@@ -45,7 +45,11 @@ export default function Header() {
         <span className={styles.galleryTitle}>Gallery</span>
       </h1>
       <NavLink className={styles.shopIcon} to="/panier">
-        <span className="material-symbols-outlined">shopping_cart</span>
+        <span id={styles.shopIconBorder}>
+          <span className="material-symbols-outlined" id={styles.shoppingIcon}>
+            shopping_cart
+          </span>
+        </span>
         {orderNumber !== 0 ? <p>{orderNumber}</p> : ""}
       </NavLink>
       <NavLink
@@ -58,7 +62,9 @@ export default function Header() {
             : "/create-account"
         }
       >
-        <span className="material-symbols-outlined">account_circle</span>
+        <span className="material-symbols-outlined" id={styles.accountIcon}>
+          account_circle
+        </span>
       </NavLink>
 
       <ul className={styles.ulNavigation}>

@@ -58,6 +58,24 @@
     grid-area: 2 / 2 / 4 / 4;
   }
 
+  #shopIconBorder {
+    height: 45px;
+    width: 45px;
+    margin: 5px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 35px;
+    color: var(--fontcolor-black);
+    border: 5px solid var(--fontcolor-white);
+  }
+
+  #shoppingIcon {
+    font-size: 30px;
+    padding-top: 5px;
+  }
+
   .shopIcon {
     grid-area: 1 / 5 / 3 / 6;
     margin: auto;
@@ -66,16 +84,16 @@
     position: relative;
 
     span {
-      height: 45px;
-      width: 45px;
+      height: 35px;
+      width: 35px;
       margin: 5px;
       border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
       font-size: 35px;
-      background-color: var(--fontcolor-white);
-      color: var(--fontcolor-black);
+      background-color: transparent;
+      color: var(--fontcolor-white);
     }
 
     p {
@@ -99,6 +117,10 @@
     @media screen and (min-width: 1200px) {
       display: none;
     }
+  }
+
+  #accountIcon {
+    line-height: 1.2;
   }
 
   .accountIcon {
