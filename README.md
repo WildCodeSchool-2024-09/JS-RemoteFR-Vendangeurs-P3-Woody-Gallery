@@ -54,11 +54,11 @@ Lancement du projet :
 
 🤝 Collaborateurs
 
-Flavien Rousseau
+[Flavien Rousseau](https://github.com/Foxrim)
 
-Jeremy Perez
+[Jeremy Perez](https://github.com/JeremyPerezGit)
 
-Mateusz Plebanek
+[Mateusz Plebanek](https://github.com/MateuszPlebanek)
 
 📄 Licence
 
