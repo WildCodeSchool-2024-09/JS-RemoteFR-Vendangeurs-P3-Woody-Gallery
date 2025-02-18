@@ -21,6 +21,7 @@ import ConnectionPage from "./pages/ConnectionPage";
 import CreateAccountPage from "./pages/CreateAccountPage";
 import Homepage from "./pages/Homepage";
 import OrderPage from "./pages/OrderPage";
+import PageNotFound from "./pages/PageNotFound";
 import ShopPage from "./pages/ShopPage";
 
 const router = createBrowserRouter([
@@ -63,6 +64,7 @@ const router = createBrowserRouter([
           { path: "logout", element: <AdminPage /> },
         ],
       },
+      { path: "*", element: <PageNotFound /> },
     ],
   },
 ]);
