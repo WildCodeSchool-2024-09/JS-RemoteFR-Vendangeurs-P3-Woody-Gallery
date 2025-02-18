@@ -8,7 +8,7 @@ type ModalAACProps = {
   photos: {
     id: number;
     name: string;
-    image: string;
+    image: string | File | undefined;
     description: string;
     format: string;
     stock: number;
@@ -46,12 +46,22 @@ export default function ModalAAC({ handleCloseModal, photos }: ModalAACProps) {
       .then((data: CollectionProps[]) => setCollections(data));
   }, []);
 
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    setNewPhoto((prevPhoto) => ({
+      ...prevPhoto,
+      image: file,
+    }));
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = new FormData();
     formData.append("name", newPhoto.name);
-    formData.append("image", (e.target as HTMLFormElement).image.files[0]);
+    if (newPhoto.image) {
+      formData.append("image", newPhoto.image);
+    }
     formData.append("description", newPhoto.description);
     formData.append("format", newPhoto.format);
     formData.append("stock", newPhoto.stock.toString());
@@ -104,7 +114,12 @@ export default function ModalAAC({ handleCloseModal, photos }: ModalAACProps) {
         </label>
         <label className={styles.file} htmlFor="image">
           Image
-          <input type="file" id="image" name="image" onChange={handleChange} />
+          <input
+            type="file"
+            id="image"
+            name="image"
+            onChange={handleImageChange}
+          />
           <figure>
             <img
               src={`${import.meta.env.VITE_API_URL}/${newPhoto.image}`}
