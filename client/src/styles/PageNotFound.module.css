@@ -54,7 +54,7 @@
   }
 }
 
-button {
+#errorButton {
   align-items: center;
   background-image: linear-gradient(
     144deg,
@@ -96,6 +96,6 @@ button {
   }
 }
 
-span {
+.snake {
   cursor: pointer;
 }

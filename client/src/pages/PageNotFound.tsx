@@ -21,12 +21,17 @@ export default function PageNotFound() {
           <span
             onClick={() => audioSnakeRef.current.play()}
             onKeyDown={() => audioSnakeRef.current.play()}
+            className={styles.snake}
           >
             🐍
           </span>{" "}
           dans votre botte, cliquez ci-dessous
         </p>
-        <button type="button" onClick={() => audioRef.current.play()}>
+        <button
+          id={styles.errorButton}
+          type="button"
+          onClick={() => audioRef.current.play()}
+        >
           <NavLink to="/">Vers l'infini et au delà ! 🚀</NavLink>
         </button>
       </section>
