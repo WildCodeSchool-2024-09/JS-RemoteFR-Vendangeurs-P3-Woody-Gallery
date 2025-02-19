@@ -21,6 +21,7 @@ export default function PageNotFound() {
           <span
             onClick={() => audioSnakeRef.current.play()}
             onKeyDown={() => audioSnakeRef.current.play()}
+            className={styles.snake}
           >
             🐍
           </span>{" "}
